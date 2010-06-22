@@ -5,6 +5,7 @@ use warnings;
 my @modules = qw(
     http://github.com/rakudo/rakudo
     http://github.com/jnthn/zavolaj
+    http://github.com/jnthn/blizkost
     http://github.com/mberends/fakedbi
     http://github.com/masak/svg
     http://github.com/moritz/svg-plot
