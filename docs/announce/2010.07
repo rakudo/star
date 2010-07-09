@@ -1,0 +1,8 @@
+        Announce: Rakudo Star Distribution Release 1
+
+On behalf of the Rakudo development team, I'm pleased to announce the first
+"Rakudo Star" release. It is a distribution release containing the Rakudo 
+Perl 6 compiler, modules and documentation, aiming to be a useable development
+environment.
+
+This is not a Perl 6 production release, or a finalized 6.0 release.
