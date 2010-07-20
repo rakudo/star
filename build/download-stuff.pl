@@ -11,6 +11,10 @@ my @modules = qw(
     http://github.com/moritz/svg-plot
     http://github.com/moritz/Math-RungeKutta
     http://github.com/moritz/Math-Model
+    http://github.com/mattw/form
+    http://github.com/tadzik/perl6-Config-INI
+    http://github.com/arnsholt/Algorithm-Viterbi
+    http://gitorious.org/http-daemon/mainline
 );
 
 chdir 'dist' or die "Can't chdir to build dir: $!";
