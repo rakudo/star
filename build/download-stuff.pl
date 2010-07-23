@@ -43,7 +43,7 @@ for my $m (@modules) {
 # but possible )
 #
 #  XXX we want rakudo 2010.07 of course, but that will give an error now
-my %tags = ( rakudo => '2010.06' );
+my %tags = ( rakudo => '2010.07' );
 
 while (my ($project, $version) = each %tags) {
     chdir $project or die "Can't chdir to '$project': $!";
