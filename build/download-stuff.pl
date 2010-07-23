@@ -1,6 +1,9 @@
 #!/usr/bin/perl
 use strict;
 use warnings;
+use 5.010;
+use File::Copy;
+use autodie qw(mkdir chdir open close copy);
 
 my @modules = qw(
     http://github.com/rakudo/rakudo
@@ -18,6 +21,8 @@ my @modules = qw(
     http://github.com/arnsholt/Algorithm-Viterbi
     http://gitorious.org/http-daemon/mainline
 );
+
+mkdir 'dist' unless -e 'dist';
 
 chdir 'dist' or die "Can't chdir to build dir: $!";
 
@@ -42,14 +47,17 @@ for my $m (@modules) {
 # so a branch name, tag name, sha1 sum, HEAD~3 ( not quite sane, 
 # but possible )
 #
-#  XXX we want rakudo 2010.07 of course, but that will give an error now
 my %tags = ( rakudo => '2010.07' );
 
 while (my ($project, $version) = each %tags) {
-    chdir $project or die "Can't chdir to '$project': $!";
+    chdir $project;
     system('git', 'checkout', $version) == 0
         or die "Can't git checkout $version: $?";
-    chdir '..' or die "Can't chdir back to dist/ folder: $!";
+    chdir '..';
 }
 
+chdir('..');
+
+copy('build/buildall.pl', 'dist/');
 # TODO: copy docs, build scripts, whatever
+#
