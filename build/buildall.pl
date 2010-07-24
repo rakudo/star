@@ -14,7 +14,7 @@ if ($inst_path =~ /\s/) {
 
 chdir('rakudo') or die "Can't chdir to rakudo: $!";
 print "Building parrot and Rakudo...\n";
-system($^X, 'Configure.pl', '--gen-parrot', "--gen-parrot-refix=$inst_path") == 0
+system($^X, 'Configure.pl', '--gen-parrot', "--gen-parrot-prefix=$inst_path") == 0
     or die "Can't run $^x Configure.pl ($?): $!";
 
 my %config = read_parrot_config();
