@@ -64,7 +64,7 @@ chdir '../..';
 # but possible )
 #
 my %tags = (
-    rakudo  => '2010.07',
+    rakudo  => 'master', # XXX replace by tag of Rakudo point release
     proto   => 'pls_rstar_hacks',
 );
 

@@ -39,16 +39,23 @@ if ($res ne 'sanity') {
 
 print "Things look good so far, executing a very simple Perl 6 program worked!\n";
 
+
 copy('ufo/ufo', "$inst_path/bin/") or die "Can't copy ufo/ufo to $inst_path/bin: $!";
 print "We now have alien technology that lets us install more modules...\n";
 
 $ENV{PLS_NO_FETCH} = 1;
 
+use Cwd;
+my $proto_lib = getcwd() . '/proto/lib';
+$ENV{PERL6LIB} = $proto_lib;
 chdir 'proto' or die "Can't chdir to 'proto': $!";
 # TODO: find a better way to determine which modules to install in this step.
 # Likely derive from @modules or so.
-for (qw(xml-writer svg svg-plot)) {
-    system('perl6', 'proof-of-concept', $_);
+for (qw(zavolaj xml-writer svg svg-plot)) {
+    print "Installing $_...\n";
+    system('perl6', 'proof-of-concept', $_) == 0
+        or die "Can't run poc $_ ($?): $!";
+
 }
 
 
