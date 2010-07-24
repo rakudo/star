@@ -3,6 +3,7 @@ use strict;
 use warnings;
 
 use File::Spec;
+use File::Copy;
 
 my $inst_path = File::Spec->rel2abs(shift(@ARGV) || 'build');
 print "Installing to '$inst_path'\n";
