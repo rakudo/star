@@ -5,12 +5,17 @@ use 5.010;
 use File::Copy;
 use autodie qw(mkdir chdir open close copy);
 
-my @modules = qw(
+my @bootrap = qw(
     http://github.com/rakudo/rakudo
+    http://github.com/masak/proto
+    http://github.com/masak/ufo
+);
+my @modules = qw(
     http://github.com/jnthn/zavolaj
     http://github.com/jnthn/blizkost
     http://github.com/mberends/MiniDBI
-    http://github.com/masak/svg
+    http://github.com/masak/xml-writer
+    http://github.com/moritz/svg
     http://github.com/moritz/svg-plot
     http://github.com/moritz/Math-RungeKutta
     http://github.com/moritz/Math-Model
@@ -26,8 +31,8 @@ mkdir 'dist' unless -e 'dist';
 
 chdir 'dist' or die "Can't chdir to build dir: $!";
 
-for my $m (@modules) {
-    my $git_url = $m;
+sub fetch_project {
+    my $git_url = shift;
     $git_url =~ s/^http/git/;
     $git_url .= '.git';
     my $return = system 'git', 'clone', $git_url;
@@ -40,14 +45,28 @@ for my $m (@modules) {
         }
         next;
     }
+
 }
+
+for my $m (@bootrap) {
+    fetch_project($m);
+}
+mkdir 'proto/cache';
+chdir 'proto/cache';
+for my $m (@modules) {
+    fetch_project($m);
+}
+chdir '../..';
 
 # for projects of which we want to ship specific tags or branches
 # the right-hand side can be anything that 'git checkout' accepts,
 # so a branch name, tag name, sha1 sum, HEAD~3 ( not quite sane, 
 # but possible )
 #
-my %tags = ( rakudo => '2010.07' );
+my %tags = (
+    rakudo  => '2010.07',
+    proto   => 'pls_rstar_hacks',
+);
 
 while (my ($project, $version) = each %tags) {
     chdir $project;
