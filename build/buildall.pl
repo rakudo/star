@@ -41,6 +41,15 @@ print "Things look good so far, executing a very simple Perl 6 program worked!\n
 copy('ufo/ufo', "$inst_path/bin/") or die "Can't copy ufo/ufo to $inst_path/bin: $!";
 print "We now have alien technology that lets us install more modules...\n";
 
+$ENV{PLS_NO_FETCH} = 1;
+
+chdir 'proto' or die "Can't chdir to 'proto': $!";
+# TODO: find a better way to determine which modules to install in this step.
+# Likely derive from @modules or so.
+for (qw(xml-writer svg svg-plot)) {
+    system('perl6', 'proof-of-concept', $_);
+}
+
 
 sub read_parrot_config {
     my %config = ();
