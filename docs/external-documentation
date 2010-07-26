@@ -13,7 +13,7 @@ and underlining the caveats.
 
 Series of articles showing "Something cool about Perl 6 every day".
 Advent Calendar shows some nice new features of Perl 6, explains
-the new operators and shows many interesting challenging examples
+the new operators and shows many interesting, challenging examples
 of their usage.
 
 * Gabor Szabo's screencasts
@@ -21,5 +21,5 @@ of their usage.
 
 In his screencasts, Gabor Szabo shows a baby-steps introduction
 to Perl 6, showing code examples and executing them to show their
-effect on the screen. A great introduction if You'd like to start
+effect on the screen. A great introduction if you'd like to start
 from the very beginning and explore Perl 6 piece by piece.
