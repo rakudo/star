@@ -3,20 +3,41 @@ RAKUDO_TAG = master
 
 DISTDIR = rakudo-star-$(VERSION)
 
-PARROT     = parrot-$(PARROT_VER)
-PARROT_TGZ = $(PARROT).tar.gz
-PARROT_DIR = $(DISTDIR)/$(PARROT)
+PARROT      = parrot-$(PARROT_VER)
+PARROT_TGZ  = $(PARROT).tar.gz
+PARROT_DIR  = $(DISTDIR)/$(PARROT)
 
-RAKUDO_DIR = $(DISTDIR)/rakudo
-BUILD_DIR  = $(DISTDIR)/build
+RAKUDO_DIR  = $(DISTDIR)/rakudo
+BUILD_DIR   = $(DISTDIR)/build
+MODULES_DIR = $(DISTDIR)/modules
 
 BUILD_FILES = \
   build/gen_parrot.pl \
   build/Makefile.in \
 
+MODULES = \
+  git://github.com/masak/ufo \
+  git://github.com/masak/proto \
+  git://github.com/jnthn/zavloaj \
+  git://github.com/jnthn/blitzkost \
+  git://github.com/mberends/MiniDBI \
+  git://github.com/masak/xml-writer \
+  git://github.com/moritz/svg \
+  git://github.com/moritz/svg-plot \
+  git://github.com/moritz/Math-RungeKutta \
+  git://github.com/moritz/Math-Model \
+  git://github.com/mattw/form \
+  git://github.com/tadzik/perl6-Config-INI \
+  git://github.com/tadzik/perl6-File-Find \
+  git://github.com/tadzik/perl6-Term-ANSIColor \
+  git://github.com/arnsholt/Algorithm-Viterbi \
+  git://gitorious.org/http-daemon/mainline \
+
+
 DISTTARGETS = \
   $(PARROT_DIR) \
   $(RAKUDO_DIR) \
+  $(MODULES_DIR) \
   $(BUILD_DIR) \
   $(BUILD_DIR)/PARROT_REVISION \
   $(DISTDIR)/Configure.pl \
@@ -40,6 +61,10 @@ $(BUILD_DIR): $(BUILD_FILES)
 
 $(BUILD_DIR)/PARROT_REVISION: $(RAKUDO_DIR) $(RAKUDO_DIR)/build/PARROT_REVISION
 	cp $(RAKUDO_DIR)/build/PARROT_REVISION $(BUILD_DIR)
+
+$(MODULES_DIR):
+	mkdir -p $(MODULES_DIR)
+	cd $(MODULES_DIR); for repo in $(MODULES); do git clone $$repo.git; done
 
 $(DISTDIR)/Configure.pl: build/Configure.pl
 	cp build/Configure.pl $(DISTDIR)
