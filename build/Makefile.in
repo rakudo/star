@@ -48,6 +48,23 @@ PERL6_LANG_DIR = $(PARROT_LIB_DIR)/languages/perl6
 MANDIR         = @mandir@
 DOCDIR         = @prefix@/share/doc
 
+all: rakudo
+
+rakudo: rakudo/perl6
+rakudo/perl6:
+	cd rakudo && $(PERL) Configure.pl --parrot-config=$(PARROT_BIN_DIR)/parrot_config && make
+rakudo-test: rakudo/perl6
+	cd rakudo && make test
+rakudo-install: rakudo
+	cd rakudo && make install
+
+modules-install:
+	@echo "Installing 'ufo'"
+	$(CP)    ufo/ufo     $(PARROT_BIN_DIR)/ufo
+	$(CHMOD) 755         $(PARROT_BIN_DIR)/ufo
+
+install: rakudo-install modules-install
+
 ##  cleaning
 clean:
 	$(RM_F) $(CLEANUPS)
@@ -92,15 +109,7 @@ CRITIC_FILES=Configure.pl t/harness build/ tools/
 perlcritic:
 	perlcritic -1 --profile tools/util/perlcritic.conf $(CRITIC_FILES)
 
-manifest:
-	echo MANIFEST >MANIFEST
-	git ls-files | $(PERL) -ne '/^\./ || print' >>MANIFEST
-	rm -rf t/spec
-	svn export "http://svn.pugscode.org/pugs/t/spec" t/spec
-	find t/spec -type f >>MANIFEST
-	sort -u -o MANIFEST MANIFEST
-
-release: manifest
+release: MANIFEST
 	[ -n "$(VERSION)" ] || ( echo "\nTry 'make release VERSION=yyyy.mm'\n\n"; exit 1 )
 	[ -d rakudo-star-$(VERSION) ] || ln -s . rakudo-star-$(VERSION)
 	$(PERL) -ne 'print "rakudo-star-$(VERSION)/$$_"' MANIFEST | \
