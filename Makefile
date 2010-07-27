@@ -45,7 +45,8 @@ $(DISTDIR)/Configure.pl: build/Configure.pl
 	cp build/Configure.pl $(DISTDIR)
 
 $(DISTDIR)/MANIFEST:
-	find dist -name '.*' -prune -o -type f -printf '%P\n' >$(DISTDIR)/MANIFEST
+	touch $(DISTDIR)/MANIFEST
+	find $(DISTDIR) -name '.*' -prune -o -type f -printf '%P\n' >$(DISTDIR)/MANIFEST
 	## add the two dot-files from Parrot MANIFEST
 	echo "$(PARROT)/.gitignore" >>$(DISTDIR)/MANIFEST
 	echo "$(PARROT)/tools/dev/.gdbinit" >>$(DISTDIR)/MANIFEST
