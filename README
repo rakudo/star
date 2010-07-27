@@ -3,9 +3,12 @@ Rakudo Star -- a Perl 6 distribution based on Rakudo Perl
 See <http://wiki.github.com/rakudo/rakudo/whats-going-into-rakudo> for a list
 of modules we want included in the distribution.
 
+This repository doesn't contain a distribution, it contains the tools
+and scripts to build a distribution.  Run "make" to populate a distribution
+image in the dist/ directory.  Currently this assumes that you have
+the following tools available:
 
-The distribution is built in the dist/ directory. Run 
+    * git
+    * wget
 
-    perl build/download-stuff.pl
 
-to populate it.
