@@ -73,7 +73,7 @@ $(DISTDIR)/MANIFEST:
 	echo "$(PARROT)/.gitignore" >>$(DISTDIR)/MANIFEST
 	echo "$(PARROT)/tools/dev/.gdbinit" >>$(DISTDIR)/MANIFEST
 
-release: $(DISTDIR)
+release: dist
 	perl -ne 'print "$(DISTDIR)/$$_"' $(DISTDIR)/MANIFEST |\
 	    tar -zcv -T - -f $(DISTDIR).tar.gz
 	
