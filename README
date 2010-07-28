@@ -8,8 +8,14 @@ and scripts to build a distribution.  Run "make VERSION=yyyy.mm" to populate
 a distribution image in the rakudo-star-yyyy.mm/ directory.  The build
 system assumes that you have the following tools available:
 
+    * perl
+    * make
     * git
     * wget
+    * cp
+    * find
+    * tar
+    * touch
 
 The skel/ directory contains the basic layout of documentation and
 other support files, other components are then populated into to
