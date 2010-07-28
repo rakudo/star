@@ -47,8 +47,8 @@ version_check:
 
 always:
 
-$(DISTDIR):
-	cp -a skel $(DISTDIR)
+$(DISTDIR): always
+	cp -auv skel $(DISTDIR)
 
 $(PARROT_DIR): $(PARROT_TGZ)
 	tar -C $(DISTDIR) -xvzf $(PARROT_TGZ)
