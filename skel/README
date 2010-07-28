@@ -13,12 +13,12 @@ copyright and licensing information of those components.
 Build Prerequisites
 -------------------
 To build Rakudo Star you need at least a C copmiler, a 'make' utility,
-and Perl 5.8 or newer.  
+and Perl 5.8 or newer.
 
 In order to fully support Unicode, you'll also want to have the
 ICU library installed (http://site.icu-project.org/).
 Rakudo can run without ICU, but some Unicode-related features
-do not work properly.
+will not work properly.
 
 On Debian GNU/Linux or Ubuntu Linux, the necessary components
 for building Rakudo can be installed via the command.
@@ -30,8 +30,11 @@ components for building Rakudo can be installed via the command
 
 Readline support also requires the "libreadline5-dev" library.
 
-Blizkost wants to have the Perl 5 development libraries available;
-on Debian/Ubuntu this is available through the libperl-dev package.
+Rakudo Star includes Blizkost, which enables you to use Perl 5
+modules from Perl 6. If you wish to use this, then you must have
+the Perl 5 development libraries available for either Perl 5.10 or
+Perl 5.12; on Debian/Ubuntu this is available through the libperl-dev
+package.
 
 
 Building Rakudo Star
@@ -67,7 +70,8 @@ If the Rakudo compiler is invoked without an explicit script to
 run, it enters a small interactive mode that allows Perl 6 statements
 to be executed from the command line.
 
-To build and install "Blizkost", use:
+To build and install "Blizkost" to gain the ability to use Perl 5
+modules from Perl 6, use:
 
     $ make blizkost-install
 
