@@ -49,6 +49,21 @@ MANDIR         = @mandir@
 DOCDIR         = @prefix@/share/doc
 
 PERL6_EXE      = perl6$(EXE)
+PERL6_LANG_DIR = $(PARROT_LIB_DIR)/languages/perl6
+
+MODULES = \
+  modules/zavolaj \
+  modules/MiniDBI \
+  modules/xml-writer \
+  modules/svg \
+  modules/svg-plot \
+  modules/Math-RungeKutta \
+  modules/Math-Model \
+  modules/mainline \
+  modules/perl6-Config-INI \
+  modules/perl6-File-Find \
+  modules/perl6-Term-ANSIColor \
+  modules/Algorithm-Viterbi \
 
 all: rakudo
 
@@ -65,6 +80,7 @@ modules-install:
 	@echo "Installing 'ufo'"
 	$(CP)    modules/ufo/ufo     $(PARROT_BIN_DIR)/ufo
 	$(CHMOD) 755                 $(PARROT_BIN_DIR)/ufo
+	$(PERL) build/module-install.pl $(PERL6_EXE) $(DESTDIR)$(PERL6_LANG_DIR)/lib $(MODULES)
 
 install: rakudo-install modules-install
 

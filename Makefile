@@ -13,13 +13,14 @@ MODULES_DIR = $(DISTDIR)/modules
 
 BUILD_FILES = \
   build/gen_parrot.pl \
+  build/module-install.pl \
   build/Makefile.in \
 
 MODULES = \
   git://github.com/masak/ufo \
   git://github.com/masak/proto \
-  git://github.com/jnthn/zavloaj \
-  git://github.com/jnthn/blitzkost \
+  git://github.com/jnthn/zavolaj \
+  git://github.com/jnthn/blizkost \
   git://github.com/mberends/MiniDBI \
   git://github.com/masak/xml-writer \
   git://github.com/moritz/svg \
@@ -62,7 +63,7 @@ $(BUILD_DIR): $(BUILD_FILES)
 $(BUILD_DIR)/PARROT_REVISION: $(RAKUDO_DIR) $(RAKUDO_DIR)/build/PARROT_REVISION
 	cp $(RAKUDO_DIR)/build/PARROT_REVISION $(BUILD_DIR)
 
-$(MODULES_DIR):
+$(MODULES_DIR): always
 	mkdir -p $(MODULES_DIR)
 	cd $(MODULES_DIR); for repo in $(MODULES); do git clone $$repo.git; done
 
@@ -78,6 +79,8 @@ $(DISTDIR)/MANIFEST:
 
 version_check:
 	@[ -n "$(VERSION)" ] || ( echo "\nTry 'make VERSION=yyyy.mm'\n\n"; exit 1)
+
+always:
 
 release: $(DISTDIR)
 	perl -ne 'print "$(DISTDIR)/$$_"' $(DISTDIR)/MANIFEST |\
