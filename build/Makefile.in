@@ -52,16 +52,17 @@ all: rakudo
 
 rakudo: rakudo/perl6
 rakudo/perl6:
-	cd rakudo && $(PERL) Configure.pl --parrot-config=$(PARROT_BIN_DIR)/parrot_config && make
+	cd rakudo && $(PERL) Configure.pl --parrot-config=$(PARROT_BIN_DIR)/parrot_config && $(MAKE)
 rakudo-test: rakudo/perl6
-	cd rakudo && make test
+	cd rakudo && $(MAKE) test
 rakudo-install: rakudo
-	cd rakudo && make install
+	cd rakudo && $(MAKE) install
+	$(CP) $(PARROT_BIN_DIR)/perl6 .
 
 modules-install:
 	@echo "Installing 'ufo'"
-	$(CP)    ufo/ufo     $(PARROT_BIN_DIR)/ufo
-	$(CHMOD) 755         $(PARROT_BIN_DIR)/ufo
+	$(CP)    modules/ufo/ufo     $(PARROT_BIN_DIR)/ufo
+	$(CHMOD) 755                 $(PARROT_BIN_DIR)/ufo
 
 install: rakudo-install modules-install
 
