@@ -48,16 +48,18 @@ PERL6_LANG_DIR = $(PARROT_LIB_DIR)/languages/perl6
 MANDIR         = @mandir@
 DOCDIR         = @prefix@/share/doc
 
+PERL6_EXE      = perl6$(EXE)
+
 all: rakudo
 
-rakudo: rakudo/perl6
-rakudo/perl6:
+rakudo: rakudo/$(PERL6_EXE)
+rakudo/$(PERL6_EXE):
 	cd rakudo && $(PERL) Configure.pl --parrot-config=$(PARROT_BIN_DIR)/parrot_config && $(MAKE)
 rakudo-test: rakudo/perl6
 	cd rakudo && $(MAKE) test
 rakudo-install: rakudo
 	cd rakudo && $(MAKE) install
-	$(CP) $(PARROT_BIN_DIR)/perl6 .
+	$(CP) $(PARROT_BIN_DIR)/$(PERL6_EXE) .
 
 modules-install:
 	@echo "Installing 'ufo'"
