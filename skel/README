@@ -30,6 +30,9 @@ components for building Rakudo can be installed via the command
 
 Readline support also requires the "libreadline5-dev" library.
 
+Blizkost wants to have the Perl 5 development libraries available;
+on Debian/Ubuntu this is available through the libperl-dev package.
+
 
 Building Rakudo Star
 --------------------
