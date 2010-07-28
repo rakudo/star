@@ -41,4 +41,9 @@ U: pmichaud
 D: Perl 6 (Rakudo Perl) lead developer, pumpking
 E: pmichaud@pobox.com
 
+N: Dave Olszewski
+E: cxreg@pobox.com
+U: cxreg
+D: Bugfixes and moral support
+
 =cut
