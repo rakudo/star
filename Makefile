@@ -53,7 +53,7 @@ $(PARROT).tar.gz:
 	wget http://ftp.parrot.org/releases/supported/$(PARROT_VER)/$(PARROT_TGZ)
 
 $(RAKUDO_DIR):
-	git clone git@github.com:rakudo/rakudo.git $(RAKUDO_DIR)
+	git clone git://github.com/rakudo/rakudo.git $(RAKUDO_DIR)
 	cd $(RAKUDO_DIR); git checkout $(RAKUDO_VER)
 
 $(BUILD_DIR)/PARROT_REVISION: $(RAKUDO_DIR) $(RAKUDO_DIR)/build/PARROT_REVISION
