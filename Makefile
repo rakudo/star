@@ -22,7 +22,7 @@ MODULES = \
   git://github.com/moritz/svg-plot \
   git://github.com/moritz/Math-RungeKutta \
   git://github.com/moritz/Math-Model \
-  git://github.com/mattw/form \
+  git://github.com/mathw/form \
   git://github.com/tadzik/perl6-Config-INI \
   git://github.com/tadzik/perl6-File-Find \
   git://github.com/tadzik/perl6-Term-ANSIColor \

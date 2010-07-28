@@ -19,7 +19,7 @@ my @modules = qw(
     http://github.com/moritz/svg-plot
     http://github.com/moritz/Math-RungeKutta
     http://github.com/moritz/Math-Model
-    http://github.com/mattw/form
+    http://github.com/mathw/form
     http://github.com/tadzik/perl6-Config-INI
     http://github.com/tadzik/perl6-File-Find
     http://github.com/tadzik/perl6-Term-ANSIColor
