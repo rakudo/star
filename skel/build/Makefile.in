@@ -65,6 +65,7 @@ MODULES = \
   modules/perl6-File-Find \
   modules/perl6-Term-ANSIColor \
   modules/Algorithm-Viterbi \
+  modules/test-mock \
 
 all: rakudo
 

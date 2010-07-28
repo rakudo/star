@@ -11,6 +11,8 @@ RAKUDO_DIR  = $(DISTDIR)/rakudo
 BUILD_DIR   = $(DISTDIR)/build
 MODULES_DIR = $(DISTDIR)/modules
 
+## If you add a module here, don't forget to update MODULES
+## in skel/build/Makefile.in to actually install it
 MODULES = \
   git://github.com/masak/ufo \
   git://github.com/masak/proto \
@@ -28,6 +30,7 @@ MODULES = \
   git://github.com/tadzik/perl6-Term-ANSIColor \
   git://github.com/arnsholt/Algorithm-Viterbi \
   git://gitorious.org/http-daemon/mainline \
+  git://github.com/jnthn/test-mock \
 
 
 DISTTARGETS = \
