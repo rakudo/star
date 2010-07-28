@@ -69,7 +69,7 @@ MODULES = \
   modules/Perl6-MIME-Base64 \
   modules/perl6-lwp-simple \
   modules/json \
-  modules/yaml-p6 \
+  modules/yaml-pm6 \
 
 all: rakudo
 
