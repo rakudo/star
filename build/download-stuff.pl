@@ -25,6 +25,7 @@ my @modules = qw(
     http://github.com/tadzik/perl6-Term-ANSIColor
     http://github.com/arnsholt/Algorithm-Viterbi
     http://gitorious.org/http-daemon/mainline
+    http://github.com/jnthn/test-mock
 );
 
 mkdir 'dist' unless -e 'dist';
