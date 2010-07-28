@@ -12,8 +12,8 @@ copyright and licensing information of those components.
 
 Build Prerequisites
 -------------------
-To build Rakudo Star you need at least a C copmiler, a 'make' utility,
-and Perl 5.8 or newer.
+To build Rakudo Star you need at least a C compiler, a 'make' utility,
+and Perl 5.8.4 or newer.
 
 In order to fully support Unicode, you'll also want to have the
 ICU library installed (http://site.icu-project.org/).
@@ -21,10 +21,7 @@ Rakudo can run without ICU, but some Unicode-related features
 will not work properly.
 
 On Debian GNU/Linux or Ubuntu Linux, the necessary components
-for building Rakudo can be installed via the command.
-
-As an example, on Debian GNU/Linux or Ubuntu Linux, the necessary
-components for building Rakudo can be installed via the command
+for building Rakudo can be installed via the command
 
     aptitude install build-essential libicu-dev subversion
 
