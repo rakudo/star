@@ -32,6 +32,7 @@ POD2MAN       = @pod2man@
 PARROT           = $(PARROT_BIN_DIR)/parrot$(EXE)
 NQP_EXE          = $(PARROT_BIN_DIR)/parrot-nqp$(EXE)
 PBC_TO_EXE       = $(PARROT_BIN_DIR)/pbc_to_exe$(EXE)
+PARROT_CONFIG    = $(PARROT_BIN_DIR)/parrot_config$(EXE)
 PARROT_TOOLS_DIR = $(PARROT_LIB_DIR)/tools
 PARROT_PERL_LIB  = $(PARROT_TOOLS_DIR)/lib
 OPS2C            = $(PARROT_BIN_DIR)/ops2c$(EXE)
@@ -69,18 +70,24 @@ all: rakudo
 
 rakudo: rakudo/$(PERL6_EXE)
 rakudo/$(PERL6_EXE):
-	cd rakudo && $(PERL) Configure.pl --parrot-config=$(PARROT_BIN_DIR)/parrot_config && $(MAKE)
+	cd rakudo && $(PERL) Configure.pl --parrot-config=$(PARROT_CONFIG) && $(MAKE)
 rakudo-test: rakudo/perl6
 	cd rakudo && $(MAKE) test
 rakudo-install: rakudo
 	cd rakudo && $(MAKE) install
 	$(CP) $(PARROT_BIN_DIR)/$(PERL6_EXE) .
+	$(CHMOD) 755 $(PERL6_EXE)
 
 modules-install:
 	@echo "Installing 'ufo'"
 	$(CP)    modules/ufo/ufo     $(PARROT_BIN_DIR)/ufo
 	$(CHMOD) 755                 $(PARROT_BIN_DIR)/ufo
-	$(PERL) build/module-install.pl $(PERL6_EXE) $(DESTDIR)$(PERL6_LANG_DIR)/lib $(MODULES)
+	$(PERL) build/module-install.pl $(PARROT_BIN_DIR)/$(PERL6_EXE) $(DESTDIR)$(PERL6_LANG_DIR)/lib $(MODULES)
+
+blizkost:
+	cd modules/blizkost && $(PERL) Configure.pl --parrot-config=$(PARROT_CONFIG) && $(MAKE)
+blizkost-install: blizkost
+	cd modules/blizkost && $(MAKE) install
 
 install: rakudo-install modules-install
 
@@ -102,9 +109,6 @@ help:
 	@echo ""
 	@echo "Following targets are available for the user:"
 	@echo ""
-	@echo "  all:               perl6.pbc"
-        @echo "  install:           Install stuff."
-	@echo ""
 	@echo "Maintenance:"
 	@echo "  perlcritic:        Run Perl::Critic on all the Perl 5 code."
 	@echo ""
@@ -123,7 +127,7 @@ config:
 
 $(PARROT):
 
-CRITIC_FILES=Configure.pl t/harness build/ tools/
+CRITIC_FILES=Configure.pl build/
 
 perlcritic:
 	perlcritic -1 --profile tools/util/perlcritic.conf $(CRITIC_FILES)

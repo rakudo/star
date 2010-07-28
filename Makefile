@@ -11,11 +11,6 @@ RAKUDO_DIR  = $(DISTDIR)/rakudo
 BUILD_DIR   = $(DISTDIR)/build
 MODULES_DIR = $(DISTDIR)/modules
 
-BUILD_FILES = \
-  build/gen_parrot.pl \
-  build/module-install.pl \
-  build/Makefile.in \
-
 MODULES = \
   git://github.com/masak/ufo \
   git://github.com/masak/proto \
@@ -39,15 +34,20 @@ DISTTARGETS = \
   $(PARROT_DIR) \
   $(RAKUDO_DIR) \
   $(MODULES_DIR) \
-  $(BUILD_DIR) \
   $(BUILD_DIR)/PARROT_REVISION \
-  $(DISTDIR)/Configure.pl \
   $(DISTDIR)/MANIFEST \
 
-$(DISTDIR): version_check $(DISTTARGETS)
+dist: version_check $(DISTDIR) $(DISTTARGETS)
+
+version_check:
+	@[ -n "$(VERSION)" ] || ( echo "\nTry 'make VERSION=yyyy.mm'\n\n"; exit 1)
+
+always:
+
+$(DISTDIR):
+	cp -a skel $(DISTDIR)
 
 $(PARROT_DIR): $(PARROT_TGZ)
-	mkdir -p $(DISTDIR)
 	tar -C $(DISTDIR) -xvzf $(PARROT_TGZ)
 $(PARROT).tar.gz:
 	wget http://ftp.parrot.org/releases/supported/$(PARROT_VER)/$(PARROT_TGZ)
@@ -55,10 +55,6 @@ $(PARROT).tar.gz:
 $(RAKUDO_DIR):
 	git clone git@github.com:rakudo/rakudo.git $(RAKUDO_DIR)
 	cd $(RAKUDO_DIR); git checkout $(RAKUDO_VER)
-
-$(BUILD_DIR): $(BUILD_FILES)
-	mkdir -p $(BUILD_DIR)
-	cp $(BUILD_FILES) $(BUILD_DIR)
 
 $(BUILD_DIR)/PARROT_REVISION: $(RAKUDO_DIR) $(RAKUDO_DIR)/build/PARROT_REVISION
 	cp $(RAKUDO_DIR)/build/PARROT_REVISION $(BUILD_DIR)
@@ -76,11 +72,6 @@ $(DISTDIR)/MANIFEST:
 	## add the two dot-files from Parrot MANIFEST
 	echo "$(PARROT)/.gitignore" >>$(DISTDIR)/MANIFEST
 	echo "$(PARROT)/tools/dev/.gdbinit" >>$(DISTDIR)/MANIFEST
-
-version_check:
-	@[ -n "$(VERSION)" ] || ( echo "\nTry 'make VERSION=yyyy.mm'\n\n"; exit 1)
-
-always:
 
 release: $(DISTDIR)
 	perl -ne 'print "$(DISTDIR)/$$_"' $(DISTDIR)/MANIFEST |\
