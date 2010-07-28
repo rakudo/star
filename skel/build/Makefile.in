@@ -66,6 +66,7 @@ MODULES = \
   modules/perl6-Term-ANSIColor \
   modules/Algorithm-Viterbi \
   modules/test-mock \
+  modules/Perl6-MIME-Base64 \
   modules/perl6-lwp-simple \
 
 all: rakudo
