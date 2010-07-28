@@ -21,7 +21,7 @@ while (@ARGV) {
         return unless /\.pm6?/;
         my $source = $File::Find::name;
         my $target = $source;
-        $target =~ s/$mlib/$perl6lib/;
+        $target =~ s/\Q$mlib\E/$perl6lib/;
         print "$source => $target\n";
         mkpath dirname($target);
         copy($source, $target) or die "copy failed: $!\n";
