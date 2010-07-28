@@ -4,11 +4,10 @@ See <http://wiki.github.com/rakudo/rakudo/whats-going-into-rakudo> for a list
 of modules we want included in the distribution.
 
 This repository doesn't contain a distribution, it contains the tools
-and scripts to build a distribution.  Run "make" to populate a distribution
-image in the dist/ directory.  Currently this assumes that you have
-the following tools available:
+and scripts to build a distribution.  Run "make VERSION=yyyy.mm" to populate 
+a distribution image in the rakudo-star-yyyy.mm/ directory.  The build
+system assumes that you have the following tools available:
 
     * git
     * wget
-
 
