@@ -3,7 +3,7 @@ This is Rakudo Star, a useful, usable Perl 6 distribution for "early adopters".
 Rakudo Star is Copyright (C) 2010 by the Rakudo Star Team.
 
 License Information
-
+-------------------
 Rakudo Star is distributed under the terms of the Artistic License 2.0.
 This distribution contains software collected from other sources; see the
 individual source subdirectories (in parrot/, rakudo/, and modules/) for
@@ -11,7 +11,7 @@ copyright and licensing information of those components.
 
 
 Build Prerequisites
-
+-------------------
 To build Rakudo Star you need at least a C copmiler, a 'make' utility,
 and Perl 5.8 or newer.  
 
@@ -32,7 +32,7 @@ Readline support also requires the "libreadline5-dev" library.
 
 
 Building Rakudo Star
-
+--------------------
 The basic steps to build Rakudo Star are:
 
     $ perl Configure.pl --gen-parrot
@@ -64,9 +64,13 @@ If the Rakudo compiler is invoked without an explicit script to
 run, it enters a small interactive mode that allows Perl 6 statements
 to be executed from the command line.
 
+To build and install "Blizkost", use:
+
+    $ make blizkost-install
+
 
 Running the Perl 6 test suite
-
+-----------------------------
 Entering "make rakudo-test" will run a small test suite that comes
 bundled with Rakudo.  This is a simple suite of tests, designed
 to make sure that the Rakudo compiler is basically working and that
@@ -87,7 +91,7 @@ For more details about running tests, see rakudo/README .
 
 
 Where to get help or answers to questions
-
+-----------------------------------------
 The http://perl6.org/ website contains a great many links to
 resources for Perl 6 development, and is generally the starting
 point for information about Perl 6.
@@ -116,7 +120,7 @@ find useful information for developers and users alike.
 
 
 Reporting bugs
-
+--------------
 Bug reports about Rakudo Star or the Perl 6 specification should be 
 sent to rakudobug@perl.org with the moniker [BUG] (including the brackets) 
 at the start of the subject so that it gets appropriately tagged in the 
@@ -128,7 +132,7 @@ mailing list, as the RT system will handle this on its own.
 
 
 Submitting patches
-
+------------------
 Patches to the Rakudo compiler itself should be submitted to
 'rakudobug@perl.org'.  Patches for individual modules should be
 submitted to the module authors (see the module source code for
@@ -140,11 +144,10 @@ See further instructions in the rakudo/ subdirectory for more details.
 Other ways to create and submit patches are discussed at
 http://wiki.github.com/rakudo/rakudo/steps-to-create-a-patch.
 
-=head1 AUTHOR
-
+AUTHOR
+------
 Patrick Michaud (pmichaud@pobox.com) is the primary author and
-maintainer for Rakudo Star. See CREDITS for further authors.
+maintainer for Rakudo Star. See docs/CREDITS for further Rakudo
+Star authors, and */CREDITS for authors of other collected
+components.
 
-=cut
-
-## vim: expandtab sw=4 ft=pod tw=70:
