@@ -31,6 +31,10 @@ MODULES = \
   git://github.com/arnsholt/Algorithm-Viterbi \
   git://gitorious.org/http-daemon/mainline \
   git://github.com/jnthn/test-mock \
+  git://github.com/ingydotnet/yaml-pm6 \
+  git://github.com/moritz/json \
+  git://github.com/snarkyboojum/Perl6-MIME-Base64 \
+  git://github.com/cosimo/perl6-lwp-simple \
 
 
 DISTTARGETS = \

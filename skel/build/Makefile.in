@@ -68,7 +68,8 @@ MODULES = \
   modules/test-mock \
   modules/Perl6-MIME-Base64 \
   modules/perl6-lwp-simple \
-  modules/JSON-Tiny \
+  modules/json \
+  modules/yaml-p6 \
 
 all: rakudo
 
