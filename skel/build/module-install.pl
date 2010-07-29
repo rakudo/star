@@ -7,7 +7,7 @@ use File::Copy;
 use File::Path;
 use File::Basename;
 
-my $perl6 = shift @ARGV;
+my $perl6bin = shift @ARGV;
 my $perl6lib = shift @ARGV;
 
 my @pmfiles;
@@ -31,7 +31,7 @@ while (@ARGV) {
 
 foreach my $pm (@pmfiles) {
     my $out = $pm;  $out =~ s/\.pm6?$/.pir/;
-    my @cmd = ('./perl6', '--target=pir', "--output=$out", $pm);
+    my @cmd = ($perl6bin, '--target=pir', "--output=$out", $pm);
     print join(' ', @cmd), "\n";
     system(@cmd);
 }
