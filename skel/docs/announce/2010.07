@@ -54,7 +54,6 @@ features include:
   * typed arrays
   * macros
   * state variables
-  * hypothetical variables
   * threads and concurrency
   * Unicode strings at levels other than codepoints
   * pre and post constraints, and other phasers
