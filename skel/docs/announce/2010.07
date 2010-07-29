@@ -49,6 +49,7 @@ yet handle appropriately, although they will appear in upcoming
 releases.  Thus, we do not consider Rakudo Star to be a
 "Perl 6.0.0" or "1.0" release.  Some of the not-quite-there
 features include:
+  * nested package definitions
   * binary objects, native types, pack and unpack
   * typed arrays
   * macros
