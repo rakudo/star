@@ -56,7 +56,7 @@ features include:
   * state variables
   * threads and concurrency
   * Unicode strings at levels other than codepoints
-  * pre and post constraints, and other phasers
+  * pre and post constraints, and some other phasers
   * interactive readline doesn't read Unicode properly
   * backslash escapes in regex <[...]> character classes
   * non-blocking I/O
