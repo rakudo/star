@@ -43,7 +43,6 @@ release of Rakudo Star:
   * an interactive read-evaluation-print loop
   * Unicode at the codepoint level
   * resumable exceptions
-  * ...others?
 
 There are some key features of Perl 6 that Rakudo Star does not
 yet handle appropriately, although they will appear in upcoming
@@ -57,7 +56,7 @@ features include:
   * threads and concurrency
   * Unicode strings at levels other than codepoints
   * pre and post constraints, and other phasers
-  * ...others?
+  * ...and much more.
 
 In many places we've tried to make Rakudo smart enough to inform the
 programmer that a given feature isn't implemented, but there are

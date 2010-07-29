@@ -96,6 +96,14 @@ blizkost-install: blizkost
 
 install: rakudo-install modules-install
 
+test:
+	@echo ""
+	@echo "To run the Rakudo compiler tests, use 'make rakudo-test'"
+	@echo ""
+	@echo "To run tests for individual modules, try:"
+	@echo "  prove -e ./perl6 -r modules/<name>/t"
+	@echo ""
+
 ##  cleaning
 clean:
 	$(RM_F) $(CLEANUPS)
