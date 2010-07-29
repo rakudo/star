@@ -70,6 +70,7 @@ MODULES = \
   modules/perl6-lwp-simple \
   modules/json \
   modules/yaml-pm6 \
+  modules/form \
 
 all: rakudo
 
