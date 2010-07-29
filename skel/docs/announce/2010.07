@@ -57,12 +57,11 @@ features include:
   * threads and concurrency
   * Unicode strings at levels other than codepoints
   * pre and post constraints, and some other phasers
-  * interactive readline doesn't read Unicode properly
+  * interactive readline that understands Unicode
   * backslash escapes in regex <[...]> character classes
   * non-blocking I/O
   * most of Synopsis 9
   * perl6doc or pod manipulation tools
-  * ...and much more
 
 In many places we've tried to make Rakudo smart enough to inform the
 programmer that a given feature isn't implemented, but there are
