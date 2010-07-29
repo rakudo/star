@@ -59,6 +59,7 @@ features include:
   * Unicode strings at levels other than codepoints
   * pre and post constraints, and other phasers
   * interactive readline doesn't read Unicode properly
+  * backslash escapes in regex <[...]> character classes
   * ...and much more
 
 In many places we've tried to make Rakudo smart enough to inform the
