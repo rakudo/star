@@ -66,8 +66,9 @@ programmer that a given feature isn't implemented, but there are
 many that we've missed.  Bug reports about missing and broken
 features are welcomed.
 
-More information about many aspects of Perl 6 is available from 
-http://perl6.org/ .
+See http://perl6.org/ for links to much more information about 
+Perl 6, including documentation, example code, tutorials, reference
+materials, specification documents, and other supporting resources.
 
 Rakudo Star also bundles a number of modules; a partial list of
 the modules provided by this release include:
