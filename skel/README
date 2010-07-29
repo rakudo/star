@@ -94,6 +94,16 @@ http://smolder.plusthree.com/app/public_projects/details/18.
 For more details about running tests, see rakudo/README .
 
 
+Release information
+-------------------
+Information about the current release is placed in the docs/
+directory, here is a brief overview:
+
+    docs/introduction     —   introduction to Rakudo Star
+    docs/cheatsheet.txt   —   Perl 6 cheat sheet
+    docs/announce/        —   detailed release announcements
+
+
 Where to get help or answers to questions
 -----------------------------------------
 The http://perl6.org/ website contains a great many links to
