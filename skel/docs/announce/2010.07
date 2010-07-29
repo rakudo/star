@@ -60,6 +60,7 @@ features include:
   * pre and post constraints, and other phasers
   * interactive readline doesn't read Unicode properly
   * backslash escapes in regex <[...]> character classes
+  * non-blocking I/O
   * ...and much more
 
 In many places we've tried to make Rakudo smart enough to inform the
