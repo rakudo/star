@@ -69,6 +69,7 @@ $(BUILD_DIR)/PARROT_REVISION: $(RAKUDO_DIR) $(RAKUDO_DIR)/build/PARROT_REVISION
 $(MODULES_DIR): always
 	mkdir -p $(MODULES_DIR)
 	cd $(MODULES_DIR); for repo in $(MODULES); do git clone $$repo.git; done
+	cd $(MODULES_DIR)/yaml-pm6; git checkout rakudo-star-1
 
 $(DISTDIR)/Configure.pl: build/Configure.pl
 	cp build/Configure.pl $(DISTDIR)
