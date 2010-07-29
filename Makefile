@@ -1,5 +1,5 @@
 PARROT_VER = 2.6.0
-RAKUDO_TAG = master
+RAKUDO_TAG = Star+0
 
 DISTDIR = rakudo-star-$(VERSION)
 
@@ -61,7 +61,7 @@ $(PARROT).tar.gz:
 
 $(RAKUDO_DIR):
 	git clone git://github.com/rakudo/rakudo.git $(RAKUDO_DIR)
-	cd $(RAKUDO_DIR); git checkout $(RAKUDO_VER)
+	cd $(RAKUDO_DIR); git checkout $(RAKUDO_VER); git describe --match '2*' >VERSION
 
 $(BUILD_DIR)/PARROT_REVISION: $(RAKUDO_DIR) $(RAKUDO_DIR)/build/PARROT_REVISION
 	cp $(RAKUDO_DIR)/build/PARROT_REVISION $(BUILD_DIR)
