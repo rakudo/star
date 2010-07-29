@@ -107,7 +107,7 @@ different sets of modules or policies.  More information about
 Perl 6 modules can be found at http://modules.perl6.org/.
 
 Rakudo Star also contains a draft of a Perl 6 book -- see 
-<docs/book.pdf> in the release tarball.
+<docs/UsingPerl6-draft.pdf> in the release tarball.
 
 The development team thanks all of the contributors and sponsors
 for making Rakudo Star possible.  If you would like to contribute,
