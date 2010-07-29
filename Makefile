@@ -80,6 +80,8 @@ $(DISTDIR)/MANIFEST:
 	## add the two dot-files from Parrot MANIFEST
 	echo "$(PARROT)/.gitignore" >>$(DISTDIR)/MANIFEST
 	echo "$(PARROT)/tools/dev/.gdbinit" >>$(DISTDIR)/MANIFEST
+	## add the .gitignore from blizkost holding an otherwise empty dir
+	echo "modules/blizkost/dynext/.gitignore" >>$(DISTDIR)/MANIFEST
 
 release: dist
 	perl -ne 'print "$(DISTDIR)/$$_"' $(DISTDIR)/MANIFEST |\
