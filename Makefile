@@ -61,7 +61,7 @@ $(PARROT).tar.gz:
 
 $(RAKUDO_DIR):
 	git clone git://github.com/rakudo/rakudo.git $(RAKUDO_DIR)
-	cd $(RAKUDO_DIR); git checkout $(RAKUDO_VER); git describe --match '2*' >VERSION
+	cd $(RAKUDO_DIR); git checkout $(RAKUDO_TAG); git describe --match '2*' >VERSION
 
 $(BUILD_DIR)/PARROT_REVISION: $(RAKUDO_DIR) $(RAKUDO_DIR)/build/PARROT_REVISION
 	cp $(RAKUDO_DIR)/build/PARROT_REVISION $(BUILD_DIR)
