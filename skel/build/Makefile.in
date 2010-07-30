@@ -81,6 +81,7 @@ rakudo-test: rakudo/perl6
 	cd rakudo && $(MAKE) test
 rakudo-install: rakudo
 	cd rakudo && $(MAKE) install
+	@win32_libparrot_copy@
 	$(CP) $(PARROT_BIN_DIR)/$(PERL6_EXE) .
 	$(CHMOD) 755 $(PERL6_EXE)
 
