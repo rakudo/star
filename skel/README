@@ -101,7 +101,6 @@ Release information
 Information about the current release is placed in the docs/
 directory, here is a brief overview:
 
-    docs/introduction     —   introduction to Rakudo Star
     docs/cheatsheet.txt   —   Perl 6 cheat sheet
     docs/announce/        —   detailed release announcements
 
