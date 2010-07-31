@@ -29,6 +29,7 @@ while (@ARGV) {
     }
 }
 
+chdir 'rakudo';
 foreach my $pm (@pmfiles) {
     my $out = $pm;  $out =~ s/\.pm6?$/.pir/;
     my @cmd = ($perl6bin, '--target=pir', "--output=$out", $pm);
