@@ -51,7 +51,7 @@ $ENV{PERL6LIB} = $proto_lib;
 chdir 'proto' or die "Can't chdir to 'proto': $!";
 # TODO: find a better way to determine which modules to install in this step.
 # Likely derive from @modules or so.
-for (qw(zavolaj xml-writer svg svg-plot)) {
+for (qw(zavolaj xml-writer svg svg-plot Math-RungeKutta Math-Model)) {
     print "Installing $_...\n";
     system('perl6', 'proof-of-concept', $_) == 0
         or die "Can't run poc $_ ($?): $!";
