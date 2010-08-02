@@ -10,7 +10,7 @@ a distribution image in the rakudo-star-yyyy.mm/ directory.
 *** This task should only be done by a release manager, or for testing 
 your changes if you want to contribute to Rakudo Star. If you just want
 to use Rakudo Star, please download a pre-built tar.gz from
-http://github.com/perl6/book/downloads ***
+http://github.com/rakudo/star/downloads ***
 
 The build system assumes that you have the following tools available:
 
