@@ -23,13 +23,14 @@ Virtual Machine [2], and various modules, documentation,
 and other resources collected from the Perl 6 community.
 
 This release of Rakudo Star adds the following features over the
-previous release:
+previous Star release:
   * Nil is now undefined
   * Many regex modifiers are now recognized on the outside of regexes
   * Mathematic and range operations are now faster (they're still slow,
     but they're significantly faster than they were in the previous release)
   * Initial implementations of .pack and .unpack
   * MAIN can parse short arguments
+  * Removed a significant memory leak for loops and other repeated blocks
 
 This release (temporarily?) omits the Config::INI module that was
 included in the 2010.07 release, as it no longer builds with the 
