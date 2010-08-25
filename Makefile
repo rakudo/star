@@ -83,7 +83,9 @@ $(DISTDIR)/MANIFEST:
 	## add the .gitignore from blizkost holding an otherwise empty dir
 	echo "modules/blizkost/dynext/.gitignore" >>$(DISTDIR)/MANIFEST
 
-release: dist
+release: dist tarball
+
+tarball:
 	perl -ne 'print "$(DISTDIR)/$$_"' $(DISTDIR)/MANIFEST |\
 	    tar -zcv -T - -f $(DISTDIR).tar.gz
 	
