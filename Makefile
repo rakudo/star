@@ -1,5 +1,6 @@
-PARROT_VER = 2.6.0
-RAKUDO_TAG = Star+0
+PARROT_VER = 2.7.0
+PARROT_REL = devel/$(PARROT_VER)
+RAKUDO_TAG = 2010.08
 
 DISTDIR = rakudo-star-$(VERSION)
 
@@ -25,7 +26,6 @@ MODULES = \
   git://github.com/moritz/Math-RungeKutta \
   git://github.com/moritz/Math-Model \
   git://github.com/mathw/form \
-  git://github.com/tadzik/perl6-Config-INI \
   git://github.com/tadzik/perl6-File-Find \
   git://github.com/tadzik/perl6-Term-ANSIColor \
   git://github.com/arnsholt/Algorithm-Viterbi \
@@ -57,7 +57,7 @@ $(DISTDIR): always
 $(PARROT_DIR): $(PARROT_TGZ)
 	tar -C $(DISTDIR) -xvzf $(PARROT_TGZ)
 $(PARROT).tar.gz:
-	wget http://ftp.parrot.org/releases/supported/$(PARROT_VER)/$(PARROT_TGZ)
+	wget http://ftp.parrot.org/releases/$(PARROT_REL)/$(PARROT_TGZ)
 
 $(RAKUDO_DIR):
 	git clone git://github.com/rakudo/rakudo.git $(RAKUDO_DIR)
