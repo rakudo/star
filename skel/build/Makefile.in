@@ -86,7 +86,7 @@ rakudo-install: rakudo
 
 modules-install:
 	@echo "Installing 'ufo'"
-	$(CP)    modules/ufo/ufo     $(DESTDIR)$(PARROT_BIN_DIR)/ufo
+	$(CP)    modules/ufo/bin/ufo $(DESTDIR)$(PARROT_BIN_DIR)/ufo
 	$(CHMOD) 755                 $(DESTDIR)$(PARROT_BIN_DIR)/ufo
 	$(PERL) build/module-install.pl $(DESTDIR)$(PARROT_BIN_DIR)/$(PERL6_EXE) $(DESTDIR)$(PERL6_LANG_DIR)/lib $(MODULES)
 
