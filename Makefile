@@ -77,7 +77,7 @@ star-patches:
 
 $(DISTDIR)/MANIFEST:
 	touch $(DISTDIR)/MANIFEST
-	find $(DISTDIR) -name '.*' -prune -o -type f | sed -e 's|^[^/]*/||' >$(DISTDIR)/MANIFEST
+	find $(DISTDIR) -name '.*' -prune -o -type f -print | sed -e 's|^[^/]*/||' >$(DISTDIR)/MANIFEST
 	## add the two dot-files from Parrot MANIFEST
 	echo "$(PARROT)/.gitignore" >>$(DISTDIR)/MANIFEST
 	echo "$(PARROT)/tools/dev/.gdbinit" >>$(DISTDIR)/MANIFEST
