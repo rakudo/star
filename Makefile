@@ -42,6 +42,7 @@ DISTTARGETS = \
   $(RAKUDO_DIR) \
   $(MODULES_DIR) \
   $(BUILD_DIR)/PARROT_REVISION \
+  star-patches \
   $(DISTDIR)/MANIFEST \
 
 dist: version_check $(DISTDIR) $(DISTTARGETS)
@@ -71,8 +72,8 @@ $(MODULES_DIR): always
 	cd $(MODULES_DIR); for repo in $(MODULES); do git clone $$repo.git; done
 	cd $(MODULES_DIR)/yaml-pm6; git checkout rakudo-star-1
 
-$(DISTDIR)/Configure.pl: build/Configure.pl
-	cp build/Configure.pl $(DISTDIR)
+star-patches:
+	[ -f build/$(VERSION)-patch.pl ] && DISTDIR=$(DISTDIR) perl build/$(VERSION)-patch.pl
 
 $(DISTDIR)/MANIFEST:
 	touch $(DISTDIR)/MANIFEST
