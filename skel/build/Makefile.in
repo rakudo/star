@@ -61,6 +61,7 @@ MODULES = \
   modules/Math-RungeKutta \
   modules/Math-Model \
   modules/mainline \
+  modules/perl6-Config-INI \
   modules/perl6-File-Find \
   modules/perl6-Term-ANSIColor \
   modules/Algorithm-Viterbi \
