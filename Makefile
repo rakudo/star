@@ -35,6 +35,7 @@ MODULES = \
   git://github.com/moritz/json \
   git://github.com/snarkyboojum/Perl6-MIME-Base64 \
   git://github.com/cosimo/perl6-lwp-simple \
+  git://github.com/cosimo/perl6-digest-md5.git \
 
 
 DISTTARGETS = \

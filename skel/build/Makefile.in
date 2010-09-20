@@ -71,6 +71,7 @@ MODULES = \
   modules/json \
   modules/yaml-pm6 \
   modules/form \
+  modules/perl6-digest-md5 \
 
 all: rakudo
 
