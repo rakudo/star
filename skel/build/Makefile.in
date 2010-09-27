@@ -62,7 +62,6 @@ MODULES = \
   modules/Math-Model \
   modules/mainline \
   modules/perl6-Config-INI \
-  modules/perl6-File-Find \
   modules/perl6-Term-ANSIColor \
   modules/Algorithm-Viterbi \
   modules/test-mock \
@@ -72,6 +71,9 @@ MODULES = \
   modules/yaml-pm6 \
   modules/form \
   modules/perl6-digest-md5 \
+  modules/perl6-File-Tools \
+  modules/perl6-Module-Tools \
+  modules/neutro
 
 all: rakudo
 

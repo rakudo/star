@@ -16,7 +16,6 @@ MODULES_DIR = $(DISTDIR)/modules
 ## in skel/build/Makefile.in to actually install it
 MODULES = \
   git://github.com/masak/ufo \
-  git://github.com/masak/proto \
   git://github.com/jnthn/zavolaj \
   git://github.com/jnthn/blizkost \
   git://github.com/mberends/MiniDBI \
@@ -26,7 +25,6 @@ MODULES = \
   git://github.com/moritz/Math-RungeKutta \
   git://github.com/moritz/Math-Model \
   git://github.com/mathw/form \
-  git://github.com/tadzik/perl6-File-Find \
   git://github.com/tadzik/perl6-Term-ANSIColor \
   git://github.com/arnsholt/Algorithm-Viterbi \
   git://gitorious.org/http-daemon/mainline \
@@ -36,6 +34,9 @@ MODULES = \
   git://github.com/snarkyboojum/Perl6-MIME-Base64 \
   git://github.com/cosimo/perl6-lwp-simple \
   git://github.com/cosimo/perl6-digest-md5.git \
+  git://github.com/tadzik/perl6-File-Tools.git \
+  git://github.com/tadzik/perl6-Module-Tools.git \
+  git://github.com/tadzik/neutro.git
 
 
 DISTTARGETS = \
