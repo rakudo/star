@@ -82,6 +82,8 @@ rakudo/$(PERL6_EXE):
 	cd rakudo && $(PERL) Configure.pl --parrot-config=$(PARROT_CONFIG) && $(MAKE)
 rakudo-test: rakudo/perl6
 	cd rakudo && $(MAKE) test
+rakudo-spectest: rakudo/perl6
+	cd rakudo && $(MAKE) spectest
 rakudo-install: rakudo
 	cd rakudo && $(MAKE) install
 	@win32_libparrot_copy@
@@ -104,6 +106,7 @@ install: rakudo-install modules-install
 test:
 	@echo ""
 	@echo "To run the Rakudo compiler tests, use 'make rakudo-test'"
+	@echo "To run the Perl 6 spectests, use 'make rakudo-spectest'"
 	@echo ""
 	@echo "To run tests for individual modules, try:"
 	@echo "  prove -e ./perl6 -r modules/<name>/t"
