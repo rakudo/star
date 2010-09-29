@@ -34,6 +34,7 @@ previous Star release:
   * 'now' and 'time' are now terms instead of functions.  This means
     you can write 'time - 1' and it will do what you mean, but
    'time()' is no longer valid.
+  * The Perl 6 specification tests [3] are now included in the distribution.
     
 There are some key features of Perl 6 that Rakudo Star does not
 yet handle appropriately, although they will appear in upcoming
@@ -76,3 +77,4 @@ release of Rakudo Star will be on October 26, 2010.
 
 [1] http://github.com/rakudo/rakudo
 [2] http://parrot.org/
+[3] http://github.com/perl6/roast

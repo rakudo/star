@@ -1,6 +1,6 @@
 PARROT_VER = 2.8.0
 PARROT_REL = devel/$(PARROT_VER)
-RAKUDO_TAG = 2010.09
+RAKUDO_VER = 2010.09
 
 DISTDIR = rakudo-star-$(VERSION)
 
@@ -9,6 +9,7 @@ PARROT_TGZ  = $(PARROT).tar.gz
 PARROT_DIR  = $(DISTDIR)/$(PARROT)
 
 RAKUDO_DIR  = $(DISTDIR)/rakudo
+RAKUDO_TGZ  = rakudo-$(RAKUDO_VER).tar.gz
 BUILD_DIR   = $(DISTDIR)/build
 MODULES_DIR = $(DISTDIR)/modules
 
@@ -59,12 +60,15 @@ $(DISTDIR): always
 
 $(PARROT_DIR): $(PARROT_TGZ)
 	tar -C $(DISTDIR) -xvzf $(PARROT_TGZ)
-$(PARROT).tar.gz:
+$(PARROT_TGZ):
 	wget http://ftp.parrot.org/releases/$(PARROT_REL)/$(PARROT_TGZ)
 
-$(RAKUDO_DIR):
-	git clone git://github.com/rakudo/rakudo.git $(RAKUDO_DIR)
-	cd $(RAKUDO_DIR); git checkout $(RAKUDO_TAG); git describe --match '2*' >VERSION
+$(RAKUDO_DIR): $(RAKUDO_TGZ)
+	tar -C $(DISTDIR) -xvzf $(RAKUDO_TGZ)
+	mv $(DISTDIR)/rakudo-$(RAKUDO_VER) $(RAKUDO_DIR)
+	
+$(RAKUDO_TGZ):
+	wget http://github.com/downloads/rakudo/rakudo/$(RAKUDO_TGZ)
 
 $(BUILD_DIR)/PARROT_REVISION: $(RAKUDO_DIR) $(RAKUDO_DIR)/build/PARROT_REVISION
 	cp $(RAKUDO_DIR)/build/PARROT_REVISION $(BUILD_DIR)
