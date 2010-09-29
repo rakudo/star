@@ -1,6 +1,6 @@
-PARROT_VER = 2.7.0
+PARROT_VER = 2.8.0
 PARROT_REL = devel/$(PARROT_VER)
-RAKUDO_TAG = 2010.08
+RAKUDO_TAG = 2010.09
 
 DISTDIR = rakudo-star-$(VERSION)
 
@@ -15,28 +15,28 @@ MODULES_DIR = $(DISTDIR)/modules
 ## If you add a module here, don't forget to update MODULES
 ## in skel/build/Makefile.in to actually install it
 MODULES = \
-  git://github.com/masak/ufo \
-  git://github.com/jnthn/zavolaj \
-  git://github.com/jnthn/blizkost \
-  git://github.com/mberends/MiniDBI \
-  git://github.com/masak/xml-writer \
-  git://github.com/moritz/svg \
-  git://github.com/moritz/svg-plot \
-  git://github.com/moritz/Math-RungeKutta \
-  git://github.com/moritz/Math-Model \
-  git://github.com/mathw/form \
-  git://github.com/tadzik/perl6-Term-ANSIColor \
-  git://github.com/arnsholt/Algorithm-Viterbi \
-  git://gitorious.org/http-daemon/mainline \
-  git://github.com/jnthn/test-mock \
-  git://github.com/ingydotnet/yaml-pm6 \
-  git://github.com/moritz/json \
-  git://github.com/snarkyboojum/Perl6-MIME-Base64 \
-  git://github.com/cosimo/perl6-lwp-simple \
-  git://github.com/cosimo/perl6-digest-md5.git \
-  git://github.com/tadzik/perl6-File-Tools.git \
-  git://github.com/tadzik/perl6-Module-Tools.git \
-  git://github.com/tadzik/neutro.git
+  http://github.com/masak/ufo \
+  http://github.com/jnthn/zavolaj \
+  http://github.com/jnthn/blizkost \
+  http://github.com/mberends/MiniDBI \
+  http://github.com/masak/xml-writer \
+  http://github.com/moritz/svg \
+  http://github.com/moritz/svg-plot \
+  http://github.com/moritz/Math-RungeKutta \
+  http://github.com/moritz/Math-Model \
+  http://github.com/mathw/form \
+  http://github.com/tadzik/perl6-Term-ANSIColor \
+  http://github.com/arnsholt/Algorithm-Viterbi \
+  http://gitorious.org/http-daemon/mainline \
+  http://github.com/jnthn/test-mock \
+  http://github.com/ingydotnet/yaml-pm6 \
+  http://github.com/moritz/json \
+  http://github.com/snarkyboojum/Perl6-MIME-Base64 \
+  http://github.com/cosimo/perl6-lwp-simple \
+  http://github.com/cosimo/perl6-digest-md5 \
+  http://github.com/tadzik/perl6-File-Tools \
+  http://github.com/tadzik/perl6-Module-Tools \
+  http://github.com/tadzik/neutro
 
 
 DISTTARGETS = \
@@ -72,10 +72,10 @@ $(BUILD_DIR)/PARROT_REVISION: $(RAKUDO_DIR) $(RAKUDO_DIR)/build/PARROT_REVISION
 $(MODULES_DIR): always
 	mkdir -p $(MODULES_DIR)
 	cd $(MODULES_DIR); for repo in $(MODULES); do git clone $$repo.git; done
-	cd $(MODULES_DIR)/yaml-pm6; git checkout rakudo-star-1
+	# cd $(MODULES_DIR)/yaml-pm6; git checkout rakudo-star-1
 
 star-patches:
-	[ -f build/$(VERSION)-patch.pl ] && DISTDIR=$(DISTDIR) perl build/$(VERSION)-patch.pl
+	[ ! -f build/$(VERSION)-patch.pl ] || DISTDIR=$(DISTDIR) perl build/$(VERSION)-patch.pl
 
 $(DISTDIR)/MANIFEST:
 	touch $(DISTDIR)/MANIFEST
