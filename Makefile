@@ -37,7 +37,8 @@ MODULES = \
   http://github.com/cosimo/perl6-digest-md5 \
   http://github.com/tadzik/perl6-File-Tools \
   http://github.com/tadzik/perl6-Module-Tools \
-  http://github.com/tadzik/neutro
+  http://github.com/tadzik/neutro \
+  http://github.com/tadzik/perl6-Config-INI
 
 
 DISTTARGETS = \
