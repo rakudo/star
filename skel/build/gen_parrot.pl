@@ -42,7 +42,7 @@ close $REQ;
     }
 }
 
-chdir('parrot-2.8.0') || die "Can't chdir to 'parrot-2.8.0': $!";
+chdir('parrot-2.9.1') || die "Can't chdir to 'parrot-2.9.1': $!";
 
 
 ##  If we have a Makefile from a previous build, do a 'make realclean'
