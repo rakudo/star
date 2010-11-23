@@ -1,0 +1,72 @@
+Announce: Rakudo Star - a useful, usable, "early adopter" distribution of Perl 6
+
+On behalf of the Rakudo and Perl 6 development teams, I'm happy to
+announce the November 2010 release of "Rakudo Star", a useful and usable
+distribution of Perl 6.  The tarball for the November 2010 release is
+available from <http://github.com/rakudo/star/downloads>.
+
+Rakudo Star is aimed at "early adopters" of Perl 6.  We know that
+it still has some bugs, it is far slower than it ought to be, and
+there are some advanced pieces of the Perl 6 language specification
+that aren't implemented yet.  But Rakudo Perl 6 in its current form
+is also proving to be viable (and fun) for developing applications
+and exploring a great new language.  These "Star" releases are
+intended to make Perl 6 more widely available to programmers, grow
+the Perl 6 codebase, and gain additional end-user feedback about the
+Perl 6 language and Rakudo's implementation of it.
+
+In the Perl 6 world, we make a distinction between the language 
+("Perl 6") and specific implementations of the language such as
+"Rakudo Perl".  The November 2010 Star release includes release #35
+of the Rakudo Perl 6 compiler [1], version 2.10.1 of the Parrot 
+Virtual Machine [2], and various modules, documentation,
+and other resources collected from the Perl 6 community.
+
+This release of Rakudo Star adds the following features over the
+previous Star release:
+  * qw// is implemented
+  * The .trans method is 5x faster
+  * Indexing with ranges and Whatever offsets now works
+    
+There are some key features of Perl 6 that Rakudo Star does not
+yet handle appropriately, although they will appear in upcoming
+releases.  Thus, we do not consider Rakudo Star to be a
+"Perl 6.0.0" or "1.0" release.  Some of the not-quite-there
+features include:
+  * nested package definitions
+  * binary objects, native types, pack and unpack
+  * typed arrays
+  * macros
+  * state variables
+  * threads and concurrency
+  * Unicode strings at levels other than codepoints
+  * pre and post constraints, and some other phasers
+  * interactive readline that understands Unicode
+  * backslash escapes in regex <[...]> character classes
+  * non-blocking I/O
+  * most of Synopsis 9
+  * perl6doc or pod manipulation tools
+
+In many places we've tried to make Rakudo smart enough to inform the
+programmer that a given feature isn't implemented, but there are
+many that we've missed.  Bug reports about missing and broken
+features are welcomed at <rakudobug@perl.org>.
+
+See http://perl6.org/ for links to much more information about 
+Perl 6, including documentation, example code, tutorials, reference
+materials, specification documents, and other supporting resources.
+An updated draft of a Perl 6 book is available as 
+<docs/UsingPerl6-draft.pdf> in the release tarball.
+
+The development team thanks all of the contributors and sponsors
+for making Rakudo Star possible.  If you would like to contribute,
+see <http://rakudo.org/how-to-help>, ask on the perl6-compiler@perl.org
+mailing list, or join us on IRC #perl6 on freenode.
+
+Rakudo Star releases are created on a monthly cycle or as needed
+in response to important bug fixes or improvements.  The next planned 
+release of Rakudo Star will be on December 28, 2010.
+
+[1] http://github.com/rakudo/rakudo
+[2] http://parrot.org/
+[3] http://github.com/perl6/roast
