@@ -24,26 +24,7 @@ use 5.008;
 #  Work out slash character to use.
 my $slash = $^O eq 'MSWin32' ? '\\' : '/';
 
-##  determine what revision of Parrot we require
-open my $REQ, "build/PARROT_REVISION"
-  || die "cannot open build/PARROT_REVISION\n";
-my ($reqsvn, $reqpar) = split(' ', <$REQ>);
-$reqsvn += 0;
-close $REQ;
-
-{
-    no warnings;
-    if (open my $REV, '-|', "parrot_install${slash}bin${slash}parrot_config revision") {
-        my $revision = 0+<$REV>;
-        close $REV;
-        if ($revision >= $reqsvn) { print "Parrot r$revision already available (r$reqsvn required)\n";
-            exit(0);
-        }
-    }
-}
-
-chdir('parrot-2.9.1') || die "Can't chdir to 'parrot-2.9.1': $!";
-
+chdir('parrot-2.10.1') || die "Can't chdir to 'parrot-2.10.1': $!";
 
 ##  If we have a Makefile from a previous build, do a 'make realclean'
 if (-f 'Makefile') {
