@@ -1,5 +1,5 @@
 PARROT_VER = 2.10.1
-PARROT_REL = supported/$(PARROT_VER)
+PARROT_REL = devel/$(PARROT_VER)
 RAKUDO_VER = 2010.11
 
 DISTDIR = rakudo-star-$(VERSION)
@@ -28,7 +28,7 @@ MODULES = \
   http://github.com/mathw/form \
   http://github.com/tadzik/perl6-Term-ANSIColor \
   http://github.com/arnsholt/Algorithm-Viterbi \
-  http://gitorious.org/http-daemon/mainline \
+  http://git.gitorious.org/http-daemon/mainline \
   http://github.com/jnthn/test-mock \
   http://github.com/ingydotnet/yaml-pm6 \
   http://github.com/moritz/json \
@@ -37,7 +37,6 @@ MODULES = \
   http://github.com/cosimo/perl6-digest-md5 \
   http://github.com/tadzik/perl6-File-Tools \
   http://github.com/tadzik/perl6-Module-Tools \
-  http://github.com/tadzik/neutro \
   http://github.com/tadzik/perl6-Config-INI
 
 
@@ -69,7 +68,7 @@ $(RAKUDO_DIR): $(RAKUDO_TGZ)
 	mv $(DISTDIR)/rakudo-$(RAKUDO_VER) $(RAKUDO_DIR)
 	
 $(RAKUDO_TGZ):
-	wget http://github.com/downloads/rakudo/rakudo/$(RAKUDO_TGZ)
+	wget --no-check-certificate https://github.com/downloads/rakudo/rakudo/$(RAKUDO_TGZ)
 
 $(BUILD_DIR)/PARROT_REVISION: $(RAKUDO_DIR) $(RAKUDO_DIR)/build/PARROT_REVISION
 	cp $(RAKUDO_DIR)/build/PARROT_REVISION $(BUILD_DIR)

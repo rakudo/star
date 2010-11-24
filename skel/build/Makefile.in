@@ -72,8 +72,7 @@ MODULES = \
   modules/form \
   modules/perl6-digest-md5 \
   modules/perl6-File-Tools \
-  modules/perl6-Module-Tools \
-  modules/neutro
+  modules/perl6-Module-Tools
 
 all: rakudo
 
