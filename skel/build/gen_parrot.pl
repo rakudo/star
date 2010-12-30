@@ -24,7 +24,7 @@ use 5.008;
 #  Work out slash character to use.
 my $slash = $^O eq 'MSWin32' ? '\\' : '/';
 
-chdir('parrot-2.10.1') || die "Can't chdir to 'parrot-2.10.1': $!";
+chdir('parrot-2.11.0') || die "Can't chdir to 'parrot-2.11.0': $!";
 
 ##  If we have a Makefile from a previous build, do a 'make realclean'
 if (-f 'Makefile') {
