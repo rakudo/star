@@ -1,8 +1,8 @@
 This is Rakudo Star, a useful, usable Perl 6 distribution for "early adopters".
 
-This is the 2010.08 release of Rakudo Star.
+This is the 2011.01 release of Rakudo Star.
 
-Rakudo Star is Copyright (C) 2010 by the Rakudo Star Team.
+Rakudo Star is Copyright (C) 2010, 2011 by the Rakudo Star Team.
 
 License Information
 -------------------
@@ -30,6 +30,11 @@ for building Rakudo can be installed via the command
     aptitude install build-essential libicu-dev subversion
 
 Readline support also requires the "libreadline5-dev" library.
+
+On RedHat/Fedora/CentOS, the components can be installed with
+
+    yum groupinstall development-tools
+    yum install libicu-devel subversion readline-devel
 
 Rakudo Star includes Blizkost, which enables you to use Perl 5
 modules from Perl 6. If you wish to use this, then you must have
