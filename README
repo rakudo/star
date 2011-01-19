@@ -29,7 +29,7 @@ See <http://wiki.github.com/rakudo/rakudo/whats-going-into-rakudo> for a list
 of modules we want included in the distribution.
 
 The skel/ directory contains the basic layout of documentation and
-other support files, other components are then populated into to
+other support files, other components are then populated into
 the target directory via the make command above.
 
 To create a candidate release tarball, try "make release VERSION=yyyy.mm".
