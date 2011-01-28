@@ -65,8 +65,9 @@ mailing list, or join us on IRC #perl6 on freenode.
 
 Starting with this January 2011 release, Rakudo Star releases will be
 created on a three-month cycle, or as needed in response to important
-bug fixes or improvements.  The next planned release of Rakudo Star
-will be in April 2011.
+bug fixes or improvements.  (The Rakudo compiler will continue with
+monthly releases.)  The next planned release of Rakudo Star will be 
+in April 2011.
 
 [1] http://github.com/rakudo/rakudo
 [2] http://parrot.org/
