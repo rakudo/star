@@ -25,7 +25,7 @@ The build system assumes that you have the following tools available:
     * tar
     * touch
 
-See <http://wiki.github.com/rakudo/rakudo/whats-going-into-rakudo> for a list
+See <https://github.com/rakudo/rakudo/wiki/What's-going-into-Rakudo-*%3F> for a list
 of modules we want included in the distribution.
 
 The skel/ directory contains the basic layout of documentation and
