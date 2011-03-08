@@ -1,0 +1,16 @@
+This directory contains the Perl script and supporting files to:
+* Compile Parrot and Rakudo in a way that removes embedded dependencies on
+  the builder's home directory; such dependencies have been a problem on
+  Darwin.
+* Package the compiled binaries into a .dmg disk image for Mac OS X.
+  Users can open the .dmg file, then just drag the Rakudo_Star folder onto
+  the /Applications folder to install.
+
+The process currently depends on first downloading the official R* tarball
+for the month, rather than being part of building the tarball itself. This
+may seem non-optimal, but it helps limit the chance of the binary varying
+too much from a end-user's source build, and it keeps the R* release
+manager from needing the same platform as the binary build person. Also,
+it is the way I designed and wrote it before realizing there might be any
+other way :)
+
