@@ -197,7 +197,6 @@ run "hdiutil create  '$temp_dmg' -ov -size ${size}k -fs HFS+ -volname '$vol_name
 print "Copying Rakudo files\n";
 run "CpMac -r '$src_dir'    '$vol_dir'";
 run "cp ../HOW_TO_INSTALL.txt  '$vol_dir'";
-run "cp $vol_dir/Rakudo_Star ../HOW_TO_INSTALL.txt  '$vol_dir'";
 
 run "cp ../2000px-Camelia.svg.icns $vol_dir/.VolumeIcon.icns";
 run "SetFile -c icnC $vol_dir/.VolumeIcon.icns";
