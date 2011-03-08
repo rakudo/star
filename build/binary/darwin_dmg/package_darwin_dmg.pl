@@ -198,9 +198,18 @@ print "Copying Rakudo files\n";
 run "CpMac -r '$src_dir'    '$vol_dir'";
 run "cp ../HOW_TO_INSTALL.txt  '$vol_dir'";
 
+run "touch                        '$vol_dir/Rakudo_Star/Icon\r'";
 run "cp ../2000px-Camelia.svg.icns $vol_dir/.VolumeIcon.icns";
-run "SetFile -c icnC $vol_dir/.VolumeIcon.icns";
-run "SetFile -a C    $vol_dir";
+run "sips -i                       $vol_dir/.VolumeIcon.icns";
+run "DeRez -only icns              $vol_dir/.VolumeIcon.icns > tempicns.rsrc";
+run "Rez -append tempicns.rsrc -o '$vol_dir/Rakudo_Star/bin/perl6'";
+run "Rez -append tempicns.rsrc -o '$vol_dir/Rakudo_Star/Icon\r'";
+run "SetFile -c icnC              '$vol_dir/.VolumeIcon.icns'";
+run "SetFile -a C                 '$vol_dir'";
+run "SetFile -a C                 '$vol_dir/Rakudo_Star'";
+run "SetFile -a C                 '$vol_dir/Rakudo_Star/bin/perl6'";
+run "SetFile -a V                 '$vol_dir/Rakudo_Star/Icon\r'";
+run "rm tempicns.rsrc";
 
 
 print ">>> Adjusting sizes and positions in installation window\n";
