@@ -27,6 +27,13 @@ previous Star release:
   * Modules MiniDBI, form, HTTP::Daemon, Yaml and Module::Tools are
     removed in this release. Pies (including panda, the module
     installer) and HTTP::Server::Simple were added instead
+  * New implementation of IO::Socket::INET, with basic IPv6 support
+  * -p and -n command-line options are now available
+  * Many new IO improvements
+  * New --ll-backtrace command-line switch for printing PIR level
+    stack traces
+  * Infixes 'orelse', 'xor' and '^^', as well as Str.indent
+    are now implemented
     
 There are some key features of Perl 6 that Rakudo Star does not
 yet handle appropriately, although they will appear in upcoming
