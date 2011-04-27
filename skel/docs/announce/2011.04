@@ -25,15 +25,17 @@ and other resources collected from the Perl 6 community.
 This release of Rakudo Star adds the following features over the
 previous Star release:
   * Modules MiniDBI, form, HTTP::Daemon, Yaml and Module::Tools are
-    removed in this release. Pies (including panda, the module
-    installer) and HTTP::Server::Simple were added instead
+    removed in this release. 
+  * New modules Pies (including panda, the module installer) and 
+    HTTP::Server::Simple have been added.
   * New implementation of IO::Socket::INET, with basic IPv6 support
   * -p and -n command-line options are now available
-  * Many new IO improvements
-  * New --ll-backtrace command-line switch for printing PIR level
-    stack traces
-  * Infixes 'orelse', 'xor' and '^^', as well as Str.indent
-    are now implemented
+  * Many new IO improvements, including stat-related methods
+  * New --ll-backtrace command-line switch for printing PIR level stack traces
+  * Preliminary implementation of Infix 'orelse'
+  * Added Str.indent
+  * Bugfixes to negation meta operator
+  * Support for complex conjugation
     
 There are some key features of Perl 6 that Rakudo Star does not
 yet handle appropriately, although they will appear in upcoming
