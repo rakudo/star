@@ -24,7 +24,9 @@ and other resources collected from the Perl 6 community.
 
 This release of Rakudo Star adds the following features over the
 previous Star release:
-  * ...
+  * Modules MiniDBI, form, HTTP::Daemon, Yaml and Module::Tools are
+    removed in this release. Pies (including panda, the module
+    installer) and HTTP::Server::Simple were added instead
     
 There are some key features of Perl 6 that Rakudo Star does not
 yet handle appropriately, although they will appear in upcoming

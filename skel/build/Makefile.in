@@ -54,13 +54,11 @@ PERL6_LANG_DIR = $(PARROT_LIB_DIR)/languages/perl6
 
 MODULES = \
   modules/zavolaj \
-  modules/MiniDBI \
   modules/xml-writer \
   modules/svg \
   modules/svg-plot \
   modules/Math-RungeKutta \
   modules/Math-Model \
-  modules/mainline \
   modules/perl6-Config-INI \
   modules/perl6-Term-ANSIColor \
   modules/Algorithm-Viterbi \
@@ -68,11 +66,10 @@ MODULES = \
   modules/Perl6-MIME-Base64 \
   modules/perl6-lwp-simple \
   modules/json \
-  modules/yaml-pm6 \
-  modules/form \
   modules/perl6-digest-md5 \
   modules/perl6-File-Tools \
-  modules/perl6-Module-Tools
+  modules/Pies \
+  modules/http-server-simple
 
 all: rakudo
 

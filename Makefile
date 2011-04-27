@@ -19,26 +19,22 @@ MODULES = \
   http://github.com/masak/ufo \
   http://github.com/jnthn/zavolaj \
   http://github.com/jnthn/blizkost \
-  http://github.com/mberends/MiniDBI \
   http://github.com/masak/xml-writer \
   http://github.com/moritz/svg \
   http://github.com/moritz/svg-plot \
   http://github.com/moritz/Math-RungeKutta \
   http://github.com/moritz/Math-Model \
-  http://github.com/mathw/form \
   http://github.com/tadzik/perl6-Term-ANSIColor \
   http://github.com/arnsholt/Algorithm-Viterbi \
-  http://git.gitorious.org/http-daemon/mainline \
   http://github.com/jnthn/test-mock \
-  http://github.com/ingydotnet/yaml-pm6 \
   http://github.com/moritz/json \
   http://github.com/snarkyboojum/Perl6-MIME-Base64 \
   http://github.com/cosimo/perl6-lwp-simple \
   http://github.com/cosimo/perl6-digest-md5 \
   http://github.com/tadzik/perl6-File-Tools \
-  http://github.com/tadzik/perl6-Module-Tools \
-  http://github.com/tadzik/perl6-Config-INI
-
+  http://github.com/tadzik/perl6-Config-INI \
+  http://github.com/tadzik/Pies \
+  https://github.com/mberends/http-server-simple
 
 DISTTARGETS = \
   $(PARROT_DIR) \
