@@ -91,6 +91,12 @@ modules-install: rakudo
 	$(CP)    modules/ufo/bin/ufo $(DESTDIR)$(PARROT_BIN_DIR)/ufo
 	$(CHMOD) 755                 $(DESTDIR)$(PARROT_BIN_DIR)/ufo
 	$(PERL) build/module-install.pl $(DESTDIR)$(PARROT_BIN_DIR)/$(PERL6_EXE) $(DESTDIR)$(PERL6_LANG_DIR)/lib $(MODULES)
+	@echo "Installing 'ufobuilder'"
+	$(CP)    modules/Pies/bin/ufobuilder $(DESTDIR)$(PARROT_BIN_DIR)/ufobuilder
+	$(CHMOD) 755                         $(DESTDIR)$(PARROT_BIN_DIR)/ufobuilder
+	@echo "Installing 'panda'"
+	$(CP)    modules/Pies/bin/panda $(DESTDIR)$(PARROT_BIN_DIR)/panda
+	$(CHMOD) 755                    $(DESTDIR)$(PARROT_BIN_DIR)/panda
 
 blizkost:
 	cd modules/blizkost && $(PERL) Configure.pl --parrot-config=$(PARROT_CONFIG) && $(MAKE)
