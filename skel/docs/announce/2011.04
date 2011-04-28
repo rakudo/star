@@ -17,7 +17,7 @@ Perl 6 language and Rakudo's implementation of it.
 
 In the Perl 6 world, we make a distinction between the language 
 ("Perl 6") and specific implementations of the language such as
-"Rakudo Perl".  The January 2011 Star release includes release #40
+"Rakudo Perl".  The April 2011 Star release includes release #40
 of the Rakudo Perl 6 compiler [1], version 3.3.0 of the Parrot 
 Virtual Machine [2], and various modules, documentation,
 and other resources collected from the Perl 6 community.
