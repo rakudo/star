@@ -68,7 +68,7 @@ MODULES = \
   modules/json \
   modules/perl6-digest-md5 \
   modules/perl6-File-Tools \
-  modules/Pies \
+  modules/panda \
   modules/http-server-simple
 
 all: rakudo

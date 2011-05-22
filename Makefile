@@ -33,7 +33,7 @@ MODULES = \
   http://github.com/cosimo/perl6-digest-md5 \
   http://github.com/tadzik/perl6-File-Tools \
   http://github.com/tadzik/perl6-Config-INI \
-  http://github.com/tadzik/Pies \
+  http://github.com/tadzik/panda \
   https://github.com/mberends/http-server-simple
 
 DISTTARGETS = \
