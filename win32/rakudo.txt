@@ -1,0 +1,32 @@
+This directory is for building the Windows installer for Rakudo Star.
+
+You will need
+- Strawberry Perl (eg. the one that comes with Padre from 
+      http://padre.perlide.org/download.html ) 
+	  padre-0.84-on-strawberry-5.12.3.0-v3.exe
+- Inno Setup from http://www.jrsoftware.org/isinfo.php
+      5.4.2(a)
+
+Download The source distribution of Rakudo Star from https://github.com/rakudo/star/downloads
+ptar -xzf rakudo-star-2011.04.tar.gz
+cd rakudo-star-2011.04
+
+As currently the executable is not relocatable we need to decide
+which directory to install. Currently it is c:\rakudo
+
+Follow the insturctions in the README of Rakudo Star:
+
+> perl Configure.pl --gen-parrot --prefix c:\rakudo
+> gmake
+> gmake install
+
+Manually copy c:\strawberry\c\bin\libgcc_s_sjlj-1.dll to c:\rakudo\bin
+
+Create a directory called c:\output where the resulting executable will be placed.
+Then start the Inno Setup Compiler and open the rakudo.iss file.
+Change the "AppVersion" field.
+
+Click on    "Build/Compile"
+
+This should generate c:\output\rakudo-star.exe
+
