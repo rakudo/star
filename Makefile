@@ -1,6 +1,6 @@
-PARROT_VER = 3.6.0
+PARROT_VER = 3.11.0
 PARROT_REL = supported/$(PARROT_VER)
-RAKUDO_VER = 2011.07
+RAKUDO_VER = 2012.01
 
 DISTDIR = rakudo-star-$(VERSION)
 
@@ -18,7 +18,6 @@ MODULES_DIR = $(DISTDIR)/modules
 MODULES = \
   http://github.com/masak/ufo \
   http://github.com/jnthn/zavolaj \
-  http://github.com/jnthn/blizkost \
   http://github.com/masak/xml-writer \
   http://github.com/moritz/svg \
   http://github.com/moritz/svg-plot \
@@ -56,6 +55,7 @@ $(DISTDIR): always
 
 $(PARROT_DIR): $(PARROT_TGZ)
 	tar -C $(DISTDIR) -xvzf $(PARROT_TGZ)
+
 $(PARROT_TGZ):
 	wget http://ftp.parrot.org/releases/$(PARROT_REL)/$(PARROT_TGZ)
 
@@ -83,12 +83,9 @@ $(DISTDIR)/MANIFEST:
 	## add the two dot-files from Parrot MANIFEST
 	echo "$(PARROT)/.gitignore" >>$(DISTDIR)/MANIFEST
 	echo "$(PARROT)/tools/dev/.gdbinit" >>$(DISTDIR)/MANIFEST
-	## add the .gitignore from blizkost holding an otherwise empty dir
-	echo "modules/blizkost/dynext/.gitignore" >>$(DISTDIR)/MANIFEST
 
 release: dist tarball
 
 tarball:
 	perl -ne 'print "$(DISTDIR)/$$_"' $(DISTDIR)/MANIFEST |\
 	    tar -zcv -T - -f $(DISTDIR).tar.gz
-	
