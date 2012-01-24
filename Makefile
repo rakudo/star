@@ -21,25 +21,25 @@ MODULES_DIR = $(DISTDIR)/modules
 ## If you add a module here, don't forget to update MODULES
 ## in skel/build/Makefile.in to actually install it
 MODULES = \
-  http://github.com/masak/ufo \
-  http://github.com/jnthn/zavolaj \
-  http://github.com/masak/xml-writer \
-  http://github.com/moritz/svg \
-  http://github.com/moritz/svg-plot \
-  http://github.com/moritz/Math-RungeKutta \
-  http://github.com/moritz/Math-Model \
-  http://github.com/tadzik/perl6-Term-ANSIColor \
-  http://github.com/jnthn/test-mock \
-  http://github.com/moritz/json \
-  http://github.com/snarkyboojum/Perl6-MIME-Base64 \
-  http://github.com/cosimo/perl6-lwp-simple \
-  http://github.com/cosimo/perl6-digest-md5 \
-  http://github.com/tadzik/perl6-File-Tools \
-  http://github.com/tadzik/perl6-Config-INI \
-  http://github.com/tadzik/panda \
-  https://github.com/supernovus/perl6-http-easy/ \
-  https://github.com/tadzik/Bailador \
-  https://github.com/mberends/MiniDBI \
+  git://github.com/masak/ufo \
+  git://github.com/jnthn/zavolaj \
+  git://github.com/masak/xml-writer \
+  git://github.com/moritz/svg \
+  git://github.com/moritz/svg-plot \
+  git://github.com/moritz/Math-RungeKutta \
+  git://github.com/moritz/Math-Model \
+  git://github.com/tadzik/perl6-Term-ANSIColor \
+  git://github.com/jnthn/test-mock \
+  git://github.com/moritz/json \
+  git://github.com/snarkyboojum/Perl6-MIME-Base64 \
+  git://github.com/cosimo/perl6-lwp-simple \
+  git://github.com/cosimo/perl6-digest-md5 \
+  git://github.com/tadzik/perl6-File-Tools \
+  git://github.com/tadzik/perl6-Config-INI \
+  git://github.com/tadzik/panda \
+  git://github.com/supernovus/perl6-http-easy/ \
+  git://github.com/tadzik/Bailador \
+  git://github.com/mberends/MiniDBI \
 
 DISTTARGETS = \
   $(PARROT_DIR) \
