@@ -24,7 +24,6 @@ MODULES = \
   http://github.com/moritz/Math-RungeKutta \
   http://github.com/moritz/Math-Model \
   http://github.com/tadzik/perl6-Term-ANSIColor \
-  http://github.com/arnsholt/Algorithm-Viterbi \
   http://github.com/jnthn/test-mock \
   http://github.com/moritz/json \
   http://github.com/snarkyboojum/Perl6-MIME-Base64 \
@@ -33,7 +32,9 @@ MODULES = \
   http://github.com/tadzik/perl6-File-Tools \
   http://github.com/tadzik/perl6-Config-INI \
   http://github.com/tadzik/panda \
-  https://github.com/mberends/http-server-simple
+  https://github.com/supernovus/perl6-http-easy/ \
+  https://github.com/tadzik/Bailador \
+  https://github.com/mberends/MiniDBI \
 
 DISTTARGETS = \
   $(PARROT_DIR) \
