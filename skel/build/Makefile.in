@@ -30,7 +30,7 @@ POD2MAN       = @pod2man@
 
 # locations of parrot resources
 PARROT           = $(PARROT_BIN_DIR)/parrot$(EXE)
-NQP_EXE          = $(PARROT_BIN_DIR)/parrot-nqp$(EXE)
+NQP_EXE          = $(PARROT_BIN_DIR)/nqp$(EXE)
 PBC_TO_EXE       = $(PARROT_BIN_DIR)/pbc_to_exe$(EXE)
 PARROT_CONFIG    = $(PARROT_BIN_DIR)/parrot_config$(EXE)
 PARROT_TOOLS_DIR = $(PARROT_LIB_DIR)/tools
@@ -59,9 +59,7 @@ MODULES = \
   modules/svg-plot \
   modules/Math-RungeKutta \
   modules/Math-Model \
-  modules/perl6-Config-INI \
   modules/perl6-Term-ANSIColor \
-  modules/Algorithm-Viterbi \
   modules/test-mock \
   modules/Perl6-MIME-Base64 \
   modules/perl6-lwp-simple \
@@ -69,7 +67,10 @@ MODULES = \
   modules/perl6-digest-md5 \
   modules/perl6-File-Tools \
   modules/panda \
-  modules/http-server-simple
+  modules/perl6-Config-INI \
+  modules/perl6-http-easy \
+  modules/Bailador \
+  modules/MiniDBI
 
 all: rakudo
 
@@ -97,11 +98,6 @@ modules-install: rakudo
 	@echo "Installing 'panda'"
 	$(CP)    modules/panda/bin/panda $(DESTDIR)$(PARROT_BIN_DIR)/panda
 	$(CHMOD) 755                    $(DESTDIR)$(PARROT_BIN_DIR)/panda
-
-blizkost:
-	cd modules/blizkost && $(PERL) Configure.pl --parrot-config=$(PARROT_CONFIG) && $(MAKE)
-blizkost-install: blizkost
-	cd modules/blizkost && $(MAKE) install
 
 install: rakudo-install modules-install
 
