@@ -67,7 +67,7 @@ $(PARROT_TGZ):
 	wget http://ftp.parrot.org/releases/$(PARROT_REL)/$(PARROT_TGZ)
 
 $(NQP_DIR): $(NQP_TGZ)
-	tar -C $(DISTDIR)/$(NQP) -xvzf $(NQP_TGZ)
+	tar -C $(DISTDIR) -xvzf $(NQP_TGZ)
 
 $(NQP_TGZ):
 	wget --no-check-certificate https://github.com/downloads/perl6/nqp/$(NQP_TGZ)
