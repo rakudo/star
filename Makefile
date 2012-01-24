@@ -1,5 +1,6 @@
 PARROT_VER = 3.11.0
 PARROT_REL = supported/$(PARROT_VER)
+NQP_VER    = 2012.01
 RAKUDO_VER = 2012.01
 
 DISTDIR = rakudo-star-$(VERSION)
@@ -7,6 +8,10 @@ DISTDIR = rakudo-star-$(VERSION)
 PARROT      = parrot-$(PARROT_VER)
 PARROT_TGZ  = $(PARROT).tar.gz
 PARROT_DIR  = $(DISTDIR)/$(PARROT)
+
+NQP         = nqp-$(NQP_VER)
+NQP_TGZ     = $(NQP).tar.gz
+NQP_DIR     = $(DISTDIR)/$(NQP)
 
 RAKUDO_DIR  = $(DISTDIR)/rakudo
 RAKUDO_TGZ  = rakudo-$(RAKUDO_VER).tar.gz
@@ -38,6 +43,7 @@ MODULES = \
 
 DISTTARGETS = \
   $(PARROT_DIR) \
+  $(NQP_DIR) \
   $(RAKUDO_DIR) \
   $(MODULES_DIR) \
   $(BUILD_DIR)/PARROT_REVISION \
@@ -59,6 +65,12 @@ $(PARROT_DIR): $(PARROT_TGZ)
 
 $(PARROT_TGZ):
 	wget http://ftp.parrot.org/releases/$(PARROT_REL)/$(PARROT_TGZ)
+
+$(NQP_DIR): $(NQP_TGZ)
+	tar -C $(DISTDIR)/$(NQP) -xvzf $(NQP_TGZ)
+
+$(NQP_TGZ):
+	wget --no-check-certificate https://github.com/downloads/perl6/nqp/$(NQP_TGZ)
 
 $(RAKUDO_DIR): $(RAKUDO_TGZ)
 	tar -C $(DISTDIR) -xvzf $(RAKUDO_TGZ)
