@@ -47,6 +47,7 @@ DISTTARGETS = \
   $(RAKUDO_DIR) \
   $(MODULES_DIR) \
   $(BUILD_DIR)/PARROT_REVISION \
+  $(BUILD_DIR)/NQP_REVISION \
   star-patches \
   $(DISTDIR)/MANIFEST \
 
@@ -79,8 +80,11 @@ $(RAKUDO_DIR): $(RAKUDO_TGZ)
 $(RAKUDO_TGZ):
 	wget --no-check-certificate https://github.com/downloads/rakudo/rakudo/$(RAKUDO_TGZ)
 
-$(BUILD_DIR)/PARROT_REVISION: $(RAKUDO_DIR) $(RAKUDO_DIR)/build/PARROT_REVISION
-	cp $(RAKUDO_DIR)/build/PARROT_REVISION $(BUILD_DIR)
+$(BUILD_DIR)/PARROT_REVISION: $(NQP_DIR) $(NQP_DIR)/tools/build/PARROT_REVISION
+	cp $(NQP_DIR)/tools/build/PARROT_REVISION $(BUILD_DIR)
+
+$(BUILD_DIR)/NQP_REVISION: $(RAKUDO_DIR) $(RAKUDO_DIR)/tools/build/NQP_REVISION
+	cp $(RAKUDO_DIR)/tools/build/NQP_REVISION $(BUILD_DIR)
 
 $(MODULES_DIR): always
 	mkdir -p $(MODULES_DIR)
