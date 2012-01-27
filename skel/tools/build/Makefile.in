@@ -57,6 +57,8 @@ MODULES = \
   modules/Math-Model \
   modules/perl6-Term-ANSIColor \
   modules/test-mock \
+  modules/grammar-profiler-simple \
+  modules/grammar-debugger \
   modules/Perl6-MIME-Base64 \
   modules/perl6-lwp-simple \
   modules/json \
@@ -64,6 +66,7 @@ MODULES = \
   modules/perl6-File-Tools \
   modules/panda \
   modules/perl6-Config-INI \
+  modules/perl6-http-status \
   modules/perl6-http-easy \
   modules/Bailador \
   modules/MiniDBI

@@ -28,6 +28,7 @@ MODULES = \
   git://github.com/masak/xml-writer \
   git://github.com/moritz/svg \
   git://github.com/moritz/Math-RungeKutta \
+  git://github.com/moritz/svg-plot \
   git://github.com/moritz/Math-Model \
   git://github.com/tadzik/perl6-Term-ANSIColor \
   git://github.com/jnthn/test-mock \
