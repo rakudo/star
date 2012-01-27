@@ -64,7 +64,7 @@ MAIN: {
     my $gen_nqp     = $options{'gen-nqp'};
 
     # determine the version of NQP we want
-    my ($nqp_want) = split(' ', slurp('tools/build/NQP_REVISION'));
+    my ($nqp_want) = split(' ', slurp('rakudo-2012.01/tools/build/NQP_REVISION'));
 
     if (defined $gen_nqp) {
         $with_nqp = gen_nqp($nqp_want, %options);
