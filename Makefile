@@ -47,6 +47,7 @@ DISTTARGETS = \
   $(PARROT_DIR) \
   $(NQP_DIR) \
   $(RAKUDO_DIR) \
+  $(MODULES_DIR) \
   star-patches \
   $(DISTDIR)/MANIFEST \
 
