@@ -57,7 +57,7 @@ MODULES = \
   modules/Math-Model \
   modules/perl6-Term-ANSIColor \
   modules/test-mock \
-  modules/grammar-profiler-simple \
+  modules/Grammar-Profiler-Simple \
   modules/grammar-debugger \
   modules/Perl6-MIME-Base64 \
   modules/perl6-lwp-simple \

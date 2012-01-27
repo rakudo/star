@@ -32,7 +32,7 @@ MODULES = \
   git://github.com/moritz/Math-Model \
   git://github.com/tadzik/perl6-Term-ANSIColor \
   git://github.com/jnthn/test-mock \
-  git://github.com/perlpilot/grammar-profiler-simple \
+  git://github.com/perlpilot/Grammar-Profiler-Simple \
   git://github.com/jnthn/grammar-debugger \
   git://github.com/moritz/json \
   git://github.com/snarkyboojum/Perl6-MIME-Base64 \
