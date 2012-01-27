@@ -4,6 +4,7 @@ NQP_VER    = 2012.01
 RAKUDO_VER = 2012.01
 
 DISTDIR = rakudo-star-$(VERSION)
+BUILD_DIR   = $(DISTDIR)/build
 
 PARROT      = parrot-$(PARROT_VER)
 PARROT_TGZ  = $(PARROT).tar.gz
@@ -13,13 +14,14 @@ NQP         = nqp-$(NQP_VER)
 NQP_TGZ     = $(NQP).tar.gz
 NQP_DIR     = $(DISTDIR)/$(NQP)
 
-RAKUDO_DIR  = $(DISTDIR)/rakudo
-RAKUDO_TGZ  = rakudo-$(RAKUDO_VER).tar.gz
-BUILD_DIR   = $(DISTDIR)/build
-MODULES_DIR = $(DISTDIR)/modules
+RAKUDO      = rakudo-$(RAKUDO_VER)
+RAKUDO_TGZ  = $(RAKUDO).tar.gz
+RAKUDO_DIR  = $(DISTDIR)/$(RAKUDO)
+
 
 ## If you add a module here, don't forget to update MODULES
 ## in skel/build/Makefile.in to actually install it
+MODULES_DIR = $(DISTDIR)/modules
 MODULES = \
   git://github.com/masak/ufo \
   git://github.com/jnthn/zavolaj \
@@ -45,9 +47,6 @@ DISTTARGETS = \
   $(PARROT_DIR) \
   $(NQP_DIR) \
   $(RAKUDO_DIR) \
-  $(MODULES_DIR) \
-  $(BUILD_DIR)/PARROT_REVISION \
-  $(BUILD_DIR)/NQP_REVISION \
   star-patches \
   $(DISTDIR)/MANIFEST \
 
@@ -59,7 +58,8 @@ version_check:
 always:
 
 $(DISTDIR): always
-	cp -av skel $(DISTDIR)
+	mkdir -p $(DISTDIR)
+	cp -av skel/. $(DISTDIR)
 
 $(PARROT_DIR): $(PARROT_TGZ)
 	tar -C $(DISTDIR) -xvzf $(PARROT_TGZ)
@@ -75,16 +75,9 @@ $(NQP_TGZ):
 
 $(RAKUDO_DIR): $(RAKUDO_TGZ)
 	tar -C $(DISTDIR) -xvzf $(RAKUDO_TGZ)
-	mv $(DISTDIR)/rakudo-$(RAKUDO_VER) $(RAKUDO_DIR)
 	
 $(RAKUDO_TGZ):
 	wget --no-check-certificate https://github.com/downloads/rakudo/rakudo/$(RAKUDO_TGZ)
-
-$(BUILD_DIR)/PARROT_REVISION: $(NQP_DIR) $(NQP_DIR)/tools/build/PARROT_REVISION
-	cp $(NQP_DIR)/tools/build/PARROT_REVISION $(BUILD_DIR)
-
-$(BUILD_DIR)/NQP_REVISION: $(RAKUDO_DIR) $(RAKUDO_DIR)/tools/build/NQP_REVISION
-	cp $(RAKUDO_DIR)/tools/build/NQP_REVISION $(BUILD_DIR)
 
 $(MODULES_DIR): always
 	mkdir -p $(MODULES_DIR)
