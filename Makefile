@@ -27,18 +27,19 @@ MODULES = \
   git://github.com/jnthn/zavolaj \
   git://github.com/masak/xml-writer \
   git://github.com/moritz/svg \
-  git://github.com/moritz/svg-plot \
   git://github.com/moritz/Math-RungeKutta \
   git://github.com/moritz/Math-Model \
   git://github.com/tadzik/perl6-Term-ANSIColor \
   git://github.com/jnthn/test-mock \
+  git://github.com/perlpilot/grammar-profiler-simple \
+  git://github.com/jnthn/grammar-debugger \
   git://github.com/moritz/json \
   git://github.com/snarkyboojum/Perl6-MIME-Base64 \
-  git://github.com/cosimo/perl6-lwp-simple \
   git://github.com/cosimo/perl6-digest-md5 \
   git://github.com/tadzik/perl6-File-Tools \
   git://github.com/tadzik/perl6-Config-INI \
   git://github.com/tadzik/panda \
+  git://github.com/supernovus/perl6-http-status \
   git://github.com/supernovus/perl6-http-easy \
   git://github.com/tadzik/Bailador \
   git://github.com/mberends/MiniDBI \
