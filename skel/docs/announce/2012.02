@@ -15,7 +15,7 @@ resources collected from the Perl 6 community.
 Here are some of the major improvements in this release over the
 previous distribution release.
 
-* The FatRat type is implemneted, and Rat arithmetic now properly
+* The FatRat type is implemented, and Rat arithmetic now properly
   defaults to Num if the denominator is too big
 
 * Object hashes are implemented, and can be declared with the syntax
