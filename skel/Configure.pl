@@ -43,7 +43,7 @@ MAIN: {
 
     my $prefix      = $options{'prefix'} || cwd().'/install';
     my $with_parrot = $options{'with-parrot'};
-    $options{'gen-parrot'} ||= 'parrot-3.11.0' if defined $options{'gen-parrot'};
+    $options{'gen-parrot'} ||= 'parrot-4.1.0' if defined $options{'gen-parrot'};
     my $gen_parrot  = $options{'gen-parrot'};
 
     # Save options in config.status
@@ -59,12 +59,12 @@ MAIN: {
         $options{'gen-nqp'} ||= '';
     }
 
-    $options{'gen-nqp'} ||= 'nqp-2012.01' if defined $options{'gen-nqp'};
+    $options{'gen-nqp'} ||= 'nqp-2012.02' if defined $options{'gen-nqp'};
     my $with_nqp    = $options{'with-nqp'};
     my $gen_nqp     = $options{'gen-nqp'};
 
     # determine the version of NQP we want
-    my ($nqp_want) = split(' ', slurp('rakudo-2012.01/tools/build/NQP_REVISION'));
+    my ($nqp_want) = split(' ', slurp('rakudo-2012.02/tools/build/NQP_REVISION'));
 
     if (defined $gen_nqp) {
         $with_nqp = gen_nqp($nqp_want, %options);
