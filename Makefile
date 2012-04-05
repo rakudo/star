@@ -44,6 +44,8 @@ MODULES = \
   git://github.com/supernovus/perl6-http-easy \
   git://github.com/tadzik/Bailador \
   git://github.com/mberends/MiniDBI \
+  git://github.com/ihrd/uri.git \
+  git://github.com/cosimo/perl6-lwp-simple.git \
 
 DISTTARGETS = \
   $(PARROT_DIR) \

@@ -69,7 +69,9 @@ MODULES = \
   modules/perl6-http-status \
   modules/perl6-http-easy \
   modules/Bailador \
-  modules/MiniDBI
+  modules/MiniDBI \
+  modules/uri \
+  modlues/perl6-lwp-simple \
 
 all: rakudo
 
