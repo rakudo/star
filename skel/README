@@ -27,14 +27,14 @@ will not work properly.
 On Debian GNU/Linux or Ubuntu Linux, the necessary components
 for building Rakudo can be installed via the command
 
-    aptitude install build-essential libicu-dev subversion
+    aptitude install build-essential libicu-dev
 
-Readline support also requires the "libreadline5-dev" library.
+Readline support also requires the "libreadline-dev" library.
 
 On RedHat/Fedora/CentOS, the components can be installed with
 
     yum groupinstall development-tools
-    yum install libicu-devel subversion readline-devel
+    yum install libicu-devel readline-devel
 
 Rakudo Star includes Blizkost, which enables you to use Perl 5
 modules from Perl 6. If you wish to use this, then you must have
