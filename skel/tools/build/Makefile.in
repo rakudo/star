@@ -77,6 +77,7 @@ all: rakudo
 
 rakudo: $(RAKUDO)/$(PERL6_EXE)
 $(RAKUDO)/$(PERL6_EXE):
+	@echo "== Configuring and building Rakudo"
 	cd $(RAKUDO) && $(PERL) Configure.pl --with-nqp=$(NQP_EXE) && $(MAKE)
 rakudo-test: rakudo
 	cd $(RAKUDO) && $(MAKE) test
@@ -89,11 +90,11 @@ rakudo-install: rakudo
 	$(CHMOD) 755 $(PERL6_EXE)
 
 modules-install: rakudo
-	@echo "Installing 'ufo'"
+	@echo "== Installing 'ufo'"
 	$(CP)    modules/ufo/bin/ufo $(DESTDIR)$(PARROT_BIN_DIR)/ufo
 	$(CHMOD) 755                 $(DESTDIR)$(PARROT_BIN_DIR)/ufo
 	$(PERL) tools/build/module-install.pl $(DESTDIR)$(PARROT_BIN_DIR)/$(PERL6_EXE) $(DESTDIR)$(PERL6_LANG_DIR)/lib $(MODULES)
-	@echo "Installing 'ufobuilder'"
+	@echo "== Installing 'ufobuilder'"
 	$(CP)    modules/panda/bin/ufobuilder $(DESTDIR)$(PARROT_BIN_DIR)/ufobuilder
 	$(CHMOD) 755                         $(DESTDIR)$(PARROT_BIN_DIR)/ufobuilder
 	@echo "Installing 'panda'"

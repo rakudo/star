@@ -14,6 +14,7 @@ my @pmfiles;
 my @mod_pms;
 while (@ARGV) {
     my $module = shift @ARGV;
+    print "== Installing module $module\n";
     our $mlib  = "$module/lib";
     
     @mod_pms = ();
