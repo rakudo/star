@@ -20,7 +20,7 @@ RAKUDO_DIR  = $(DISTDIR)/$(RAKUDO)
 
 
 ## If you add a module here, don't forget to update MODULES
-## in skel/build/Makefile.in to actually install it
+## in skel/tools/build/Makefile.in to actually install it
 MODULES_DIR = $(DISTDIR)/modules
 MODULES = \
   git://github.com/masak/ufo \
