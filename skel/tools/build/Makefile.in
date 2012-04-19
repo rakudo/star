@@ -71,7 +71,6 @@ MODULES = \
   modules/Bailador \
   modules/MiniDBI \
   modules/uri \
-  modlues/perl6-lwp-simple \
 
 all: rakudo
 
