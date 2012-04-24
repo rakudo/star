@@ -71,6 +71,7 @@ MODULES = \
   modules/Bailador \
   modules/MiniDBI \
   modules/uri \
+  modules/jsonrpc \
 
 all: rakudo
 
