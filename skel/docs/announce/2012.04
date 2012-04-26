@@ -26,7 +26,8 @@ previous distribution release.
 * improved support for calling C functions and modelling structs and arrays
   via NativeCall.pm6
 
-* now includes modules URI, LWP::Simple, jsonrpc, 
+* now includes modules URI, LWP::Simple, jsonrpc and Bailador (a Perl 6 port
+  of Dancer)
 
 This release also contains a range of bug fixes, improvements to error
 reporting and better failure modes. Many more exceptions are thrown
