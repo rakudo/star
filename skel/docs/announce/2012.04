@@ -7,7 +7,7 @@ release is available from <http://github.com/rakudo/star/downloads>.
 
 In the Perl 6 world, we make a distinction between the language 
 ("Perl 6") and specific implementations of the language such as
-"Rakudo Perl".  This Star release includes release 2012.04.1 of the
+"Rakudo Perl".  This Star release includes release 2012.04.1 [0] of the
 Rakudo Perl 6 compiler [1], version 4.3 of the Parrot Virtual
 Machine [2], and various modules, documentation, and other
 resources collected from the Perl 6 community.
@@ -74,5 +74,6 @@ for making Rakudo Star possible.  If you would like to contribute,
 see <http://rakudo.org/how-to-help>, ask on the perl6-compiler@perl.org
 mailing list, or join us on IRC #perl6 on freenode.
 
+[0] https://github.com/rakudo/rakudo/blob/nom/docs/announce/2012.04.1
 [1] http://github.com/rakudo/rakudo
 [2] http://parrot.org/
