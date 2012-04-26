@@ -33,7 +33,7 @@ This release also contains a range of bug fixes, improvements to error
 reporting and better failure modes. Many more exceptions are thrown
 as typed exceptions.
 
-Some notable incomplete changes from the previous release include
+Some notable incompatible changes from the previous release include
 
  * the 'lib' directory is not included in the default module search path
    anymore.  You can manipulate the search path with the PERL6LIB environment
