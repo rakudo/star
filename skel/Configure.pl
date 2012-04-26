@@ -59,7 +59,7 @@ MAIN: {
         $options{'gen-nqp'} ||= '';
     }
 
-    $options{'gen-nqp'} ||= 'nqp-2012.02' if defined $options{'gen-nqp'};
+    $options{'gen-nqp'} ||= 'nqp-2012.04.1' if defined $options{'gen-nqp'};
     my $with_nqp    = $options{'with-nqp'};
     my $gen_nqp     = $options{'gen-nqp'};
 
