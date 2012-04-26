@@ -38,7 +38,6 @@ MODULES = \
   git://github.com/snarkyboojum/Perl6-MIME-Base64 \
   git://github.com/cosimo/perl6-digest-md5 \
   git://github.com/tadzik/perl6-File-Tools \
-  git://github.com/tadzik/perl6-Config-INI \
   git://github.com/tadzik/panda \
   git://github.com/supernovus/perl6-http-status \
   git://github.com/moritz/perl6-http-easy \
