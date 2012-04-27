@@ -27,14 +27,14 @@ will not work properly.
 On Debian GNU/Linux or Ubuntu Linux, the necessary components
 for building Rakudo can be installed via the command
 
-    aptitude install make gcc libicu-dev
+    aptitude install make gcc libicu-dev git
 
 Readline support also requires the "libreadline-dev" library.
 
 On RedHat/Fedora/CentOS, the components can be installed with
 
     yum groupinstall development-tools
-    yum install libicu-devel readline-devel
+    yum install libicu-devel readline-devel git
 
 
 Building Rakudo Star
