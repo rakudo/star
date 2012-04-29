@@ -46,7 +46,9 @@ The basic steps to build Rakudo Star are:
     $ make install
 
 This will build a Perl 6 executable and install selected
-Perl 6 modules in the install/ subdirectory.  Programs can
+Perl 6 modules into the install/ subdirectory, which resides
+inside the source archive directory. Running make install
+will *not* install anything into /usr/local. Programs can
 then be run directly using a command like:
 
     $ ./perl6 hello.pl
