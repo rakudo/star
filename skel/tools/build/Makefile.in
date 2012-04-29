@@ -71,6 +71,7 @@ MODULES = \
   modules/MiniDBI \
   modules/uri \
   modules/jsonrpc \
+  modules/Pod-To-HTML \
 
 all: rakudo
 
