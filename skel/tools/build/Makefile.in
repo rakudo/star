@@ -68,7 +68,7 @@ MODULES = \
   modules/perl6-http-status \
   modules/perl6-http-easy \
   modules/Bailador \
-  modules/MiniDBI \
+  modules/DBIish \
   modules/uri \
   modules/jsonrpc \
   modules/Pod-To-HTML \
