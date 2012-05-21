@@ -43,7 +43,7 @@ MAIN: {
 
     my $prefix      = $options{'prefix'} || cwd().'/install';
     my $with_parrot = $options{'with-parrot'};
-    $options{'gen-parrot'} ||= 'parrot-4.3.0' if defined $options{'gen-parrot'};
+    $options{'gen-parrot'} ||= 'parrot-4.4.0' if defined $options{'gen-parrot'};
     my $gen_parrot  = $options{'gen-parrot'};
 
     # Save options in config.status
@@ -59,7 +59,7 @@ MAIN: {
         $options{'gen-nqp'} ||= '';
     }
 
-    $options{'gen-nqp'} ||= 'nqp-2012.04.1' if defined $options{'gen-nqp'};
+    $options{'gen-nqp'} ||= 'nqp-2012.05' if defined $options{'gen-nqp'};
     my $with_nqp    = $options{'with-nqp'};
     my $gen_nqp     = $options{'gen-nqp'};
 

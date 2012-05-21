@@ -1,9 +1,9 @@
 # Copyright (C) 2006-2012, The Perl Foundation.
 # $Id$
 
-PARROT = parrot-4.3.0
-NQP    = nqp-2012.04.1
-RAKUDO = rakudo-2012.04.1
+PARROT = parrot-4.4.0
+NQP    = nqp-2012.05
+RAKUDO = rakudo-2012.05
 
 PARROT_ARGS      =
 
