@@ -13,6 +13,18 @@ use NQP::Configure qw(sorry slurp cmp_rev gen_nqp read_config
                       system_or_die verify_install);
 
 my $lang = 'Rakudo';
+my $parrot_ver = '<PARROT_VER>';
+my $nqp_ver    = '<NQP_VER>';
+my $rakudo_ver = '<RAKUDO_VER>';
+
+for ($parrot_ver, $nqp_ver, $rakudo_ver) {
+    if (/^<\w+_VER>/) {
+        die "You are running the original version of Configure.pl,\n"
+            . "but you should only run a version which has been processed by\n"
+            . "build/skel-template.pl\n";
+    }
+}
+
 my $lclang = lc $lang;
 my $uclang = uc $lang;
 
@@ -43,7 +55,7 @@ MAIN: {
 
     my $prefix      = $options{'prefix'} || cwd().'/install';
     my $with_parrot = $options{'with-parrot'};
-    $options{'gen-parrot'} ||= 'parrot-4.4.0' if defined $options{'gen-parrot'};
+    $options{'gen-parrot'} ||= "parrot-$parrot_ver" if defined $options{'gen-parrot'};
     my $gen_parrot  = $options{'gen-parrot'};
 
     # Save options in config.status
@@ -59,12 +71,12 @@ MAIN: {
         $options{'gen-nqp'} ||= '';
     }
 
-    $options{'gen-nqp'} ||= 'nqp-2012.05' if defined $options{'gen-nqp'};
+    $options{'gen-nqp'} ||= "nqp-$nqp_ver" if defined $options{'gen-nqp'};
     my $with_nqp    = $options{'with-nqp'};
     my $gen_nqp     = $options{'gen-nqp'};
 
     # determine the version of NQP we want
-    my ($nqp_want) = split(' ', slurp('rakudo-2012.05/tools/build/NQP_REVISION'));
+    my ($nqp_want) = split(' ', slurp("rakudo-$rakudo_ver/tools/build/NQP_REVISION"));
 
     if (defined $gen_nqp) {
         $with_nqp = gen_nqp($nqp_want, %options);

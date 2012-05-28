@@ -66,6 +66,7 @@ always:
 $(DISTDIR): always
 	mkdir -p $(DISTDIR)
 	cp -av skel/. $(DISTDIR)
+	perl build/skel-template.pl $(DISTDIR)
 
 $(PARROT_DIR): $(PARROT_TGZ)
 	tar -C $(DISTDIR) -xvzf $(PARROT_TGZ)
