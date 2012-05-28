@@ -1,3 +1,8 @@
+# grabs some variables (containing versions) from Makefile,
+# and then copies files from template-skel over to the
+# dist folder, replacing occurrences of those variables
+# in the process.
+
 use strict;
 use warnings;
 
