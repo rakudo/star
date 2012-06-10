@@ -47,6 +47,7 @@ MODULES = \
   git://github.com/cosimo/perl6-lwp-simple \
   git://github.com/bbkr/jsonrpc \
   git://github.com/perl6/Pod-To-HTML \
+  git://github.com/perl6/doc \
 
 DISTTARGETS = \
   $(PARROT_DIR) \

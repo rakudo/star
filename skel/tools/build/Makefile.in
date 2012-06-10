@@ -72,6 +72,7 @@ MODULES = \
   modules/uri \
   modules/jsonrpc \
   modules/Pod-To-HTML \
+  modules/doc \
 
 all: rakudo
 
