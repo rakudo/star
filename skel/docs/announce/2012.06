@@ -2,7 +2,7 @@ Announce: Rakudo Star - a useful, usable, "early adopter" distribution of Perl 6
 
 On behalf of the Rakudo and Perl 6 development teams, I'm happy to
 announce the June 2012 release of "Rakudo Star", a useful and
-usable distribution of Perl 6.  The tarball for the May 2012
+usable distribution of Perl 6.  The tarball for the June 2012
 release is available from <http://github.com/rakudo/star/downloads>.
 
 In the Perl 6 world, we make a distinction between the language 
@@ -32,6 +32,10 @@ previous distribution release.
 
 * Rakudo is now compiled with the same regex engine that user-space
   regexes use; some parsing bugs are fixed as a result
+
+* p6doc is now shipped with Rakudo Star. It is a small collection of 
+  user-oriented documentation, along with the `p6doc` script for viewing
+  them.
 
 This release also contains a range of bug fixes, improvements to error
 reporting and better failure modes. More exceptions are thrown as typed
