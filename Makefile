@@ -105,6 +105,7 @@ $(DISTDIR)/MANIFEST:
 	## add the two dot-files from Parrot MANIFEST
 	echo "$(PARROT)/.gitignore" >>$(DISTDIR)/MANIFEST
 	echo "$(PARROT)/tools/dev/.gdbinit" >>$(DISTDIR)/MANIFEST
+	sort -o $(DISTDIR)/MANIFEST $(DISTDIR)/MANIFEST
 
 release: dist tarball
 
