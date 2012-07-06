@@ -40,7 +40,7 @@ MODULES = \
   git://github.com/tadzik/perl6-File-Tools \
   git://github.com/tadzik/panda \
   git://github.com/supernovus/perl6-http-status \
-  git://github.com/moritz/perl6-http-easy \
+  git://github.com/supernovus/perl6-http-easy \
   git://github.com/tadzik/Bailador \
   git://github.com/perl6/DBIish \
   git://github.com/ihrd/uri \
