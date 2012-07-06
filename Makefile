@@ -90,10 +90,6 @@ $(RAKUDO_TGZ):
 $(MODULES_DIR): always
 	mkdir -p $(MODULES_DIR)
 	cd $(MODULES_DIR); for repo in $(MODULES); do git clone $$repo.git; done
-	# use versions before the &dir API change
-	cd $(MODULES_DIR)/ufo; git checkout e889d21c3bbee0f49b3a6d8ef6a6593c6be24ac9
-	cd $(MODULES_DIR)/perl6-File-Tools; git checkout 4573308b3572ad3abe47b5a685697c6e31d30a78
-	cd $(MODULES_DIR)/panda; git checkout 30a73cae58bca562019250cbff76ff950c640a2c
 	# cd $(MODULES_DIR)/yaml-pm6; git checkout rakudo-star-1
 
 star-patches:
