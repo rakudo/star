@@ -24,6 +24,26 @@ reporting and better failure modes. More exceptions are thrown as typed
 exceptions, and more meta-model errors have been fixed to properly
 report line numbers.
 
+The following features are deprecated due to changes in the Perl 6
+specification, and will be removed or changed:
+
+* the method Str.bytes will be removed. To get the number of codespoints
+  in a string, use .codes instead. To get the number of bytes in a
+  given encoding, use $str.encode($encoding).bytes
+  Scheduled for the 2012.08 release.
+
+* the method Str.lcfirst will be removed without replacement
+  Scheduled for the 2012.08 release.
+
+* the method Str.ucfirst will eventuelly be removed, and replaced by
+  Str.titlecase
+  No schedule yet, depends on having titlecase implementef first.
+
+* 'abs' right now is a prefix operator, and will be changed to a normal
+  subroutine.
+  Scheduled for the 2012.08 release.
+
+
 There are some key features of Perl 6 that Rakudo Star does not
 yet handle appropriately, although they will appear in upcoming
 releases.  Some of the not-quite-there features include:
