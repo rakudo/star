@@ -91,6 +91,7 @@ $(MODULES_DIR): always
 	mkdir -p $(MODULES_DIR)
 	cd $(MODULES_DIR); for repo in $(MODULES); do git clone $$repo.git; done
 	# cd $(MODULES_DIR)/yaml-pm6; git checkout rakudo-star-1
+	cd $(MODULES_DIR)/panda; git checkout 04b67556b56edd0c4599fc20c9c7e49a292b0cc1
 
 star-patches:
 	[ ! -f build/$(VERSION)-patch.pl ] || DISTDIR=$(DISTDIR) perl build/$(VERSION)-patch.pl
