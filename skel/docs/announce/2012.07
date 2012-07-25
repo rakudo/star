@@ -43,6 +43,12 @@ specification, and will be removed or changed:
   subroutine.
   Scheduled for the 2012.08 release.
 
+* the integer argument to IO::Socket.recv will be interpreted as number of
+  codepoints
+  Scheduled for the 2012.08 release.
+
+* IO::File and IO::Dir will go away, and &dir will return values of type
+  IO::Path (which is currently the superclass of IO::File and IO::Dir).
 
 There are some key features of Perl 6 that Rakudo Star does not
 yet handle appropriately, although they will appear in upcoming
