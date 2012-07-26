@@ -103,6 +103,7 @@ sub dfs_visit {
     my $order = shift;
     $color_of->{$module} = 'visited';
     for my $used (@{$dependencies->{$module}}) {
+        $color_of->{$used} ||= '';
         if ($color_of->{$used} eq 'not yet visited') {
             dfs_visit($used, $color_of, $dependencies, $order);
         }
