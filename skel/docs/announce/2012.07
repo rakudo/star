@@ -60,7 +60,7 @@ or changed as follows:
 
 * The method Str.ucfirst will eventually be removed, and replaced by
   Str.tc.
-  No schedule yet, depends on having titlecase implemented first.
+  No schedule yet, depends on having tc implemented first.
 
 * 'abs' is currently a prefix operator, and will be changed to a normal
   subroutine.
