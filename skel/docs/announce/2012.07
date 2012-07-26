@@ -27,28 +27,28 @@ report line numbers.
 The following features are deprecated due to changes in the Perl 6
 specification, and will be removed or changed:
 
-* the method Str.bytes will be removed. To get the number of codespoints
+* IO::File and IO::Dir will go away, and &dir will return values of type
+  IO::Path (which is currently the superclass of IO::File and IO::Dir).
+
+* The method Str.bytes will be removed. To get the number of codepoints
   in a string, use .codes instead. To get the number of bytes in a
-  given encoding, use $str.encode($encoding).bytes
+  given encoding, use $str.encode($encoding).bytes .
   Scheduled for the 2012.08 release.
 
-* the method Str.lcfirst will be removed without replacement
+* The method Str.lcfirst will be removed without replacement.
   Scheduled for the 2012.08 release.
 
-* the method Str.ucfirst will eventuelly be removed, and replaced by
-  Str.titlecase
-  No schedule yet, depends on having titlecase implementef first.
+* The method Str.ucfirst will eventually be removed, and replaced by
+  Str.titlecase .
+  No schedule yet, depends on having titlecase implemented first.
 
-* 'abs' right now is a prefix operator, and will be changed to a normal
+* 'abs' is currently a prefix operator, and will be changed to a normal
   subroutine.
   Scheduled for the 2012.08 release.
 
 * the integer argument to IO::Socket.recv will be interpreted as number of
   codepoints
   Scheduled for the 2012.08 release.
-
-* IO::File and IO::Dir will go away, and &dir will return values of type
-  IO::Path (which is currently the superclass of IO::File and IO::Dir).
 
 There are some key features of Perl 6 that Rakudo Star does not
 yet handle appropriately, although they will appear in upcoming
