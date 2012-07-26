@@ -12,22 +12,26 @@ Rakudo Perl 6 compiler [1], version 4.6 of the Parrot Virtual
 Machine [2], and various modules, documentation, and other
 resources collected from the Perl 6 community.
 
-<add note about deprecation issues>
+Some of the new features added to this release include:
 
-Here are some of the major improvements in this release over the
-previous distribution release.
+* Built-in metaobjects (e.g. Metamodel::ClassHOW) now inherit from Any
 
-...
+* &open now supports the :enc/:encoding option
+
+* anonymous subset types (e.g., 'subset :: of Int where { $_ > 0 }')
 
 This release also contains a range of bug fixes, improvements to error
 reporting and better failure modes. More exceptions are thrown as typed
 exceptions, and more meta-model errors have been fixed to properly
 report line numbers.
 
-The following features are deprecated due to changes in the Perl 6
-specification, and will be removed or changed:
+Starting with this release, we will also identify changes to the
+implementation or specification that can cause breakages in existing
+Perl 6 code.  The following features have been deprecated or modified
+due to changes in the Perl 6 specification, and are being removed
+or changed as follows:
 
-* IO::File and IO::Dir will go away, and &dir will return values of type
+* IO::File and IO::Dir will go away, and &dir now returns values of type
   IO::Path (which is currently the superclass of IO::File and IO::Dir).
 
 * Leading whitespace in rules and under :sigspace will no longer be
@@ -41,6 +45,7 @@ specification, and will be removed or changed:
   bind the slot directly to a captured Match or to Nil.  Existing code
   can manage the transition by changing existing ?-quantifiers to
   use "** 0..1", which will continue to return a List of matches.
+  Scheduled for the 2012.08 release, but may end up in 2012.09 .
 
 * The method Str.bytes will be removed. To get the number of codepoints
   in a string, use .codes instead. To get the number of bytes in a
@@ -58,8 +63,8 @@ specification, and will be removed or changed:
   subroutine.
   Scheduled for the 2012.08 release.
 
-* the integer argument to IO::Socket.recv will be interpreted as number of
-  codepoints
+* The integer argument to IO::Socket.recv will be interpreted as number of
+  codepoints.
   Scheduled for the 2012.08 release.
 
 There are some key features of Perl 6 that Rakudo Star does not
