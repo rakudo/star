@@ -49,6 +49,7 @@ LINKARGS         = $(LDFLAGS) $(LD_LOAD_FLAGS) $(LIBPARROT) @libs@ @icu_shared@
 
 PERL6_EXE      = perl6$(EXE)
 PERL6_LANG_DIR = $(PARROT_LIB_DIR)/languages/perl6
+STAR_WXS       = $(STAR).wxs
 
 # This list must be kept in order, modules always coming after their
 # dependencies
@@ -156,10 +157,14 @@ CRITIC_FILES=Configure.pl tools/build/
 perlcritic:
 	perlcritic -1 --profile tools/util/perlcritic.conf $(CRITIC_FILES)
 
-msi:
+$(STAR_WXS): $(PARROT_BIN_DIR) $(PREFIX_DIR)
 	-$(CP) c:/strawberry/c/bin/libgcc_s_sjlj-1.dll $(PARROT_BIN_DIR)
-	cmd /c heat dir $(PREFIX_DIR) -gg -sfrag -template product -cg RakudoStar -out $(STAR).wxs
-	$(PERL) -ibak tools/build/wxs-patch.pl $(STAR).wxs
-	cmd /c candle $(STAR).wxs
+	cmd /c heat dir $(PREFIX_DIR) -gg -sfrag -template product -cg RakudoStar -out $(STAR_WXS)
+	$(PERL) -ibak tools/build/wxs-patch.pl $(STAR_WXS)
+
+wxs: $(STAR_WXS)
+
+msi: $(STAR_WXS)
+	cmd /c candle $(STAR_WXS)
 	cmd /c light -b $(PREFIX_DIR) $(STAR).wixobj
 
