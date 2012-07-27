@@ -72,6 +72,7 @@ MODULES = \
   modules/panda \
   modules/perl6-http-status \
   modules/perl6-http-easy \
+  modules/Template-Mojo \
   modules/Bailador \
   modules/DBIish \
   modules/jsonrpc \

@@ -20,6 +20,8 @@ Some of the new features added to this release include:
 
 * anonymous subset types (e.g., 'subset :: of Int where { $_ > 0 }')
 
+* Rakudo Star now ships with the Template::Mojo module
+
 This release also contains a range of bug fixes, improvements to error
 reporting and better failure modes. More exceptions are thrown as typed
 exceptions, and more meta-model errors have been fixed to properly
