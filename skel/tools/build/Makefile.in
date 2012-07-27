@@ -62,6 +62,7 @@ MODULES = \
   modules/Grammar-Profiler-Simple \
   modules/grammar-debugger \
   modules/Perl6-MIME-Base64 \
+  modules/uri \
   modules/perl6-lwp-simple \
   modules/json \
   modules/perl6-digest-md5 \
@@ -71,7 +72,6 @@ MODULES = \
   modules/perl6-http-easy \
   modules/Bailador \
   modules/DBIish \
-  modules/uri \
   modules/jsonrpc \
   modules/Pod-To-HTML \
   modules/doc \
