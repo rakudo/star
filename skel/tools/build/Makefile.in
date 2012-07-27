@@ -156,7 +156,7 @@ perlcritic:
 msi:
 	@$(CP) c:/strawberry/c/bin/libgcc_s_sjlj-1.dll $(PARROT_BIN_DIR)
 	cmd /c heat dir $(PREFIX_DIR) -gg -sfrag -template product -cg RakudoStar -out $(STAR).wxs
-	$(PERL) -ibak tools/build/wix-patch.pl $(STAR).wxs
+	$(PERL) -ibak tools/build/wxs-patch.pl $(STAR).wxs
 	cmd /c candle $(STAR).wxs
 	cmd /c light -b $(PREFIX_DIR) $(STAR).wixobj
 
