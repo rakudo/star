@@ -66,6 +66,7 @@ always:
 
 $(DISTDIR): always
 	mkdir -p $(DISTDIR)
+	echo $(VERSION) >$(DISTDIR)/VERSION
 	cp -av skel/. $(DISTDIR)
 	perl build/skel-template.pl $(DISTDIR)
 
