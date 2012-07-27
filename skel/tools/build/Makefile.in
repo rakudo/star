@@ -50,6 +50,8 @@ LINKARGS         = $(LDFLAGS) $(LD_LOAD_FLAGS) $(LIBPARROT) @libs@ @icu_shared@
 PERL6_EXE      = perl6$(EXE)
 PERL6_LANG_DIR = $(PARROT_LIB_DIR)/languages/perl6
 
+# This list must be kept in order, modules always coming after their
+# dependencies
 MODULES = \
   modules/zavolaj \
   modules/xml-writer \
