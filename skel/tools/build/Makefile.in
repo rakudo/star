@@ -4,10 +4,12 @@
 PARROT = parrot-4.6.0
 NQP    = nqp-2012.07
 RAKUDO = rakudo-2012.07
+STAR   = rakudo-star-2012.07
 
 PARROT_ARGS      =
 
 # values from parrot_config
+PREFIX_DIR         = @prefix@
 PARROT_BIN_DIR     = @bindir@
 PARROT_VERSION     = @versiondir@
 PARROT_INCLUDE_DIR = @includedir@$(PARROT_VERSION)
@@ -146,14 +148,15 @@ config:
 
 $(PARROT):
 
-CRITIC_FILES=Configure.pl build/
+CRITIC_FILES=Configure.pl tools/build/
 
 perlcritic:
 	perlcritic -1 --profile tools/util/perlcritic.conf $(CRITIC_FILES)
 
-release: MANIFEST
-	[ -n "$(VERSION)" ] || ( echo "\nTry 'make release VERSION=yyyy.mm'\n\n"; exit 1 )
-	[ -d rakudo-star-$(VERSION) ] || ln -s . rakudo-star-$(VERSION)
-	$(PERL) -ne 'print "rakudo-star-$(VERSION)/$$_"' MANIFEST | \
-	    tar -zcv -T - -f rakudo-star-$(VERSION).tar.gz
-	rm rakudo-star-$(VERSION)
+msi:
+	@$(CP) c:/strawberry/c/bin/libgcc_s_sjlj-1.dll $(PARROT_BIN_DIR)
+	cmd /c heat dir $(PREFIX_DIR) -gg -sfrag -template product -cg RakudoStar -out $(STAR).wxs
+	$(PERL) -ibak tools/build/wix-patch.pl $(STAR).wxs
+	cmd /c candle $(STAR).wxs
+	cmd /c light -b $(PREFIX_DIR) $(STAR).wixobj
+
