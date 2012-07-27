@@ -33,6 +33,9 @@ or changed as follows:
 
 * IO::File and IO::Dir will go away, and &dir now returns values of type
   IO::Path (which is currently the superclass of IO::File and IO::Dir).
+  The return values of &dir will still stringify to the base name of the
+  returned file and directory names, and you can call .path on them to
+  obtain the full path.
 
 * Leading whitespace in rules and under :sigspace will no longer be
   converted to <.ws> .  For existing regexes that expect this conversion,
@@ -56,15 +59,15 @@ or changed as follows:
   Scheduled for the 2012.08 release.
 
 * The method Str.ucfirst will eventually be removed, and replaced by
-  Str.titlecase .
-  No schedule yet, depends on having titlecase implemented first.
+  Str.tc.
+  No schedule yet, depends on having tc implemented first.
 
 * 'abs' is currently a prefix operator, and will be changed to a normal
   subroutine.
   Scheduled for the 2012.08 release.
 
 * The integer argument to IO::Socket.recv will be interpreted as number of
-  codepoints.
+  characters/codepoints.
   Scheduled for the 2012.08 release.
 
 There are some key features of Perl 6 that Rakudo Star does not
