@@ -2,6 +2,10 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
     <Product Id="*" Language="1033" Manufacturer="Rakudo Perl 6" Name="Rakudo Star $(var.STARVERSION)" UpgradeCode="{08B7EB05-7EAC-4B60-9F5B-AF6E367FE0FD}" Version="1.0.0">
         <Package Compressed="yes" InstallerVersion="200" />
+
+        <!-- force installation to C: drive -->
+        <Property Id="ROOTDRIVE"><![CDATA[C:\]]></Property>
+
         <Directory Id="TARGETDIR" Name="SourceDir">
           <Directory Id="INSTALLROOT" Name="rakudo" />
 
