@@ -158,7 +158,7 @@ perlcritic:
 
 msi:
 	-$(CP) c:/strawberry/c/bin/libgcc_s_sjlj-1.dll $(PARROT_BIN_DIR)
-	cmd /c heat dir rakudo -gg -sfrag -cg RakudoStar -dr INSTALLROOT -srd -out star-files.wxs
+	cmd /c heat dir $(PREFIX_DIR) -gg -sfrag -cg RakudoStar -dr INSTALLROOT -srd -out star-files.wxs
 	cmd /c candle star-files.wxs
 	cmd /c candle -dSTARVERSION=$(STAR_VERSION) tools/build/star-product.wxs
 	cmd /c light -b $(PREFIX_DIR) -ext WixUIExtension star-files.wixobj star-product.wixobj -o rakudo-star-$(STAR_VERSION).msi
