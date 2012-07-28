@@ -3,7 +3,7 @@
     <Product Id="*" Language="1033" Manufacturer="Rakudo Perl 6" Name="Rakudo Star $(var.STARVERSION)" UpgradeCode="{08B7EB05-7EAC-4B60-9F5B-AF6E367FE0FD}" Version="1.0.0">
         <Package Compressed="yes" InstallerVersion="200" />
         <Directory Id="TARGETDIR" Name="SourceDir">
-          <Directory Id="INSTALLLOCATION" Name="rakudo" />
+          <Directory Id="INSTALLROOT" Name="rakudo" />
 
           <!-- start menu shortcuts, adapted from http://wix.sourceforge.net/manual-wix3/create_start_menu_shortcut.htm -->
           <Directory Id="ProgramMenuFolder">
@@ -11,8 +11,8 @@
               <Component Id="RakudoStartItems" Guid="B5BD7AEC-C8dC-4F84-AF2E-4A417350D642">
                 <Shortcut Id="RakudoShortcut" 
                           Name="Rakudo Perl 6"
-                          Target="[INSTALLLOCATION]bin\perl6.exe" 
-                          WorkingDirectory="INSTALLLOCATION" />
+                          Target="[INSTALLROOT]bin\perl6.exe" 
+                          WorkingDirectory="INSTALLROOT" />
                 <RemoveFolder Id="RakudoMenuFolder" On="uninstall" />
                 <RegistryValue Root="HKCU" Key="Software\Microsoft\RakudoPerl6" Name="installed" Type="integer" Value="1" KeyPath="yes" />
               </Component>
