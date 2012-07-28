@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Product Id="*" Language="1033" Manufacturer="Rakudo Perl 6" Name="Rakudo Star $(var.STARVERSION)" UpgradeCode="{08B7EB05-7EAC-4B60-9F5B-AF6E367FE0FD}" Version="1.0.0">
+        <Package Compressed="yes" InstallerVersion="200" />
+        <Directory Id="TARGETDIR" Name="SourceDir">
+          <Directory Id="INSTALLLOCATION" Name="rakudo" />
+
+          <!-- start menu shortcuts, adapted from http://wix.sourceforge.net/manual-wix3/create_start_menu_shortcut.htm -->
+          <Directory Id="ProgramMenuFolder">
+            <Directory Id="RakudoMenuFolder" Name="Rakudo Perl 6">
+              <Component Id="RakudoStartItems" Guid="B5BD7AEC-C8dC-4F84-AF2E-4A417350D642">
+                <Shortcut Id="RakudoShortcut" 
+                          Name="Rakudo Perl 6"
+                          Target="[INSTALLLOCATION]bin\perl6.exe" 
+                          WorkingDirectory="INSTALLLOCATION" />
+                <RemoveFolder Id="RakudoMenuFolder" On="uninstall" />
+                <RegistryValue Root="HKCU" Key="Software\Microsoft\RakudoPerl6" Name="installed" Type="integer" Value="1" KeyPath="yes" />
+              </Component>
+            </Directory>
+          </Directory>
+        </Directory>
+
+        <Feature Id="ProductFeature" Level="1" Title="Rakudo Star $(var.STARVERSION)">
+            <ComponentGroupRef Id="RakudoStar" />
+            <ComponentRef Id="RakudoStartItems" />
+        </Feature>
+        <Media Id="1" Cabinet="product.cab" EmbedCab="yes" />
+
+        <!-- This is just like WixUI_Minimal but we skip the EULA part -->
+        <UI Id="WixUI_Minimal">
+            <TextStyle Id="WixUI_Font_Normal" FaceName="Tahoma" Size="8" />
+            <TextStyle Id="WixUI_Font_Bigger" FaceName="Tahoma" Size="12" />
+            <TextStyle Id="WixUI_Font_Title" FaceName="Tahoma" Size="9" Bold="yes" />
+
+            <Property Id="DefaultUIFont" Value="WixUI_Font_Normal" />
+            <Property Id="WixUI_Mode" Value="Minimal" />
+
+            <DialogRef Id="ErrorDlg" />
+            <DialogRef Id="FatalError" />
+            <DialogRef Id="FilesInUse" />
+            <DialogRef Id="MsiRMFilesInUse" />
+            <DialogRef Id="PrepareDlg" />
+            <DialogRef Id="ProgressDlg" />
+            <DialogRef Id="ResumeDlg" />
+            <DialogRef Id="UserExit" />
+            <DialogRef Id="WelcomeDlg" />
+
+            <Publish Dialog="WelcomeDlg" Control="Next" Event="NewDialog" Value="PrepareDlg">1</Publish>
+            <Publish Dialog="ExitDialog" Control="Finish" Event="EndDialog" Value="Return" Order="999">1</Publish>
+
+            <Publish Dialog="VerifyReadyDlg" Control="Back" Event="NewDialog" Value="MaintenanceTypeDlg">1</Publish>
+
+            <Publish Dialog="MaintenanceWelcomeDlg" Control="Next" Event="NewDialog" Value="MaintenanceTypeDlg">1</Publish>
+
+            <Publish Dialog="MaintenanceTypeDlg" Control="RepairButton" Event="NewDialog" Value="VerifyReadyDlg">1</Publish>
+            <Publish Dialog="MaintenanceTypeDlg" Control="RemoveButton" Event="NewDialog" Value="VerifyReadyDlg">1</Publish>
+            <Publish Dialog="MaintenanceTypeDlg" Control="Back" Event="NewDialog" Value="MaintenanceWelcomeDlg">1</Publish>
+
+            <Property Id="ARPNOMODIFY" Value="1" />
+        </UI>
+
+        <UIRef Id="WixUI_Common" />
+    </Product>
+</Wix>
