@@ -27,7 +27,7 @@ will not work properly.
 On Debian GNU/Linux or Ubuntu Linux, the necessary components
 for building Rakudo can be installed via the command
 
-    aptitude install make gcc libicu-dev
+    aptitude install build-essential libicu-dev
 
 Readline support also requires the "libreadline-dev" library.
 
