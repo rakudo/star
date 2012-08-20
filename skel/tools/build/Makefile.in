@@ -97,12 +97,9 @@ rakudo-install: rakudo
 
 modules-install: rakudo
 	@echo "== Installing 'ufo'"
-	$(CP)    modules/ufo/bin/ufo $(DESTDIR)$(PARROT_BIN_DIR)/ufo
-	$(CHMOD) 755                 $(DESTDIR)$(PARROT_BIN_DIR)/ufo
 	$(PERL) tools/build/module-install.pl $(DESTDIR)$(PARROT_BIN_DIR)/$(PERL6_EXE) $(DESTDIR)$(PERL6_LANG_DIR)/lib $(MODULES)
-	@echo "Installing 'panda'"
-	$(CP)    modules/panda/bin/panda $(DESTDIR)$(PARROT_BIN_DIR)/panda
-	$(CHMOD) 755                    $(DESTDIR)$(PARROT_BIN_DIR)/panda
+	@echo "== Installing binaries"
+	$(PERL) tools/build/bin-install.pl $(DESTDIR)$(PARROT_BIN_DIR)/$(PERL6_EXE) $(DESTDIR)$(PARROT_BIN_DIR) modules/ufo/bin/ufo modules/panda/bin/panda
 
 install: rakudo-install modules-install
 
