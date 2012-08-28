@@ -49,8 +49,15 @@ LINKARGS         = $(LDFLAGS) $(LD_LOAD_FLAGS) $(LIBPARROT) @libs@ @icu_shared@
 
 PERL6_EXE      = perl6$(EXE)
 PERL6_LANG_DIR = $(PARROT_LIB_DIR)/languages/perl6
+PERL6_INSTALL  = $(PARROT_BIN_DIR)/$(PERL6_EXE)
 
 MODULES = modules/MODULES.txt
+
+# rakudo-debugger
+RD_DIR     = modules/rakudo-debugger
+RD_PIR     = $(RD_DIR)/perl6-debug.pir
+RD_PBC     = $(RD_DIR)/perl6-debug.pbc
+RD_EXE     = $(RD_DIR)/perl6-debug$(EXE)
 
 all: rakudo
 
@@ -65,16 +72,26 @@ rakudo-spectest: rakudo
 rakudo-install: rakudo
 	cd $(RAKUDO_DIR) && $(MAKE) install
 	@win32_libparrot_copy@
-	$(CP) $(DESTDIR)$(PARROT_BIN_DIR)/$(PERL6_EXE) .
+	$(CP) $(DESTDIR)$(PERL6_INSTALL) $(PERL6_EXE)
 	$(CHMOD) 755 $(PERL6_EXE)
 
 modules-install: rakudo
 	@echo "== Installing 'ufo'"
-	$(PERL) tools/build/module-install.pl $(DESTDIR)$(PARROT_BIN_DIR)/$(PERL6_EXE) $(DESTDIR)$(PERL6_LANG_DIR)/lib $(MODULES)
+	$(PERL) tools/build/module-install.pl $(DESTDIR)$(PERL6_INSTALL) $(DESTDIR)$(PERL6_LANG_DIR)/lib $(MODULES)
 	@echo "== Installing binaries"
-	$(PERL) tools/build/bin-install.pl $(DESTDIR)$(PARROT_BIN_DIR)/$(PERL6_EXE) $(DESTDIR)$(PARROT_BIN_DIR) modules/ufo/bin/ufo modules/panda/bin/panda
+	$(PERL) tools/build/bin-install.pl $(DESTDIR)$(PERL6_INSTALL) $(DESTDIR)$(PARROT_BIN_DIR) modules/ufo/bin/ufo modules/panda/bin/panda
 
-install: rakudo-install modules-install
+$(RD_EXE): modules-install rakudo
+	$(NQP_EXE) --vmlibs=perl6_group,perl6_ops --target=pir \
+	    --output=$(RD_PIR) $(RD_DIR)/bin/perl6-debug.nqp
+	$(PARROT_EXE) -o $(RD_PBC) $(RD_PIR)
+	$(PBC_TO_EXE) $(RD_PBC)
+	$(CHMOD) 755 $(RD_EXE)
+
+perl6-debug-install: $(RD_EXE)
+	$(CP) $(RD_EXE) $(DESTDIR)$(PARROT_BIN_DIR)
+
+install: rakudo-install modules-install perl6-debug-install
 
 test:
 	@echo ""
