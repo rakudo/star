@@ -16,14 +16,6 @@ my $lang = 'Rakudo';
 my $lclang = lc $lang;
 my $uclang = uc $lang;
 
-if (-d '.git') {
-    sorry("I see a .git directory here -- you appear to be trying",
-          "to run Configure.pl from a clone of the Rakudo Star git",
-          "repository.",
-          "",
-          download_text());
-}
-
 MAIN: {
     if (-r "config.default") {
         unshift @ARGV, shellwords(slurp('config.default'));
@@ -40,6 +32,7 @@ MAIN: {
                'with-nqp=s', 'gen-nqp:s',
                'with-parrot=s', 'gen-parrot:s', 'parrot-option=s@',
                'make-install!', 'makefile-timing!',
+               'force!'
                );
 
     # Print help if it's requested
@@ -48,6 +41,16 @@ MAIN: {
         exit(0);
     }
 
+    if (-d '.git') {
+        worry( $options{'force'},
+               "I see a .git directory here -- you appear to be trying",
+              "to run Configure.pl from a clone of the Rakudo Star git",
+              "repository.",
+              $options{'force'} 
+                ? '--force specified, continuing'
+                : download_text()
+        );
+    }
 
     my $prefix      = $options{'prefix'} || cwd().'/install';
     my $with_parrot = $options{'with-parrot'};
@@ -188,6 +191,12 @@ sub download_text {
      "release, but does not contain a complete Rakudo Star release.",
      "To download and build the latest release of Rakudo Star, please",
      "download a .tar.gz file from https://github.com/rakudo/star/downloads .")
+}
+
+sub worry {
+    my ($force, @text) = @_;
+    sorry(@text) unless $force;
+    print join "\n", @text, '';
 }
 
 # Local Variables:
