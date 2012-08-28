@@ -10,7 +10,7 @@ perl6-Term-ANSIColor
 test-mock
 Grammar-Profiler-Simple
 grammar-debugger                          # uses Term::ANSIColor
-perl6-MIME-Base64
+Perl6-MIME-Base64
 uri
 perl6-lwp-simple                          # uses MIME::Base64, URI
 json
