@@ -22,7 +22,7 @@ PERL   = perl
 PREFIX = $(PERL) $(CURDIR)/tools/star/prefix.pl
 WGET   = wget --no-check-certificate
 
-all: rakudo nqp parrot MANIFEST
+all: rakudo nqp parrot manifest
 
 always:
 
@@ -56,6 +56,7 @@ manifest:
 	git submodule foreach --quiet 'git ls-files | $(PREFIX) $$path/' >>MANIFEST
 	grep -v -f tools/star/MANIFEST.exclude MANIFEST >MANIFEST.1
 	sort -o MANIFEST MANIFEST.1
+	rm MANIFEST.1
 
 tarball: manifest
 	[ -n "$(VERSION)" ] || ( echo "\nTry 'make release VERSION=yyyy.mm'\n\n"; exit 1 )
