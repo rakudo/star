@@ -19,6 +19,8 @@ PERL   = perl
 PREFIX = $(PERL) $(CURDIR)/tools/star/prefix.pl
 WGET   = wget --no-check-certificate
 
+all: rakudo nqp parrot MANIFEST
+
 always:
 
 rakudo: nqp $(RAKUDO_SRC)
@@ -43,8 +45,11 @@ $(PARROT_SRC):
 	$(WGET) $(PARROT_URL) -O $(PARROT_SRC)
 
 MANIFEST: always rakudo/MANIFEST parrot/MANIFEST nqp/MANIFEST
-	git ls-files >MANIFEST
+	echo MANIFEST >MANIFEST
+	git ls-files >>MANIFEST
 	$(PREFIX) rakudo/ rakudo/MANIFEST >>MANIFEST
 	$(PREFIX) nqp/ nqp/MANIFEST >>MANIFEST
 	cut -d' ' -f1 parrot/MANIFEST | $(PREFIX) parrot/ >>MANIFEST
 	git submodule foreach --quiet 'git ls-files | $(PREFIX) $$path/' >>MANIFEST
+	sort -o MANIFEST MANIFEST
+
