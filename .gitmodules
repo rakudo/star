@@ -76,6 +76,3 @@
 [submodule "modules/doc"]
 	path = modules/doc
 	url = git://github.com/perl6/doc
-[submodule "modules/Perl6-MIME-Base64"]
-	path = modules/Perl6-MIME-Base64
-	url = git://github.com/moritz/Perl6-MIME-Base64
