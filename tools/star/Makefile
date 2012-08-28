@@ -3,6 +3,9 @@ NQP_VER     = 2012.08
 PARROT_VER  = 4.6.0
 PARROT_REL  = supported/$(PARROT_VER)
 
+STAR_REL    = rakudo-star-$(VERSION)
+STAR_TGZ    = $(STAR_REL).tar.gz
+
 SRC_DIR = src
 
 RAKUDO_TGZ = rakudo-$(RAKUDO_VER).tar.gz
@@ -44,12 +47,21 @@ $(PARROT_SRC):
 	mkdir -p $(SRC_DIR)
 	$(WGET) $(PARROT_URL) -O $(PARROT_SRC)
 
-MANIFEST: always rakudo/MANIFEST parrot/MANIFEST nqp/MANIFEST
+manifest:
 	echo MANIFEST >MANIFEST
 	git ls-files >>MANIFEST
 	$(PREFIX) rakudo/ rakudo/MANIFEST >>MANIFEST
 	$(PREFIX) nqp/ nqp/MANIFEST >>MANIFEST
 	cut -d' ' -f1 parrot/MANIFEST | $(PREFIX) parrot/ >>MANIFEST
 	git submodule foreach --quiet 'git ls-files | $(PREFIX) $$path/' >>MANIFEST
-	sort -o MANIFEST MANIFEST
+	grep -v -f tools/star/MANIFEST.exclude MANIFEST >MANIFEST.1
+	sort -o MANIFEST MANIFEST.1
 
+tarball: manifest
+	[ -n "$(VERSION)" ] || ( echo "\nTry 'make release VERSION=yyyy.mm'\n\n"; exit 1 )
+	[ -d $(STAR_REL) ] || ln -s . $(STAR_REL)
+	$(PREFIX) $(STAR_REL)/ MANIFEST | \
+	    tar -zcv -T - -f $(STAR_TGZ)
+	rm $(STAR_REL)
+
+release: tarball
