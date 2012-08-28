@@ -1,5 +1,5 @@
-[submodule "rakudo-debugger"]
-	path = rakudo-debugger
+[submodule "modules/rakudo-debugger"]
+	path = modules/rakudo-debugger
 	url = git://github.com/jnthn/rakudo-debugger
 [submodule "modules/ufo"]
 	path = modules/ufo
