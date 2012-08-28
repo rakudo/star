@@ -1,0 +1,27 @@
+# The order of modules here is significant; a module must be listed after
+# all of its dependencies.
+zavolaj
+xml-writer
+svg                                       # uses XML::Writer
+svg-plot                                  # uses SVG
+Math-RungeKutta
+Math-Model                                # uses Math::RungeKutta, SVG
+perl6-Term-ANSIColor
+test-mock
+Grammar-Profiler-Simple
+grammar-debugger                          # uses Term::ANSIColor
+perl6-MIME-Base64
+uri
+perl6-lwp-simple                          # uses MIME::Base64, URI
+json
+perl6-digest-md5
+perl6-File-Tools
+panda
+perl6-http-status
+perl6-http-easy
+Template-Mojo
+Bailador
+DBIish
+jsonrpc
+Pod-To-HTML
+doc
