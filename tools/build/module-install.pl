@@ -12,10 +12,10 @@ my $perl6lib = shift @ARGV;
 
 my @pmfiles;
 my @mod_pms;
-while (@ARGV) {
-    my $module = shift @ARGV;
-    print "== Installing module $module\n";
-    our $mlib  = "$module/lib";
+while (<>) {
+    my ($module) = /(\S+)/;
+    print "== Installing modules/$module\n";
+    our $mlib  = "modules/$module/lib";
     
     @mod_pms = ();
     find({ no_chdir=>1, wanted => \&libcopy }, $mlib);

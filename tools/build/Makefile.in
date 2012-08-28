@@ -1,9 +1,9 @@
 # Copyright (C) 2006-2012, The Perl Foundation.
 # $Id$
 
-PARROT = parrot-4.6.0
-NQP    = nqp-2012.08
-RAKUDO = rakudo-2012.08
+PARROT = parrot
+NQP    = nqp
+RAKUDO = rakudo
 STAR_VERSION = 2012.08
 
 PARROT_ARGS      =
@@ -50,34 +50,7 @@ LINKARGS         = $(LDFLAGS) $(LD_LOAD_FLAGS) $(LIBPARROT) @libs@ @icu_shared@
 PERL6_EXE      = perl6$(EXE)
 PERL6_LANG_DIR = $(PARROT_LIB_DIR)/languages/perl6
 
-# This list must be kept in order, modules always coming after their
-# dependencies
-MODULES = \
-  modules/zavolaj \
-  modules/xml-writer \
-  modules/svg \
-  modules/svg-plot \
-  modules/Math-RungeKutta \
-  modules/Math-Model \
-  modules/perl6-Term-ANSIColor \
-  modules/test-mock \
-  modules/Grammar-Profiler-Simple \
-  modules/grammar-debugger \
-  modules/Perl6-MIME-Base64 \
-  modules/uri \
-  modules/perl6-lwp-simple \
-  modules/json \
-  modules/perl6-digest-md5 \
-  modules/perl6-File-Tools \
-  modules/panda \
-  modules/perl6-http-status \
-  modules/perl6-http-easy \
-  modules/Template-Mojo \
-  modules/Bailador \
-  modules/DBIish \
-  modules/jsonrpc \
-  modules/Pod-To-HTML \
-  modules/doc \
+MODULES = modules/MODULES.txt
 
 all: rakudo
 
