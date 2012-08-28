@@ -1,0 +1,81 @@
+[submodule "rakudo-debugger"]
+	path = rakudo-debugger
+	url = git://github.com/jnthn/rakudo-debugger
+[submodule "modules/ufo"]
+	path = modules/ufo
+	url = git://github.com/masak/ufo
+[submodule "modules/zavolaj"]
+	path = modules/zavolaj
+	url = git://github.com/jnthn/zavolaj
+[submodule "modules/xml-writer"]
+	path = modules/xml-writer
+	url = git://github.com/masak/xml-writer
+[submodule "modules/svg"]
+	path = modules/svg
+	url = git://github.com/moritz/svg
+[submodule "modules/Math-RungeKutta"]
+	path = modules/Math-RungeKutta
+	url = git://github.com/moritz/Math-RungeKutta
+[submodule "modules/svg-plot"]
+	path = modules/svg-plot
+	url = git://github.com/moritz/svg-plot
+[submodule "modules/Math-Model"]
+	path = modules/Math-Model
+	url = git://github.com/moritz/Math-Model
+[submodule "modules/perl6-Term-ANSIColor"]
+	path = modules/perl6-Term-ANSIColor
+	url = git://github.com/tadzik/perl6-Term-ANSIColor
+[submodule "modules/test-mock"]
+	path = modules/test-mock
+	url = git://github.com/jnthn/test-mock
+[submodule "modules/Grammar-Profiler-Simple"]
+	path = modules/Grammar-Profiler-Simple
+	url = git://github.com/perlpilot/Grammar-Profiler-Simple
+[submodule "modules/grammar-debugger"]
+	path = modules/grammar-debugger
+	url = git://github.com/jnthn/grammar-debugger
+[submodule "modules/json"]
+	path = modules/json
+	url = git://github.com/moritz/json
+[submodule "modules/Perl6-MIME-Base64"]
+	path = modules/Perl6-MIME-Base64
+	url = git://github.com/snarkyboojum/Perl6-MIME-Base64
+[submodule "modules/perl6-digest-md5"]
+	path = modules/perl6-digest-md5
+	url = git://github.com/cosimo/perl6-digest-md5
+[submodule "modules/perl6-File-Tools"]
+	path = modules/perl6-File-Tools
+	url = git://github.com/tadzik/perl6-File-Tools
+[submodule "modules/panda"]
+	path = modules/panda
+	url = git://github.com/tadzik/panda
+[submodule "modules/perl6-http-status"]
+	path = modules/perl6-http-status
+	url = git://github.com/supernovus/perl6-http-status
+[submodule "modules/perl6-http-easy"]
+	path = modules/perl6-http-easy
+	url = git://github.com/supernovus/perl6-http-easy
+[submodule "modules/Template-Mojo"]
+	path = modules/Template-Mojo
+	url = git://github.com/tadzik/Template-Mojo
+[submodule "modules/Bailador"]
+	path = modules/Bailador
+	url = git://github.com/tadzik/Bailador
+[submodule "modules/DBIish"]
+	path = modules/DBIish
+	url = git://github.com/perl6/DBIish
+[submodule "modules/uri"]
+	path = modules/uri
+	url = git://github.com/ihrd/uri
+[submodule "modules/perl6-lwp-simple"]
+	path = modules/perl6-lwp-simple
+	url = git://github.com/cosimo/perl6-lwp-simple
+[submodule "modules/jsonrpc"]
+	path = modules/jsonrpc
+	url = git://github.com/bbkr/jsonrpc
+[submodule "modules/Pod-To-HTML"]
+	path = modules/Pod-To-HTML
+	url = git://github.com/perl6/Pod-To-HTML
+[submodule "modules/doc"]
+	path = modules/doc
+	url = git://github.com/perl6/doc
