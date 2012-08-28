@@ -1,0 +1,35 @@
+Rakudo Star -- a useful, usable, "early adopter" distribution of Perl 6
+
+Rakudo Star is a distribution of Perl 6 aimed at early adopters.
+This git repository isn't the distribution itself; the repository
+contains the tools and scripts used to create a distribution.
+
+If you're looking to simply download and run the latest release
+of Rakudo Star, please download a .tar.gz file from
+http://github.com/rakudo/star/downloads .
+
+If you're still reading this, we assume you're a Rakudo Star
+release manager, or someone that is looking to create new
+Perl 6 distributions based on the tools here.  Run 
+"make VERSION=yyyy.mm" to populate a distribution image
+into the rakudo-star-yyyy.mm/ directory.
+
+The build system assumes that you have the following tools available:
+
+    * perl
+    * make
+    * git
+    * wget
+    * cp
+    * find
+    * tar
+    * touch
+
+See <https://github.com/rakudo/rakudo/wiki/What's-going-into-Rakudo-*%3F> for a list
+of modules we want included in the distribution.
+
+The skel/ directory contains the basic layout of documentation and
+other support files, other components are then populated into
+the target directory via the make command above.
+
+To create a candidate release tarball, try "make release VERSION=yyyy.mm".
