@@ -90,6 +90,7 @@ $(RD_EXE): modules-install
 
 perl6-debug-install: $(RD_EXE)
 	$(CP) $(RD_EXE) $(DESTDIR)$(PARROT_BIN_DIR)
+	$(CHMOD) 755 $(DESTDIR)$(PARROT_BIN_DIR)/perl6-debug$(EXE)
 
 install: rakudo-install modules-install perl6-debug-install
 
