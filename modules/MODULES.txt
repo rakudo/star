@@ -25,3 +25,4 @@ DBIish
 jsonrpc
 Pod-To-HTML
 doc
+rakudo-debugger
