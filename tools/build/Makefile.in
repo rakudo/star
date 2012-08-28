@@ -75,13 +75,13 @@ rakudo-install: rakudo
 	$(CP) $(DESTDIR)$(PERL6_INSTALL) $(PERL6_EXE)
 	$(CHMOD) 755 $(PERL6_EXE)
 
-modules-install: rakudo
+modules-install: rakudo-install
 	@echo "== Installing 'ufo'"
 	$(PERL) tools/build/module-install.pl $(DESTDIR)$(PERL6_INSTALL) $(DESTDIR)$(PERL6_LANG_DIR)/lib $(MODULES)
 	@echo "== Installing binaries"
 	$(PERL) tools/build/bin-install.pl $(DESTDIR)$(PERL6_INSTALL) $(DESTDIR)$(PARROT_BIN_DIR) modules/ufo/bin/ufo modules/panda/bin/panda
 
-$(RD_EXE): modules-install rakudo
+$(RD_EXE): modules-install
 	$(NQP_EXE) --vmlibs=perl6_group,perl6_ops --target=pir \
 	    --output=$(RD_PIR) $(RD_DIR)/bin/perl6-debug.nqp
 	$(PARROT_EXE) -o $(RD_PBC) $(RD_PIR)
