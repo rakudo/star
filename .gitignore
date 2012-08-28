@@ -4,3 +4,6 @@ nqp
 parrot
 src
 config.status
+Makefile
+install
+perl6
