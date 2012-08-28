@@ -37,9 +37,6 @@
 [submodule "modules/json"]
 	path = modules/json
 	url = git://github.com/moritz/json
-[submodule "modules/Perl6-MIME-Base64"]
-	path = modules/Perl6-MIME-Base64
-	url = git://github.com/snarkyboojum/Perl6-MIME-Base64
 [submodule "modules/perl6-digest-md5"]
 	path = modules/perl6-digest-md5
 	url = git://github.com/cosimo/perl6-digest-md5

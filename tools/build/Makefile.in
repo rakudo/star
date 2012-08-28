@@ -1,9 +1,9 @@
 # Copyright (C) 2006-2012, The Perl Foundation.
 # $Id$
 
-PARROT = parrot
-NQP    = nqp
-RAKUDO = rakudo
+PARROT_DIR = parrot
+NQP_DIR    = nqp
+RAKUDO_DIR = rakudo
 STAR_VERSION = 2012.08
 
 PARROT_ARGS      =
@@ -35,7 +35,7 @@ CHMOD         = $(PERL) -MExtUtils::Command -e chmod
 POD2MAN       = @pod2man@
 
 # locations of parrot resources
-PARROT           = $(PARROT_BIN_DIR)/parrot$(EXE)
+PARROT_EXE       = $(PARROT_BIN_DIR)/parrot$(EXE)
 NQP_EXE          = $(PARROT_BIN_DIR)/nqp$(EXE)
 PBC_TO_EXE       = $(PARROT_BIN_DIR)/pbc_to_exe$(EXE)
 PARROT_CONFIG    = $(PARROT_BIN_DIR)/parrot_config$(EXE)
@@ -54,16 +54,16 @@ MODULES = modules/MODULES.txt
 
 all: rakudo
 
-rakudo: $(RAKUDO)/$(PERL6_EXE)
-$(RAKUDO)/$(PERL6_EXE):
+rakudo: $(RAKUDO_DIR)/$(PERL6_EXE)
+$(RAKUDO_DIR)/$(PERL6_EXE):
 	@echo "== Configuring and building Rakudo"
-	cd $(RAKUDO) && $(PERL) Configure.pl --with-nqp=$(NQP_EXE) && $(MAKE)
+	cd $(RAKUDO_DIR) && $(PERL) Configure.pl --with-nqp=$(NQP_EXE) && $(MAKE)
 rakudo-test: rakudo
-	cd $(RAKUDO) && $(MAKE) test
+	cd $(RAKUDO_DIR) && $(MAKE) test
 rakudo-spectest: rakudo
-	cd $(RAKUDO) && $(MAKE) spectest
+	cd $(RAKUDO_DIR) && $(MAKE) spectest
 rakudo-install: rakudo
-	cd $(RAKUDO) && $(MAKE) install
+	cd $(RAKUDO_DIR) && $(MAKE) install
 	@win32_libparrot_copy@
 	$(CP) $(DESTDIR)$(PARROT_BIN_DIR)/$(PERL6_EXE) .
 	$(CHMOD) 755 $(PERL6_EXE)
@@ -88,11 +88,17 @@ test:
 ##  cleaning
 clean:
 	$(RM_F) $(CLEANUPS)
+	cd $(RAKUDO_DIR) && make clean
+	cd $(NQP_DIR) && make clean
+	cd $(PARROT_DIR) && make clean
 
 distclean: realclean
 
 realclean: clean
 	$(RM_F) Makefile
+	cd $(RAKUDO_DIR) && make realclean
+	cd $(NQP_DIR) && make realclean
+	cd $(PARROT_DIR) && make realclean
 
 testclean:
 
@@ -119,7 +125,7 @@ help:
 config:
 	$(PERL) Configure.pl
 
-$(PARROT):
+$(PARROT_EXE):
 
 CRITIC_FILES=Configure.pl tools/build/
 
