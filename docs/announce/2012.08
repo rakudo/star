@@ -39,7 +39,7 @@ Some of the new features added to this release include:
 
 * An improved inliner, allowing a wider range of routines to be inlined.
 
-* Str.bytes, lcfirst, and ucfirst have been removed.  The tclc builtin
+* Str.bytes and lcfirst have been removed.  The tclc builtin
   has been added.
 
 * 'abs' is now a normal subroutine instead of a prefix operator.
@@ -65,6 +65,8 @@ or changed as follows:
 * IO::Path.dir (which returns the directory part of the path) has been
   renamed to IO::Path.directory.  IO::Path.dir will be removed or
   re-purposed.
+
+* The Str.ucfirst builtin is deprecated; it will be replaced by Str.tc.
 
 * The (experimental) LAZY statement prefix will soon be removed.
 
