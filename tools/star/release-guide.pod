@@ -76,6 +76,14 @@ Update the release number in the README file.
 
 =item 8.
 
+Make sure any locally modified files have been pushed
+back to github.
+
+  $ git status
+  $ git push
+
+=item 9.
+
 Create a candidate release tarball:
 
   $ make -f tools/star/Makefile release VERSION=2012.08
@@ -83,7 +91,7 @@ Create a candidate release tarball:
 This will create a tarball rakudo-star-2012.08.tar.gz in the
 current directory.
 
-=item 9.
+=item 10.
 
 Unpack the tarball somewhere else, and do a test build/install:
 
@@ -97,4 +105,33 @@ Unpack the tarball somewhere else, and do a test build/install:
   $ make rakudo-spectest
   $ make modules-test
 
+If anything is wrong, do your best to fix it and then return to
+step 8 above.
+
+=item 11.
+
+Tag the release by its release month ("YYYY.MM").
+
+  $ git tag -a -m"tag release YYYY.MM" YYYY.MM    # e.g. 2012.08
+  $ git push --tags
+
+=item 12.
+
+Uplaod the release tarbal to github's download area at
+L<http://github.com/rakudo/rakudo/downloads>.
+
+=item 13.
+
+Publicize the release in the appropriate places.  These include:
+    * rakudo.org
+    * perl6-users@perl.org, perl6-language@perl.org, perl6-compiler@perl.org,
+      parrot-users@perl.org
+
+=item 14.
+
+You're done!  Celebrate with the appropriate amount of fun.
+
+=back
+
+=cut
 
