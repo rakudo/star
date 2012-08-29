@@ -47,7 +47,12 @@ $(PARROT_SRC):
 	mkdir -p $(SRC_DIR)
 	$(WGET) $(PARROT_URL) -O $(PARROT_SRC)
 
-manifest:
+modules/zavolaj/lib:
+	@echo "Updating submodules"
+	git submodule init
+	git submodule update
+
+manifest: modules/zavolaj/lib
 	echo MANIFEST >MANIFEST
 	git ls-files >>MANIFEST
 	$(PREFIX) rakudo/ rakudo/MANIFEST >>MANIFEST
