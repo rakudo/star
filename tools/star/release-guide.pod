@@ -1,0 +1,100 @@
+=head1 release_guide.pod - guide to Rakudo Star releases
+
+Rakudo Star releases are based on Rakudo compiler releases.  
+Since some time is often needed for module updates and testing 
+after each Rakudo compiler release, the timing of Star releases
+varies from one release to the next.
+
+Also, while the Rakudo compiler issues monthly releases; Star
+releases are free to choose a longer release cycle.  Star releases
+are also free to choose older releases of the compiler, NQP, and/or
+Parrot.  The goal is to balance end-user stability needs with 
+progress being made on the compiler, modules, and other runtime 
+components.  Currently Star is on a monthly release cycle; we 
+expect to slow down to quarterly releases again sometime in 2013.
+
+=head2 Steps to create a release
+
+=over 4
+
+=item 1.
+
+Clone the git@github.com:rakudo/star repository.
+
+  $ git clone git@github.com:rakudo/star
+
+=item 2.
+
+Change to the star repository directory, and edit the first three
+lines of tools/star/Makefile to indicate the desired releases of
+Rakudo, NQP, and Parrot to use.  Also change PARROT_REL to be
+"supported" or "devel" depending on the type of Parrot release.
+
+  $ cd star
+  $ vi tools/star/Makefile
+
+=item 3.
+
+Run "make -f tools/star/Makefile" to populate the star directory 
+with the needed tarballs and module repositories for building Rakudo Star:
+
+  $ make -f tools/star/Makefile
+
+=item 4.
+
+If there are any new modules to be added, use "git submodule" to add 
+its repo to the modules/ directory.  Also add the module directory 
+name to the modules/MODULES.txt file.
+
+  $ git submodule add git@github.com:user/acme-example modules/acme-example
+  $ echo acme-example >>modules/MODULES.txt
+  $ git commit . -m "Added acme-example to installed modules."
+
+=item 5.
+
+Verify that all of the git submodules are at the desired commit
+for the Star release.  (TODO:  document how to do this.)
+
+=item 6.
+
+If one doesn't already exist, create a release announcement in
+docs/announce/YYYY.MM .  You can often use the previous release's
+file as a starting point, updating the release number, version
+information, name, etc. as appropriate.  Be sure to pay attention
+to any changes listed in Rakudo's ChangeLog.
+
+  $ vi docs/announce/YYYY.MM
+  $ git add docs/announce/YYYY.MM
+  $ git commit docs
+
+=item 7.
+
+Update the release number in the README file.
+
+  $ vi README
+  $ git commit README
+
+=item 8.
+
+Create a candidate release tarball:
+
+  $ make -f tools/star/Makefile release VERSION=2012.08
+
+This will create a tarball rakudo-star-2012.08.tar.gz in the
+current directory.
+
+=item 9.
+
+Unpack the tarball somewhere else, and do a test build/install:
+
+  $ mkdir work
+  $ cd work
+  $ tar xvfz ../rakudo-star-2012.08.tar.gz
+  $ cd rakudo-star-2012.08
+  $ perl Configure.pl --gen-parrot
+  $ make install
+  $ make rakudo-test
+  $ make rakudo-spectest
+  $ make modules-test
+
+
