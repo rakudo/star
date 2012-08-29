@@ -88,6 +88,9 @@ $(RD_EXE): modules-install
 	$(PBC_TO_EXE) $(RD_PBC)
 	$(CHMOD) 755 $(RD_EXE)
 
+modules-test:
+	$(PERL) tools/build/modules-test.pl $(CURDIR) $(DESTDIR)$(PERL6_INSTALL) modules/MODULES.txt
+
 perl6-debug-install: $(RD_EXE)
 	$(CP) $(RD_EXE) $(DESTDIR)$(PARROT_BIN_DIR)
 	$(CHMOD) 755 $(DESTDIR)$(PARROT_BIN_DIR)/perl6-debug$(EXE)
