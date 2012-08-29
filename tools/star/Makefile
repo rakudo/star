@@ -55,7 +55,8 @@ manifest:
 	cut -d' ' -f1 parrot/MANIFEST | $(PREFIX) parrot/ >>MANIFEST
 	git submodule foreach --quiet 'git ls-files | $(PREFIX) $$path/' >>MANIFEST
 	grep -v -f tools/star/MANIFEST.exclude MANIFEST >MANIFEST.1
-	sort -o MANIFEST MANIFEST.1
+	$(PERL) -n -e 'chomp; -f && print "$$_\n"' MANIFEST.1 >MANIFEST
+	sort -o MANIFEST MANIFEST
 	rm MANIFEST.1
 
 tarball: manifest
