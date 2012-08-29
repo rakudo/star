@@ -11,7 +11,6 @@ This distribution contains software collected from other sources; see the
 individual source subdirectories (in parrot/, rakudo/, and modules/) for
 copyright and licensing information of those components.
 
-
 Build Prerequisites
 -------------------
 To build Rakudo Star you need at least a C compiler, a 'make' utility,
@@ -80,18 +79,12 @@ bundled with Rakudo.  This is a simple suite of tests, designed
 to make sure that the Rakudo compiler is basically working and that
 it's capable of running a simple test harness.
 
-Running "make spectest" in the rakudo/ subdirectory  will import 
-the official Perl 6 test suite from the roast repository 
-(https://github.com/perl6/roast/) and run all of these tests 
-that are currently known to pass.
+Running "make rakudo-spectest" will run the Perl 6 specification
+test suite ("roast") that was bundled with the Rakudo compiler release.
 
-If you want to automatically submit the results of your spectest run
-to a central server, use 'make spectest_smolder' instead. You need
-the Perl 5 module 'TAP::Harness::Archive' and an active internet
-connection for that.
-
-For more details about running tests, see rakudo/README .
-
+Running "make modules-test" will run the test suites of any installed
+modules.  The modules currently have to be installed (via 'make install' 
+or 'make modules-install') before the tests can be run.
 
 Release information
 -------------------
