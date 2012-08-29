@@ -16,6 +16,39 @@ resources collected from the Perl 6 community.
 
 Some of the new features added to this release include:
 
+* Rakudo Star now includes a Perl 6 debugger!  The debugger allows
+  single-stepping, setting breakpoints, variable inspection/modification, 
+  regex debugging, and more!  Enter "perl6-debug <script.pl>" to run 
+  a script in debugging mode.  Enter "help" from a debug prompt to
+  see the available commands.
+
+* The Bailador module is currently not working with the latest
+  versions of Rakudo and has been disabled for this release.
+  See http://modules.perl6.org for more information on obtaining
+  an updated version of Bailador.
+
+* Memory usage of the build stage has been reduced by 35% - 40%.  This
+  makes it possible to build and compile Rakudo Star on machines with
+  less memory (although 1.2GB may still be needed for some 64-bit
+  environments).
+
+* Variables prefixed by | or \ in signatures are now sigilless, per updates
+  to the Perl 6 specification.
+
+* Circularities in module loading are now detected.
+
+* An improved inliner, allowing a wider range of routines to be inlined.
+
+* Str.bytes, lcfirst, and ucfirst have been removed.  The tclc builtin
+  has been added.
+
+* 'abs' is now a normal subroutine instead of a prefix operator.
+
+* IO::File and IO::Dir have been removed.
+
+* The integer argument to IO::Socket.recv is now interpreted as 
+  a number of characters/codepoints.
+
 This release also contains a range of bug fixes, improvements to error
 reporting and better failure modes. More exceptions are thrown as typed
 exceptions, and more meta-model errors have been fixed to properly
@@ -27,13 +60,13 @@ Perl 6 code.  The following features have been deprecated or modified
 due to changes in the Perl 6 specification, and are being removed
 or changed as follows:
 
-[TODO: update the below list]
+* Parameters preceded by a | or \ can no longer have a sigil.
 
-* IO::File and IO::Dir will go away, and &dir now returns values of type
-  IO::Path (which is currently the superclass of IO::File and IO::Dir).
-  The return values of &dir will still stringify to the base name of the
-  returned file and directory names, and you can call .path on them to
-  obtain the full path.
+* IO::Path.dir (which returns the directory part of the path) has been
+  renamed to IO::Path.directory.  IO::Path.dir will be removed or
+  re-purposed.
+
+* The (experimental) LAZY statement prefix will soon be removed.
 
 * Leading whitespace in rules and under :sigspace will no longer be
   converted to <.ws> .  For existing regexes that expect this conversion,
@@ -47,26 +80,6 @@ or changed as follows:
   can manage the transition by changing existing ?-quantifiers to
   use "** 0..1", which will continue to return a List of matches.
   Scheduled for the 2012.08 release, but may end up in 2012.09 .
-
-* The method Str.bytes will be removed. To get the number of codepoints
-  in a string, use .codes instead. To get the number of bytes in a
-  given encoding, use $str.encode($encoding).bytes .
-  Scheduled for the 2012.08 release.
-
-* The method Str.lcfirst will be removed without replacement.
-  Scheduled for the 2012.08 release.
-
-* The method Str.ucfirst will eventually be removed, and replaced by
-  Str.tc.
-  No schedule yet, depends on having tc implemented first.
-
-* 'abs' is currently a prefix operator, and will be changed to a normal
-  subroutine.
-  Scheduled for the 2012.08 release.
-
-* The integer argument to IO::Socket.recv will be interpreted as number of
-  characters/codepoints.
-  Scheduled for the 2012.08 release.
 
 There are some key features of Perl 6 that Rakudo Star does not
 yet handle appropriately, although they will appear in upcoming
