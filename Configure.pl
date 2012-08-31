@@ -138,7 +138,7 @@ MAIN: {
     {
         no warnings;
         print "Cleaning up ...\n";
-        if (open my $CLEAN, '-|', "$make clean") {
+        if (open my $CLEAN, '-|', "$make configclean") {
             my @slurp = <$CLEAN>;
             close($CLEAN);
         }

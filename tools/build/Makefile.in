@@ -123,6 +123,11 @@ realclean: clean
 	cd $(NQP_DIR) && $(MAKE) realclean
 	cd $(PARROT_DIR) && $(MAKE) realclean
 
+configclean:
+	$(RM_F) $(CLEANUPS)
+	cd $(NQP_DIR) && $(MAKE) clean
+	cd $(PARROT_DIR) && $(MAKE) clean
+
 testclean:
 
 
