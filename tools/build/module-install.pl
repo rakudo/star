@@ -68,6 +68,7 @@ sub path_to_module_name {
     $_;
 }
 
+print "== Precompiling modules\n";
 chdir 'rakudo';
 foreach my $pm (@pmfiles) {
     my $out = $pm; 
