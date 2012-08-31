@@ -1,5 +1,5 @@
 RAKUDO_VER  = 2012.08
-NQP_VER     = 2012.08
+NQP_VER     = 2012.08.1
 PARROT_VER  = 4.6.0
 PARROT_REL  = supported/$(PARROT_VER)
 
