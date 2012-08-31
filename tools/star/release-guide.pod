@@ -117,8 +117,8 @@ Tag the release by its release month ("YYYY.MM").
 
 =item 12.
 
-Uplaod the release tarbal to github's download area at
-L<http://github.com/rakudo/rakudo/downloads>.
+Upload the release tarball to github's download area at
+L<http://github.com/rakudo/star/downloads>.
 
 =item 13.
 
