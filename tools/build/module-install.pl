@@ -13,6 +13,7 @@ my $perl6lib = shift @ARGV;
 my @pmfiles;
 my @mod_pms;
 while (<>) {
+    next if /^\s*(#|$)/;
     my ($module) = /(\S+)/;
     print "== Installing modules/$module\n";
     our $mlib  = "modules/$module/lib";
