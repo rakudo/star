@@ -99,8 +99,8 @@ install: rakudo-install modules-install perl6-debug-install
 
 test:
 	@echo ""
-	@echo "To run the Rakudo compiler tests, use 'make rakudo-test'"
-	@echo "To run the Perl 6 spectests, use 'make rakudo-spectest'"
+	@echo "To run the Rakudo compiler tests, use '$(MAKE) rakudo-test'"
+	@echo "To run the Perl 6 spectests, use '$(MAKE) rakudo-spectest'"
 	@echo ""
 	@echo "To run tests for individual modules, try:"
 	@echo "  prove -e ./perl6 -r modules/<name>/t"
@@ -109,17 +109,17 @@ test:
 ##  cleaning
 clean:
 	$(RM_F) $(CLEANUPS)
-	cd $(RAKUDO_DIR) && make clean
-	cd $(NQP_DIR) && make clean
-	cd $(PARROT_DIR) && make clean
+	cd $(RAKUDO_DIR) && $(MAKE) clean
+	cd $(NQP_DIR) && $(MAKE) clean
+	cd $(PARROT_DIR) && $(MAKE) clean
 
 distclean: realclean
 
 realclean: clean
 	$(RM_F) Makefile
-	cd $(RAKUDO_DIR) && make realclean
-	cd $(NQP_DIR) && make realclean
-	cd $(PARROT_DIR) && make realclean
+	cd $(RAKUDO_DIR) && $(MAKE) realclean
+	cd $(NQP_DIR) && $(MAKE) realclean
+	cd $(PARROT_DIR) && $(MAKE) realclean
 
 testclean:
 

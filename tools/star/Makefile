@@ -65,7 +65,7 @@ manifest: modules/zavolaj/lib
 	rm MANIFEST.1
 
 tarball: manifest
-	[ -n "$(VERSION)" ] || ( echo "\nTry 'make release VERSION=yyyy.mm'\n\n"; exit 1 )
+	[ -n "$(VERSION)" ] || ( echo "\nTry '$(MAKE) release VERSION=yyyy.mm'\n\n"; exit 1 )
 	[ -d $(STAR_REL) ] || ln -s . $(STAR_REL)
 	$(PREFIX) $(STAR_REL)/ MANIFEST | \
 	    tar -zcv -T - -f $(STAR_TGZ)
