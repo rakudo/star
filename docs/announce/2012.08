@@ -22,11 +22,6 @@ Some of the new features added to this release include:
   a script in debugging mode.  Enter "help" from a debug prompt to
   see the available commands.
 
-* The Bailador module is currently not working with the latest
-  versions of Rakudo and has been disabled for this release.
-  See http://modules.perl6.org for more information on obtaining
-  an updated version of Bailador.
-
 * Memory usage of the build stage has been reduced by 35% - 40%.  This
   makes it possible to build and compile Rakudo Star on machines with
   less memory (although 1.2GB may still be needed for some 64-bit
