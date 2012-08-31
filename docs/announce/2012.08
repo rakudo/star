@@ -49,10 +49,8 @@ reporting and better failure modes. More exceptions are thrown as typed
 exceptions, and more meta-model errors have been fixed to properly
 report line numbers.
 
-Starting with this release, we will also identify changes to the
-implementation or specification that can cause breakages in existing
-Perl 6 code.  The following features have been deprecated or modified
-due to changes in the Perl 6 specification, and are being removed
+The following features have been deprecated or modified from previous
+releases due to changes in the Perl 6 specification, and are being removed
 or changed as follows:
 
 * Parameters preceded by a | or \ can no longer have a sigil.
@@ -68,7 +66,6 @@ or changed as follows:
 * Leading whitespace in rules and under :sigspace will no longer be
   converted to <.ws> .  For existing regexes that expect this conversion,
   add a <?> in front of leading whitespace to make it meta again.
-  Scheduled for the 2012.08 release.
 
 * The ?-quantifier on captures in regexes currently binds the capture
   slot to a List containing either zero or one Match objects; i.e., it
@@ -76,7 +73,6 @@ or changed as follows:
   bind the slot directly to a captured Match or to Nil.  Existing code
   can manage the transition by changing existing ?-quantifiers to
   use "** 0..1", which will continue to return a List of matches.
-  Scheduled for the 2012.08 release, but may end up in 2012.09 .
 
 There are some key features of Perl 6 that Rakudo Star does not
 yet handle appropriately, although they will appear in upcoming
@@ -89,7 +85,7 @@ releases.  Some of the not-quite-there features include:
   * non-blocking I/O
   * much of Synopsis 9
 
-There is a new online resource at http://perl6.org/compilers/features 
+There is an online resource at http://perl6.org/compilers/features 
 that lists the known implemented and missing features of Rakudo Star
 2012.08 and other Perl 6 implementations.
 
@@ -101,8 +97,8 @@ features are welcomed at <rakudobug@perl.org>.
 See http://perl6.org/ for links to much more information about 
 Perl 6, including documentation, example code, tutorials, reference
 materials, specification documents, and other supporting resources.
-An updated draft of a Perl 6 book is available as 
-<docs/UsingPerl6-draft.pdf> in the release tarball.
+A draft of a Perl 6 book is available as <docs/UsingPerl6-draft.pdf> 
+in the release tarball.
 
 The development team thanks all of the contributors and sponsors
 for making Rakudo Star possible.  If you would like to contribute,
