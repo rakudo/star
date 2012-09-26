@@ -53,7 +53,13 @@ name to the modules/MODULES.txt file.
 =item 5.
 
 Verify that all of the git submodules are at the desired commit
-for the Star release.  (TODO:  document how to do this.)
+for the Star release.  To bring all modules up to the current
+'master' branch, one can do
+  
+  # pull master in each submodule dir
+  $ git submodule foreach git pull origin master
+  # commit submodules state to star repo
+  $ git commit modules
 
 =item 6.
 
