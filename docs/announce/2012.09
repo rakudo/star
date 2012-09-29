@@ -9,8 +9,8 @@ the downloads area shortly after the tarball release.
 
 In the Perl 6 world, we make a distinction between the language 
 ("Perl 6") and specific implementations of the language such as
-"Rakudo Perl".  This Star release includes release 2012.09 [0] of the
-Rakudo Perl 6 compiler [1], version 4.8 of the Parrot Virtual
+"Rakudo Perl".  This Star release includes release 2012.09.1 [0] of the
+Rakudo Perl 6 compiler [1], version 4.6.0 of the Parrot Virtual
 Machine [2], and various modules, documentation, and other
 resources collected from the Perl 6 community.
 
@@ -22,14 +22,19 @@ Some of the new features added to this release include:
 
 * Indirect type names in routine and type declarations are supported.
 
-* We now support the "is export" trait on constant declarations.
+* We support the "is export" trait on constant declarations.
 
-* Str.wordcase is now implemented.
+* The "is hidden" and base traits are supported.
 
-* Compilation is now slightly faster than before.
+* Str.wordcase, is-prime, and expmod are implemented.
 
-* Tie-breaking with constraints now selects the first matching
+* Compilation is slightly faster than before.
+
+* Tie-breaking with constraints selects the first matching
   constraint rather than demanding mutual exclusion.
+
+* Smart matching against Signature literals, and binding to Signatures
+  in declarators.
 
 This release also contains a range of bug fixes, improvements to error
 reporting and better failure modes. More exceptions are thrown as typed
