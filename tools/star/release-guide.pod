@@ -75,10 +75,10 @@ to any changes listed in Rakudo's ChangeLog.
 
 =item 7.
 
-Update the release number in the README file.
+Update the release number in the README and Makefile.in files.
 
-  $ vi README
-  $ git commit README
+  $ vi README tools/build/Makefile.in
+  $ git commit README tools/build/Makefile.in
 
 =item 8.
 
