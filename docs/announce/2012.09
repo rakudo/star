@@ -81,8 +81,8 @@ releases.  Some of the not-quite-there features include:
   * much of Synopsis 9
 
 There is an online resource at http://perl6.org/compilers/features 
-that lists the known implemented and missing features of Rakudo Star
-2012.08 and other Perl 6 implementations.
+that lists the known implemented and missing features of Rakudo 
+and other Perl 6 implementations.
 
 In many places we've tried to make Rakudo smart enough to inform the
 programmer that a given feature isn't implemented, but there are
