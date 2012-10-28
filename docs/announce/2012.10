@@ -26,7 +26,7 @@ Some of the new features added to this release include:
 
 * Improved coverage of Perl 5 regexes when the :P5 modifier is used
 
-* Correct parsing of nested pairs in quote delimeters
+* Correct parsing of nested quote delimeters
 
 * Attributes in scope are now visible inside of an eval
 
@@ -37,9 +37,23 @@ The following features have been deprecated or modified from previous
 releases due to changes in the Perl 6 specification, and are being removed
 or changed as follows:
 
-* Iterable is now a role instead of a class, and no longer inherits 
-  from Cool.
+* Unary hyper ops currently descend into nested arrays and hashes.
+  This will change to make them equivalent to a one-level map.
 
+* ~/.perl6/lib will go away from the default include path (@*INC).
+  Instead %*CUSTOM_LIB now holds paths to four library locations:
+      perl    Rakudo installs its core modules here
+      vendor  OS-level package managers should install their modules here
+      site    for local module installations (e.g. with panda or ufo)
+      home    like site, but always under the user's home directory.
+              fallback if site isn't writable.
+
+* protos for built-in routines are now mostly as generic as possible,
+  and will be changed to be specific to the arity of the routine.
+  For example 'proto sub chr(|) {*}' will become 'proto sub chr($) {*}'
+  This affects everybody who adds multis with unusual arity to built-in
+  subs.
+ 
 * Parameters preceded by a | or \ can no longer have a sigil.
 
 * IO::Path.dir (which returns the directory part of the path) has been
