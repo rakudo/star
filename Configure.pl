@@ -151,8 +151,8 @@ MAIN: {
     }
     else {
         print "\nYou can now use '$make' to build $lang.\n";
-        print "After that, '$make test' will run some tests and\n";
-        print "'$make install' will install $lang.\n";
+        print "After that, '$make test' provides information on running tests\n";
+        print "and '$make install' will install $lang.\n";
     }
 
     exit 0;
