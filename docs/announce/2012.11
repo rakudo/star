@@ -18,6 +18,8 @@ Some of the new features added to this release include:
 
 * heredocs
 
+* quote adverbs (like q:w//)
+
 * implemented precedence related traits (equiv, looser, tighter, assoc)
 
 * Perl 6 grammar NFAs are pre-computed, saving some work on each
@@ -27,6 +29,9 @@ Some of the new features added to this release include:
 
 * FIRST/NEXT/LAST can now be used in all types of loop (previously
   limited to for)
+
+* several fixes related to module precompilation. This should make working
+  with larger code bases much less painful.
 
 This release also contains a range of performance improvements, bug fixes,
 improvements to error reporting and better failure modes. 
