@@ -133,11 +133,43 @@ Publicize the release in the appropriate places.  These include:
     * perl6-users@perl.org, perl6-language@perl.org, perl6-compiler@perl.org,
       parrot-users@perl.org
 
-=item 14.
+=item 14
+
+Add this release and your name to the list of releases at the end of this
+document (F<tools/star/release-guide.pod>).
+
+=item 15.
 
 You're done!  Celebrate with the appropriate amount of fun.
 
 =back
+
+=head2 List of Previous Star Releases
+
+    Release         Release Manager
+    =======         ===============
+
+    2010.07         pmichaud
+    2010.08         pmichaud
+    2010.09         pmichaud
+    2010.10         pmichaud
+    2010.11         pmichaud
+    2010.12         pmichaud
+
+    2011.01         pmichaud
+    2011.04         pmichaud
+    2011.07         pmichaud
+
+    2012.01         jnthn
+    2012.02         jnthn
+    2012.04         moritz
+    2012.05         moritz
+    2012.06         moritz
+    2012.07         pmichaud
+    2012.08         pmichaud
+    2012.09         pmichaud
+    2012.10         jnthn
+    2012.11         moritz
 
 =cut
 
