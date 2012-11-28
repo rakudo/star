@@ -131,7 +131,7 @@ L<http://github.com/rakudo/star/downloads>.
 Publicize the release in the appropriate places.  These include:
     * rakudo.org
     * perl6-users@perl.org, perl6-language@perl.org, perl6-compiler@perl.org,
-      parrot-users@perl.org
+      parrot-users@lists.parrot.org
 
 =item 14
 
