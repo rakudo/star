@@ -138,6 +138,10 @@ Publicize the release in the appropriate places.  These include:
 Add this release and your name to the list of releases at the end of this
 document (F<tools/star/release-guide.pod>).
 
+    $ vim tools/star/release-guide.pod
+    $ git add tools/star/release-guide.pod
+    $ git commit -m 'note YYYY.MM release in release-guide.pod
+
 =item 15.
 
 You're done!  Celebrate with the appropriate amount of fun.
