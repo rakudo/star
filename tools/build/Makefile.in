@@ -79,7 +79,7 @@ modules-install: rakudo-install
 	@echo "== Installing modules"
 	$(PERL) tools/build/module-install.pl $(DESTDIR)$(PERL6_INSTALL) $(DESTDIR)$(PERL6_LANG_DIR)/lib $(MODULES)
 	@echo "== Installing binaries"
-	$(PERL) tools/build/bin-install.pl $(DESTDIR)$(PERL6_INSTALL) $(DESTDIR)$(PARROT_BIN_DIR) modules/ufo/bin/ufo modules/panda/bin/panda modules/doc/bin/p6doc
+	$(PERL) tools/build/bin-install.pl $(PERL6_INSTALL) $(DESTDIR)$(PARROT_BIN_DIR) modules/ufo/bin/ufo modules/panda/bin/panda modules/doc/bin/p6doc
 
 modules-test:
 	$(PERL) tools/build/modules-test.pl $(CURDIR) $(DESTDIR)$(PERL6_INSTALL) modules/MODULES.txt
