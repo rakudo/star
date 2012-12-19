@@ -87,11 +87,15 @@ modules-test:
 perl6-debug: $(RD_EXE)
 
 $(RD_EXE): modules-install
+	ln -s $(DESTDIR)$(PARROT_LIB_DIR)/languages/nqp/lib/Perl6 Perl6
+	ln -s $(DESTDIR)$(PARROT_LIB_DIR)/dynext dynext
 	$(NQP_EXE) --vmlibs=perl6_group,perl6_ops --target=pir \
 	    --output=$(RD_PIR) $(RD_DIR)/bin/perl6-debug.nqp
 	$(PARROT_EXE) -o $(RD_PBC) $(RD_PIR)
 	$(PBC_TO_EXE) $(RD_PBC)
 	$(CHMOD) 755 $(RD_EXE)
+	unlink Perl6
+	unlink dynext
 
 perl6-debug-install: perl6-debug
 	$(CP) $(RD_EXE) $(DESTDIR)$(PARROT_BIN_DIR)
