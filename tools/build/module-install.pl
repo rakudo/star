@@ -69,15 +69,19 @@ sub path_to_module_name {
     $_;
 }
 
-print "== Precompiling modules\n";
-chdir 'rakudo';
-foreach my $pm (@pmfiles) {
-    my $out = $pm; 
-    $out =~ s/\.pm6?$/.pir/;
-    my @cmd = ($perl6bin, '--target=pir', "--output=$out", $pm);
-    print join(' ', @cmd), "\n";
-    system(@cmd);
-}
+do {
+    local $ENV{'PERL6LIB'} = $perl6lib;
+
+    print "== Precompiling modules\n";
+    chdir 'rakudo';
+    foreach my $pm (@pmfiles) {
+        my $out = $pm;
+        $out =~ s/\.pm6?$/.pir/;
+        my @cmd = ($perl6bin, '--target=pir', "--output=$out", $pm);
+        print join(' ', @cmd), "\n";
+        system(@cmd);
+    }
+};
 
 
 # According to "Introduction to Algorithms" by Cormen et al., topological
