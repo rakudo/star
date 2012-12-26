@@ -9,10 +9,10 @@ STAR_TGZ    = $(STAR_REL).tar.gz
 SRC_DIR = src
 
 RAKUDO_TGZ = rakudo-$(RAKUDO_VER).tar.gz
-RAKUDO_URL = https://github.com/downloads/rakudo/rakudo/$(RAKUDO_TGZ)
+RAKUDO_URL = http://rakudo.org/downloads/rakudo/$(RAKUDO_TGZ)
 RAKUDO_SRC = $(SRC_DIR)/$(RAKUDO_TGZ)
 NQP_TGZ    = nqp-$(NQP_VER).tar.gz
-NQP_URL    = https://github.com/downloads/perl6/nqp/$(NQP_TGZ)
+NQP_URL    = http://rakudo.org/downloads/nqp/$(NQP_TGZ)
 NQP_SRC    = $(SRC_DIR)/$(NQP_TGZ)
 PARROT_TGZ = parrot-$(PARROT_VER).tar.gz
 PARROT_URL = http://ftp.parrot.org/releases/$(PARROT_REL)/$(PARROT_TGZ)
