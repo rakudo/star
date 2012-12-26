@@ -1,7 +1,7 @@
-RAKUDO_VER  = 2012.11
-NQP_VER     = 2012.11
-PARROT_VER  = 4.6.0
-PARROT_REL  = supported/$(PARROT_VER)
+RAKUDO_VER  = 2012.12
+NQP_VER     = 2012.12
+PARROT_VER  = 4.10.0
+PARROT_REL  = devel/$(PARROT_VER)
 
 STAR_REL    = rakudo-star-$(VERSION)
 STAR_TGZ    = $(STAR_REL).tar.gz
