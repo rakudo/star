@@ -79,7 +79,7 @@ modules-install: rakudo-install
 	@echo "== Installing modules"
 	$(PERL) tools/build/module-install.pl $(DESTDIR)$(PERL6_INSTALL) $(DESTDIR)$(PERL6_LANG_DIR)/lib $(MODULES)
 	@echo "== Installing binaries"
-	$(PERL) tools/build/bin-install.pl $(DESTDIR)$(PERL6_INSTALL) $(DESTDIR)$(PARROT_BIN_DIR) modules/ufo/bin/ufo modules/panda/bin/panda modules/doc/bin/p6doc
+	$(PERL) tools/build/bin-install.pl $(PERL6_INSTALL) $(DESTDIR)$(PARROT_BIN_DIR) modules/ufo/bin/ufo modules/panda/bin/panda modules/doc/bin/p6doc
 
 modules-test:
 	$(PERL) tools/build/modules-test.pl $(CURDIR) $(DESTDIR)$(PERL6_INSTALL) modules/MODULES.txt
@@ -88,8 +88,10 @@ perl6-debug: $(RD_EXE)
 
 $(RD_EXE): modules-install
 	$(NQP_EXE) --vmlibs=perl6_group,perl6_ops --target=pir \
+	    --dynext=$(DESTDIR)$(PARROT_LIB_DIR)/dynext/ \
+	    --module-path=$(DESTDIR)$(PARROT_LIB_DIR)/languages/nqp/lib \
 	    --output=$(RD_PIR) $(RD_DIR)/bin/perl6-debug.nqp
-	$(PARROT_EXE) -o $(RD_PBC) $(RD_PIR)
+	$(PARROT_EXE)  --dynext $(DESTDIR)$(PARROT_LIB_DIR)/dynext/ -o $(RD_PBC) $(RD_PIR)
 	$(PBC_TO_EXE) $(RD_PBC)
 	$(CHMOD) 755 $(RD_EXE)
 
