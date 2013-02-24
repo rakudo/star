@@ -40,7 +40,7 @@ releases due to changes in the Perl 6 specification, and are being removed
 or changed as follows:
 
 * .gist on a type object will return '(Typename)' instead of 'Typename()'.
-  If you want to get the class name directly, use $obj.^name
+  If you want to get the class name alone, continue to use $obj.^name
 
 * postcircumfix:<[ ]> and postcircumfix:<{ }> will become multi-subs rather
   than multi-methods. Both at_pos and at_key will remain methods.
