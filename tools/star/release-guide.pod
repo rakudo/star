@@ -123,8 +123,12 @@ Tag the release by its release month ("YYYY.MM").
 
 =item 12.
 
-Upload the release tarball to github's download area at
-L<http://github.com/rakudo/star/downloads>.
+Upload the release tarball to L<http://rakudo.org/downloads/star>:
+
+ $ scp rakudo-star-2012.08.tar.gz rakudo@rakudo.org:public_html/downloads/star
+
+If you don't have permission to do this step, please ask one(pmichaud, jnthn,
+masak, PerlJam, tadzik, moritz) on #perl6 to do it for you.
 
 =item 13.
 
@@ -176,6 +180,7 @@ You're done!  Celebrate with the appropriate amount of fun.
     2012.11         moritz
     2012.12         moritz
     2013.01         moritz
+    2013.02         moritz
 
 =cut
 
