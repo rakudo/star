@@ -64,13 +64,13 @@ for the Star release.  To bring all modules up to the current
 =item 6.
 
 If one doesn't already exist, create a release announcement in
-docs/announce/YYYY.MM .  You can often use the previous release's
+docs/announce/YYYY.MM.md .  You can often use the previous release's
 file as a starting point, updating the release number, version
 information, name, etc. as appropriate.  Be sure to pay attention
 to any changes listed in Rakudo's ChangeLog.
 
-  $ vi docs/announce/YYYY.MM
-  $ git add docs/announce/YYYY.MM
+  $ vi docs/announce/YYYY.MM.md
+  $ git add docs/announce/YYYY.MM.md
   $ git commit docs
 
 =item 7.
