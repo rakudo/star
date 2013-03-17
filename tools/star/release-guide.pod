@@ -113,9 +113,11 @@ Unpack the tarball somewhere else, and do a test build/install:
 
 If there are failures in any of rakudo-test, rakudo-spectest, or
 modules-test, then do your best to fix them and return to step 8.
-If you're unable to fix any errors, then STOP the release process
-and DO NOT issue a release yet.  File issue tickets 
-(https://github.com/rakudo/star/issues) for the failing tests.
+
+STOP THE RELEASE PROCESS (i.e., do not issue a release) if there 
+are any errors that you're unable to fix.  File issue tickets 
+(https://github.com/rakudo/star/issues) for failing tests
+and report them to #perl6.
 
 =item 11.
 
