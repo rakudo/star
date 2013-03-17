@@ -111,8 +111,11 @@ Unpack the tarball somewhere else, and do a test build/install:
   $ make rakudo-spectest
   $ make modules-test
 
-If anything is wrong, do your best to fix it and then return to
-step 8 above.
+If there are failures in any of rakudo-test, rakudo-spectest, or
+modules-test, then do your best to fix them and return to step 8.
+If you're unable to fix any errors, then STOP the release process
+and DO NOT issue a release yet.  File issue tickets 
+(https://github.com/rakudo/star/issues) for the failing tests.
 
 =item 11.
 
