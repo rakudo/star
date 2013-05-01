@@ -23,7 +23,7 @@ Template-Mojo
 perl6-psgi
 Bailador                                  # uses PSGI
 DBIish
-jsonrpc
+jsonrpc                                   # uses PSGI
 Pod-To-HTML
 doc
 rakudo-debugger
