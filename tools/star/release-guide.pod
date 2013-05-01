@@ -27,8 +27,7 @@ Clone the git@github.com:rakudo/star repository.
 
 Change to the star repository directory, and edit the first three
 lines of tools/star/Makefile to indicate the desired releases of
-Rakudo, NQP, and Parrot to use.  Also change PARROT_REL to be
-"supported" or "devel" depending on the type of Parrot release.
+Rakudo, NQP, and Parrot to use.  
 
   $ cd star
   $ vi tools/star/Makefile

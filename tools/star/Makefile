@@ -1,7 +1,6 @@
-RAKUDO_VER  = 2013.02.1
-NQP_VER     = 2013.02.1
-PARROT_VER  = 4.10.0
-PARROT_REL  = devel/$(PARROT_VER)
+RAKUDO_VER  = 2013.04
+NQP_VER     = 2013.04
+PARROT_VER  = 5.2.0
 
 STAR_REL    = rakudo-star-$(VERSION)
 STAR_TGZ    = $(STAR_REL).tar.gz
@@ -15,7 +14,7 @@ NQP_TGZ    = nqp-$(NQP_VER).tar.gz
 NQP_URL    = http://rakudo.org/downloads/nqp/$(NQP_TGZ)
 NQP_SRC    = $(SRC_DIR)/$(NQP_TGZ)
 PARROT_TGZ = parrot-$(PARROT_VER).tar.gz
-PARROT_URL = http://ftp.parrot.org/releases/$(PARROT_REL)/$(PARROT_TGZ)
+PARROT_URL = http://ftp.parrot.org/releases/all/$(PARROT_VER)/$(PARROT_TGZ)
 PARROT_SRC = $(SRC_DIR)/$(PARROT_TGZ)
 
 PERL   = perl
