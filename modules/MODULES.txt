@@ -20,7 +20,8 @@ panda
 perl6-http-status
 perl6-http-easy
 Template-Mojo
-Bailador
+perl6-psgi
+Bailador                                  # uses PSGI
 DBIish
 jsonrpc
 Pod-To-HTML
