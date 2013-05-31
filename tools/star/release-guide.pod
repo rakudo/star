@@ -79,6 +79,8 @@ Update the release number in the README and Makefile.in files.
   $ vi README tools/build/Makefile.in
   $ git commit README tools/build/Makefile.in
 
+You might also add your name and release number to the bottom of this file.
+
 =item 8.
 
 Make sure any locally modified files have been pushed
@@ -185,6 +187,7 @@ You're done!  Celebrate with the appropriate amount of fun.
     2012.12         moritz
     2013.01         moritz
     2013.02         moritz
+    2013.05         pmichaud
 
 =cut
 
