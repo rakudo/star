@@ -79,8 +79,6 @@ Update the release number in the README and Makefile.in files.
   $ vi README tools/build/Makefile.in
   $ git commit README tools/build/Makefile.in
 
-You might also add your name and release number to the bottom of this file.
-
 =item 8.
 
 Make sure any locally modified files have been pushed
@@ -142,6 +140,7 @@ Publicize the release in the appropriate places.  These include:
     * rakudo.org
     * perl6-users@perl.org, perl6-language@perl.org, perl6-compiler@perl.org,
       parrot-users@lists.parrot.org
+    * http://en.wikipedia.org/wiki/Rakudo_Perl_6
 
 =item 14
 
