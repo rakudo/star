@@ -4,7 +4,7 @@
 PARROT_DIR = parrot
 NQP_DIR    = nqp
 RAKUDO_DIR = rakudo
-STAR_VERSION = 2013.05
+STAR_VERSION = 2013.08
 
 PARROT_ARGS      =
 
