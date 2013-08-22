@@ -17,8 +17,9 @@ json
 perl6-digest-md5
 perl6-File-Tools
 panda
+PSGI
 perl6-http-status
-perl6-http-easy
+perl6-http-easy                           # uses PSGI
 Template-Mojo
 perl6-psgi
 Bailador                                  # uses PSGI
