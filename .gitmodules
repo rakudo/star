@@ -84,4 +84,4 @@
 	url = git://github.com/supernovus/perl6-psgi
 [submodule "modules/PSGI"]
 	path = modules/PSGI
-	url = git@github.com:supernovus/perl6-psgi.git
+	url = git://github.com/supernovus/perl6-psgi.git
