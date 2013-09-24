@@ -1,5 +1,5 @@
-RAKUDO_VER  = 2013.08
-NQP_VER     = 2013.08
+RAKUDO_VER  = 2013.09
+NQP_VER     = 2013.09
 PARROT_VER  = 5.5.0
 
 STAR_REL    = rakudo-star-$(VERSION)
