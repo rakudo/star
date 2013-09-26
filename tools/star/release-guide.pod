@@ -188,6 +188,7 @@ You're done!  Celebrate with the appropriate amount of fun.
     2013.02         moritz
     2013.05         pmichaud
     2013.08         moritz
+    2013.09         moritz
 
 =cut
 
