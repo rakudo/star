@@ -8,3 +8,5 @@ Makefile
 install
 perl6
 *.swp
+*~
+\#*#
