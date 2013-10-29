@@ -163,10 +163,24 @@ masak, PerlJam, tadzik, moritz) on #perl6 to do it for you.
 =item 13.
 
 Publicize the release in the appropriate places.  These include:
-    * rakudo.org
-    * perl6-users@perl.org, perl6-language@perl.org, perl6-compiler@perl.org,
-      parrot-users@lists.parrot.org
-    * http://en.wikipedia.org/wiki/Rakudo_Perl_6
+
+=over 4
+
+=item * rakudo.org
+
+=item * perl6-users@perl.org
+
+=item * perl6-language@perl.org
+
+=item * perl6-compiler@perl.org
+
+=item * parrot-users@lists.parrot.org
+
+=item * http://en.wikipedia.org/wiki/Rakudo_Perl_6
+
+=item * http://en.wikipedia.org/wiki/Perl_6
+
+=back
 
 =item 14
 
@@ -210,11 +224,13 @@ You're done!  Celebrate with the appropriate amount of fun.
     2012.10         jnthn
     2012.11         moritz
     2012.12         moritz
+
     2013.01         moritz
     2013.02         moritz
     2013.05         pmichaud
     2013.08         moritz
     2013.09         moritz
+    2013.10         lue
 
 =cut
 
