@@ -84,7 +84,7 @@
 	url = git://github.com/supernovus/perl6-psgi.git
 [submodule "modules/shell-command"]
 	path = modules/shell-command
-	url = git@github.com:tadzik/Shell-Command.git
+	url = git://github.com:tadzik/Shell-Command.git
 [submodule "modules/file-find"]
 	path = modules/file-find
-	url = git@github.com:tadzik/File-Find.git
+	url = git://github.com:tadzik/File-Find.git
