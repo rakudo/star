@@ -6,8 +6,9 @@ use strict;
 use warnings;
 use Text::ParseWords;
 use Getopt::Long;
+use File::Spec;
 use Cwd;
-use lib "tools/lib";
+use lib 'tools/lib';
 use NQP::Configure qw(sorry slurp cmp_rev gen_nqp read_config 
                       fill_template_text fill_template_file
                       system_or_die verify_install);
@@ -15,25 +16,32 @@ use NQP::Configure qw(sorry slurp cmp_rev gen_nqp read_config
 my $lang = 'Rakudo';
 my $lclang = lc $lang;
 my $uclang = uc $lang;
+my $slash  = $^O eq 'MSWin32' ? '\\' : '/';
+
 
 MAIN: {
-    if (-r "config.default") {
+    if (-r 'config.default') {
         unshift @ARGV, shellwords(slurp('config.default'));
     }
 
-    my %config;
+    my %config = (perl => $^X);
     my $config_status = "${lclang}_config_status";
-    $config{$config_status} = join(' ', map { "\"$_\""} @ARGV);
+    $config{$config_status} = join ' ', map { qq("$_") } @ARGV;
 
     my $exe = $NQP::Configure::exe;
 
     my %options;
     GetOptions(\%options, 'help!', 'prefix=s',
-               'with-nqp=s', 'gen-nqp:s',
-               'with-parrot=s', 'gen-parrot:s', 'parrot-option=s@',
+                'backends=s', 'no-clean!',
+               'gen-nqp:s',
+               'gen-parrot:s', 'parrot-option=s@',
+               'parrot-make-option=s@',
                'make-install!', 'makefile-timing!',
-               'force!'
-               );
+               'force!',
+    ) or do {
+        print_help();
+        exit(1);
+    };
 
     # Print help if it's requested
     if ($options{'help'}) {
@@ -46,16 +54,52 @@ MAIN: {
                "I see a .git directory here -- you appear to be trying",
               "to run Configure.pl from a clone of the Rakudo Star git",
               "repository.",
-              $options{'force'} 
+              $options{'force'}
                 ? '--force specified, continuing'
                 : download_text()
         );
     }
 
-    my $prefix      = $options{'prefix'} || cwd().'/install';
-    my $with_parrot = $options{'with-parrot'};
-    $options{'gen-parrot'} ||= "parrot" if defined $options{'gen-parrot'};
-    my $gen_parrot  = $options{'gen-parrot'};
+
+    $options{prefix} ||= 'install';
+    $options{prefix} = File::Spec->rel2abs($options{prefix});
+    my $prefix         = $options{'prefix'};
+    my %known_backends = (parrot => 1, jvm => 1);
+    my %letter_to_backend;
+    my $default_backend;
+    for (keys %known_backends) {
+        $letter_to_backend{ substr($_, 0, 1) } = $_;
+    }
+    my %backends;
+    if (defined $options{backends}) {
+        for my $b (split /,\s*/, $options{backends}) {
+            $b = lc $b;
+            unless ($known_backends{$b}) {
+                die "Unknown backend '$b'; Supported backends are: " .
+                    join(", ", sort keys %known_backends) .
+                    "\n";
+            }
+            $backends{$b} = 1;
+            $default_backend ||= $b;
+        }
+        unless (%backends) {
+            die "--prefix given, but no valid backend?!\n";
+        }
+    }
+    else {
+        for my $l (sort keys %letter_to_backend) {
+            # TODO: needs .exe/.bat magic on windows?
+            if (-x "$prefix/bin/nqp-$l") {
+                my $b = $letter_to_backend{$l};
+                print "Found $prefix/bin/nqp-$l (backend $b)\n";
+                $backends{$b} = 1;
+                $default_backend ||= $b;
+            }
+        }
+        unless (%backends) {
+            $backends{parrot} = 1;
+        }
+    }
 
     # Save options in config.status
     unlink('config.status');
@@ -65,77 +109,84 @@ MAIN: {
         close($CONFIG_STATUS);
     }
 
-    # --with-parrot and --gen-parrot imply --gen-nqp
-    if (defined $with_parrot || defined $gen_parrot) {
-        $options{'gen-nqp'} ||= '';
-    }
-
-    $options{'gen-nqp'} ||= "nqp" if defined $options{'gen-nqp'};
-    my $with_nqp    = $options{'with-nqp'};
-    my $gen_nqp     = $options{'gen-nqp'};
-
-    # determine the version of NQP we want
-    my ($nqp_want) = split(' ', slurp("rakudo/tools/build/NQP_REVISION"));
-
-    if (defined $gen_nqp) {
-        $with_nqp = gen_nqp($nqp_want, %options);
-    }
-
-    my @errors;
-
-    my %nqp_config;
-    if ($with_nqp) {
-        %nqp_config = read_config($with_nqp) 
-            or push @errors, "Unable to read configuration from $with_nqp.";
-    }
-    else {
-        %nqp_config = read_config("$prefix/bin/nqp$exe", "nqp$exe")
-            or push @errors, "Unable to find an NQP executable.";
-        $with_nqp = fill_template_text('@bindir@/nqp@exe@', %nqp_config)
-    }
-
-    %config = (%config, %nqp_config);
-    my $nqp_have   = $config{'nqp::version'} || '';
-    if ($nqp_have && cmp_rev($nqp_have, $nqp_want) < 0) {
-        push @errors, "NQP revision $nqp_want required (currently $nqp_have).";
-    }
-
-    if (!@errors) {
-        push @errors, verify_install([ @NQP::Configure::required_parrot_files,
-                                       @NQP::Configure::required_nqp_files ],
-                                     %config);
-        push @errors, 
-          "(Perhaps you need to 'make install', 'make install-dev',",
-          "or install the 'devel' package for NQP or Parrot?)"
-          if @errors;
-    }
-
-    if (@errors && !defined $gen_nqp) {
-        push @errors, 
-          "\nTo automatically clone (git) and build a copy of NQP $nqp_want,",
-          "try re-running Configure.pl with the '--gen-nqp' or '--gen-parrot'",
-          "options.  Or, use '--with-nqp=' or '--with-parrot=' to explicitly",
-          "specify the NQP or Parrot executable to use to build $lang.";
-    }
-
-    sorry(@errors) if @errors;
-
-    print "Using $with_nqp (version $config{'nqp::version'}).\n";
-
+    $config{prefix} = $prefix;
+    $config{slash}  = $slash;
     $config{'makefile-timing'} = $options{'makefile-timing'};
     $config{'stagestats'} = '--stagestats' if $options{'makefile-timing'};
+    $config{'cpsep'} = $^O eq 'MSWin32' ? ';' : ':';
     $config{'shell'} = $^O eq 'MSWin32' ? 'cmd' : 'sh';
-    if ($^O eq 'MSWin32' or $^O eq 'cygwin') {
-        $config{'dll'} = '$(PARROT_BIN_DIR)/$(PARROT_LIB_SHARED)';
-        $config{'dllcopy'} = '$(PARROT_LIB_SHARED)';
-        $config{'make_dllcopy'} =
-            '$(PARROT_DLL_COPY): $(PARROT_DLL)'."\n\t".'$(CP) $(PARROT_DLL) .';
+    my $make = $config{'make'} = $^O eq 'MSWin32' ? 'nmake' : 'make';
+
+    my @prefixes = sort map substr($_, 0, 1), keys %backends;
+
+    # determine the version of NQP we want
+    my ($nqp_want) = split(' ', slurp('rakudo/tools/build/NQP_REVISION'));
+
+    my %binaries;
+    my %impls = gen_nqp($nqp_want, prefix => $prefix, backends => join(',', sort keys %backends), %options);
+
+    my @errors;
+    if ($backends{parrot}) {
+        my %nqp_config;
+        if ($impls{parrot}{config}) {
+            %nqp_config = %{ $impls{parrot}{config} };
+        }
+        else {
+            push @errors, "Cannot obtain configuration from NQP on parrot";
+        }
+
+        my $nqp_have = $nqp_config{'nqp::version'} || '';
+        if ($nqp_have && cmp_rev($nqp_have, $nqp_want) < 0) {
+            push @errors, "NQP revision $nqp_want required (currently $nqp_have).";
+        }
+
+        if (!@errors) {
+            push @errors, verify_install([ @NQP::Configure::required_parrot_files,
+                                        @NQP::Configure::required_nqp_files ],
+                                        %config, %nqp_config);
+            push @errors,
+            "(Perhaps you need to 'make install', 'make install-dev',",
+            "or install the 'devel' package for NQP or Parrot?)"
+            if @errors;
+        }
+
+        if (@errors && !defined $options{'gen-nqp'}) {
+            push @errors,
+            "\nTo automatically clone (git) and build a copy of NQP $nqp_want,",
+            "try re-running Configure.pl with the '--gen-nqp' or '--gen-parrot'",
+            "options.  Or, use '--prefix=' to explicitly",
+            "specify the path where the NQP and Parrot executable can be found that are use to build $lang.";
+        }
+
+        sorry(@errors) if @errors;
+
+        print "Using $impls{parrot}{bin} (version $nqp_config{'nqp::version'}).\n";
+    }
+    if ($backends{jvm}) {
+        $config{j_nqp} = $impls{jvm}{bin};
+        $config{j_nqp} =~ s{/}{\\}g if $^O eq 'MSWin32';
+        my %nqp_config;
+        if ( $impls{jvm}{config} ) {
+            %nqp_config = %{ $impls{jvm}{config} };
+        }
+        else {
+            push @errors, "Unable to read configuration from NQP on the JVM";
+        }
+        my $bin = $impls{jvm}{bin};
+
+        if (!@errors && !defined $nqp_config{'jvm::runtime.jars'}) {
+            push @errors, "jvm::runtime.jars value not available from $bin --show-config.";
+        }
+
+        sorry(@errors) if @errors;
+
+        print "Using $bin.\n";
+
     }
 
-    my $make = fill_template_text('@make@', %config);
     fill_template_file('tools/build/Makefile.in', 'Makefile', %config);
 
-    {
+    unless ($options{'no-clean'}) {
         no warnings;
         print "Cleaning up ...\n";
         if (open my $CLEAN, '-|', "$make configclean") {
@@ -151,8 +202,8 @@ MAIN: {
     }
     else {
         print "\nYou can now use '$make' to build $lang.\n";
-        print "After that, '$make test' provides information on running tests\n";
-        print "and '$make install' will install $lang.\n";
+        print "After that, '$make test' will run some tests and\n";
+        print "'$make install' will install $lang.\n";
     }
 
     exit 0;
@@ -166,17 +217,17 @@ Configure.pl - $lang Configure
 
 General Options:
     --help             Show this text
-    --prefix=dir       Install files in dir
-    --with-nqp=path/to/bin/nqp
-                       NQP executable to use to build $lang
+    --prefix=dir       Install files in dir; also look for executables there
+    --backends=parrot,jvm  Which backend(s) to use
     --gen-nqp[=branch]
                        Download and build a copy of NQP
-        --with-parrot=path/to/bin/parrot
-                       Parrot executable to use to build NQP
         --gen-parrot[=branch]
                        Download and build a copy of Parrot
         --parrot-option='--option'
                        Options to pass to Parrot's Configure.pl
+        --parrot-make-option='--option'
+                       Options to pass to Parrot's make, for example:
+                       --parrot-make-option='--jobs=4'
     --makefile-timing  Enable timing of individual makefile commands
 
 Configure.pl also reads options from 'config.default' in the current directory.
@@ -184,7 +235,6 @@ END
 
     return;
 }
-
 
 sub download_text {
     ("The git repository contains the tools needed to build a Rakudo Star",
@@ -198,6 +248,7 @@ sub worry {
     sorry(@text) unless $force;
     print join "\n", @text, '';
 }
+
 
 # Local Variables:
 #   mode: cperl

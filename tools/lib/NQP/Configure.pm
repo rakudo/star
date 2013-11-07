@@ -228,6 +228,10 @@ sub git_checkout {
     }
     else {
         chdir($dir);
+        unless (-e '.git') {
+            chdir $pwd;
+            return;
+        }
         system_or_die('git', 'fetch');
     }
 
