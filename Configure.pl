@@ -101,6 +101,10 @@ MAIN: {
         }
     }
 
+    unless ($backends{parrot}) {
+        warn "JVM-only builds are currently not supported, and might go wrong.\n";
+    }
+
     # Save options in config.status
     unlink('config.status');
     if (open(my $CONFIG_STATUS, '>', 'config.status')) {
@@ -160,6 +164,7 @@ MAIN: {
 
         sorry(@errors) if @errors;
 
+        %config = %nqp_config, %config;
         print "Using $impls{parrot}{bin} (version $nqp_config{'nqp::version'}).\n";
     }
     if ($backends{jvm}) {
