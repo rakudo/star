@@ -47,7 +47,7 @@ PMC2C_INCLUDES   = --include src/pmc --include $(PARROT_SRC_DIR) --include $(PAR
 CINCLUDES        = -I$(PARROT_INCLUDE_DIR) -I$(PARROT_INCLUDE_DIR)/pmc
 LINKARGS         = $(LDFLAGS) $(LD_LOAD_FLAGS) $(LIBPARROT) @libs@ @icu_shared@
 
-PERL6_EXE      = perl6$(EXE)
+PERL6_EXE      = perl6-p$(EXE)
 PERL6_LANG_DIR = $(PARROT_LIB_DIR)/languages/perl6
 PERL6_INSTALL  = $(PARROT_BIN_DIR)/$(PERL6_EXE)
 
