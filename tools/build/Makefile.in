@@ -6,46 +6,23 @@ NQP_DIR    = nqp
 RAKUDO_DIR = rakudo
 STAR_VERSION = 2013.10
 
-PARROT_ARGS      =
-
 # values from parrot_config
 PREFIX_DIR         = @prefix@
 PARROT_BIN_DIR     = @bindir@
 PARROT_VERSION     = @versiondir@
-PARROT_INCLUDE_DIR = @includedir@$(PARROT_VERSION)
 PARROT_LIB_DIR     = @libdir@$(PARROT_VERSION)
-PARROT_SRC_DIR     = @srcdir@$(PARROT_VERSION)
-HAS_ICU            = @has_icu@
 
-CC            = @cc@
-CFLAGS        = @ccflags@ @cc_shared@ @cc_debug@ @ccwarn@ @cc_hasjit@ @gc_flag@
 EXE           = @exe@
-LD            = @ld@
-LDFLAGS       = @ldflags@ @ld_debug@
-LD_LOAD_FLAGS = @ld_load_flags@
-LIBPARROT     = @inst_libparrot_ldflags@
-O             = @o@
-LOAD_EXT      = @load_ext@
 PERL          = @perl@
-CP            = @cp@
-MV            = @mv@
-RM_F          = @rm_f@
+CP            = $(PERL) -MExtUtils::Command -e cp
+RM_F          = $(PERL) -MExtUtils::Command -e rm_f
 MKPATH        = $(PERL) -MExtUtils::Command -e mkpath
 CHMOD         = $(PERL) -MExtUtils::Command -e chmod
-POD2MAN       = @pod2man@
 
 # locations of parrot resources
 PARROT_EXE       = $(PARROT_BIN_DIR)/parrot$(EXE)
-NQP_EXE          = $(PARROT_BIN_DIR)/nqp$(EXE)
+P_NQP_EXE        = $(PARROT_BIN_DIR)/nqp-p$(EXE)
 PBC_TO_EXE       = $(PARROT_BIN_DIR)/pbc_to_exe$(EXE)
-PARROT_CONFIG    = $(PARROT_BIN_DIR)/parrot_config$(EXE)
-PARROT_TOOLS_DIR = $(PARROT_LIB_DIR)/tools
-PARROT_PERL_LIB  = $(PARROT_TOOLS_DIR)/lib
-OPS2C            = $(PARROT_BIN_DIR)/ops2c$(EXE)
-PMC2C            = $(PERL) $(PARROT_TOOLS_DIR)/build/pmc2c.pl
-PMC2C_INCLUDES   = --include src/pmc --include $(PARROT_SRC_DIR) --include $(PARROT_SRC_DIR)/pmc
-CINCLUDES        = -I$(PARROT_INCLUDE_DIR) -I$(PARROT_INCLUDE_DIR)/pmc
-LINKARGS         = $(LDFLAGS) $(LD_LOAD_FLAGS) $(LIBPARROT) @libs@ @icu_shared@
 
 PERL6_EXE      = perl6-p$(EXE)
 PERL6_LANG_DIR = $(PARROT_LIB_DIR)/languages/perl6
@@ -87,7 +64,7 @@ modules-test:
 perl6-debug: $(RD_EXE)
 
 $(RD_EXE): modules-install
-	$(NQP_EXE) --vmlibs=perl6_ops --target=pir \
+	$(P_NQP_EXE) --vmlibs=perl6_ops --target=pir \
 	    --dynext=$(DESTDIR)$(PARROT_LIB_DIR)/dynext/ \
 	    --module-path=$(DESTDIR)$(PARROT_LIB_DIR)/languages/nqp/lib \
 	    --output=$(RD_PIR) $(RD_DIR)/bin/perl6-debug.nqp
