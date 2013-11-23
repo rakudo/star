@@ -42,7 +42,7 @@ while (<>) {
         $module_to_path{$module} = $module_file;
         $usages_of{$module} = [];
         while (<$fh>) {
-            if (/^\s* (?:use|need) \s+ (\w+ (?: :: \w+)*)/x and my $used = $1) {
+            if (/^\s* (?:use|need|require) \s+ (\w+ (?: :: \w+)*)/x and my $used = $1) {
                 next if $used eq 'v6';
                 next if $used eq 'MONKEY_TYPING';
 
