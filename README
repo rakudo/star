@@ -58,14 +58,8 @@ to your PATH environment variable.
 The "--gen-parrot" option above tells Configure.pl to automatically
 build and install the version of Parrot that is distributed with 
 Rakudo Star.  The "--prefix=" option can be provided to Configure.pl
-to change the location of the install directory.
-
-If your system already has an installed Parrot, Configure.pl will
-look for "parrot_config" in your execution PATH, or the location
-of parrot_config can be explicitly provided to Configure.pl via
-the "--parrot_config" option:
-
-    $ perl Configure.pl --parrot-config=/path/to/bin/parrot_config
+to change the location of the install directory. Note that Rakudo based
+on Parrot can only be installed to the same prefix as Parrot.
 
 If the Rakudo compiler is invoked without an explicit script to
 run, it enters a small interactive mode that allows Perl 6 statements
