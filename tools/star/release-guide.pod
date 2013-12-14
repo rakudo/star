@@ -33,6 +33,19 @@ Clone the git@github.com:rakudo/star repository.
 
   $ git clone git@github.com:rakudo/star
 
+If you already have clone of rakudo/star, make sure it is in sync
+with github:
+
+  $ git checkout master
+  $ git pull origin master
+  $ git submodule sync --force
+
+Verify that
+
+  $ git status
+
+reports a clean repository.
+
 =item 2.
 
 Change to the star repository directory, and edit the first three
