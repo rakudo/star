@@ -91,6 +91,18 @@ for the Star release.  To bring all modules up to the current
   
   # pull master in each submodule dir
   $ git submodule foreach git pull origin master
+
+B<ATTENTION!> Currently, the Perl6::MIME::Base64 repo  needs to be kept at a
+specific commit, due to breakage on Rakudo's part. The above command will have
+incorrectly merged commits. To fix this, run these commands from the top of the
+star repo:
+
+  $ rm -r modules/Perl6-MIME-Base64
+  $ git submodule init
+  $ git submodule update
+
+Then you may commit your update of the submodules:
+
   # commit submodules state to star repo
   $ git commit modules
 
