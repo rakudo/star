@@ -257,6 +257,7 @@ You're done!  Celebrate with the appropriate amount of fun.
     2013.09         moritz
     2013.10         lue
     2013.11         moritz
+    2013.12         lue
 
 =cut
 
