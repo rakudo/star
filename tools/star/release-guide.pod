@@ -38,7 +38,7 @@ with github:
 
   $ git checkout master
   $ git pull origin master
-  $ git submodule sync --force
+  $ git submodule sync
 
 Verify that
 
