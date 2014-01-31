@@ -227,7 +227,7 @@ You're done!  Celebrate with the appropriate amount of fun.
     Release         Release manager
     =======         ===============
 
-    2014.01         tadzik
+    2014.02         (unknown yet)
 
 =head2 List of Previous Star Releases
 
@@ -265,6 +265,7 @@ You're done!  Celebrate with the appropriate amount of fun.
     2013.10         lue
     2013.11         moritz
     2013.12         lue
+    2014.01         tadzik
 
 =cut
 
