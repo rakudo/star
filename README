@@ -44,6 +44,12 @@ The basic steps to build Rakudo Star are:
     $ make
     $ make install
 
+On some 64-bit systems Parrot installation reports the lack of,
+or an incomplete ICU installation. It may be required to add
+a symlink to help Parrot find the ICU library:
+
+    # ln -s /usr/include/x86_64-linux-gnu/unicode /usr/include/unicode
+
 This will build a Perl 6 executable and install selected
 Perl 6 modules into the install/ subdirectory, which resides
 inside the source archive directory. Running make install
