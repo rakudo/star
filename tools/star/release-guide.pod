@@ -97,9 +97,9 @@ specific commit, due to breakage on Rakudo's part. The above command will have
 incorrectly merged commits. To fix this, run these commands from the top of the
 star repo:
 
-  $ rm -r modules/Perl6-MIME-Base64
-  $ git submodule init
-  $ git submodule update
+  $ cd modules/Perl6-MIME-Base64
+  $ git checkout 76fd9decc7c1445390b0ab5a1296e9d244f8e1fd
+  $ cd -
 
 Then you may commit your update of the submodules:
 
