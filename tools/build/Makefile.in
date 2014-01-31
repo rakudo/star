@@ -4,7 +4,7 @@
 PARROT_DIR = parrot
 NQP_DIR    = nqp
 RAKUDO_DIR = rakudo
-STAR_VERSION = 2013.12
+STAR_VERSION = 2014.01
 
 # values from parrot_config
 PREFIX_DIR         = @prefix@
