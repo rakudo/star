@@ -164,7 +164,7 @@ MAIN: {
 
         sorry(@errors) if @errors;
 
-        %config = %nqp_config, %config;
+        %config = (%nqp_config, %config);
         print "Using $impls{parrot}{bin} (version $nqp_config{'nqp::version'}).\n";
     }
     if ($backends{jvm}) {
