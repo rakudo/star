@@ -76,9 +76,6 @@
 [submodule "modules/Perl6-MIME-Base64"]
 	path = modules/Perl6-MIME-Base64
 	url = git://github.com/perl6/Perl6-MIME-Base64
-[submodule "modules/perl6-psgi"]
-	path = modules/perl6-psgi
-	url = git://github.com/supernovus/perl6-psgi
 [submodule "modules/PSGI"]
 	path = modules/PSGI
 	url = git://github.com/supernovus/perl6-psgi.git
