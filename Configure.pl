@@ -32,7 +32,7 @@ MAIN: {
 
     my %options;
     GetOptions(\%options, 'help!', 'prefix=s',
-                'backends=s', 'no-clean!',
+               'backends=s', 'no-clean!',
                'gen-nqp:s', 'gen-moar:s',
                'gen-parrot:s', 'parrot-option=s@',
                'parrot-make-option=s@',
@@ -88,8 +88,7 @@ MAIN: {
     }
     else {
         for my $l (sort keys %letter_to_backend) {
-            # TODO: needs .exe/.bat magic on windows?
-            if (-x "$prefix/bin/nqp-$l") {
+            if (-x "$prefix/bin/nqp-$l" || -x "$prefix/bin/nqp-$l.bat" || -x "$prefix/bin/nqp-$l.exe") {
                 my $b = $letter_to_backend{$l};
                 print "Found $prefix/bin/nqp-$l (backend $b)\n";
                 $backends{$b} = 1;
@@ -97,12 +96,17 @@ MAIN: {
             }
         }
         unless (%backends) {
-            $backends{parrot} = 1;
+            if (defined $options{'gen-moar'}) {
+                $backends{moar} = 1;
+            }
+            else {
+                $backends{parrot} = 1;
+            }
         }
     }
 
     unless ($backends{parrot}) {
-        warn "JVM-only builds are currently not supported, and might go wrong.\n";
+        warn "JVM/Moar-only builds are currently not supported, and might go wrong.\n";
     }
 
     # Save options in config.status

@@ -339,6 +339,11 @@ sub gen_nqp {
     my $backends_to_build = join ',', sort keys %need;
     my @cmd = ($^X, 'Configure.pl', "--prefix=$prefix",
                "--backends=$backends", "--make-install");
+
+    if (defined $gen_moar) {
+        push @cmd, $gen_moar ? "--gen-moar=$gen_moar" : '--gen-moar';
+    }
+
     print "Building NQP ...\n";
     chdir("$startdir/nqp");
     print "@cmd\n";
