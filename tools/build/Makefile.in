@@ -19,11 +19,6 @@ RM_F          = $(PERL) -MExtUtils::Command -e rm_f
 MKPATH        = $(PERL) -MExtUtils::Command -e mkpath
 CHMOD         = $(PERL) -MExtUtils::Command -e chmod
 
-# locations of parrot resources
-PARROT_EXE       = $(PARROT_BIN_DIR)/parrot$(EXE)
-P_NQP_EXE        = $(PARROT_BIN_DIR)/nqp-p$(EXE)
-PBC_TO_EXE       = $(PARROT_BIN_DIR)/pbc_to_exe$(EXE)
-
 PERL6_EXE      = perl6-p$(EXE)
 PERL6_LANG_DIR = $(PARROT_LIB_DIR)/languages/perl6
 PERL6_INSTALL  = $(PARROT_BIN_DIR)/$(PERL6_EXE)
@@ -110,8 +105,6 @@ help:
 
 config:
 	$(PERL) Configure.pl
-
-$(PARROT_EXE):
 
 CRITIC_FILES=Configure.pl tools/build/
 
