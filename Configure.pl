@@ -1,5 +1,5 @@
 #! perl
-# Copyright (C) 2009 The Perl Foundation
+# Copyright (C) 2009-2014 The Perl Foundation
 
 use 5.008;
 use strict;
@@ -33,7 +33,7 @@ MAIN: {
     my %options;
     GetOptions(\%options, 'help!', 'prefix=s',
                 'backends=s', 'no-clean!',
-               'gen-nqp:s',
+               'gen-nqp:s', 'gen-moar:s',
                'gen-parrot:s', 'parrot-option=s@',
                'parrot-make-option=s@',
                'make-install!', 'makefile-timing!',
@@ -64,7 +64,7 @@ MAIN: {
     $options{prefix} ||= 'install';
     $options{prefix} = File::Spec->rel2abs($options{prefix});
     my $prefix         = $options{'prefix'};
-    my %known_backends = (parrot => 1, jvm => 1);
+    my %known_backends = (parrot => 1, jvm => 1, moar => 1);
     my %letter_to_backend;
     my $default_backend;
     for (keys %known_backends) {
@@ -223,14 +223,17 @@ Configure.pl - $lang Configure
 General Options:
     --help             Show this text
     --prefix=dir       Install files in dir; also look for executables there
-    --backends=parrot,jvm  Which backend(s) to use
+    --backends=parrot,jvm,moar
+                       Which backend(s) to use
+    --gen-moar[=branch]
+                       Download and build a copy of MoarVM
     --gen-nqp[=branch]
                        Download and build a copy of NQP
-        --gen-parrot[=branch]
+    --gen-parrot[=branch]
                        Download and build a copy of Parrot
-        --parrot-option='--option'
+    --parrot-option='--option'
                        Options to pass to Parrot's Configure.pl
-        --parrot-make-option='--option'
+    --parrot-make-option='--option'
                        Options to pass to Parrot's make, for example:
                        --parrot-make-option='--jobs=4'
     --makefile-timing  Enable timing of individual makefile commands
