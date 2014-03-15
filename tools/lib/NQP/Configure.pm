@@ -434,7 +434,7 @@ sub gen_moar {
     my $startdir   = cwd();
 
     my $moar_exe   = "$prefix/bin/moar$exe";
-    my $moar_have  = qx{ $moar_exe --version };
+    my $moar_have  = -e $moar_exe ? qx{ $moar_exe --version } : undef;
     if ($moar_have) {
         $moar_have = $moar_have =~ /version (\S+)/ ? $1 : undef;
     }
@@ -452,7 +452,7 @@ sub gen_moar {
 
     my $moar_repo = git_checkout($moar_git, 'MoarVM', $gen_moar || $moar_want, $moar_push);
 
-    unless (cmp_rev($moar_repo, $moar_want) >= 0) {
+    if (defined($moar_repo) && cmp_rev($moar_repo, $moar_want) < 0) {
         die "You asked me to build $gen_moar, but $moar_repo is not new enough to satisfy version $moar_want\n";
     }
 
