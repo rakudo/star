@@ -5,8 +5,8 @@ This git repository isn't the distribution itself; the repository
 contains the tools and scripts used to create a distribution.
 
 If you're looking to simply download and run the latest release
-of Rakudo Star, please download a .tar.gz file from
-http://github.com/rakudo/star/downloads .
+of Rakudo Star, please download a .tar.gz or .msi file from
+http://rakudo.org/downloads/star/.
 
 If you're still reading this, we assume you're a Rakudo Star
 release manager, or someone that is looking to create new
