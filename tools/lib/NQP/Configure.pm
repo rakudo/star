@@ -280,6 +280,7 @@ sub gen_nqp {
     my $startdir    = cwd();
 
     my $PARROT_REVISION = 'nqp/tools/build/PARROT_REVISION';
+    my $MOAR_REVISION   = 'nqp/tools/build/MOAR_REVISION';
 
     my (%impls, %need);
 
@@ -334,15 +335,17 @@ sub gen_nqp {
         $impls{parrot}{config} = \%c;
     }
 
+    if ($need{moar} && defined $gen_moar) {
+        my ($moar_want) = split(' ', slurp($MOAR_REVISION));
+        my $moar = gen_moar($moar_want, %options, prefix => $prefix);
+        $impls{moar}{bin} = "$prefix/bin/nqp-m$bat";
+    }
+
     return %impls unless defined($gen_nqp) || defined($gen_parrot) || defined($gen_moar);
 
     my $backends_to_build = join ',', sort keys %need;
     my @cmd = ($^X, 'Configure.pl', "--prefix=$prefix",
                "--backends=$backends", "--make-install");
-
-    if (defined $gen_moar) {
-        push @cmd, $gen_moar ? "--gen-moar=$gen_moar" : '--gen-moar';
-    }
 
     print "Building NQP ...\n";
     chdir("$startdir/nqp");
