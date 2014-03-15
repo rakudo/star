@@ -334,7 +334,7 @@ sub gen_nqp {
         $impls{parrot}{config} = \%c;
     }
 
-    return %impls unless defined($gen_nqp) || defined($gen_parrot) || defined $gen_moar);
+    return %impls unless defined($gen_nqp) || defined($gen_parrot) || defined($gen_moar);
 
     my $backends_to_build = join ',', sort keys %need;
     my @cmd = ($^X, 'Configure.pl', "--prefix=$prefix",
