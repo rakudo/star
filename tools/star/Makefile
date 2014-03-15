@@ -1,6 +1,7 @@
 RAKUDO_VER  = 2014.01
 NQP_VER     = 2014.01
 PARROT_VER  = 5.9.0
+MOAR_VER    = 2014.01
 
 STAR_REL    = rakudo-star-$(VERSION)
 STAR_TGZ    = $(STAR_REL).tar.gz
@@ -16,12 +17,15 @@ NQP_SRC    = $(SRC_DIR)/$(NQP_TGZ)
 PARROT_TGZ = parrot-$(PARROT_VER).tar.gz
 PARROT_URL = http://ftp.parrot.org/releases/all/$(PARROT_VER)/$(PARROT_TGZ)
 PARROT_SRC = $(SRC_DIR)/$(PARROT_TGZ)
+MOAR_TGZ   = MoarVM-$(MOAR_VER).tar.gz
+MOAR_URL   = http://www.moarvm.org/releases/$(MOAR_TGZ)
+MOAR_SRC   = $(SRC_DIR)/$(MOAR_TGZ)
 
 PERL   = perl
 PREFIX = $(PERL) $(CURDIR)/tools/star/prefix.pl
 WGET   = wget --no-check-certificate
 
-all: rakudo nqp parrot manifest
+all: rakudo nqp parrot moar manifest
 
 always:
 
@@ -32,7 +36,7 @@ $(RAKUDO_SRC):
 	mkdir -p $(SRC_DIR)
 	$(WGET) $(RAKUDO_URL) -O $(RAKUDO_SRC)
 
-nqp: parrot $(NQP_SRC)
+nqp: parrot moar $(NQP_SRC)
 	tar --xform 's!nqp-[^/]*!nqp!' -xvzf $(NQP_SRC)
 
 $(NQP_SRC):
@@ -46,6 +50,13 @@ $(PARROT_SRC):
 	mkdir -p $(SRC_DIR)
 	$(WGET) $(PARROT_URL) -O $(PARROT_SRC)
 
+moar: $(MOAR_SRC)
+	tar --xform 's!MoarVM-[^/]*!MoarVM!' -xvzf $(MOAR_SRC)
+
+$(MOAR_SRC):
+	mkdir -p $(SRC_DIR)
+	$(WGET) $(MOAR_URL) -O $(MOAR_SRC)
+
 modules/zavolaj/lib:
 	@echo "Updating submodules"
 	git submodule init
@@ -56,6 +67,7 @@ manifest: modules/zavolaj/lib
 	git ls-files >>MANIFEST
 	$(PREFIX) rakudo/ rakudo/MANIFEST >>MANIFEST
 	$(PREFIX) nqp/ nqp/MANIFEST >>MANIFEST
+	$(PREFIX) MoarVM/ MoarVM/MANIFEST >>MANIFEST
 	cut -d' ' -f1 parrot/MANIFEST | $(PREFIX) parrot/ >>MANIFEST
 	git submodule foreach --quiet 'git ls-files | $(PREFIX) $$path/' >>MANIFEST
 	grep -v -f tools/star/MANIFEST.exclude MANIFEST >MANIFEST.1
