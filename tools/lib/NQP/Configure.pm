@@ -274,6 +274,7 @@ sub gen_nqp {
 
     my $backends    = $options{'backends'};
     my $gen_nqp     = $options{'gen-nqp'};
+    my $gen_moar    = $options{'gen-moar'};
     my $gen_parrot  = $options{'gen-parrot'};
     my $prefix      = $options{'prefix'} || cwd().'/install';
     my $startdir    = cwd();
@@ -321,7 +322,7 @@ sub gen_nqp {
 
     return %impls unless %need;
 
-    if (defined $gen_nqp || defined $gen_parrot) {
+    if (defined $gen_nqp || defined $gen_parrot || defined $gen_moar) {
         git_checkout($nqp_git, 'nqp', $nqp_want, $nqp_push);
     }
 
@@ -333,7 +334,7 @@ sub gen_nqp {
         $impls{parrot}{config} = \%c;
     }
 
-    return %impls unless defined($gen_nqp) || defined($gen_parrot);
+    return %impls unless defined($gen_nqp) || defined($gen_parrot) || defined $gen_moar);
 
     my $backends_to_build = join ',', sort keys %need;
     my @cmd = ($^X, 'Configure.pl', "--prefix=$prefix",
