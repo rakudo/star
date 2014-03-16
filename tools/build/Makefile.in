@@ -41,6 +41,8 @@ PERL6_M_EXE      = perl6-m$(BAT)
 PERL6_M_LANG_DIR = $(PREFIX)/languages/perl6
 PERL6_M_INSTALL  = $(MOAR_BIN_DIR)/$(PERL6_M_EXE)
 
+PERL6_EXE        = perl6$(EXE)
+
 MODULES = modules/MODULES.txt
 
 all: rakudo
@@ -59,8 +61,8 @@ rakudo-spectest: rakudo
 
 rakudo-install: rakudo
 	cd $(RAKUDO_DIR) && $(MAKE) install
-	$(CP) $(DESTDIR)$(PERL6_INSTALL) @default_backend_exe@
-	$(CHMOD) 755 @default_backend_exe@
+	$(CP) $(DESTDIR)@default_backend_exe@ $(PERL6_EXE)
+	$(CHMOD) 755 $(PERL6_EXE)
 	@win32_libparrot_copy@
 
 modules-install: rakudo-install
@@ -79,7 +81,7 @@ test:
 	@echo "To run the Rakudo compiler tests, use '$(MAKE) rakudo-test'"
 	@echo "To run the Perl 6 spectests, use '$(MAKE) rakudo-spectest'"
 	@echo ""
-	@echo "To run tests for individual modules, try:"
+	@echo "To run tests for individual modules, install and then try:"
 	@echo "  prove -e ./perl6 -r modules/<name>/t"
 	@echo ""
 

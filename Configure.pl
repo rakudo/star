@@ -108,11 +108,11 @@ MAIN: {
     }
 
     $config{backend_exes} = join ' ', map
-        { '$(PERL6_' . uc(substr $_, 0, 1) . '_EXE)' }
+        { '$(RAKUDO_DIR)/$(PERL6_' . uc(substr $_, 0, 1) . '_EXE)' }
         keys %backends;
     $config{default_backend_exe} = '$(PERL6_' .
         uc(substr $default_backend, 0, 1) .
-        '_EXE)';
+        '_INSTALL)';
 
     unless ($backends{parrot}) {
         warn "JVM/Moar-only builds are currently not supported, and might go wrong.\n";
