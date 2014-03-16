@@ -9,6 +9,7 @@ use File::Basename;
 
 my $perl6bin = shift @ARGV;
 my $perl6lib = shift @ARGV;
+my $comptarget = shift @ARGV;
 
 my @pmfiles;
 my @mod_pms;
@@ -76,8 +77,8 @@ do {
     chdir 'rakudo';
     foreach my $pm (@pmfiles) {
         my $out = $pm;
-        $out =~ s/\.pm6?$/.pir/;
-        my @cmd = ($perl6bin, '--target=pir', "--output=$out", $pm);
+        $out =~ s/\.pm6?$/.$comptarget/;
+        my @cmd = ($perl6bin, "--target=$comptarget", "--output=$out", $pm);
         print join(' ', @cmd), "\n";
         system(@cmd);
     }
