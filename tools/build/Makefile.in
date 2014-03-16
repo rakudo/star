@@ -1,45 +1,67 @@
 # Copyright (C) 2006-2014, The Perl Foundation.
 # $Id$
 
-PARROT_DIR = parrot
-NQP_DIR    = nqp
-RAKUDO_DIR = rakudo
+PARROT_DIR   = parrot
+MOAR_DIR     = moarvm
+NQP_DIR      = nqp
+RAKUDO_DIR   = rakudo
 STAR_VERSION = 2014.03
 
-# values from parrot_config
+# install location
 PREFIX_DIR         = @prefix@
+
+# values from parrot_config
 PARROT_BIN_DIR     = @bindir@
 PARROT_VERSION     = @versiondir@
 PARROT_LIB_DIR     = @libdir@$(PARROT_VERSION)
 
+# JVM install location
+JVM_BIN_DIR = $(PREFIX)/bin
+
+# MoarVM install location
+MOAR_BIN_DIR = $(PREFIX)/bin
+
 EXE           = @exe@
+BAT           = @bat@
 PERL          = @perl@
 CP            = $(PERL) -MExtUtils::Command -e cp
 RM_F          = $(PERL) -MExtUtils::Command -e rm_f
 MKPATH        = $(PERL) -MExtUtils::Command -e mkpath
 CHMOD         = $(PERL) -MExtUtils::Command -e chmod
 
-PERL6_EXE      = perl6-p$(EXE)
-PERL6_LANG_DIR = $(PARROT_LIB_DIR)/languages/perl6
-PERL6_INSTALL  = $(PARROT_BIN_DIR)/$(PERL6_EXE)
+PERL6_P_EXE      = perl6-p$(EXE)
+PERL6_P_LANG_DIR = $(PARROT_LIB_DIR)/languages/perl6
+PERL6_P_INSTALL  = $(PARROT_BIN_DIR)/$(PERL6_P_EXE)
+
+PERL6_J_EXE      = perl6-j$(BAT)
+PERL6_J_LANG_DIR = $(PREFIX)/languages/perl6
+PERL6_J_INSTALL  = $(JVM_BIN_DIR)/$(PERL6_J_EXE)
+
+PERL6_M_EXE      = perl6-m$(BAT)
+PERL6_M_LANG_DIR = $(PREFIX)/languages/perl6
+PERL6_M_INSTALL  = $(MOAR_BIN_DIR)/$(PERL6_M_EXE)
 
 MODULES = modules/MODULES.txt
 
 all: rakudo
 
-rakudo: $(RAKUDO_DIR)/$(PERL6_EXE)
-$(RAKUDO_DIR)/$(PERL6_EXE):
+rakudo: @backend_exes@
+
+@backend_exes@:
 	@echo "== Configuring and building Rakudo"
 	cd $(RAKUDO_DIR) && $(PERL) Configure.pl --prefix=$(PREFIX_DIR) && $(MAKE)
+
 rakudo-test: rakudo
 	cd $(RAKUDO_DIR) && $(MAKE) test
+
 rakudo-spectest: rakudo
 	cd $(RAKUDO_DIR) && $(MAKE) spectest
+
 rakudo-install: rakudo
 	cd $(RAKUDO_DIR) && $(MAKE) install
+	$(CP) $(DESTDIR)$(PERL6_INSTALL) @default_backend_exe@
+	$(CHMOD) 755 @default_backend_exe@
 	@win32_libparrot_copy@
-	$(CP) $(DESTDIR)$(PERL6_INSTALL) $(PERL6_EXE)
-	$(CHMOD) 755 $(PERL6_EXE)
 
 modules-install: rakudo-install
 	@echo "== Installing modules"

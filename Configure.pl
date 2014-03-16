@@ -98,12 +98,21 @@ MAIN: {
         unless (%backends) {
             if (defined $options{'gen-moar'}) {
                 $backends{moar} = 1;
+                $default_backend = 'moar';
             }
             else {
                 $backends{parrot} = 1;
+                $default_backend = 'parrot';
             }
         }
     }
+
+    $config{backend_exes} = join ' ', map
+        { '$(PERL6_' . uc(substr $_, 0, 1) . '_EXE)' }
+        keys %backends;
+    $config{default_backend_exe} = '$(PERL6_' .
+        uc(substr $default_backend, 0, 1) .
+        '_EXE)';
 
     unless ($backends{parrot}) {
         warn "JVM/Moar-only builds are currently not supported, and might go wrong.\n";
@@ -123,6 +132,7 @@ MAIN: {
     $config{'stagestats'} = '--stagestats' if $options{'makefile-timing'};
     $config{'cpsep'} = $^O eq 'MSWin32' ? ';' : ':';
     $config{'shell'} = $^O eq 'MSWin32' ? 'cmd' : 'sh';
+    $config{'bat'} = $^O eq 'MSWin32' ? '.bat' : '';
     my $make = $config{'make'} = $^O eq 'MSWin32' ? 'nmake' : 'make';
 
     my @prefixes = sort map substr($_, 0, 1), keys %backends;
