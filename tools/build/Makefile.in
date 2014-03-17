@@ -16,10 +16,10 @@ PARROT_VERSION     = @versiondir@
 PARROT_LIB_DIR     = @libdir@$(PARROT_VERSION)
 
 # JVM install location
-JVM_BIN_DIR = $(PREFIX)/bin
+JVM_BIN_DIR = $(PREFIX_DIR)/bin
 
 # MoarVM install location
-MOAR_BIN_DIR = $(PREFIX)/bin
+MOAR_BIN_DIR = $(PREFIX_DIR)/bin
 
 EXE           = @exe@
 BAT           = @bat@
@@ -34,11 +34,11 @@ PERL6_P_LANG_DIR = $(PARROT_LIB_DIR)/languages/perl6
 PERL6_P_INSTALL  = $(PARROT_BIN_DIR)/$(PERL6_P_EXE)
 
 PERL6_J_EXE      = perl6-j$(BAT)
-PERL6_J_LANG_DIR = $(PREFIX)/languages/perl6
+PERL6_J_LANG_DIR = $(PREFIX_DIR)/languages/perl6
 PERL6_J_INSTALL  = $(JVM_BIN_DIR)/$(PERL6_J_EXE)
 
 PERL6_M_EXE      = perl6-m$(BAT)
-PERL6_M_LANG_DIR = $(PREFIX)/languages/perl6
+PERL6_M_LANG_DIR = $(PREFIX_DIR)/languages/perl6
 PERL6_M_INSTALL  = $(MOAR_BIN_DIR)/$(PERL6_M_EXE)
 
 PERL6_EXE        = perl6$(EXE)
@@ -61,7 +61,7 @@ rakudo-spectest: rakudo
 
 rakudo-install: rakudo
 	cd $(RAKUDO_DIR) && $(MAKE) install
-	$(CP) $(PREFIX_DIR)@default_backend_exe@ $(PERL6_EXE)
+	$(CP) $(DESTDIR)@default_backend_exe@ $(PERL6_EXE)
 	$(CHMOD) 755 $(PERL6_EXE)
 	@win32_libparrot_copy@
 
@@ -69,24 +69,24 @@ modules-install: @backend_modules_install@
 
 modules-install-p:
 	@echo "== Installing modules for Parrot"
-	$(PERL) tools/build/module-install.pl $(PREFIX_DIR)$(PERL6_P_INSTALL) $(PREFIX_DIR)$(PERL6_P_LANG_DIR)/lib pir pir $(MODULES)
+	$(PERL) tools/build/module-install.pl $(DESTDIR)$(PERL6_P_INSTALL) $(DESTDIR)$(PERL6_P_LANG_DIR)/lib pir pir $(MODULES)
 	@echo "== Installing binaries for Parrot"
-	$(PERL) tools/build/bin-install.pl $(PERL6_P_INSTALL) $(PREFIX_DIR)$(PARROT_BIN_DIR) modules/ufo/bin/ufo modules/panda/bin/panda modules/doc/bin/p6doc
+	$(PERL) tools/build/bin-install.pl $(PERL6_P_INSTALL) $(DESTDIR)$(PARROT_BIN_DIR) p modules/ufo/bin/ufo modules/panda/bin/panda modules/doc/bin/p6doc
 
 modules-install-j:
 	@echo "== Installing modules for JVM"
-	$(PERL) tools/build/module-install.pl $(PREFIX_DIR)$(PERL6_J_INSTALL) $(PREFIX_DIR)$(PERL6_J_LANG_DIR)/lib jar jar $(MODULES)
+	$(PERL) tools/build/module-install.pl $(DESTDIR)$(PERL6_J_INSTALL) $(DESTDIR)$(PERL6_J_LANG_DIR)/lib jar jar $(MODULES)
 	@echo "== Installing binaries for JVM"
-	$(PERL) tools/build/bin-install.pl $(PERL6_J_INSTALL) $(PREFIX_DIR)$(JVM_BIN_DIR) modules/ufo/bin/ufo modules/panda/bin/panda modules/doc/bin/p6doc
+	$(PERL) tools/build/bin-install.pl $(PERL6_J_INSTALL) $(DESTDIR)$(JVM_BIN_DIR) j modules/ufo/bin/ufo modules/panda/bin/panda modules/doc/bin/p6doc
 
 modules-install-m:
 	@echo "== Installing modules for MoarVM"
-	$(PERL) tools/build/module-install.pl $(PREFIX_DIR)$(PERL6_M_INSTALL) $(PREFIX_DIR)$(PERL6_M_LANG_DIR)/lib moarvm mbc $(MODULES)
+	$(PERL) tools/build/module-install.pl $(DESTDIR)$(PERL6_M_INSTALL) $(DESTDIR)$(PERL6_M_LANG_DIR)/lib moarvm mbc $(MODULES)
 	@echo "== Installing binaries for MoarVM"
-	$(PERL) tools/build/bin-install.pl $(PERL6_M_INSTALL) $(PREFIX_DIR)$(MOAR_BIN_DIR) modules/ufo/bin/ufo modules/panda/bin/panda modules/doc/bin/p6doc
+	$(PERL) tools/build/bin-install.pl $(PERL6_M_INSTALL) $(DESTDIR)$(MOAR_BIN_DIR) m modules/ufo/bin/ufo modules/panda/bin/panda modules/doc/bin/p6doc
 
 modules-test:
-	$(PERL) tools/build/modules-test.pl $(CURDIR) $(PREFIX_DIR)$(PERL6_INSTALL) modules/MODULES.txt
+	$(PERL) tools/build/modules-test.pl $(CURDIR) $(DESTDIR)$(PERL6_INSTALL) modules/MODULES.txt
 
 install: rakudo-install modules-install
 
