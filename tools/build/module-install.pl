@@ -24,14 +24,14 @@ while (<>) {
     find({ no_chdir=>1, wanted => \&libcopy }, $mlib);
 
     sub libcopy {
-        return unless /\.pm6?|\.pod/;
+        return unless /\.pm6?$|\.pod$/;
         my $source = $File::Find::name;
         my $target = $source;
         $target =~ s/\Q$mlib\E/$perl6lib/;
         print "$source => $target\n";
         mkpath dirname($target);
         copy($source, $target) or die "copy failed: $!\n";
-        push @mod_pms, $target if $target =~ /\.pm6?/;
+        push @mod_pms, $target if $target =~ /\.pm6?$/;
     }
     
     my %usages_of;
