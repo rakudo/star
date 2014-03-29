@@ -88,10 +88,10 @@ modules-install-m:
 modules-test: @backend_modules_test@
 
 modules-test-p:
-	$(PERL) tools/build/modules-test.pl $(CURDIR) $(DESTDIR)$(PARROT_BIN_DIR) modules/MODULES.txt
+	$(PERL) tools/build/modules-test.pl $(CURDIR) $(DESTDIR)$(PERL6_P_INSTALL) modules/MODULES.txt
 
 modules-test-j:
-	$(PERL) tools/build/modules-test.pl $(CURDIR) $(DESTDIR)$(JVM_BIN_DIR) modules/MODULES.txt
+	$(PERL) tools/build/modules-test.pl $(CURDIR) $(DESTDIR)$(PERL6_J_INSTALL) modules/MODULES.txt
 
 modules-test-m:
 	$(PERL) tools/build/modules-test.pl $(CURDIR) $(DESTDIR)$(PERL6_M_INSTALL) modules/MODULES.txt
