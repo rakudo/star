@@ -85,8 +85,16 @@ modules-install-m:
 	@echo "== Installing binaries for MoarVM"
 	$(PERL) tools/build/bin-install.pl $(PERL6_M_INSTALL) $(DESTDIR)$(MOAR_BIN_DIR) m modules/ufo/bin/ufo modules/panda/bin/panda modules/doc/bin/p6doc
 
-modules-test:
-	$(PERL) tools/build/modules-test.pl $(CURDIR) $(DESTDIR)$(PERL6_INSTALL) modules/MODULES.txt
+modules-test: @backend_modules_test@
+
+modules-test-p:
+	$(PERL) tools/build/modules-test.pl $(CURDIR) $(DESTDIR)$(PARROT_BIN_DIR) modules/MODULES.txt
+
+modules-test-j:
+	$(PERL) tools/build/modules-test.pl $(CURDIR) $(DESTDIR)$(JVM_BIN_DIR) modules/MODULES.txt
+
+modules-test-m:
+	$(PERL) tools/build/modules-test.pl $(CURDIR) $(DESTDIR)$(PERL6_M_INSTALL) modules/MODULES.txt
 
 install: rakudo-install modules-install
 
