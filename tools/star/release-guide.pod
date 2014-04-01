@@ -49,8 +49,8 @@ reports a clean repository.
 
 =item 2.
 
-Change to the star repository directory, and edit the first three
-lines of tools/star/Makefile to indicate the desired releases of
+Change to the star repository directory, and edit the first four
+lines of F<tools/star/Makefile> to indicate the desired releases of
 Rakudo, NQP, MoarVM, and Parrot to use.
 
 Usually that means the last Rakudo release, the NQP version that is in the
