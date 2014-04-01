@@ -1,5 +1,4 @@
 # Copyright (C) 2006-2014, The Perl Foundation.
-# $Id$
 
 PARROT_DIR   = parrot
 MOAR_DIR     = moarvm
