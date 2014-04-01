@@ -30,12 +30,6 @@ PERL6_INSTALL  = $(PARROT_BIN_DIR)/$(PERL6_EXE)
 
 MODULES = modules/MODULES.txt
 
-# rakudo-debugger
-RD_DIR     = modules/rakudo-debugger
-RD_PIR     = $(RD_DIR)/perl6-debug.pir
-RD_PBC     = $(RD_DIR)/perl6-debug.pbc
-RD_EXE     = $(RD_DIR)/perl6-debug$(EXE)
-
 all: rakudo
 
 rakudo: $(RAKUDO_DIR)/$(PERL6_EXE)
@@ -61,22 +55,7 @@ modules-install: rakudo-install
 modules-test:
 	$(PERL) tools/build/modules-test.pl $(CURDIR) $(DESTDIR)$(PERL6_INSTALL) modules/MODULES.txt
 
-perl6-debug: $(RD_EXE)
-
-$(RD_EXE): modules-install
-	$(P_NQP_EXE) --vmlibs=perl6_ops --target=pir \
-	    --dynext=$(DESTDIR)$(PARROT_LIB_DIR)/dynext/ \
-	    --module-path=$(DESTDIR)$(PARROT_LIB_DIR)/languages/nqp/lib \
-	    --output=$(RD_PIR) $(RD_DIR)/bin/perl6-debug.nqp
-	$(PARROT_EXE)  --dynext $(DESTDIR)$(PARROT_LIB_DIR)/dynext/ -o $(RD_PBC) $(RD_PIR)
-	$(PBC_TO_EXE) $(RD_PBC)
-	$(CHMOD) 755 $(RD_EXE)
-
-perl6-debug-install: perl6-debug
-	$(CP) $(RD_EXE) $(DESTDIR)$(PARROT_BIN_DIR)
-	$(CHMOD) 755 $(DESTDIR)$(PARROT_BIN_DIR)/perl6-debug$(EXE)
-
-install: rakudo-install modules-install perl6-debug-install
+install: rakudo-install modules-install
 
 test:
 	@echo ""
