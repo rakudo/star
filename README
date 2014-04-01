@@ -1,6 +1,6 @@
 This is Rakudo Star, a useful, usable Perl 6 distribution for "early adopters".
 
-This is the 2014.01 release of Rakudo Star.
+This is the 2014.03 release of Rakudo Star.
 
 Rakudo Star is Copyright (C) 2010 - 2014 by the Rakudo Star Team.
 
@@ -14,7 +14,7 @@ copyright and licensing information of those components.
 Build Prerequisites
 -------------------
 To build Rakudo Star you need at least a C compiler, a 'make' utility,
-and Perl 5.9.0 or newer.  You probably also want a machine with a fair
+and Perl 6.1.0 or newer.  You probably also want a machine with a fair
 amount of memory available: 1GB is known to be too small for building 
 Rakudo, while 2GB is generally known to be sufficient.
 

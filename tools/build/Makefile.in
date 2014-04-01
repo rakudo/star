@@ -1,10 +1,10 @@
-# Copyright (C) 2006-2012, The Perl Foundation.
+# Copyright (C) 2006-2014, The Perl Foundation.
 # $Id$
 
 PARROT_DIR = parrot
 NQP_DIR    = nqp
 RAKUDO_DIR = rakudo
-STAR_VERSION = 2014.01
+STAR_VERSION = 2014.03
 
 # values from parrot_config
 PREFIX_DIR         = @prefix@

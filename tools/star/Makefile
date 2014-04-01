@@ -1,6 +1,6 @@
-RAKUDO_VER  = 2014.01
-NQP_VER     = 2014.01
-PARROT_VER  = 5.9.0
+RAKUDO_VER  = 2014.03.01
+NQP_VER     = 2014.03
+PARROT_VER  = 6.1.0
 
 STAR_REL    = rakudo-star-$(VERSION)
 STAR_TGZ    = $(STAR_REL).tar.gz
