@@ -1,6 +1,7 @@
 MANIFEST
 rakudo
 nqp
+MoarVM
 parrot
 src
 config.status

@@ -11,7 +11,8 @@ are also free to choose older releases of the compiler, NQP, and/or
 Parrot.  The goal is to balance end-user stability needs with 
 progress being made on the compiler, modules, and other runtime 
 components.  Currently Star is on a monthly release cycle; we 
-expect to slow down to quarterly releases again sometime in 2013.
+expect to slow down to quarterly releases again sometime in the
+future.
 
 =head2 Steps to create a release
 
@@ -50,12 +51,13 @@ reports a clean repository.
 
 Change to the star repository directory, and edit the first three
 lines of tools/star/Makefile to indicate the desired releases of
-Rakudo, NQP, and Parrot to use.
+Rakudo, NQP, MoarVM, and Parrot to use.
 
 Usually that means the last Rakudo release, the NQP version that is in the
-released Rakudo's F<tools/build/NQP_REVISION> file, and the parrot version
-in the F<tools/build/PARROT_REVISION> file that is include in the NQP
-release.
+released Rakudo's F<tools/build/NQP_REVISION> file, the MoarVM version that
+is in the F<tools/build/MOAR_REVISION> file that is included in the NQP
+release, and the Parrot version in the F<tools/build/PARROT_REVISION> file
+that is include in the NQP release.
 
   $ cd star
   $ vi tools/star/Makefile

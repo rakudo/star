@@ -1,60 +1,107 @@
 # Copyright (C) 2006-2014, The Perl Foundation.
 # $Id$
 
-PARROT_DIR = parrot
-NQP_DIR    = nqp
-RAKUDO_DIR = rakudo
+PARROT_DIR   = parrot
+MOAR_DIR     = moarvm
+NQP_DIR      = nqp
+RAKUDO_DIR   = rakudo
 STAR_VERSION = 2014.03
 
-# values from parrot_config
+# install location
 PREFIX_DIR         = @prefix@
+
+# values from parrot_config
 PARROT_BIN_DIR     = @bindir@
 PARROT_VERSION     = @versiondir@
 PARROT_LIB_DIR     = @libdir@$(PARROT_VERSION)
 
+# JVM install location
+JVM_BIN_DIR = $(PREFIX_DIR)/bin
+
+# MoarVM install location
+MOAR_BIN_DIR = $(PREFIX_DIR)/bin
+
 EXE           = @exe@
+BAT           = @bat@
 PERL          = @perl@
 CP            = $(PERL) -MExtUtils::Command -e cp
 RM_F          = $(PERL) -MExtUtils::Command -e rm_f
 MKPATH        = $(PERL) -MExtUtils::Command -e mkpath
 CHMOD         = $(PERL) -MExtUtils::Command -e chmod
 
-# locations of parrot resources
-PARROT_EXE       = $(PARROT_BIN_DIR)/parrot$(EXE)
-P_NQP_EXE        = $(PARROT_BIN_DIR)/nqp-p$(EXE)
-PBC_TO_EXE       = $(PARROT_BIN_DIR)/pbc_to_exe$(EXE)
+PERL6_P_EXE      = perl6-p$(EXE)
+PERL6_P_LANG_DIR = $(PARROT_LIB_DIR)/languages/perl6
+PERL6_P_INSTALL  = $(PARROT_BIN_DIR)/$(PERL6_P_EXE)
 
-PERL6_EXE      = perl6-p$(EXE)
-PERL6_LANG_DIR = $(PARROT_LIB_DIR)/languages/perl6
-PERL6_INSTALL  = $(PARROT_BIN_DIR)/$(PERL6_EXE)
+PERL6_J_EXE      = perl6-j$(BAT)
+PERL6_J_LANG_DIR = $(PREFIX_DIR)/languages/perl6
+PERL6_J_INSTALL  = $(JVM_BIN_DIR)/$(PERL6_J_EXE)
 
+PERL6_M_EXE      = perl6-m$(BAT)
+PERL6_M_LANG_DIR = $(PREFIX_DIR)/languages/perl6
+PERL6_M_INSTALL  = $(MOAR_BIN_DIR)/$(PERL6_M_EXE)
+
+PERL6_EXE        = perl6$(EXE)
+
+<<<<<<< HEAD
+=======
 MODULES = modules/MODULES.txt
 
+>>>>>>> origin/tristar
 all: rakudo
 
-rakudo: $(RAKUDO_DIR)/$(PERL6_EXE)
-$(RAKUDO_DIR)/$(PERL6_EXE):
+rakudo: @backend_exes@
+
+@backend_exes@:
 	@echo "== Configuring and building Rakudo"
 	cd $(RAKUDO_DIR) && $(PERL) Configure.pl --prefix=$(PREFIX_DIR) && $(MAKE)
+
 rakudo-test: rakudo
 	cd $(RAKUDO_DIR) && $(MAKE) test
+
 rakudo-spectest: rakudo
 	cd $(RAKUDO_DIR) && $(MAKE) spectest
+
 rakudo-install: rakudo
 	cd $(RAKUDO_DIR) && $(MAKE) install
-	@win32_libparrot_copy@
-	$(CP) $(DESTDIR)$(PERL6_INSTALL) $(PERL6_EXE)
+	$(CP) $(DESTDIR)@default_backend_exe@ $(PERL6_EXE)
 	$(CHMOD) 755 $(PERL6_EXE)
+	@win32_libparrot_copy@
 
-modules-install: rakudo-install
-	@echo "== Installing modules"
-	$(PERL) tools/build/module-install.pl $(DESTDIR)$(PERL6_INSTALL) $(DESTDIR)$(PERL6_LANG_DIR)/lib $(MODULES)
-	@echo "== Installing binaries"
-	$(PERL) tools/build/bin-install.pl $(PERL6_INSTALL) $(DESTDIR)$(PARROT_BIN_DIR) modules/ufo/bin/ufo modules/panda/bin/panda modules/doc/bin/p6doc
+modules-install: @backend_modules_install@
 
-modules-test:
-	$(PERL) tools/build/modules-test.pl $(CURDIR) $(DESTDIR)$(PERL6_INSTALL) modules/MODULES.txt
+modules-install-p:
+	@echo "== Installing modules for Parrot"
+	$(PERL) tools/build/module-install.pl $(DESTDIR)$(PERL6_P_INSTALL) $(DESTDIR)$(PERL6_P_LANG_DIR)/lib pir pir $(MODULES)
+	@echo "== Installing binaries for Parrot"
+	$(PERL) tools/build/bin-install.pl $(PERL6_P_INSTALL) $(DESTDIR)$(PARROT_BIN_DIR) p modules/ufo/bin/ufo modules/panda/bin/panda modules/doc/bin/p6doc
 
+<<<<<<< HEAD
+=======
+modules-install-j:
+	@echo "== Installing modules for JVM"
+	$(PERL) tools/build/module-install.pl $(DESTDIR)$(PERL6_J_INSTALL) $(DESTDIR)$(PERL6_J_LANG_DIR)/lib jar jar $(MODULES)
+	@echo "== Installing binaries for JVM"
+	$(PERL) tools/build/bin-install.pl $(PERL6_J_INSTALL) $(DESTDIR)$(JVM_BIN_DIR) j modules/ufo/bin/ufo modules/panda/bin/panda modules/doc/bin/p6doc
+
+modules-install-m:
+	@echo "== Installing modules for MoarVM"
+	$(PERL) tools/build/module-install.pl $(DESTDIR)$(PERL6_M_INSTALL) $(DESTDIR)$(PERL6_M_LANG_DIR)/lib moarvm mbc $(MODULES)
+	@echo "== Installing binaries for MoarVM"
+	$(PERL) tools/build/bin-install.pl $(PERL6_M_INSTALL) $(DESTDIR)$(MOAR_BIN_DIR) m modules/ufo/bin/ufo modules/panda/bin/panda modules/doc/bin/p6doc
+
+modules-test: @backend_modules_test@
+
+modules-test-p:
+	$(PERL) tools/build/modules-test.pl $(CURDIR) $(DESTDIR)$(PERL6_P_INSTALL) modules/MODULES.txt
+
+modules-test-j:
+	$(PERL) tools/build/modules-test.pl $(CURDIR) $(DESTDIR)$(PERL6_J_INSTALL) modules/MODULES.txt
+
+modules-test-m:
+	$(PERL) tools/build/modules-test.pl $(CURDIR) $(DESTDIR)$(PERL6_M_INSTALL) modules/MODULES.txt
+
+>>>>>>> origin/tristar
 install: rakudo-install modules-install
 
 test:
@@ -62,7 +109,7 @@ test:
 	@echo "To run the Rakudo compiler tests, use '$(MAKE) rakudo-test'"
 	@echo "To run the Perl 6 spectests, use '$(MAKE) rakudo-spectest'"
 	@echo ""
-	@echo "To run tests for individual modules, try:"
+	@echo "To run tests for individual modules, install and then try:"
 	@echo "  prove -e ./perl6 -r modules/<name>/t"
 	@echo ""
 
@@ -110,8 +157,6 @@ help:
 
 config:
 	$(PERL) Configure.pl
-
-$(PARROT_EXE):
 
 CRITIC_FILES=Configure.pl tools/build/
 
