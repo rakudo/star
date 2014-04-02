@@ -94,17 +94,6 @@ for the Star release.  To bring all modules up to the current
   # pull master in each submodule dir
   $ git submodule foreach git pull origin master
 
-B<ATTENTION!> Currently, the perl6-lwp-simple repo needs to be kept at a
-specific fork/branch, due to changes of a wiki page that get fetched in tests.
-See: https://github.com/cosimo/perl6-lwp-simple/pull/28
-To fix this, run these commands from the top of the star repo:
-
-  $ cd modules/perl6-lwp-simple
-  $ git remote add froggs git@github.com:FROGGS/perl6-lwp-simple.git
-  $ git checkout -b patch-5
-  $ git pull froggs patch-5
-  $ cd -
-
 Then you may commit your update of the submodules:
 
   # commit submodules state to star repo
