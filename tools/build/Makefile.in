@@ -42,11 +42,8 @@ PERL6_M_INSTALL  = $(MOAR_BIN_DIR)/$(PERL6_M_EXE)
 
 PERL6_EXE        = perl6$(EXE)
 
-<<<<<<< HEAD
-=======
-MODULES = modules/MODULES.txt
+MODULES          = modules/MODULES.txt
 
->>>>>>> origin/tristar
 all: rakudo
 
 rakudo: @backend_exes@
@@ -75,8 +72,6 @@ modules-install-p:
 	@echo "== Installing binaries for Parrot"
 	$(PERL) tools/build/bin-install.pl $(PERL6_P_INSTALL) $(DESTDIR)$(PARROT_BIN_DIR) p modules/ufo/bin/ufo modules/panda/bin/panda modules/doc/bin/p6doc
 
-<<<<<<< HEAD
-=======
 modules-install-j:
 	@echo "== Installing modules for JVM"
 	$(PERL) tools/build/module-install.pl $(DESTDIR)$(PERL6_J_INSTALL) $(DESTDIR)$(PERL6_J_LANG_DIR)/lib jar jar $(MODULES)
@@ -92,15 +87,14 @@ modules-install-m:
 modules-test: @backend_modules_test@
 
 modules-test-p:
-	$(PERL) tools/build/modules-test.pl $(CURDIR) $(DESTDIR)$(PERL6_P_INSTALL) modules/MODULES.txt
+	$(PERL) tools/build/modules-test.pl $(CURDIR) $(DESTDIR)$(PERL6_P_INSTALL) $(MODULES)
 
 modules-test-j:
-	$(PERL) tools/build/modules-test.pl $(CURDIR) $(DESTDIR)$(PERL6_J_INSTALL) modules/MODULES.txt
+	$(PERL) tools/build/modules-test.pl $(CURDIR) $(DESTDIR)$(PERL6_J_INSTALL) $(MODULES)
 
 modules-test-m:
-	$(PERL) tools/build/modules-test.pl $(CURDIR) $(DESTDIR)$(PERL6_M_INSTALL) modules/MODULES.txt
+	$(PERL) tools/build/modules-test.pl $(CURDIR) $(DESTDIR)$(PERL6_M_INSTALL) $(MODULES)
 
->>>>>>> origin/tristar
 install: rakudo-install modules-install
 
 test:
