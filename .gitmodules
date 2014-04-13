@@ -39,7 +39,7 @@
 	url = git://github.com/moritz/json
 [submodule "modules/perl6-digest-md5"]
 	path = modules/perl6-digest-md5
-	url = git://github.com/cosimo/perl6-digest-md5
+	url = git://github.com/FROGGS/perl6-digest-md5
 [submodule "modules/panda"]
 	path = modules/panda
 	url = git://github.com/tadzik/panda
