@@ -72,6 +72,8 @@ MAIN: {
     }
     my %backends;
     if (defined $options{backends}) {
+        $options{backends} = 'moar,jvm,parrot'
+            if lc($options{backends}) eq 'all';
         for my $b (split /,\s*/, $options{backends}) {
             $b = lc $b;
             unless ($known_backends{$b}) {
