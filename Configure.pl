@@ -118,6 +118,9 @@ MAIN: {
     $config{backend_modules_test} = join ' ', map
         { 'modules-test-' . lc(substr $_, 0, 1) }
         keys %backends;
+    $config{verbose_backend_modules_test} = join ' ', map
+        { 'verbose-modules-test-' . lc(substr $_, 0, 1) }
+        keys %backends;
     $config{default_backend_exe} = '$(PERL6_' .
         uc(substr $default_backend, 0, 1) .
         '_INSTALL)';
