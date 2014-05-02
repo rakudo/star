@@ -30,7 +30,7 @@ with less.
 Build Prerequisites for Rakudo on the JVM
 -----------------------------------------
 To build Rakudo Star on the JVM, you need at least a 'make' utility,
-both 'java' and 'javac' available in your path, and Perl 5.9.0 or
+both 'java' and 'javac' available in your path, and Perl 5.10.0 or
 newer. The 'java' and 'javac' are obtained by installing a Java
 Development kit, for example openjdk-7 or the Oracle JDK.
 
@@ -43,7 +43,7 @@ can complete within a gigabyte of memory.
 Build Prerequisites for Rakudo on Parrot
 ----------------------------------------
 To build Rakudo Star on Parrot you need at least a 'make' utility, a C
-compiler, and Perl 5.9.0 or newer. You probably also want a machine with
+compiler, and Perl 5.10.0 or newer. You probably also want a machine with
 a fair amount of memory available: 1GB is known to be too small for
 building Rakudo on Parrot, while 2GB is generally known to be sufficient.
 
