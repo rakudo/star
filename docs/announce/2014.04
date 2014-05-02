@@ -3,24 +3,26 @@
 ## A useful, usable, "early adopter" distribution of Perl 6
 
 On behalf of the Rakudo and Perl 6 development teams, I'm happy to
-announce the March 2014 release of "Rakudo Star", a useful and usable
-distribution of Perl 6. The tarball for the March 2014 release is
+announce the April 2014 release of "Rakudo Star", a useful and usable
+distribution of Perl 6. The tarball for the April 2014 release is
 available from <http://rakudo.org/downloads/star/>. A Windows .MSI
 version of Rakudo star will usually appear in the downloads area
 shortly after the tarball release.
 
-This is the first Rakudo Star release with experimental support for
-the JVM and MoarVM backend.
+This is the first Rakudo Star release with support for the MoarVM
+backend (all module tests pass on supported platforms) along with
+experimental support for the JVM backend (some module tests fail).
 
 In the Perl 6 world, we make a distinction between the language
 ("Perl 6") and specific implementations of the language such as
-"Rakudo Perl". This Star release includes [release 2014.03] of the
+"Rakudo Perl". This Star release includes [release 2014.04] of the
 [Rakudo Perl 6 compiler], version 6.1.0 of the [Parrot Virtual
-Machine], version 2014.04 of the [MoarVM], plus various modules,
-documentation, and other resources collected from the Perl 6 community.
+Machine], version 2014.04 of [MoarVM], plus various modules,
+documentation, and other resources collected from the Perl 6
+community.
 
-[release 2014.03]:
-    https://github.com/rakudo/rakudo/blob/nom/docs/announce/2014.03.md
+[release 2014.04]:
+    https://github.com/rakudo/rakudo/blob/nom/docs/announce/2014.04.md
 [Rakudo Perl 6 compiler]: http://github.com/rakudo/rakudo
 [Parrot Virtual Machine]: http://parrot.org
 [MoarVM]: http://moarvm.org/
