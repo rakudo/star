@@ -125,8 +125,8 @@ MAIN: {
         uc(substr $default_backend, 0, 1) .
         '_INSTALL)';
 
-    unless ($backends{parrot}) {
-        warn "JVM/Moar-only builds are currently not supported, and might go wrong.\n";
+    if ($backends{jvm}) {
+        warn "Warning: JVM backend does not yet support all modules\n";
     }
 
     # Save options in config.status
