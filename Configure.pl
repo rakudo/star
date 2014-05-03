@@ -90,22 +90,32 @@ MAIN: {
     }
     else {
         for my $l (sort keys %letter_to_backend) {
-            if (-x "$prefix/bin/nqp-$l" || -x "$prefix/bin/nqp-$l.bat" || -x "$prefix/bin/nqp-$l.exe") {
+            # TODO: needs .exe/.bat magic on windows?
+            if (-x "$prefix/bin/nqp-$l") {
                 my $b = $letter_to_backend{$l};
                 print "Found $prefix/bin/nqp-$l (backend $b)\n";
                 $backends{$b} = 1;
                 $default_backend ||= $b;
             }
         }
+        if (exists $options{'gen-moar'}) {
+            $backends{moar} = 1;
+            $default_backend ||= 'moar';
+        }
+        if (exists $options{'gen-parrot'}) {
+            $backends{parrot} = 1;
+            $default_backend ||= 'parrot';
+        }
         unless (%backends) {
-            if (defined $options{'gen-moar'}) {
-                $backends{moar} = 1;
-                $default_backend = 'moar';
-            }
-            else {
-                $backends{parrot} = 1;
-                $default_backend = 'parrot';
-            }
+            die "No suitable nqp executables found! Please specify some --backends, or a --prefix that contains nqp-{p,j,m} executables\n\n"
+              . "Example to build for all backends (which will take a while):\n"
+              . "\tperl Configure.pl --backends=moar,parrot,jvm --gen-moar --gen-parrot\n\n"
+              . "Example to build for MoarVM only:\n"
+              . "\tperl Configure.pl --gen-moar\n\n"
+              . "Example to build for Parrot only:\n"
+              . "\tperl Configure.pl --gen-parrot\n\n"
+              . "Example to build for JVM only:\n"
+              . "\tperl Configure.pl --backends=jvm --gen-nqp\n\n";
         }
     }
 
@@ -155,6 +165,7 @@ MAIN: {
     my %impls = gen_nqp($nqp_want, prefix => $prefix, backends => join(',', sort keys %backends), %options);
 
     my @errors;
+    my %errors;
     if ($backends{parrot}) {
         my %nqp_config;
         if ($impls{parrot}{config}) {
@@ -179,18 +190,12 @@ MAIN: {
             if @errors;
         }
 
-        if (@errors && !defined $options{'gen-nqp'}) {
-            push @errors,
-            "\nTo automatically clone (git) and build a copy of NQP $nqp_want,",
-            "try re-running Configure.pl with the '--gen-nqp' or '--gen-parrot'",
-            "options.  Or, use '--prefix=' to explicitly",
-            "specify the path where the NQP and Parrot executable can be found that are use to build $lang.";
+        $errors{parrot}{'no gen-nqp'} = @errors && !defined $options{'gen-nqp'};
+
+        unless (@errors) {
+            %config = (%nqp_config, %config);
+            print "Using $impls{parrot}{bin} (version $nqp_config{'nqp::version'}).\n";
         }
-
-        sorry(@errors) if @errors;
-
-        %config = (%nqp_config, %config);
-        print "Using $impls{parrot}{bin} (version $nqp_config{'nqp::version'}).\n";
     }
     if ($backends{jvm}) {
         $config{j_nqp} = $impls{jvm}{bin};
@@ -208,11 +213,54 @@ MAIN: {
             push @errors, "jvm::runtime.jars value not available from $bin --show-config.";
         }
 
-        sorry(@errors) if @errors;
+        $errors{jvm}{'no gen-nqp'} = @errors && !defined $options{'gen-nqp'};
 
-        print "Using $bin.\n";
-
+        unless (@errors) {
+            %config = (%nqp_config, %config);
+            print "Using $bin.\n";
+        }
     }
+    if ($backends{moar}) {
+        $config{m_nqp} = $impls{moar}{bin};
+        $config{m_nqp} =~ s{/}{\\}g if $^O eq 'MSWin32';
+        my %nqp_config;
+        if ( $impls{moar}{config} ) {
+            %nqp_config = %{ $impls{moar}{config} };
+        }
+        else {
+            push @errors, "Unable to read configuration from NQP on MoarVM";
+        }
+
+        $errors{moar}{'no gen-nqp'} = @errors && !defined $options{'gen-nqp'};
+
+        unless (@errors) {
+            %config = (%nqp_config, %config);
+            print "Using $config{m_nqp} (version $nqp_config{'nqp::version'} / MoarVM $nqp_config{'moar::version'}).\n";
+        }
+    }
+
+    if ($errors{parrot}{'no gen-nqp'} || $errors{jvm}{'no gen-nqp'} || $errors{moar}{'no gen-nqp'}) {
+        my @options_to_pass;
+        push @options_to_pass, "--gen-parrot" if $backends{parrot};
+        push @options_to_pass, "--gen-moar"   if $backends{moar};
+        push @options_to_pass, "--gen-nqp"    unless @options_to_pass;
+        my $options_to_pass  = join ' ', @options_to_pass;
+        my $want_executables = $backends{parrot} && $backends{moar}
+                             ? ', Parrot and MoarVM'
+                             : $backends{parrot}
+                             ? ' and Parrot'
+                             : $backends{moar}
+                             ? ' and MoarVM'
+                             : '';
+        my $s1               = @options_to_pass > 1 ? 's' : '';
+        my $s2               = $want_executables    ? 's' : '';
+        push @errors,
+        "\nTo automatically clone (git) and build a copy of NQP $nqp_want,",
+        "try re-running Configure.pl with the '$options_to_pass' option$s1.",
+        "Or, use '--prefix=' to explicitly specify the path where the NQP$want_executables",
+        "executable$s2 can be found that are use to build $lang.";
+    }
+    sorry(@errors) if @errors;
 
     fill_template_file('tools/build/Makefile.in', 'Makefile', %config);
 
