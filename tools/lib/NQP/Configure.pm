@@ -313,7 +313,7 @@ sub gen_nqp {
             my $nqp_have = $c{'nqp::version'} || '';
             my $nqp_ok   = $nqp_have && cmp_rev($nqp_have, $nqp_want) >= 0;
             if ($nqp_ok) {
-                $impls{$b}{config} = \%c;
+                $impls{$b}{config} = \%c if %c;
             }
             else {
                 $need{$b} = 1;
