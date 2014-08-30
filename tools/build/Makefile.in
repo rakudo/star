@@ -4,7 +4,7 @@ PARROT_DIR   = parrot
 MOAR_DIR     = moarvm
 NQP_DIR      = nqp
 RAKUDO_DIR   = rakudo
-STAR_VERSION = 2014.06
+STAR_VERSION = 2014.08
 
 # install location
 PREFIX_DIR         = @prefix@
