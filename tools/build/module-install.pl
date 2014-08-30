@@ -77,9 +77,7 @@ do {
     print "== Precompiling modules\n";
     chdir 'rakudo';
     foreach my $pm (@pmfiles) {
-        my $out = $pm;
-        $out =~ s/\.pm6?$/.$compext/;
-        my @cmd = ($perl6bin, "--target=$comptarget", "--output=$out", $pm);
+        my @cmd = ($perl6bin, "--target=$comptarget", "--output=$pm.$compext", $pm);
         print join(' ', @cmd), "\n";
         system(@cmd);
     }
