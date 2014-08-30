@@ -220,7 +220,7 @@ You're done!  Celebrate with the appropriate amount of fun.
     Release         Release manager
     =======         ===============
 
-    2014.04         jnthn
+    2014.09         
 
 =head2 List of Previous Star Releases
 
@@ -260,6 +260,8 @@ You're done!  Celebrate with the appropriate amount of fun.
     2013.12         lue
     2014.01         tadzik
     2014.03         FROGGS
+    2014.04         jnthn
+    2014.08         FROGGS
 
 =cut
 
