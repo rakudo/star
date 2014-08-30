@@ -267,9 +267,11 @@ MAIN: {
     unless ($options{'no-clean'}) {
         no warnings;
         print "Cleaning up ...\n";
-        if (open my $CLEAN, '-|', "$make configclean") {
-            my @slurp = <$CLEAN>;
-            close($CLEAN);
+        for my $p ('', map { "-$_" } @prefixes) {
+            if (open my $CLEAN, '-|', "$make configclean$p") {
+                my @slurp = <$CLEAN>;
+                close($CLEAN);
+            }
         }
     }
 

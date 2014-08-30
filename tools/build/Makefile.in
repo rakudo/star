@@ -131,7 +131,13 @@ realclean: clean
 configclean:
 	$(RM_F) $(CLEANUPS)
 	cd $(NQP_DIR) && $(MAKE) clean
+
+configclean-p:
 	cd $(PARROT_DIR) && $(MAKE) clean
+
+configclean-j:
+
+configclean-m:
 
 testclean:
 
