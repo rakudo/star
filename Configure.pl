@@ -119,6 +119,7 @@ MAIN: {
         }
     }
 
+    $config{backends} = join ',', keys %backends;
     $config{backend_exes} = join ' ', map
         { '$(RAKUDO_DIR)/$(PERL6_' . uc(substr $_, 0, 1) . '_EXE)' }
         keys %backends;
