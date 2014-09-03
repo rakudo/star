@@ -15,7 +15,7 @@
               <Component Id="RakudoStartItems" Guid="B5BD7AEC-C8dC-4F84-AF2E-4A417350D642">
                 <Shortcut Id="RakudoShortcut" 
                           Name="Rakudo Perl 6"
-                          Target="[INSTALLROOT]bin\perl6.exe" 
+                          Target="[INSTALLROOT]bin\perl6" 
                           WorkingDirectory="INSTALLROOT" />
                 <RemoveFolder Id="RakudoMenuFolder" On="uninstall" />
                 <RegistryValue Root="HKCU" Key="Software\Microsoft\RakudoPerl6" Name="installed" Type="integer" Value="1" KeyPath="yes" />
