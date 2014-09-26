@@ -1,9 +1,9 @@
 
-mkdir 'install';
-mkdir 'install/languages';
-mkdir 'install/languages/perl6';
-mkdir 'install/languages/perl6/site';
-mkdir 'install/languages/perl6/site/panda';
+try mkdir 'install';
+try mkdir 'install/languages';
+try mkdir 'install/languages/perl6';
+try mkdir 'install/languages/perl6/site';
+try mkdir 'install/languages/perl6/site/panda';
 
 my $state-file    = 'install/languages/perl6/site/panda/state';
 my $projects-file = 'install/languages/perl6/site/panda/projects.json';
