@@ -71,18 +71,21 @@ modules-install-p:
 	$(PERL) tools/build/module-install.pl $(DESTDIR)$(PERL6_P_INSTALL) $(DESTDIR)$(PERL6_P_LANG_DIR)/lib pir pir $(MODULES)
 	@echo "== Installing binaries for Parrot"
 	$(PERL) tools/build/bin-install.pl $(PERL6_P_INSTALL) $(DESTDIR)$(PARROT_BIN_DIR) p modules/ufo/bin/ufo modules/panda/bin/panda modules/doc/bin/p6doc
+	$(PERL) tools/build/bin-install.pl $(PERL6_P_INSTALL) $(DESTDIR)$(PARROT_BIN_DIR) p modules/ufo/bin/ufo modules/panda/bin/panda modules/doc/bin/p6doc-index
 
 modules-install-j:
 	@echo "== Installing modules for JVM"
 	$(PERL) tools/build/module-install.pl $(DESTDIR)$(PERL6_J_INSTALL) $(DESTDIR)$(PERL6_J_LANG_DIR)/lib jar jar $(MODULES)
 	@echo "== Installing binaries for JVM"
 	$(PERL) tools/build/bin-install.pl $(PERL6_J_INSTALL) $(DESTDIR)$(JVM_BIN_DIR) j modules/ufo/bin/ufo modules/panda/bin/panda modules/doc/bin/p6doc
+	$(PERL) tools/build/bin-install.pl $(PERL6_J_INSTALL) $(DESTDIR)$(JVM_BIN_DIR) j modules/ufo/bin/ufo modules/panda/bin/panda modules/doc/bin/p6doc-index
 
 modules-install-m:
 	@echo "== Installing modules for MoarVM"
 	$(PERL) tools/build/module-install.pl $(DESTDIR)$(PERL6_M_INSTALL) $(DESTDIR)$(PERL6_M_LANG_DIR)/lib moarvm mbc $(MODULES)
 	@echo "== Installing binaries for MoarVM"
 	$(PERL) tools/build/bin-install.pl $(PERL6_M_INSTALL) $(DESTDIR)$(MOAR_BIN_DIR) m modules/ufo/bin/ufo modules/panda/bin/panda modules/doc/bin/p6doc
+	$(PERL) tools/build/bin-install.pl $(PERL6_M_INSTALL) $(DESTDIR)$(MOAR_BIN_DIR) m modules/ufo/bin/ufo modules/panda/bin/panda modules/doc/bin/p6doc-index
 
 modules-test: @backend_modules_test@
 verbose-modules-test: @backend_modules_test@
