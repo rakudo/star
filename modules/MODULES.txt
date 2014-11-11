@@ -27,4 +27,4 @@ DBIish
 jsonrpc                                   # uses PSGI
 Pod-To-HTML
 doc
-rakudo-debugger
+debugger-ui-commandline
