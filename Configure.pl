@@ -60,9 +60,13 @@ MAIN: {
         );
     }
 
-
-    $options{prefix} ||= 'install';
+    unless (defined $options{prefix}) {
+        my $dir = getcwd;
+        print "ATTENTION: no --prefix supplied, building and installing to $dir/install\n";
+        $options{prefix} = 'install';
+    }
     $options{prefix} = File::Spec->rel2abs($options{prefix});
+
     my $prefix         = $options{'prefix'};
     my %known_backends = (parrot => 1, jvm => 1, moar => 1);
     my %letter_to_backend;
