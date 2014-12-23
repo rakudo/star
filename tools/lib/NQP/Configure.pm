@@ -19,7 +19,7 @@ our $bat = $^O eq 'MSWin32' ? '.bat' : '';
 our @required_parrot_files = qw(
     @bindir@/parrot@exe@
     @bindir@/pbc_to_exe@exe@
-    @bindir@/ops2c@exe@
+    @bindir@/@ops2c@@exe@
     @libdir@@versiondir@/tools/build/pmc2c.pl
     @srcdir@@versiondir@/pmc
     @includedir@@versiondir@/pmc
@@ -146,6 +146,7 @@ END
         last if %config;
     }
     unlink('parrot-config.pir');
+    $config{'parrot::ops2c'} ||= 'ops2c';
     return %config;
 }
 
@@ -168,8 +169,10 @@ sub fill_template_file {
     my @infiles = ref($infile) ? @$infile : $infile;
     for my $if (@infiles) {
         my $text = slurp( $if );
+        print $OUT "\n# Generated from $if\n";
         $text = fill_template_text($text, %config);
         print $OUT $text;
+        print $OUT "\n\n# (end of section generated from $if)\n\n";
     }
     unless (ref $outfile) {
         close($OUT) or die "Error while writing '$outfile': $!";
@@ -291,10 +294,11 @@ sub gen_nqp {
             my $bin = fill_template_text('@bindir@/nqp-p@ext@', %c);
             $impls{parrot}{bin} = $bin;
             %c  = read_config($bin);
+            $impls{parrot}{config} = \%c;
             my $nqp_have = $c{'nqp::version'};
             my $nqp_ok   = $nqp_have && cmp_rev($nqp_have, $nqp_want) >= 0;
             if ($nqp_ok) {
-                $impls{parrot}{config} = \%c;
+                $impls{parrot}{ok} = 1;
             }
             else {
                 $need{parrot} = 1;
@@ -311,9 +315,10 @@ sub gen_nqp {
             $impls{$b}{bin} = $bin;
             my %c = read_config($bin);
             my $nqp_have = $c{'nqp::version'} || '';
+            $impls{$b}{config} = \%c if %c;
             my $nqp_ok   = $nqp_have && cmp_rev($nqp_have, $nqp_want) >= 0;
             if ($nqp_ok) {
-                $impls{$b}{config} = \%c if %c;
+                $impls{$b}{ok} = 1;
             }
             else {
                 $need{$b} = 1;
@@ -357,6 +362,7 @@ sub gen_nqp {
         my %c = read_config($impls{$k}{bin});
         %c = (%{ $impls{$k}{config} || {} }, %c);
         $impls{$k}{config} = \%c;
+        $impls{$k}{ok} = 1;
     }
     return %impls;
 }
