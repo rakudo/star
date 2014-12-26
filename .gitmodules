@@ -60,7 +60,7 @@
 	url = git://github.com/perl6/DBIish
 [submodule "modules/uri"]
 	path = modules/uri
-	url = git://github.com/colomon/uri
+	url = git://github.com/perl6-community-modules/uri
 [submodule "modules/perl6-lwp-simple"]
 	path = modules/perl6-lwp-simple
 	url = git://github.com/cosimo/perl6-lwp-simple
