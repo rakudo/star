@@ -28,6 +28,12 @@ wish to do so. Step 8 will make sure you do this regardless.
 
 =over 4
 
+=item 0.
+
+Make sure you have working C<perl6> binary in your C<$PATH>. Refer to
+L<http://rakudo.org/how-to-get-rakudo/> for how to do that. The exact version
+isn't very important at the moment, it just shouldn't be a year out of date.
+
 =item 1.
 
 Clone the git@github.com:rakudo/star repository.
