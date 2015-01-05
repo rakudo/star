@@ -15,7 +15,7 @@ my $projects = from-json $projects-file.IO.slurp;
 # In case we ship a project that is just a fork of a project listed in the ecosystem, add
 # the mapping here.
 my %ex =
-    'git://github.com/FROGGS/perl6-digest-md5' => 'git://github.com/cosimo/perl6-digest-md5',
+#    'git://github.com/FROGGS/perl6-digest-md5' => 'git://github.com/cosimo/perl6-digest-md5',
 ;
 
 # Walk the submodules and put its project information in panda's state file.
