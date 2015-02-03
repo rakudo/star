@@ -21,7 +21,7 @@ Nil;
 # Walk the submodules and put its project information in panda's state file.
 my $fh = $state-file.IO.open(:w);
 for '.gitmodules'.IO.lines.grep(/^\turl/).map({ /$<url>=[\S+]$/; ~$<url> }) -> $url {
-    my $p          = $projects.first({$_.<source-url> ~~ /^ "{%ex{$url} // $url}" '.git'? $/});
+    my $p          = $projects.first({defined .<source-url> && $_.<source-url> ~~ /^ "{%ex{$url} // $url}" '.git'? $/});
     $p<repo-type>  = 'git';
     $p<source-url> = $url;
     $fh.say: $p<name> ~ ' installed ' ~ to-json($p).subst(/\n+/, '', :g);
