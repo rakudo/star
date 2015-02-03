@@ -16,7 +16,10 @@ for my $filename (@files) {
         or die "Cannot write file '$dest/$basename' for installing it: $!";
     while (<$IN>) {
         if ($. == 1 && /^#!/) {
-            print { $OUT } "#!$p6bin\n";
+            # https://github.com/rakudo/star/issues/42
+            # on Mac OS X, the interpreter must be a binary, so perl6-m
+            # isn't a good choice; go with /usr/bin/env instead
+            print { $OUT } "#!/usr/bin/env $p6bin\n";
         }
         else {
             print { $OUT } $_;
