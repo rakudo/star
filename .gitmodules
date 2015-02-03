@@ -1,4 +1,4 @@
-[submodule "modules/rakudo-debugger"]
+[submodule "modules/debugger-ui-commandline"]
 	path = modules/debugger-ui-commandline
 	url = git://github.com/jnthn/rakudo-debugger
 [submodule "modules/ufo"]
