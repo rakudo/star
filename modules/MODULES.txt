@@ -4,8 +4,6 @@ zavolaj
 xml-writer
 svg                                       # uses XML::Writer
 svg-plot                                  # uses SVG
-Math-RungeKutta
-Math-Model                                # uses Math::RungeKutta, SVG
 perl6-Term-ANSIColor
 test-mock
 Grammar-Profiler-Simple
