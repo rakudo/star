@@ -226,8 +226,7 @@ You're done!  Celebrate with the appropriate amount of fun.
     Release         Release manager
     =======         ===============
 
-    2014.09         FROGGS
-    2014.10         
+    2015.02         ???
 
 =head2 List of Previous Star Releases
 
@@ -269,6 +268,9 @@ You're done!  Celebrate with the appropriate amount of fun.
     2014.03         FROGGS
     2014.04         jnthn
     2014.08         FROGGS
+    2014.09         FROGGS
+    2014.12         moritz
+    2015.01         moritz
 
 =cut
 
