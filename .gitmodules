@@ -4,9 +4,6 @@
 [submodule "modules/ufo"]
 	path = modules/ufo
 	url = git://github.com/masak/ufo
-[submodule "modules/zavolaj"]
-	path = modules/zavolaj
-	url = git://github.com/jnthn/zavolaj
 [submodule "modules/xml-writer"]
 	path = modules/xml-writer
 	url = git://github.com/masak/xml-writer

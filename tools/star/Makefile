@@ -57,12 +57,12 @@ $(MOAR_SRC):
 	mkdir -p $(SRC_DIR)
 	$(WGET) $(MOAR_URL) -O $(MOAR_SRC)
 
-modules/zavolaj/lib:
+modules/DBIish/lib:
 	@echo "Updating submodules"
 	git submodule init
 	git submodule update
 
-manifest: modules/zavolaj/lib
+manifest: modules/DBIish/lib
 	echo MANIFEST >MANIFEST
 	git ls-files >>MANIFEST
 	$(PREFIX) rakudo/ rakudo/MANIFEST >>MANIFEST
