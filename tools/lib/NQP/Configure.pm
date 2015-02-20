@@ -7,34 +7,23 @@ use File::Copy qw(copy);
 use base qw(Exporter);
 our @EXPORT_OK = qw(sorry slurp system_or_die
                     cmp_rev 
-                    read_parrot_config read_config
+                    read_config
                     fill_template_file fill_template_text 
                     git_checkout
                     verify_install gen_moar
-                    gen_nqp gen_parrot);
+                    gen_nqp );
 
 our $exe = $^O eq 'MSWin32' ? '.exe' : '';
 our $bat = $^O eq 'MSWin32' ? '.bat' : '';
-
-our @required_parrot_files = qw(
-    @bindir@/parrot@exe@
-    @bindir@/pbc_to_exe@exe@
-    @bindir@/@ops2c@@exe@
-    @libdir@@versiondir@/tools/build/pmc2c.pl
-    @srcdir@@versiondir@/pmc
-    @includedir@@versiondir@/pmc
-);
 
 our @required_nqp_files = qw(
     @bindir@/nqp-p@exe@
 );
 
 our $nqp_git = 'http://github.com/perl6/nqp.git';
-our $par_git = 'http://github.com/parrot/parrot.git';
 our $moar_git= 'https://github.com/MoarVM/MoarVM.git';
 
 our $nqp_push = 'git@github.com:perl6/nqp.git';
-our $par_push = 'git@github.com:parrot/parrot.git';
 our $moar_push= 'git@github.com:MoarVM/MoarVM.git';
 
 sub sorry {
@@ -100,57 +89,6 @@ sub read_config {
 }
 
 
-sub read_parrot_config {
-    my @parrot_config_src = @_;
-    my %config = ();
-    open my $CONFIG_PIR, '>', 'parrot-config.pir'
-      or die "Unable to write parrot-config.pir\n";
-    print $CONFIG_PIR <<'END';
-        .include 'iglobals.pasm'
-        .sub "main" :main
-            .local pmc interp, config_hash, config_iter
-            interp = getinterp
-            config_hash = interp[.IGLOBALS_CONFIG_HASH]
-            config_iter = iter config_hash
-          config_loop:
-            unless config_iter goto config_done
-            $P0 = shift config_iter
-            print "parrot::"
-            $S0 = $P0.'key'()
-            print $S0
-            print "="
-            $S0 = $P0.'value'()
-            print $S0
-            print "\n"
-            goto config_loop
-          config_done:
-            .return ()
-        .end
-END
-    close($CONFIG_PIR);
-    
-    for my $file (@parrot_config_src) {
-        no warnings;
-        if ($file =~ /.pir$/ && open my $PARROT_CONFIG, '<', $file) {
-            while (<$PARROT_CONFIG>) {
-                if (/P0\["(.*?)"\], "(.*?)"/) { $config{"parrot::$1"} = $2 }
-            }
-            close($PARROT_CONFIG) or die $!;
-        }
-        elsif (open my $PARROT, '-|', "\"$file\" parrot-config.pir") {
-            while (<$PARROT>) {
-                if (/^([\w:]+)=(.*)/) { $config{$1} = $2 }
-            }
-            close($PARROT);
-        }
-        last if %config;
-    }
-    unlink('parrot-config.pir');
-    $config{'parrot::ops2c'} ||= 'ops2c';
-    return %config;
-}
-
-
 sub fill_template_file {
     my $infile = shift;
     my $outfile = shift;
@@ -190,8 +128,8 @@ sub fill_template_text {
         $str;
     };
 
-    $text =~ s/@@([:\w]+)@@/$escape->($config{$1} || $config{"parrot::$1"} || '')/ge;
-    $text =~ s/@([:\w]+)@/$config{$1} || $config{"parrot::$1"} || ''/ge;
+    $text =~ s/@@([:\w]+)@@/$escape->($config{$1} || '')/ge;
+    $text =~ s/@([:\w]+)@/$config{$1} || ''/ge;
     if ($text =~ /nqp::makefile/) {
         if ($^O eq 'MSWin32') {
             $text =~ s{/}{\\}g;
@@ -278,7 +216,6 @@ sub gen_nqp {
     my $backends    = $options{'backends'};
     my $gen_nqp     = $options{'gen-nqp'};
     my $gen_moar    = $options{'gen-moar'};
-    my $gen_parrot  = $options{'gen-parrot'};
     my $prefix      = $options{'prefix'} || cwd().'/install';
     my $startdir    = cwd();
 
@@ -287,27 +224,6 @@ sub gen_nqp {
 
     my (%impls, %need);
 
-    if ($backends =~ /parrot/) {
-        my %c = read_parrot_config("$prefix/bin/parrot");
-
-        if (%c) {
-            my $bin = fill_template_text('@bindir@/nqp-p@ext@', %c);
-            $impls{parrot}{bin} = $bin;
-            %c  = read_config($bin);
-            $impls{parrot}{config} = \%c;
-            my $nqp_have = $c{'nqp::version'};
-            my $nqp_ok   = $nqp_have && cmp_rev($nqp_have, $nqp_want) >= 0;
-            if ($nqp_ok) {
-                $impls{parrot}{ok} = 1;
-            }
-            else {
-                $need{parrot} = 1;
-            }
-        }
-        else {
-            $need{parrot} = 1;
-        }
-    }
     for my $b (qw/jvm moar/) {
         if ($backends =~ /$b/) {
             my $postfix = substr $b, 0, 1;
@@ -328,16 +244,8 @@ sub gen_nqp {
 
     return %impls unless %need;
 
-    if (defined $gen_nqp || defined $gen_parrot || defined $gen_moar) {
+    if (defined $gen_nqp || defined $gen_moar) {
         git_checkout($nqp_git, 'nqp', $nqp_want, $nqp_push);
-    }
-
-    if ($need{parrot} && defined $gen_parrot) {
-        my ($par_want) = split(' ', slurp($PARROT_REVISION));
-        my $parrot = gen_parrot($par_want, %options, prefix => $prefix);
-        my %c = read_parrot_config($parrot);
-        $impls{parrot}{bin} = fill_template_text('@bindir@/nqp-p@ext@', %c);
-        $impls{parrot}{config} = \%c;
     }
 
     if ($need{moar} && defined $gen_moar) {
@@ -346,7 +254,7 @@ sub gen_nqp {
         $impls{moar}{bin} = "$prefix/bin/nqp-m$bat";
     }
 
-    return %impls unless defined($gen_nqp) || defined($gen_parrot) || defined($gen_moar);
+    return %impls unless defined($gen_nqp) || defined($gen_moar);
 
     my $backends_to_build = join ',', sort keys %need;
     my @cmd = ($^X, 'Configure.pl', "--prefix=$prefix",
@@ -365,68 +273,6 @@ sub gen_nqp {
         $impls{$k}{ok} = 1;
     }
     return %impls;
-}
-
-
-sub gen_parrot {
-    my $par_want = shift;
-    my %options  = @_;
-
-    my $prefix     = $options{'prefix'} || cwd()."/install";
-    my $gen_parrot = $options{'gen-parrot'};
-    my @opts       = @{ $options{'parrot-option'} || [] };
-    push @opts, "--optimize";
-    my $startdir   = cwd();
-
-    my $par_exe  = "$options{'prefix'}/bin/parrot$exe";
-    my %config   = read_parrot_config($par_exe);
-
-    my $par_have = $config{'parrot::git_describe'} || '';
-    my $par_ok   = $par_have && cmp_rev($par_have, $par_want) >= 0;
-    if ($gen_parrot) {
-        my $par_repo = git_checkout($par_git, 'parrot', $gen_parrot, $par_push);
-        $par_ok = $par_have eq $par_repo;
-    }
-    elsif (!$par_ok) {
-        git_checkout($par_git, 'parrot', $par_want, $par_push);
-    }
-
-    if ($par_ok) {
-        print "$par_exe is Parrot $par_have.\n";
-        return $par_exe;
-    }
-    chdir("$startdir/parrot") or die $!;
-    if (-f 'Makefile') {
-        %config = read_parrot_config('config_lib.pir');
-        my $make = $config{'parrot::make'};
-        if ($make) {
-            print "\nPerforming '$make realclean' ...\n";
-            system_or_die($make, 'realclean');
-        }
-    }
-
-    $prefix =~ s{\\}{/}g;
-
-    print "\nConfiguring Parrot ...\n";
-    my @cmd = ($^X, "Configure.pl", @opts, "--prefix=$prefix");
-    print "@cmd\n";
-    system_or_die(@cmd);
-
-    print "\nBuilding Parrot ...\n";
-    %config = read_parrot_config('config_lib.pir');
-    my $make = $config{'parrot::make'} or
-        die "Unable to determine value for 'make' from parrot config\n";
-    system_or_die($make, 'install-dev');
-    chdir($startdir);
-
-    # That is a hack to get the import-lib in place. Parrot seems unpatchable because
-    # its static build shares the same libname as the import-lib.
-    if (-e "$startdir/parrot/libparrot.lib" && !-e "$startdir/install/bin/libparrot.lib") {
-        copy("$startdir/parrot/libparrot.lib", "$startdir/install/bin/libparrot.lib");
-    }
-
-    print "Parrot installed.\n";
-    return fill_template_text('@bindir@/parrot@exe@', %config);
 }
 
 sub gen_moar {

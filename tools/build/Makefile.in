@@ -1,6 +1,5 @@
 # Copyright (C) 2006-2014, The Perl Foundation.
 
-PARROT_DIR   = parrot
 MOAR_DIR     = moarvm
 NQP_DIR      = nqp
 RAKUDO_DIR   = rakudo
@@ -8,11 +7,6 @@ STAR_VERSION = 2015.02
 
 # install location
 PREFIX_DIR         = @prefix@
-
-# values from parrot_config
-PARROT_BIN_DIR     = @bindir@
-PARROT_VERSION     = @versiondir@
-PARROT_LIB_DIR     = @libdir@$(PARROT_VERSION)
 
 # JVM install location
 JVM_BIN_DIR = $(PREFIX_DIR)/bin
@@ -27,10 +21,6 @@ CP            = $(PERL) -MExtUtils::Command -e cp
 RM_F          = $(PERL) -MExtUtils::Command -e rm_f
 MKPATH        = $(PERL) -MExtUtils::Command -e mkpath
 CHMOD         = $(PERL) -MExtUtils::Command -e chmod
-
-PERL6_P_EXE      = perl6-p$(EXE)
-PERL6_P_LANG_DIR = $(PARROT_LIB_DIR)/languages/perl6
-PERL6_P_INSTALL  = $(PARROT_BIN_DIR)/$(PERL6_P_EXE)
 
 PERL6_J_EXE      = perl6-j$(BAT)
 PERL6_J_LANG_DIR = $(PREFIX_DIR)/languages/perl6
@@ -62,16 +52,8 @@ rakudo-install: rakudo
 	cd $(RAKUDO_DIR) && $(MAKE) install
 	$(CP) $(DESTDIR)@default_backend_exe@ $(PERL6_EXE)
 	$(CHMOD) 755 $(PERL6_EXE)
-	@win32_libparrot_copy@
 
 modules-install: @backend_modules_install@
-
-modules-install-p:
-	@echo "== Installing modules for Parrot"
-	$(PERL) tools/build/module-install.pl $(DESTDIR)$(PERL6_P_INSTALL) $(DESTDIR)$(PERL6_P_LANG_DIR)/lib pir pir $(MODULES)
-	@echo "== Installing binaries for Parrot"
-	$(PERL) tools/build/bin-install.pl $(PERL6_P_INSTALL) $(DESTDIR)$(PARROT_BIN_DIR) p modules/ufo/bin/ufo modules/panda/bin/panda modules/doc/bin/p6doc
-	$(PERL) tools/build/bin-install.pl $(PERL6_P_INSTALL) $(DESTDIR)$(PARROT_BIN_DIR) p modules/ufo/bin/ufo modules/panda/bin/panda modules/doc/bin/p6doc-index
 
 modules-install-j:
 	@echo "== Installing modules for JVM"
@@ -89,11 +71,6 @@ modules-install-m:
 
 modules-test: @backend_modules_test@
 verbose-modules-test: @backend_modules_test@
-
-modules-test-p:
-	$(PERL) tools/build/modules-test.pl $(CURDIR) $(DESTDIR)$(PERL6_P_INSTALL) $(MODULES)
-verbose-modules-test-p:
-	$(PERL) tools/build/modules-test.pl --verbose $(CURDIR) $(DESTDIR)$(PERL6_P_INSTALL) $(MODULES)
 
 modules-test-j:
 	$(PERL) tools/build/modules-test.pl $(CURDIR) $(DESTDIR)$(PERL6_J_INSTALL) $(MODULES)
@@ -121,7 +98,6 @@ clean:
 	$(RM_F) $(CLEANUPS)
 	cd $(RAKUDO_DIR) && $(MAKE) clean
 	cd $(NQP_DIR) && $(MAKE) clean
-	cd $(PARROT_DIR) && $(MAKE) clean
 
 distclean: realclean
 
@@ -129,14 +105,10 @@ realclean: clean
 	$(RM_F) Makefile
 	cd $(RAKUDO_DIR) && $(MAKE) realclean
 	cd $(NQP_DIR) && $(MAKE) realclean
-	cd $(PARROT_DIR) && $(MAKE) realclean
 
 configclean:
 	$(RM_F) $(CLEANUPS)
 	cd $(NQP_DIR) && $(MAKE) clean
-
-configclean-p:
-	cd $(PARROT_DIR) && $(MAKE) clean
 
 configclean-j:
 
@@ -173,7 +145,7 @@ perlcritic:
 	perlcritic -1 --profile tools/util/perlcritic.conf $(CRITIC_FILES)
 
 msi:
-	-$(CP) c:/strawberry/c/bin/libgcc_s_sjlj-1.dll $(PARROT_BIN_DIR)
+	-$(CP) c:/strawberry/c/bin/libgcc_s_sjlj-1.dll
 	cmd /c heat dir $(PREFIX_DIR) -gg -sfrag -cg RakudoStar -dr INSTALLROOT -srd -out star-files.wxs
 	cmd /c candle star-files.wxs
 	cmd /c candle -dSTARVERSION=$(STAR_VERSION) tools/build/star-product.wxs

@@ -8,7 +8,7 @@ varies from one release to the next.
 Also, while the Rakudo compiler issues monthly releases; Star
 releases are free to choose a longer release cycle.  Star releases
 are also free to choose older releases of the compiler, NQP, and/or
-Parrot.  The goal is to balance end-user stability needs with 
+MoarVM.  The goal is to balance end-user stability needs with 
 progress being made on the compiler, modules, and other runtime 
 components.  Currently Star is on a monthly release cycle; we 
 expect to slow down to quarterly releases again sometime in the
@@ -57,13 +57,12 @@ reports a clean repository.
 
 Change to the star repository directory, and edit the first four
 lines of F<tools/star/Makefile> to indicate the desired releases of
-Rakudo, NQP, MoarVM, and Parrot to use.
+Rakudo, NQP and MoarVM to use.
 
 Usually that means the last Rakudo release, the NQP version that is in the
 released Rakudo's F<tools/build/NQP_REVISION> file, the MoarVM version that
 is in the F<tools/build/MOAR_REVISION> file that is included in the NQP
-release, and the Parrot version in the F<tools/build/PARROT_REVISION> file
-that is include in the NQP release.
+release.
 
   $ cd star
   $ vi tools/star/Makefile
@@ -154,7 +153,7 @@ Unpack the tarball somewhere else, and do a test build/install:
   $ cd work
   $ tar xvfz ../rakudo-star-2012.08.tar.gz
   $ cd rakudo-star-2012.08
-  $ perl Configure.pl --gen-parrot
+  $ perl Configure.pl --gen-moar
   $ make install
   $ make rakudo-test
   $ make rakudo-spectest
@@ -197,8 +196,6 @@ Publicize the release in the appropriate places.  These include:
 =item * perl6-language@perl.org
 
 =item * perl6-compiler@perl.org
-
-=item * parrot-users@lists.parrot.org
 
 =item * http://en.wikipedia.org/wiki/Rakudo_Perl_6
 
