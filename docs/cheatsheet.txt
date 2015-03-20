@@ -46,7 +46,7 @@ or xor            Stringy: eq  !eq(ne) ~ lt     gt    leg le     ge
                  ObjectID: ===  !===
 METAOPERATORS                         LINKS      IRC
 [op] reduce listop to A op B op C...  perl6.org  #perl6 irc.freenode.net
-op=  A = A op B                       rakudo.org #parrot irc.perl.org
+op=  A = A op B                       rakudo.org #moarvm irc.freenode.net
 !op  !(A op B)
 »op« hyper/vectorize    REGEX  METACHARS          REGEX MODIFIERS
 Zop  zip with op        ^ $    string begin/end   :i   ignore case

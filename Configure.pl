@@ -34,8 +34,6 @@ MAIN: {
     GetOptions(\%options, 'help!', 'prefix=s',
                'backends=s', 'no-clean!',
                'gen-nqp:s', 'gen-moar:s',
-               'gen-parrot:s', 'parrot-option=s@',
-               'parrot-make-option=s@',
                'make-install!', 'makefile-timing!',
                'force!',
     ) or do {
@@ -68,7 +66,7 @@ MAIN: {
     $options{prefix} = File::Spec->rel2abs($options{prefix});
 
     my $prefix         = $options{'prefix'};
-    my %known_backends = (parrot => 1, jvm => 1, moar => 1);
+    my %known_backends = (jvm => 1, moar => 1);
     my %letter_to_backend;
     my $default_backend;
     for (keys %known_backends) {
@@ -76,10 +74,13 @@ MAIN: {
     }
     my %backends;
     if (defined $options{backends}) {
-        $options{backends} = 'moar,jvm,parrot'
+        $options{backends} = 'moar,jvm'
             if lc($options{backends}) eq 'all';
         for my $b (split /,\s*/, $options{backends}) {
             $b = lc $b;
+            if ($b eq 'parrot') {
+                die "Parrot support has been suspended from Rakudo Star. Please use version 2015.02 if you need Parrot support, or otherwise the MoarVM backend.\n";
+            }
             unless ($known_backends{$b}) {
                 die "Unknown backend '$b'; Supported backends are: " .
                     join(", ", sort keys %known_backends) .
@@ -106,18 +107,12 @@ MAIN: {
             $backends{moar} = 1;
             $default_backend ||= 'moar';
         }
-        if (exists $options{'gen-parrot'}) {
-            $backends{parrot} = 1;
-            $default_backend ||= 'parrot';
-        }
         unless (%backends) {
             die "No suitable nqp executables found! Please specify some --backends, or a --prefix that contains nqp-{p,j,m} executables\n\n"
               . "Example to build for all backends (which will take a while):\n"
-              . "\tperl Configure.pl --backends=moar,parrot,jvm --gen-moar --gen-parrot\n\n"
+              . "\tperl Configure.pl --backends=moar,jvm --gen-moar\n\n"
               . "Example to build for MoarVM only:\n"
               . "\tperl Configure.pl --gen-moar\n\n"
-              . "Example to build for Parrot only:\n"
-              . "\tperl Configure.pl --gen-parrot\n\n"
               . "Example to build for JVM only:\n"
               . "\tperl Configure.pl --backends=jvm --gen-nqp\n\n";
         }
@@ -171,37 +166,6 @@ MAIN: {
 
     my @errors;
     my %errors;
-    if ($backends{parrot}) {
-        my %nqp_config;
-        if ($impls{parrot}{config}) {
-            %nqp_config = %{ $impls{parrot}{config} };
-        }
-        else {
-            push @errors, "Cannot obtain configuration from NQP on parrot";
-        }
-
-        my $nqp_have = $nqp_config{'nqp::version'} || '';
-        if ($nqp_have && cmp_rev($nqp_have, $nqp_want) < 0) {
-            push @errors, "NQP revision $nqp_want required (currently $nqp_have).";
-        }
-
-        if (!@errors) {
-            push @errors, verify_install([ @NQP::Configure::required_parrot_files,
-                                        @NQP::Configure::required_nqp_files ],
-                                        %config, %nqp_config);
-            push @errors,
-            "(Perhaps you need to 'make install', 'make install-dev',",
-            "or install the 'devel' package for NQP or Parrot?)"
-            if @errors;
-        }
-
-        $errors{parrot}{'no gen-nqp'} = @errors && !defined $options{'gen-nqp'};
-
-        unless (@errors) {
-            %config = (%nqp_config, %config);
-            print "Using $impls{parrot}{bin} (version $nqp_config{'nqp::version'}).\n";
-        }
-    }
     if ($backends{jvm}) {
         $config{j_nqp} = $impls{jvm}{bin};
         $config{j_nqp} =~ s{/}{\\}g if $^O eq 'MSWin32';
@@ -244,16 +208,12 @@ MAIN: {
         }
     }
 
-    if ($errors{parrot}{'no gen-nqp'} || $errors{jvm}{'no gen-nqp'} || $errors{moar}{'no gen-nqp'}) {
+    if ($errors{jvm}{'no gen-nqp'} || $errors{moar}{'no gen-nqp'}) {
         my @options_to_pass;
-        push @options_to_pass, "--gen-parrot" if $backends{parrot};
         push @options_to_pass, "--gen-moar"   if $backends{moar};
         push @options_to_pass, "--gen-nqp"    unless @options_to_pass;
         my $options_to_pass  = join ' ', @options_to_pass;
-        my $want_executables = $backends{parrot} && $backends{moar}
-                             ? ', Parrot and MoarVM'
-                             : $backends{parrot}
-                             ? ' and Parrot'
+        my $want_executables =
                              : $backends{moar}
                              ? ' and MoarVM'
                              : '';
@@ -303,19 +263,12 @@ Configure.pl - $lang Configure
 General Options:
     --help             Show this text
     --prefix=dir       Install files in dir; also look for executables there
-    --backends=parrot,jvm,moar
+    --backends=jvm,moar
                        Which backend(s) to use
     --gen-moar[=branch]
                        Download and build a copy of MoarVM
     --gen-nqp[=branch]
                        Download and build a copy of NQP
-    --gen-parrot[=branch]
-                       Download and build a copy of Parrot
-    --parrot-option='--option'
-                       Options to pass to Parrot's Configure.pl
-    --parrot-make-option='--option'
-                       Options to pass to Parrot's make, for example:
-                       --parrot-make-option='--jobs=4'
     --makefile-timing  Enable timing of individual makefile commands
 
 Configure.pl also reads options from 'config.default' in the current directory.
