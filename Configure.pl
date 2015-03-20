@@ -214,7 +214,7 @@ MAIN: {
         push @options_to_pass, "--gen-nqp"    unless @options_to_pass;
         my $options_to_pass  = join ' ', @options_to_pass;
         my $want_executables =
-                             : $backends{moar}
+                             $backends{moar}
                              ? ' and MoarVM'
                              : '';
         my $s1               = @options_to_pass > 1 ? 's' : '';
