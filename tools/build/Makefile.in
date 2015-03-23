@@ -61,6 +61,9 @@ modules-install-j:
 	@echo "== Installing binaries for JVM"
 	$(PERL) tools/build/bin-install.pl $(PERL6_J_INSTALL) $(DESTDIR)$(JVM_BIN_DIR) j modules/ufo/bin/ufo modules/panda/bin/panda modules/doc/bin/p6doc
 	$(PERL) tools/build/bin-install.pl $(PERL6_J_INSTALL) $(DESTDIR)$(JVM_BIN_DIR) j modules/ufo/bin/ufo modules/panda/bin/panda modules/doc/bin/p6doc-index
+	$(MKPATH) $(DESTDIR)$(PERL6_J_LANG_DIR)/site/panda/
+	$(CP) install/languages/perl6/site/panda/projects.json $(DESTDIR)$(PERL6_J_LANG_DIR)/site/panda/
+	$(CP) install/languages/perl6/site/panda/state $(DESTDIR)$(PERL6_J_LANG_DIR)/site/panda/
 
 modules-install-m:
 	@echo "== Installing modules for MoarVM"
@@ -68,6 +71,9 @@ modules-install-m:
 	@echo "== Installing binaries for MoarVM"
 	$(PERL) tools/build/bin-install.pl $(PERL6_M_INSTALL) $(DESTDIR)$(MOAR_BIN_DIR) m modules/ufo/bin/ufo modules/panda/bin/panda modules/doc/bin/p6doc
 	$(PERL) tools/build/bin-install.pl $(PERL6_M_INSTALL) $(DESTDIR)$(MOAR_BIN_DIR) m modules/ufo/bin/ufo modules/panda/bin/panda modules/doc/bin/p6doc-index
+	$(MKPATH) $(DESTDIR)$(PERL6_M_LANG_DIR)/site/panda/
+	$(CP) install/languages/perl6/site/panda/projects.json $(DESTDIR)$(PERL6_M_LANG_DIR)/site/panda/
+	$(CP) install/languages/perl6/site/panda/state $(DESTDIR)$(PERL6_M_LANG_DIR)/site/panda/
 
 modules-test: @backend_modules_test@
 verbose-modules-test: @backend_modules_test@
