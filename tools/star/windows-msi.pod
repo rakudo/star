@@ -1,0 +1,139 @@
+=head1 windows-msi.pod - guide to build MSI packages
+
+Rakudo Star releases are based on Rakudo compiler releases.
+Since some time is often needed for module updates and testing
+after each Rakudo compiler release, the timing of Star releases
+varies from one release to the next. The MSI packages are based
+on these Star releases.
+
+Also, while the Rakudo compiler issues monthly releases; Star
+releases are free to choose a longer release cycle.  Star releases
+are also free to choose older releases of the compiler, NQP, and/or
+MoarVM.  The goal is to balance end-user stability needs with
+progress being made on the compiler, modules, and other runtime
+components.  Currently Star is on a monthly release cycle; we
+expect to slow down to quarterly releases again sometime in the
+future.
+
+=head2 Steps to create an MSI package
+
+If this is your first time releasing, B<read the whole guide before
+starting>. That way you can ask questions and clear up and confusions before
+you're in the thick of it.
+
+If you have done this before, you might want to check for and read any changes
+to this release guide since your last run.
+
+=over 4
+
+=item 0.
+
+Download and install WiX Toolset, if needed adjust the PATH environment variable
+to point to its bin directory. The tools `heat`, `candle` and `light` should be
+available now.
+
+Install ActivePerl and make sure it is in PATH. `perl -V` should give a sensible
+output.
+
+If you do not have the C compiler "cl" installed yet, install the Microsoft Visual
+C++ Express for version 2010 or perhaps newer.
+
+Finally, install the Windows Software Development Kit (SDK) for your Windows
+version.
+
+=item 1.
+
+Make sure there is no C:\rakudo directory, as this will be our installation target.
+If there is one, remove it, perhaps after creating backup.
+
+=item 2.
+
+Use your browser to download the latest star release, replace YYYY.MM by year and month:
+http://rakudo.org/downloads/star/rakudo-star-YYYY.MM.tar.gz
+
+Unpack this .tar.gz to your hard disk. You will get a folder rakudo-star-YYYY.MM, again
+YYYY.MM is year and month of the star release.
+
+=item 3.
+
+Run the Command Line for Visual Studio from the start menu. Alternatively you can
+run cmd.exe followed by vcvars32.bat.
+
+In either case, this should return a valid path:
+
+  echo %VSINSTALLDIR%
+
+=item 4.
+
+Change the path to the directory created in step 2, and run:
+
+  perl Configure.pl --prefix=C:\rakudo --gen-moar
+
+This will create a Makefile and will start to compile the MoarVM backend.
+
+=item 5.
+
+Compile NQP and Rakudo by doing:
+
+  nmake install
+
+This will also precompile all modules and install binaries like `panda`.
+
+=item 6.
+
+Finally create the MSI package.
+
+  nmake msi
+
+Depending on your architecture you either rename that msi to:
+
+  rakudo-star-YYYY.MM-x86 (no JIT).msi
+
+or:
+
+  rakudo-star-YYYY.MM-x86_64 (JIT).msi
+
+
+=item 7.
+
+Delete your C:\rakudo folder and make sure it got deleted. Then run the just created
+installer, and do some sanity tests:
+
+  perl6 -e "say $*KERNEL.bits"
+  panda --installed list
+  panda install Inline
+
+=item 8.
+
+Stop the release process if step 7 failed. Post any issues to the irc channel or mailing
+list.
+
+=item 9.
+
+Upload the msi package to L<http://rakudo.org/downloads/star>:
+
+ scp "rakudo-star-YYYY.MM-x86 (no JIT).msi" rakudo@rakudo.org:public_html/downloads/star
+
+If you don't have permission to do this step, please ask one(pmichaud, jnthn,
+masak, PerlJam, tadzik, moritz) on #perl6 to do it for you.
+
+=item 10.
+
+Publicize the msi packages in the appropriate places.  These include:
+
+=over 4
+
+=item * rakudo.org
+
+=item * #perl6
+
+=back
+
+=item 11.
+
+You're done!  Celebrate with the appropriate amount of fun.
+
+=back
+
+=cut
+
