@@ -93,7 +93,7 @@ Running "make rakudo-spectest" will run the Perl 6 specification
 test suite ("roast") that was bundled with the Rakudo compiler release.
 
 Running "make modules-test" will run the test suites of any installed
-modules.  The modules currently have to be installed (via 'make install' 
+modules.  The modules currently have to be installed (via 'make install'
 or 'make modules-install') before the tests can be run.
 
 
@@ -130,16 +130,16 @@ The Rakudo and MoarVM development teams tend to hang out on IRC a fair
 bit, on irc.freenode.net/#perl6 and irc.freenode.net/#moarvm, respectively.
 
 Rakudo's official web site is http://rakudo.org/, where you can
-find useful information for developers and users alike. 
+find useful information for developers and users alike.
 
 
 Reporting bugs
 --------------
-Bug reports about Rakudo Star or the Perl 6 specification should be 
-sent to rakudobug@perl.org with the moniker [BUG] (including the brackets) 
-at the start of the subject so that it gets appropriately tagged in the 
-RT system (https://rt.perl.org/rt3/).  Please include or attach any sample 
-source code that exhibits the bug, and include either the release name/date 
+Bug reports about Rakudo Star or the Perl 6 specification should be
+sent to rakudobug@perl.org with the moniker [BUG] (including the brackets)
+at the start of the subject so that it gets appropriately tagged in the
+RT system (https://rt.perl.org/rt3/).  Please include or attach any sample
+source code that exhibits the bug, and include either the release name/date
 or the git commit identifier. You find this information in the output from
 "perl6 --version".  There's no need to Cc: the perl6-compiler
 mailing list, as the RT system will handle this on its own.
