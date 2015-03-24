@@ -52,11 +52,11 @@ You can also build for all backends:
 
     $ perl Configure.pl --backend=jvm,moar --gen-moar
 
-Note that --gen-moar automatically builds a MOarVM for you, and implies
+Note that --gen-moar automatically builds a MoarVM for you, and implies
 --gen-nqp, which builds NQP, a subset of Perl 6 that is used to implement
 Rakudo.
 
-Configure this way, one or more Perl 6 executable and selected Perl
+Configured this way, one or more Perl 6 executables and selected Perl
 6 modules will be installed into the install/ subdirectory, which
 resides inside the source archive directory. Running make install
 will *not* install anything into /usr/local. If you want to change
@@ -129,7 +129,7 @@ Questions about the Rakudo compiler can go to perl6-compiler@perl.org.
 The Rakudo and MoarVM development teams tend to hang out on IRC a fair
 bit, on irc.freenode.net/#perl6 and irc.freenode.net/#moarvm, respectively.
 
-Rakudo's official web site is http://rakudo.org/ , where you can
+Rakudo's official web site is http://rakudo.org/, where you can
 find useful information for developers and users alike. 
 
 
@@ -140,7 +140,7 @@ sent to rakudobug@perl.org with the moniker [BUG] (including the brackets)
 at the start of the subject so that it gets appropriately tagged in the 
 RT system (https://rt.perl.org/rt3/).  Please include or attach any sample 
 source code that exhibits the bug, and include either the release name/date 
-or the git commit identifier. You find that information in the output from
+or the git commit identifier. You find this information in the output from
 "perl6 --version".  There's no need to Cc: the perl6-compiler
 mailing list, as the RT system will handle this on its own.
 
