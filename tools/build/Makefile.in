@@ -23,11 +23,11 @@ MKPATH        = $(PERL) -MExtUtils::Command -e mkpath
 CHMOD         = $(PERL) -MExtUtils::Command -e chmod
 
 PERL6_J_EXE      = perl6-j$(BAT)
-PERL6_J_LANG_DIR = $(PREFIX_DIR)/languages/perl6
+PERL6_J_LANG_DIR = $(PREFIX_DIR)/share/perl6
 PERL6_J_INSTALL  = $(JVM_BIN_DIR)/$(PERL6_J_EXE)
 
 PERL6_M_EXE      = perl6-m$(BAT)
-PERL6_M_LANG_DIR = $(PREFIX_DIR)/languages/perl6
+PERL6_M_LANG_DIR = $(PREFIX_DIR)/share/perl6
 PERL6_M_INSTALL  = $(MOAR_BIN_DIR)/$(PERL6_M_EXE)
 
 PERL6_EXE        = perl6$(EXE)
@@ -62,8 +62,8 @@ modules-install-j:
 	$(PERL) tools/build/bin-install.pl $(PERL6_J_INSTALL) $(DESTDIR)$(JVM_BIN_DIR) j modules/ufo/bin/ufo modules/panda/bin/panda modules/doc/bin/p6doc
 	$(PERL) tools/build/bin-install.pl $(PERL6_J_INSTALL) $(DESTDIR)$(JVM_BIN_DIR) j modules/ufo/bin/ufo modules/panda/bin/panda modules/doc/bin/p6doc-index
 	$(MKPATH) $(DESTDIR)$(PERL6_J_LANG_DIR)/site/panda/
-	$(CP) install/languages/perl6/site/panda/projects.json $(DESTDIR)$(PERL6_J_LANG_DIR)/site/panda/
-	$(CP) install/languages/perl6/site/panda/state $(DESTDIR)$(PERL6_J_LANG_DIR)/site/panda/
+	$(CP) install/share/perl6/site/panda/projects.json $(DESTDIR)$(PERL6_J_LANG_DIR)/site/panda/
+	$(CP) install/share/perl6/site/panda/state $(DESTDIR)$(PERL6_J_LANG_DIR)/site/panda/
 
 modules-install-m:
 	@echo "== Installing modules for MoarVM"
@@ -72,8 +72,8 @@ modules-install-m:
 	$(PERL) tools/build/bin-install.pl $(PERL6_M_INSTALL) $(DESTDIR)$(MOAR_BIN_DIR) m modules/ufo/bin/ufo modules/panda/bin/panda modules/doc/bin/p6doc
 	$(PERL) tools/build/bin-install.pl $(PERL6_M_INSTALL) $(DESTDIR)$(MOAR_BIN_DIR) m modules/ufo/bin/ufo modules/panda/bin/panda modules/doc/bin/p6doc-index
 	$(MKPATH) $(DESTDIR)$(PERL6_M_LANG_DIR)/site/panda/
-	$(CP) install/languages/perl6/site/panda/projects.json $(DESTDIR)$(PERL6_M_LANG_DIR)/site/panda/
-	$(CP) install/languages/perl6/site/panda/state $(DESTDIR)$(PERL6_M_LANG_DIR)/site/panda/
+	$(CP) install/share/perl6/site/panda/projects.json $(DESTDIR)$(PERL6_M_LANG_DIR)/site/panda/
+	$(CP) install/share/perl6/site/panda/state $(DESTDIR)$(PERL6_M_LANG_DIR)/site/panda/
 
 modules-test: @backend_modules_test@
 verbose-modules-test: @backend_modules_test@

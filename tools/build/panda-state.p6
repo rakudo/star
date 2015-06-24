@@ -1,12 +1,12 @@
 
 try mkdir 'install';
-try mkdir 'install/languages';
-try mkdir 'install/languages/perl6';
-try mkdir 'install/languages/perl6/site';
-try mkdir 'install/languages/perl6/site/panda';
+try mkdir 'install/share';
+try mkdir 'install/share/perl6';
+try mkdir 'install/share/perl6/site';
+try mkdir 'install/share/perl6/site/panda';
 
-my $state-file    = 'install/languages/perl6/site/panda/state';
-my $projects-file = 'install/languages/perl6/site/panda/projects.json';
+my $state-file    = 'install/share/perl6/site/panda/state';
+my $projects-file = 'install/share/perl6/site/panda/projects.json';
 
 fetch-projects-json($projects-file);
 
@@ -14,9 +14,9 @@ my $projects = from-json $projects-file.IO.slurp;
 
 # In case we ship a project that is just a fork of a project listed in the ecosystem, add
 # the mapping here.
-my %ex =
+my %ex;
 #    'git://github.com/FROGGS/perl6-digest-md5' => 'git://github.com/cosimo/perl6-digest-md5',
-Nil;
+#Nil;
 
 # Walk the submodules and put its project information in panda's state file.
 my $fh = $state-file.IO.open(:w);
