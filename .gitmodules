@@ -82,3 +82,6 @@
 [submodule "modules/p6-File-Temp"]
 	path = modules/p6-File-Temp
 	url = git@github.com:perlpilot/p6-File-Temp.git
+[submodule "modules/p6-file-directory-tree"]
+	path = modules/p6-file-directory-tree
+	url = git@github.com:labster/p6-file-directory-tree.git

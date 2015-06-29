@@ -24,6 +24,7 @@ Bailador                                  # uses PSGI, Template::Mustache
 DBIish
 jsonrpc                                   # uses PSGI
 Pod-To-HTML
-p6-File-Temp
+p6-file-directory-tree
+p6-File-Temp                              # uses File::Directory::Tree
 doc                                       # uses File::Temp
 debugger-ui-commandline
