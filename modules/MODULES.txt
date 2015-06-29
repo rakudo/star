@@ -19,9 +19,11 @@ perl6-http-status
 PSGI
 perl6-http-easy                           # uses PSGI
 Template-Mojo
+p6-Template-Mustache
 Bailador                                  # uses PSGI
 DBIish
 jsonrpc                                   # uses PSGI
 Pod-To-HTML
+p6-File-Temp
 doc
 debugger-ui-commandline
