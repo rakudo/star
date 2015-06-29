@@ -76,9 +76,9 @@
 [submodule "modules/file-find"]
 	path = modules/file-find
 	url = git://github.com/tadzik/File-Find
-[submodule "p6-File-Temp"]
-	path = p6-File-Temp
-	url = git@github.com:perlpilot/p6-File-Temp.git
-[submodule "p6-Template-Mustache"]
-	path = p6-Template-Mustache
+[submodule "modules/p6-Template-Mustache"]
+	path = modules/p6-Template-Mustache
 	url = git@github.com:softmoth/p6-Template-Mustache.git
+[submodule "modules/p6-File-Temp"]
+	path = modules/p6-File-Temp
+	url = git@github.com:perlpilot/p6-File-Temp.git

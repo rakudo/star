@@ -16,14 +16,14 @@ file-find
 shell-command
 panda
 perl6-http-status
+p6-Template-Mustache
 PSGI
 perl6-http-easy                           # uses PSGI
 Template-Mojo
-p6-Template-Mustache
-Bailador                                  # uses PSGI
+Bailador                                  # uses PSGI, Template::Mustache
 DBIish
 jsonrpc                                   # uses PSGI
 Pod-To-HTML
 p6-File-Temp
-doc
+doc                                       # uses File::Temp
 debugger-ui-commandline
