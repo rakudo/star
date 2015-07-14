@@ -276,8 +276,8 @@ You're done!  Celebrate with the appropriate amount of fun.
     2014.12         moritz
     2015.01         moritz
     2015.02         moritz
-    2013.03         moritz
-    2013.06         FROGGS
+    2015.03         moritz
+    2015.06         FROGGS
 
 =cut
 
