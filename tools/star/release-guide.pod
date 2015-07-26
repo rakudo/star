@@ -46,6 +46,7 @@ with github:
   $ git checkout master
   $ git pull origin master
   $ git submodule sync
+  $ git submodule update --init --recursive
 
 Verify that
 
