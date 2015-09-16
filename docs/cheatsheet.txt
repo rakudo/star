@@ -9,7 +9,7 @@ $scalar   item   list       sink       whole: @array[]    %hash{}
 TWIGILS                [ ] array
 $normal-lexical        { } block/hash     AUTOMATIC DEREFERENCE
 $?compiler-constant    < > quotewords     &($foo)(1,2)     == $foo(1,2)
-$*dynamic-or-global    (,) parcel         @($foo)[1]       == $foo[1]
+$*dynamic-or-global    (,) list           @($foo)[1]       == $foo[1]
 $.public-accessor      :() signature      %($foo){'bar'}   == $foo<bar>
 $!private-attribute    \() capture        @(@($foo)[1])[2] == $foo[1][2]
 $^positional-param
@@ -29,7 +29,7 @@ x xx       TYPES
 ~          Bool Bit Int Rat FatRat UInt Num Complex int32 complex64 etc.
 &          Str Cat Blob Char Byte Codepoint Grapheme Buf buf8 buf32 utf8
 | ^                               IO Mu Any Cool Junction Whatever Match
-sleep abs sin temp                              Parcel Capture Signature
+sleep abs sin temp                                List Capture Signature
 <=> leg cmp .. but          SCOPE DECLARATORS         Pair Range Set Bag
 ~~ > == gt eq === eqv !op   my  lexical scope      KeyHash KeySet KeyBag
 &&                         our  package scope     Scalar Array Hash Code
