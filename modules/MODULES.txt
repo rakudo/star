@@ -3,10 +3,10 @@
 xml-writer
 svg                                       # uses XML::Writer
 svg-plot                                  # uses SVG
-perl6-Term-ANSIColor
+Terminal-ANSIColor
 test-mock
 Grammar-Profiler-Simple
-grammar-debugger                          # uses Term::ANSIColor
+grammar-debugger                          # uses Terminal::ANSIColor
 Perl6-MIME-Base64
 uri
 perl6-lwp-simple                          # uses MIME::Base64, URI
