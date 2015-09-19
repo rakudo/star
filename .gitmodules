@@ -85,3 +85,6 @@
 [submodule "modules/Terminal-ANSIColor"]
 	path = modules/Terminal-ANSIColor
 	url = git@github.com:tadzik/Terminal-ANSIColor.git
+[submodule "modules/json_fast"]
+	path = modules/json_fast
+	url = git@github.com:timo/json_fast.git

@@ -14,7 +14,8 @@ json
 perl6-digest-md5
 file-find
 shell-command
-panda
+json_fast
+panda                                     # uses JSON::Fast
 perl6-http-status
 p6-Template-Mustache
 PSGI
