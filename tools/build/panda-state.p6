@@ -41,7 +41,7 @@ sub fetch-projects-json($to) {
     else {
         $s = IO::Socket::INET.new(:host<ecosystem-api.p6c.org>, :port(80));
     }
-   $s.send("GET http://ecosystem-api.p6c.org/projects.json HTTP/1.1\nHost: ecosystem-api.p6c.org\nAccept: */*\nConnection: Close\n\n");
+   $s.print("GET http://ecosystem-api.p6c.org/projects.json HTTP/1.1\nHost: ecosystem-api.p6c.org\nAccept: */*\nConnection: Close\n\n");
     my ($buf, $g) = '';
     $buf ~= $g while $g = $s.get;
 
