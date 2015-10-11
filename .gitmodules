@@ -66,7 +66,7 @@
 	url = git://github.com/perl6/Perl6-MIME-Base64
 [submodule "modules/PSGI"]
 	path = modules/PSGI
-	url = git://github.com/supernovus/perl6-psgi.git
+	url = git://github.com/supernovus/perl6-psgi
 [submodule "modules/shell-command"]
 	path = modules/shell-command
 	url = git://github.com/tadzik/Shell-Command
@@ -75,16 +75,16 @@
 	url = git://github.com/tadzik/File-Find
 [submodule "modules/p6-Template-Mustache"]
 	path = modules/p6-Template-Mustache
-	url = git@github.com:softmoth/p6-Template-Mustache.git
+	url = git://github.com/softmoth/p6-Template-Mustache
 [submodule "modules/p6-File-Temp"]
 	path = modules/p6-File-Temp
-	url = git@github.com:perlpilot/p6-File-Temp.git
+	url = git://github.com/perlpilot/p6-File-Temp
 [submodule "modules/p6-file-directory-tree"]
 	path = modules/p6-file-directory-tree
-	url = git@github.com:labster/p6-file-directory-tree.git
+	url = git://github.com/labster/p6-file-directory-tree
 [submodule "modules/Terminal-ANSIColor"]
 	path = modules/Terminal-ANSIColor
-	url = git@github.com:tadzik/Terminal-ANSIColor.git
+	url = git://github.com/tadzik/Terminal-ANSIColor
 [submodule "modules/json_fast"]
 	path = modules/json_fast
-	url = git@github.com:timo/json_fast.git
+	url = git://github.com/timo/json_fast
