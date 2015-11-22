@@ -41,16 +41,16 @@ sub fetch-projects-json($to) {
     else {
         $s = IO::Socket::INET.new(:host<ecosystem-api.p6c.org>, :port(80));
     }
-   $s.print("GET http://ecosystem-api.p6c.org/projects.json HTTP/1.1\nHost: ecosystem-api.p6c.org\nAccept: */*\nConnection: Close\n\n");
+    $s.print("GET http://ecosystem-api.p6c.org/projects.json HTTP/1.1\nHost: ecosystem-api.p6c.org\nAccept: */*\nConnection: Close\n\n");
+    # gobble up all header line:
+    1 while $s.get;
+
+    # read the body:
     my ($buf, $g) = '';
-    $buf ~= $g while $g = $s.get;
+    $buf ~= "$g\n" while $g = $s.get;
 
     if %*ENV<http_proxy> {
         $buf.=subst(:g,/'git://'/,'http://');
     }
-    
-    given open($to, :w) {
-        .say: $buf.split(/\r?\n\r?\n/, 2)[1];
-        .close;
-    }
+    spurt($to, $buf);
 }
