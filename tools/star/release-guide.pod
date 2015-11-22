@@ -56,7 +56,7 @@ reports a clean repository.
 
 =item 2.
 
-Change to the star repository directory, and edit the first four
+Change to the star repository directory, and edit the first three
 lines of F<tools/star/Makefile> to indicate the desired releases of
 Rakudo, NQP and MoarVM to use.
 
