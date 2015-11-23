@@ -151,6 +151,9 @@ MAIN: {
     $config{prefix} = $prefix;
     $config{sdkroot} = $options{sdkroot};
     $config{sysroot} = $options{sysroot};
+    $config{pass_rakudo_config} = "";
+    $config{pass_rakudo_config} .= $options{sdkroot} ? " --sdkroot=\"\$(SDKROOT_DIR)\"" : "";
+    $config{pass_rakudo_config} .= $options{sysroot} ? " --sysroot=\"\$(SYSROOT_DIR)\"" : "";
     $config{slash}  = $slash;
     $config{'makefile-timing'} = $options{'makefile-timing'};
     $config{'stagestats'} = '--stagestats' if $options{'makefile-timing'};

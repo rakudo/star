@@ -42,7 +42,7 @@ rakudo: @backend_exes@
 
 @backend_exes@:
 	@echo "== Configuring and building Rakudo"
-	cd $(RAKUDO_DIR) && $(PERL) Configure.pl --sysroot="$(SYSROOT_DIR)" --sdkroot="$(SDKROOT_DIR)" --prefix="$(PREFIX_DIR)" --backends=@backends@ && $(MAKE)
+	cd $(RAKUDO_DIR) && $(PERL) Configure.pl@pass_rakudo_config@ --prefix="$(PREFIX_DIR)" --backends=@backends@ && $(MAKE)
 
 rakudo-test: rakudo
 	cd $(RAKUDO_DIR) && $(MAKE) test
