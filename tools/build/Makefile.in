@@ -7,6 +7,8 @@ STAR_VERSION = 2015.11
 
 # install location
 PREFIX_DIR         = @prefix@
+SDKROOT_DIR        = @sdkroot@
+SYSROOT_DIR        = @sysroot@
 
 # JVM install location
 JVM_BIN_DIR = $(PREFIX_DIR)/bin
@@ -40,7 +42,7 @@ rakudo: @backend_exes@
 
 @backend_exes@:
 	@echo "== Configuring and building Rakudo"
-	cd $(RAKUDO_DIR) && $(PERL) Configure.pl --prefix=$(PREFIX_DIR) --backends=@backends@ && $(MAKE)
+	cd $(RAKUDO_DIR) && $(PERL) Configure.pl@pass_rakudo_config@ --prefix="$(PREFIX_DIR)" --backends=@backends@ && $(MAKE)
 
 rakudo-test: rakudo
 	cd $(RAKUDO_DIR) && $(MAKE) test
