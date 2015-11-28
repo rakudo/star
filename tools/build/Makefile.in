@@ -97,8 +97,7 @@ test:
 	@echo "To run the Rakudo compiler tests, use '$(MAKE) rakudo-test'"
 	@echo "To run the Perl 6 spectests, use '$(MAKE) rakudo-spectest'"
 	@echo ""
-	@echo "To run tests for individual modules, install and then try:"
-	@echo "  prove -e ./perl6 -r modules/<name>/t"
+	@echo "To run the modules' test suites, run '$(MAKE) modules-test'"
 	@echo ""
 
 ##  cleaning
