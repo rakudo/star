@@ -88,3 +88,9 @@
 [submodule "modules/json_fast"]
 	path = modules/json_fast
 	url = git://github.com/timo/json_fast
+[submodule "modules/library-make"]
+	path = modules/library-make
+	url = https://github.com/retupmoca/P6-LibraryMake/
+[submodule "modules/Linenoise"]
+	path = modules/Linenoise
+	url = https://github.com/hoelzro/p6-linenoise/
