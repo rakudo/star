@@ -17,9 +17,50 @@
 
 ----------
 
+N: Andrew Egeler
+E: andrew@egeler.us
+
+N: bbkr
+E: bbkr@post.pl
+
+N: Bruce Gray
+E: bruce.gray@acm.org
+
 N: Carl Masak
 E: cmasak@gmail.com
 U: masak
+
+N: Coke
+E: will@coleda.com
+
+N: Dave Olszewski
+E: cxreg@pobox.com
+U: cxreg
+D: Bugfixes and moral support
+
+N: Elizabeth Mattijsen
+E: liz@dijkmat.nl
+
+N: Gabor Szabo
+E: gabor@szabgab.com
+
+N: gerd
+E: gp@zimt.uni-siegen.de
+
+N: hankache
+E: naoum88@gmail.com
+
+N: Ingy dot Net
+E: ingy@ingy.net
+
+N: isBEKaml
+E: nastavs@gmail.com
+
+N: Jens Rehsack
+E: sno@netbsd.org
+
+N: John Gabriele
+E: jmg3000@gmail.com
 
 N: Jonathan Scott Duff
 U: perlpilot
@@ -29,6 +70,12 @@ N: Jonathan Worthington
 U: jnthn
 E: jnthn@jnthn.net
 W: http://www.jnthn.net/
+
+N: lizmat
+E: liz@dijkmat.nl
+
+N: lue
+E: rnddim@gmail.com
 
 N: Martin Berends
 E: mberends@autoexec.demon.nl
@@ -40,18 +87,37 @@ U: moritz
 U: moritz_
 D: Test infrastructure, tests, various Rakudo features and built-ins
 
+N: Mouq
+E: alexmoquin@gmail.com
+
 N: Patrick R. Michaud
 U: pmichaud
 D: Perl 6 (Rakudo Perl) lead developer, pumpking
 E: pmichaud@pobox.com
 
-N: Dave Olszewski
-E: cxreg@pobox.com
-U: cxreg
-D: Bugfixes and moral support
+N: Paul Cochrane
+E: paul@liekut.de
+
+N: Rob Hoelz
+E: rob@hoelz.ro
+
+N: ronaldxs
+E: ronaldxs@software-path.com
+
+N: snarkyboojum
+E: snarkyboojum@gmail.com
+
+N: Steve Mynott
+E: steve.mynott@gmail.com
 
 N: Tadeusz Sośnierz
 E: tadzikes@gmail.com
 U: tadzik
+
+N: Timo Paulssen
+E: timonator@perpetuum-immobile.de
+
+N: Tobias Leich
+E: email@froggs.de
 
 =cut
