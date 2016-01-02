@@ -47,9 +47,6 @@ E: gabor@szabgab.com
 N: gerd
 E: gp@zimt.uni-siegen.de
 
-N: hankache
-E: naoum88@gmail.com
-
 N: Ingy dot Net
 E: ingy@ingy.net
 
@@ -89,6 +86,10 @@ D: Test infrastructure, tests, various Rakudo features and built-ins
 
 N: Mouq
 E: alexmoquin@gmail.com
+
+N: Naoum Hankache
+E: naoum88@gmail.com
+U: hankache
 
 N: Patrick R. Michaud
 U: pmichaud
