@@ -1,0 +1,173 @@
+diff --git a/bin/panda b/bin/panda
+index 8747f77..3fa5915 100755
+--- a/bin/panda
++++ b/bin/panda
+@@ -12,17 +12,17 @@ my %failed;
+ 
+ #| Install the specified modules
+ multi MAIN ('install', *@modules, Bool :$notests, Bool :$nodeps, Bool :$force = False,
+-            Str :$prefix) {
++            Str :$prefix, Str :$bin-prefix) {
+     my $panda = Panda.new(:ecosystem(make-default-ecosystem($prefix)));
+     for @modules -> $x {
+         $panda.resolve($x, :$notests, :$nodeps, :action<install>, :$force,
+-                       :$prefix);
++                       :$prefix, :$bin-prefix);
+         CATCH { when X::Panda { %failed{$x}.push($_) && say $_ } };
+     }
+ }
+ 
+ #| Install dependencies, but don't build the modules themselves
+-multi MAIN ('installdeps', *@modules, Bool :$notests, Bool :$force = False, Str :$prefix) {
++multi MAIN ('installdeps', *@modules, Bool :$notests, Bool :$force = False, Str :$prefix, Str :$bin-prefix) {
+     my $panda = Panda.new(:ecosystem(make-default-ecosystem($prefix)));
+     for @modules -> $x {
+         $panda.resolve($x, :$notests, :action<install-deps-only>, :$force,
+@@ -32,25 +32,25 @@ multi MAIN ('installdeps', *@modules, Bool :$notests, Bool :$force = False, Str
+ }
+ 
+ #| List all available modules
+-multi MAIN ('list', Bool :$installed, Bool :$verbose, Str :$prefix) {
++multi MAIN ('list', Bool :$installed, Bool :$verbose, Str :$prefix, Str :$bin-prefix) {
+     my $panda = Panda.new(:ecosystem(make-default-ecosystem($prefix)));
+     listprojects($panda, :$installed, :$verbose);
+ }
+ 
+ #| Update the module database
+-multi MAIN ('update', Str :$prefix) {
++multi MAIN ('update', Str :$prefix, Str :$bin-prefix) {
+     my $panda = Panda.new(:ecosystem(make-default-ecosystem($prefix)));
+     $panda.ecosystem.update;
+ }
+ 
+ #| Display information about specified modules
+-multi MAIN ('info', *@modules, Str :$prefix) {
++multi MAIN ('info', *@modules, Str :$prefix, Str :$bin-prefix) {
+     my $panda = Panda.new(:ecosystem(make-default-ecosystem($prefix)));
+     projectinfo($panda, @modules);
+ }
+ 
+ #| Search the name/description
+-multi MAIN ('search', $pattern = '', Str :$prefix) {
++multi MAIN ('search', $pattern = '', Str :$prefix, Str :$bin-prefix) {
+     my $panda = Panda.new(:ecosystem(make-default-ecosystem($prefix)));
+     search-projects($panda, $pattern);
+ }
+@@ -63,7 +63,7 @@ multi MAIN ('gen-meta', Bool :$notests, Str :$name, Str :$auth,
+ }
+ 
+ #| Test and install all known distributions
+-multi MAIN ('smoke', :$exclude = 'panda', Str :$prefix) {
++multi MAIN ('smoke', :$exclude = 'panda', Str :$prefix, Str :$bin-prefix) {
+     my @exclude = $exclude.split(',');
+     my $panda = Panda.new(:ecosystem(make-default-ecosystem($prefix)));
+     my @projects = $panda.ecosystem.project-list;
+@@ -80,7 +80,7 @@ multi MAIN ('smoke', :$exclude = 'panda', Str :$prefix) {
+ }
+ 
+ #| Download and unpack the distribution and then open the directory with your shell.
+-multi MAIN ('look', *@modules, Str :$prefix) {
++multi MAIN ('look', *@modules, Str :$prefix, Str :$bin-prefix) {
+     my $panda = Panda.new(:ecosystem(make-default-ecosystem($prefix)));
+     for @modules -> $x {
+         $panda.resolve($x, :notests, :nodeps, :action<look>);
+diff --git a/bootstrap.pl b/bootstrap.pl
+index 295ac0d..d1ada4b 100755
+--- a/bootstrap.pl
++++ b/bootstrap.pl
+@@ -4,7 +4,7 @@ use lib 'ext/File__Find/lib/';
+ use lib 'ext/Shell__Command/lib/';
+ use Shell::Command;
+ 
+-sub MAIN(Str :$prefix is copy) {
++sub MAIN(Str :$prefix is copy, Str :$bin-prefix) {
+     say '==> Bootstrapping Panda';
+ 
+     # prevent a lot of expensive dynamic lookups
+@@ -62,9 +62,10 @@ sub MAIN(Str :$prefix is copy) {
+     );
+ 
+     my $prefix_str = $prefix ?? "--prefix=$prefix" !! '';
++    $prefix_str   ~= " --bin-prefix={$bin-prefix // "$prefix/bin"}";
+     shell "$*EXECUTABLE --ll-exception bin/panda --force $prefix_str install $*CWD";
+     $prefix = $prefix.substr(5) if $prefix.starts-with("inst#");
+-    say "==> Please make sure that $prefix/bin is in your PATH";
++    say "==> Please make sure that $bin-prefix is in your PATH";
+ 
+     unlink "$panda-base/projects.json";
+ }
+diff --git a/lib/Panda.pm b/lib/Panda.pm
+index aafc42f..7a9afa4 100644
+--- a/lib/Panda.pm
++++ b/lib/Panda.pm
+@@ -116,7 +116,7 @@ class Panda {
+     }
+ 
+     method install(Panda::Project $bone, $nodeps, $notests,
+-                   Bool() $isdep, :$rebuild = True, :$prefix, Bool :$force) {
++                   Bool() $isdep, :$rebuild = True, :$prefix, :$bin-prefix, Bool :$force) {
+         my $cwd = $*CWD;
+         my $dir = tmpdir();
+         my $reports-file = ($.ecosystem.statefile.IO.dirname ~ '/reports.' ~ $*PERL.compiler.version).IO;
+@@ -143,7 +143,7 @@ class Panda {
+             }
+         }
+         self.announce('installing', $bone);
+-        $.installer.install($dir, $prefix, :$bone, :$force);
++        $.installer.install($dir, $prefix, :$bone, :$force, :$bin-prefix);
+         my $s = $isdep ?? Panda::Project::State::installed-dep
+                        !! Panda::Project::State::installed;
+         $.ecosystem.project-set-state($bone, $s);
+@@ -179,7 +179,7 @@ class Panda {
+     }
+ 
+     method resolve(Str() $proj is copy, Bool :$nodeps, Bool :$notests, Bool :$force,
+-                   :$action = 'install', Str :$prefix) {
++                   :$action = 'install', Str :$prefix, Str :$bin-prefix) {
+         my $tmpdir = tmpdir();
+         LEAVE { rm_rf $tmpdir if $tmpdir.IO.e }
+         mkpath $tmpdir;
+@@ -211,12 +211,12 @@ class Panda {
+                 $.ecosystem.project-get-state($_)
+                     == Panda::Project::absent
+             };
+-            self.install($_, $nodeps, $notests, 1, :$force) for @deps;
++            self.install($_, $nodeps, $notests, 1, :$bin-prefix, :$force) for @deps;
+         }
+ 
+         given $action {
+             when 'install' {
+-                self.install($bone, $nodeps, $notests, 0, :$prefix, :$force);
++                self.install($bone, $nodeps, $notests, 0, :$prefix, :$bin-prefix, :$force);
+             }
+             when 'install-deps-only' { }
+             when 'look'    { self.look($bone) };
+diff --git a/lib/Panda/Installer.pm b/lib/Panda/Installer.pm
+index c07449f..c5ea41e 100644
+--- a/lib/Panda/Installer.pm
++++ b/lib/Panda/Installer.pm
+@@ -31,7 +31,7 @@ sub copy($src, $dest) {
+     $src.copy($dest);
+ }
+ 
+-method install($from, $to? is copy, Panda::Project :$bone, Bool :$force) {
++method install($from, $to? is copy, Panda::Project :$bone, Bool :$force, :$bin-prefix) {
+     unless $to {
+         $to = $.prefix;
+     }
+@@ -58,6 +58,7 @@ method install($from, $to? is copy, Panda::Project :$bone, Bool :$force) {
+                     ?? ~"resources/libraries".IO.child($*VM.platform-library-name($0.Str.IO))
+                     !! ~"resources/$_".IO
+             });
++            $to.bindir = $bin-prefix.IO if $bin-prefix;
+             $to.install(
+                 Distribution.new(|$bone.metainfo),
+                 %sources,
+@@ -76,6 +77,7 @@ method install($from, $to? is copy, Panda::Project :$bone, Bool :$force) {
+                 }
+             }
+             if 'bin'.IO ~~ :d {
++                $to = $bin-prefix if $bin-prefix; # XXX
+                 for find(dir => 'bin', type => 'file').list -> $bin {
+                     next if $bin.basename.substr(0, 1) eq '.';
+                     next if !$*DISTRO.is-win and $bin.basename ~~ /\.bat$/;

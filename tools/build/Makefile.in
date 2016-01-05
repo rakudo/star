@@ -3,7 +3,7 @@
 MOAR_DIR     = moarvm
 NQP_DIR      = nqp
 RAKUDO_DIR   = rakudo
-STAR_VERSION = 2015.11
+STAR_VERSION = 2015.12
 
 # install location
 PREFIX_DIR         = @prefix@
@@ -69,13 +69,8 @@ modules-install-j:
 
 modules-install-m:
 	@echo "== Installing modules for MoarVM"
-	$(PERL) tools/build/module-install.pl $(DESTDIR)$(PERL6_M_INSTALL) $(DESTDIR)$(PERL6_M_LANG_DIR)/lib moarvm mbc $(MODULES)
-	@echo "== Installing binaries for MoarVM"
-	$(PERL) tools/build/bin-install.pl $(PERL6_M_INSTALL) $(DESTDIR)$(MOAR_BIN_DIR) m modules/ufo/bin/ufo modules/panda/bin/panda modules/doc/bin/p6doc
-	$(PERL) tools/build/bin-install.pl $(PERL6_M_INSTALL) $(DESTDIR)$(MOAR_BIN_DIR) m modules/ufo/bin/ufo modules/panda/bin/panda modules/doc/bin/p6doc-index
-	$(MKPATH) $(DESTDIR)$(PERL6_M_LANG_DIR)/site/panda/
-	$(CP) install/share/perl6/site/panda/projects.json $(DESTDIR)$(PERL6_M_LANG_DIR)/site/panda/
-	$(CP) install/share/perl6/site/panda/state $(DESTDIR)$(PERL6_M_LANG_DIR)/site/panda/
+	cd modules/panda && $(DESTDIR)$(PERL6_M_INSTALL) bootstrap.pl --bin-prefix=$(DESTDIR)$(MOAR_BIN_DIR)
+	$(PERL) tools/build/module-install.pl $(PERL6_M_INSTALL) $(DESTDIR)$(MOAR_BIN_DIR)/panda-m$(BAT) $(DESTDIR)$(MOAR_BIN_DIR) $(MODULES)
 
 modules-test: @backend_modules_test@
 verbose-modules-test: @backend_modules_test@

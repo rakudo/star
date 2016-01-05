@@ -12,10 +12,10 @@ uri
 perl6-lwp-simple                          # uses MIME::Base64, URI
 json
 perl6-digest-md5
-file-find
-shell-command
-json_fast
-panda                                     # uses JSON::Fast
+#file-find
+#shell-command
+#json_fast
+#panda                                     # uses JSON::Fast
 perl6-http-status
 p6-Template-Mustache
 PSGI
