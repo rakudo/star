@@ -70,7 +70,7 @@ modules-install-j:
 modules-install-m:
 	@echo "== Installing modules for MoarVM"
 	cd modules/panda && $(DESTDIR)$(PERL6_M_INSTALL) bootstrap.pl --bin-prefix=$(DESTDIR)$(MOAR_BIN_DIR)
-	$(PERL) tools/build/module-install.pl $(PERL6_M_INSTALL) $(DESTDIR)$(MOAR_BIN_DIR)/panda-m$(BAT) $(DESTDIR)$(MOAR_BIN_DIR) $(MODULES)
+	$(PERL) tools/build/module-install.pl $(PERL6_M_INSTALL) $(DESTDIR)$(MOAR_BIN_DIR)/panda-m $(DESTDIR)$(MOAR_BIN_DIR) $(MODULES)
 
 modules-test: @backend_modules_test@
 verbose-modules-test: @backend_modules_test@
