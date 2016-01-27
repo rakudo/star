@@ -10,11 +10,8 @@ PREFIX_DIR         = @prefix@
 SDKROOT_DIR        = @sdkroot@
 SYSROOT_DIR        = @sysroot@
 
-# JVM install location
-JVM_BIN_DIR = $(PREFIX_DIR)/bin
-
-# MoarVM install location
-MOAR_BIN_DIR = $(PREFIX_DIR)/bin
+STAR_BIN_DIR = $(PREFIX_DIR)/bin
+SITE_BIN_DIR = $(PREFIX_DIR)/share/perl6/site/bin
 
 EXE           = @exe@
 BAT           = @bat@
@@ -26,11 +23,11 @@ CHMOD         = $(PERL) -MExtUtils::Command -e chmod
 
 PERL6_J_EXE      = perl6-j$(BAT)
 PERL6_J_LANG_DIR = $(PREFIX_DIR)/share/perl6
-PERL6_J_INSTALL  = $(JVM_BIN_DIR)/$(PERL6_J_EXE)
+PERL6_J_INSTALL  = $(STAR_BIN_DIR)/$(PERL6_J_EXE)
 
 PERL6_M_EXE      = perl6-m$(BAT)
 PERL6_M_LANG_DIR = $(PREFIX_DIR)/share/perl6
-PERL6_M_INSTALL  = $(MOAR_BIN_DIR)/$(PERL6_M_EXE)
+PERL6_M_INSTALL  = $(STAR_BIN_DIR)/$(PERL6_M_EXE)
 
 PERL6_EXE        = perl6$(EXE)
 
@@ -59,18 +56,13 @@ modules-install: @backend_modules_install@
 
 modules-install-j:
 	@echo "== Installing modules for JVM"
-	$(PERL) tools/build/module-install.pl $(DESTDIR)$(PERL6_J_INSTALL) $(DESTDIR)$(PERL6_J_LANG_DIR)/lib jar jar $(MODULES)
-	@echo "== Installing binaries for JVM"
-	$(PERL) tools/build/bin-install.pl $(PERL6_J_INSTALL) $(DESTDIR)$(JVM_BIN_DIR) j modules/ufo/bin/ufo modules/panda/bin/panda modules/doc/bin/p6doc
-	$(PERL) tools/build/bin-install.pl $(PERL6_J_INSTALL) $(DESTDIR)$(JVM_BIN_DIR) j modules/ufo/bin/ufo modules/panda/bin/panda modules/doc/bin/p6doc-index
-	$(MKPATH) $(DESTDIR)$(PERL6_J_LANG_DIR)/site/panda/
-	$(CP) install/share/perl6/site/panda/projects.json $(DESTDIR)$(PERL6_J_LANG_DIR)/site/panda/
-	$(CP) install/share/perl6/site/panda/state $(DESTDIR)$(PERL6_J_LANG_DIR)/site/panda/
+	cd modules/panda && $(DESTDIR)$(PERL6_J_INSTALL) bootstrap.pl
+	$(PERL) tools/build/module-install.pl $(PERL6_J_INSTALL) $(DESTDIR)$(SITE_BIN_DIR)/panda-m $(MODULES)
 
 modules-install-m:
 	@echo "== Installing modules for MoarVM"
-	cd modules/panda && $(DESTDIR)$(PERL6_M_INSTALL) bootstrap.pl --bin-prefix=$(DESTDIR)$(MOAR_BIN_DIR)
-	$(PERL) tools/build/module-install.pl $(PERL6_M_INSTALL) $(DESTDIR)$(MOAR_BIN_DIR)/panda-m $(DESTDIR)$(MOAR_BIN_DIR) $(MODULES)
+	cd modules/panda && $(DESTDIR)$(PERL6_M_INSTALL) bootstrap.pl
+	$(PERL) tools/build/module-install.pl $(PERL6_M_INSTALL) $(DESTDIR)$(SITE_BIN_DIR)/panda-m $(MODULES)
 
 modules-test: @backend_modules_test@
 verbose-modules-test: @backend_modules_test@
