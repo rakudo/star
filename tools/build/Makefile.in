@@ -81,7 +81,7 @@ install: rakudo-install modules-install welcome-message
 
 welcome-message:
 	@echo ""
-	@echo "Rakudo Star has been built ans installed successfully."
+	@echo "Rakudo Star has been built and installed successfully."
 	@echo "Please make sure that the following directories are in PATH:"
 	@echo "  $(STAR_BIN_DIR)"
 	@echo "  $(SITE_BIN_DIR)"
