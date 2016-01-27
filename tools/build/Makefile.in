@@ -77,7 +77,15 @@ modules-test-m:
 verbose-modules-test-m:
 	$(PERL) tools/build/modules-test.pl --verbose $(CURDIR) $(DESTDIR)$(PERL6_M_INSTALL) $(MODULES)
 
-install: rakudo-install modules-install
+install: rakudo-install modules-install welcome-message
+
+welcome-message:
+	@echo ""
+	@echo "Rakudo Star has been built ans installed successfully."
+	@echo "Please make sure that the following directories are in PATH:"
+	@echo "  $(STAR_BIN_DIR)"
+	@echo "  $(SITE_BIN_DIR)"
+	@echo ""
 
 test:
 	@echo ""
