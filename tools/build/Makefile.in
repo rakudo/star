@@ -3,7 +3,7 @@
 MOAR_DIR     = moarvm
 NQP_DIR      = nqp
 RAKUDO_DIR   = rakudo
-STAR_VERSION = 2015.12
+STAR_VERSION = 2016.01
 
 # install location
 PREFIX_DIR         = @prefix@
