@@ -1,4 +1,4 @@
-# Copyright (C) 2006-2015, The Perl Foundation.
+# Copyright (C) 2006-2016, The Perl Foundation.
 
 MOAR_DIR     = moarvm
 NQP_DIR      = nqp
