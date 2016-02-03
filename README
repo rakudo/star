@@ -106,10 +106,10 @@ Release information
 Information about the current release is placed in the docs/ directory, here
 is a brief overview:
 
-    docs/cheatsheet.txt             —   Perl 6 cheat sheet
-    docs/2015-spw-perl6-course.pdf  —   A short Perl 6 course
-    docs/perl6intro.pdf             —   Recent snapshot of http://perl6intro.com/
-    docs/announce/                  —   Detailed release announcements
+ docs/cheatsheet.txt             —   Perl 6 cheat sheet
+ docs/2015-spw-perl6-course.pdf  —   A short Perl 6 course
+ docs/perl6intro.pdf             —   Recent snapshot of http://perl6intro.com/
+ docs/announce/                  —   Detailed release announcements
 
 
 Where to get help or answers to questions
