@@ -162,7 +162,7 @@ http://wiki.github.com/rakudo/rakudo/steps-to-create-a-patch.
 
 AUTHOR
 ------
-Patrick Michaud (pmichaud@pobox.com) is the primary author and maintainer for
-Rakudo Star. See docs/CREDITS for further Rakudo Star authors, and */CREDITS
-for authors of other collected components.
+Patrick Michaud (pmichaud@pobox.com) was originally the primary author and
+maintainer for Rakudo Star. See docs/CREDITS for further Rakudo Star authors,
+and */CREDITS for authors of other collected components.
 
