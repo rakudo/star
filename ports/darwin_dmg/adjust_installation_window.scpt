@@ -1,5 +1,5 @@
 tell application "Finder"
-    tell disk "Rakudo_Star"
+    tell disk "Rakudo"
         open
 
         set top_left_X     to 100
@@ -23,7 +23,7 @@ tell application "Finder"
             set arrangement to not arranged
         end tell
 
-        set position of item "Rakudo_Star"        to {120,  74}
+        set position of item "Rakudo"        to {120,  74}
         set position of item "Applications"       to {360,  74}
         set position of item "HOW_TO_INSTALL.txt" to {120, 264}
 
