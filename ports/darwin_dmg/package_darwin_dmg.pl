@@ -102,7 +102,6 @@ if ( $opt_build_rakudo ) {
 
     chdir "../..";
 
-    run "make clean";
     run "perl Configure.pl --gen-moar --prefix /Applications/Rakudo";
     run "make install";
 
