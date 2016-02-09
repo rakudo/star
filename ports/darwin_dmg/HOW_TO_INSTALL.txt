@@ -1,4 +1,5 @@
-1. Drag the 'Rakudo' folder onto the Applications folder.
+1. Drag the 'Rakudo' folder onto the '/Applications' folder. Note this 
+is the root Applications directory and other locations won't work.
 
 2. Drag the 'Docs' folder somewhere.
 
