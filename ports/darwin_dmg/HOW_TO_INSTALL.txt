@@ -1,4 +1,8 @@
-1. You will need to relax security permissions under "System Prefs>Security & Privacy>General" to allow the use of unsigned third party apps.
+Perl 6 is best used from the command line or inside an editor such as Atom,
+Emacs or Vim etc. It is not a full Mac GUI type app.
+
+1. You will need to relax security permissions under "System Prefs>Security &
+Privacy>General" to allow the use of unsigned third party apps.
 
 2. Drag the 'Rakudo' folder onto the '/Applications' folder. Note this 
 is the root Applications directory and other locations won't work.
