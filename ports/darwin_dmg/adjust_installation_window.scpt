@@ -25,7 +25,8 @@ tell application "Finder"
 
         set position of item "Rakudo"        to {120,  74}
         set position of item "Applications"       to {360,  74}
-        set position of item "HOW_TO_INSTALL.txt" to {120, 264}
+        set position of item "README.txt" to {120, 264}
+        set position of item "docs" to {360, 264}
 
         delay 5
         close

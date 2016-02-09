@@ -1,21 +1,17 @@
-1. Drag the Rakudo folder onto the Applications folder.
-2. In a Terminal window, type this command:
-    alias p6='/Applications/Rakudo/bin/perl6'
-        ( This step only affects this one window; to make available to all
-          future sessions, add the line to your ~/.bash_profile file. )
+1. Drag the 'Rakudo' folder onto the Applications folder.
 
-You can now run a Perl 6 program like this:
-    p6 filename
-or run code directly from the command-line with the -e option:
-    p6 -e 'your code here'
+2. Drag the 'Docs' folder somewhere.
 
-Try this:
-    p6 -e 'say "Hello, world!";'
+3. In a Terminal window add Rakudo Star to your path:
 
-You can always skip the alias and use the full path:
-    /Applications/Rakudo/bin/perl6 -e 'say "Hello, world!";'
-or alternately, add Rakudo Star to your path:
-    PATH=$PATH:/Applications/Rakudo/bin
-    perl6 -e 'say "Hello, world!";'
+   export PATH=$PATH:/Applications/Rakudo/bin:/Applications/Rakudo/share/perl6/site/bin
 
-See also README in /Applications/Rakudo/docs/rakudo/README .
+   Test with:
+
+   perl6 -e 'say "Hello, world!";'
+
+4. Add the 'export' line above to .bash_profile or similar to persist.
+
+5. Useful commands are 'p6doc' and 'panda'.
+
+6. See also the documents in the 'Docs' folder and http://perl6.org
