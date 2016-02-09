@@ -1,9 +1,11 @@
-1. Drag the 'Rakudo' folder onto the '/Applications' folder. Note this 
+1. You will need to relax security permissions under "System Prefs>Security & Privacy>General" to allow the use of unsigned third party apps.
+
+2. Drag the 'Rakudo' folder onto the '/Applications' folder. Note this 
 is the root Applications directory and other locations won't work.
 
-2. Drag the 'Docs' folder somewhere.
+3. Drag the 'Docs' folder somewhere.
 
-3. In a Terminal window add Rakudo Star to your path:
+4. In a Terminal window add Rakudo Star to your path:
 
    export PATH=$PATH:/Applications/Rakudo/bin:/Applications/Rakudo/share/perl6/site/bin
 
@@ -11,8 +13,8 @@ is the root Applications directory and other locations won't work.
 
    perl6 -e 'say "Hello, world!";'
 
-4. Add the 'export' line above to .bash_profile or similar to persist.
+5. Add the 'export' line above to .bash_profile or similar to persist.
 
-5. Useful commands are 'p6doc' and 'panda'.
+6. Useful commands are 'p6doc' and 'panda'.
 
-6. See also the documents in the 'Docs' folder and http://perl6.org
+7. See also the documents in the 'Docs' folder and http://perl6.org
