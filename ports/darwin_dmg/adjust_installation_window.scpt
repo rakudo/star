@@ -6,6 +6,8 @@ tell application "Finder"
         set top_left_Y     to 100
         set bottom_right_X to 600
         set bottom_right_Y to 500
+        set theViewOptions to the icon view options of container window
+        set background picture of theViewOptions to POSIX file "/Volumes/Rakudo/.background/installerbg.png"
 
         tell container window
             set current   view    to icon view
@@ -24,9 +26,9 @@ tell application "Finder"
         end tell
 
         set position of item "Rakudo"        to {120,  74}
-        set position of item "Applications"       to {360,  74}
+        set position of item "Applications"       to {380,  74}
         set position of item "README.txt" to {120, 264}
-        set position of item "docs" to {360, 264}
+        set position of item "docs" to {380, 264}
 
         delay 5
         close
