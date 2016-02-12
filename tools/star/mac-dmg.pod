@@ -19,7 +19,7 @@ A ".dmg" is a file extension used for an Apple Disk Image which is the most
 popular way of running an installer on the Mac desktop
 
 If this is your first time releasing, B<read the whole guide before
-starting>. That way you can ask questions and clear up and confusions before
+starting>. That way you can ask questions and clear up any confusions before
 you're in the thick of it.
 
 If you have done this before, you might want to check for and read any changes
