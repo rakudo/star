@@ -54,12 +54,12 @@ rakudo-install: rakudo
 
 modules-install: @backend_modules_install@
 
-modules-install-j:
+modules-install-j: rakudo-install
 	@echo "== Installing modules for JVM"
 	cd modules/panda && $(DESTDIR)$(PERL6_J_INSTALL) bootstrap.pl
 	$(PERL) tools/build/module-install.pl $(PERL6_J_INSTALL) $(DESTDIR)$(SITE_BIN_DIR)/panda-m $(MODULES)
 
-modules-install-m:
+modules-install-m: rakudo-install
 	@echo "== Installing modules for MoarVM"
 	cd modules/panda && $(DESTDIR)$(PERL6_M_INSTALL) bootstrap.pl
 	$(PERL) tools/build/module-install.pl $(PERL6_M_INSTALL) $(DESTDIR)$(SITE_BIN_DIR)/panda-m $(MODULES)
@@ -67,14 +67,14 @@ modules-install-m:
 modules-test: @backend_modules_test@
 verbose-modules-test: @backend_modules_test@
 
-modules-test-j:
+modules-test-j: modules-install-j
 	$(PERL) tools/build/modules-test.pl $(CURDIR) $(DESTDIR)$(PERL6_J_INSTALL) $(MODULES)
-verbose-modules-test-j:
+verbose-modules-test-j: modules-install-j
 	$(PERL) tools/build/modules-test.pl --verbose $(CURDIR) $(DESTDIR)$(PERL6_J_INSTALL) $(MODULES)
 
-modules-test-m:
+modules-test-m: modules-install-m
 	$(PERL) tools/build/modules-test.pl $(CURDIR) $(DESTDIR)$(PERL6_M_INSTALL) $(MODULES)
-verbose-modules-test-m:
+verbose-modules-test-m: modules-install-m
 	$(PERL) tools/build/modules-test.pl --verbose $(CURDIR) $(DESTDIR)$(PERL6_M_INSTALL) $(MODULES)
 
 install: rakudo-install modules-install welcome-message
