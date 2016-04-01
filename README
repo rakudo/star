@@ -1,6 +1,6 @@
 This is Rakudo Star, a useful, usable Perl 6 production distribution.
 
-This is the 2016.01 release of Rakudo Star.
+This is the 2016.03 release of Rakudo Star.
 
 Rakudo Star is Copyright (C) 2010 - 2016 by the Rakudo Star Team.
 
@@ -110,6 +110,9 @@ is a brief overview:
  docs/2015-spw-perl6-course.pdf  —   A short Perl 6 course
  docs/perl6intro.pdf             —   Recent snapshot of http://perl6intro.com/
  docs/announce/                  —   Detailed release announcements
+
+Please note that the on-line version of perl6intro is available in multiple
+languages, French and Germany at the time of writing.
 
 
 Where to get help or answers to questions
