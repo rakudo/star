@@ -1,6 +1,6 @@
-RAKUDO_VER  = 2016.01.1
-NQP_VER     = 2016.01
-MOAR_VER    = 2016.01
+RAKUDO_VER  = 2016.03
+NQP_VER     = 2016.03
+MOAR_VER    = 2016.03
 
 STAR_REL    = rakudo-star-$(VERSION)
 STAR_TGZ    = $(STAR_REL).tar.gz
