@@ -22,7 +22,6 @@ p6-Template-Mustache
 PSGI
 perl6-http-easy                           # uses PSGI
 Template-Mojo
-Bailador                                  # uses PSGI, Template::Mustache
 DBIish
 jsonrpc                                   # uses PSGI
 Pod-To-HTML
