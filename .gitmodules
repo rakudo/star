@@ -37,9 +37,6 @@
 [submodule "modules/Template-Mojo"]
 	path = modules/Template-Mojo
 	url = git://github.com/tadzik/Template-Mojo
-[submodule "modules/Bailador"]
-	path = modules/Bailador
-	url = git://github.com/tadzik/Bailador
 [submodule "modules/DBIish"]
 	path = modules/DBIish
 	url = git://github.com/perl6/DBIish
