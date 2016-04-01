@@ -94,3 +94,6 @@
 [submodule "modules/Linenoise"]
 	path = modules/Linenoise
 	url = https://github.com/hoelzro/p6-linenoise/
+[submodule "modules/perl6-file-which"]
+	path = modules/perl6-file-which
+	url = git://github.com/azawawi/perl6-file-which
