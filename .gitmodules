@@ -1,9 +1,6 @@
 [submodule "modules/debugger-ui-commandline"]
 	path = modules/debugger-ui-commandline
 	url = git://github.com/jnthn/rakudo-debugger
-[submodule "modules/ufo"]
-	path = modules/ufo
-	url = git://github.com/masak/ufo
 [submodule "modules/xml-writer"]
 	path = modules/xml-writer
 	url = git://github.com/masak/xml-writer
