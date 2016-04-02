@@ -22,7 +22,8 @@ p6-Template-Mustache
 PSGI
 perl6-http-easy                           # uses PSGI
 Template-Mojo
-DBIish
+NativeHelpers-Blob
+DBIish                                    # uses NativeHelpers::Blob
 jsonrpc                                   # uses PSGI
 Pod-To-HTML
 p6-file-directory-tree

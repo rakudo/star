@@ -94,3 +94,6 @@
 [submodule "modules/p6-native-resources"]
 	path = modules/p6-native-resources
 	url = git://github.com/hoelzro/p6-native-resources
+[submodule "modules/NativeHelpers-Blob"]
+	path = modules/NativeHelpers-Blob
+	url = git://github.com/salortiz/NativeHelpers-Blob
