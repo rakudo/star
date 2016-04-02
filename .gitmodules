@@ -91,3 +91,6 @@
 [submodule "modules/perl6-file-which"]
 	path = modules/perl6-file-which
 	url = git://github.com/azawawi/perl6-file-which
+[submodule "modules/p6-native-resources"]
+	path = modules/p6-native-resources
+	url = git://github.com/hoelzro/p6-native-resources

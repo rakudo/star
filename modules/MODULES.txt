@@ -30,4 +30,5 @@ p6-File-Temp                              # uses File::Directory::Tree
 doc                                       # uses File::Temp
 debugger-ui-commandline
 library-make
-Linenoise                                 # uses LibraryMake
+p6-native-resources                       # uses Librarymake
+Linenoise                                 # uses Native::Resources
