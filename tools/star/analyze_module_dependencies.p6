@@ -1,5 +1,6 @@
 my %depended-on := SetHash.new;
 my @has-names;
+my %revdeps;
 
 use JSON::Fast;
 
@@ -20,17 +21,24 @@ for qx{ ls modules/*/META* }.lines -> $jf {
 
         # record every dependency in our set
         %depended-on{@$val}>>++;
+        %revdeps{$data<name>}.append: @$val;
     }
 }
+
+say "reverse dependencies:";
+say "";
+.say for %revdeps;
+say "";
+say "";
 
 # exclude a few modules:
 # Panda doesn't have a META.info
 # Test is shipped with Rakudo
 # NativeCall is also shipped with rakudo
 # nqp isn't really a module.
-my @missing = %depended-on (-) @has-names (-) <Panda Test NativeCall nqp>;
+my @missing = (%depended-on (-) @has-names (-) <Panda Test NativeCall nqp>).list;
 
-with @missing {
+if @missing {
     say "There are some modules that are depended on, but not in the modules list.";
     .say for @missing;
 } else {
