@@ -282,6 +282,7 @@ You're done!  Celebrate with the appropriate amount of fun.
     2015.07         moritz
     2015.09         moritz
     2015.11         moritz
+    2016.01         FROGGS
 
 =cut
 
