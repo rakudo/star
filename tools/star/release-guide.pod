@@ -269,12 +269,14 @@ You're done!  Celebrate with the appropriate amount of fun.
     2013.10         lue
     2013.11         moritz
     2013.12         lue
+
     2014.01         tadzik
     2014.03         FROGGS
     2014.04         jnthn
     2014.08         FROGGS
     2014.09         FROGGS
     2014.12         moritz
+
     2015.01         moritz
     2015.02         moritz
     2015.03         moritz
@@ -282,6 +284,7 @@ You're done!  Celebrate with the appropriate amount of fun.
     2015.07         moritz
     2015.09         moritz
     2015.11         moritz
+
     2016.01         FROGGS
 
 =cut
