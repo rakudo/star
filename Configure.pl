@@ -160,6 +160,7 @@ MAIN: {
     $config{'cpsep'} = $^O eq 'MSWin32' ? ';' : ':';
     $config{'shell'} = $^O eq 'MSWin32' ? 'cmd' : 'sh';
     $config{'bat'} = $^O eq 'MSWin32' ? '.bat' : '';
+    $config{'path'} = $^O ne 'MSWin32' ? 'PATH=$(STAR_BIN_DIR):$(PATH)' : '';
     my $make = $config{'make'} = $^O eq 'MSWin32' ? 'nmake' : 'make';
 
     my @prefixes = sort map substr($_, 0, 1), keys %backends;
