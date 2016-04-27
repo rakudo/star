@@ -88,7 +88,7 @@ my $src_dir      = '/Applications/Rakudo';
 my $vol_dir      = "/Volumes/$vol_name";
 my $tar_dir      = "rakudo-star-$yyyy.$mm";
 my $tar_file     = "rakudo-star-$yyyy.$mm.tar.gz";
-my $final_dmg    = "Rakudo-Star-$yyyy-$mm";
+my $final_dmg    = "rakudo-star-$yyyy-$mm";
 my $license_path = "../../../LICENSE";
 #my $license_path = "$src_dir/share/doc/rakudo/LICENSE";
 
