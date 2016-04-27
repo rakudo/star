@@ -200,6 +200,8 @@ Publicize the release in the appropriate places.  These include:
 
 =item * rakudo.org
 
+=item * http://rakudo.org/how-to-get-rakudo
+
 =item * http://perl6.org/
 
 =item * perl6-users@perl.org
