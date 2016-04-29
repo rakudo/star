@@ -56,13 +56,13 @@ modules-install: @backend_modules_install@
 
 modules-install-j: rakudo-install
 	@echo "== Installing modules for JVM"
-	cd modules/panda && @path@ $(DESTDIR)$(PERL6_J_INSTALL) bootstrap.pl
-	@path@ $(PERL) tools/build/module-install.pl $(PERL6_J_INSTALL) $(DESTDIR)$(SITE_BIN_DIR)/panda-m $(MODULES)
+	cd modules/panda && @path@ $(DESTDIR)$(PERL6_J_INSTALL) bootstrap.pl"
+	@path@ $(PERL) tools/build/module-install.pl $(PERL6_J_INSTALL) $(DESTDIR)$(SITE_BIN_DIR)/panda-m $(MODULES)"
 
 modules-install-m: rakudo-install
 	@echo "== Installing modules for MoarVM"
-	cd modules/panda && @path@ $(DESTDIR)$(PERL6_M_INSTALL) bootstrap.pl
-	@path@ $(PERL) tools/build/module-install.pl $(PERL6_M_INSTALL) $(DESTDIR)$(SITE_BIN_DIR)/panda-m $(MODULES)
+	cd modules/panda && @path@ $(DESTDIR)$(PERL6_M_INSTALL) bootstrap.pl"
+	@path@ $(PERL) tools/build/module-install.pl $(PERL6_M_INSTALL) $(DESTDIR)$(SITE_BIN_DIR)/panda-m $(MODULES)"
 
 modules-test: @backend_modules_test@
 verbose-modules-test: @backend_modules_test@
