@@ -210,7 +210,7 @@ Publicize the release in the appropriate places.  These include:
 
 =item * perl6-compiler@perl.org
 
-=item * http://en.wikipedia.org/wiki/Rakudo_Perl_6
+=item * http://en.wikipedia.org/wiki/Rakudo_Perl_6 (latest release date is mentioned in the main text)
 
 =item * http://en.wikipedia.org/wiki/Perl_6
 
