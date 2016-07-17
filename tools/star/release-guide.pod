@@ -291,6 +291,7 @@ You're done!  Celebrate with the appropriate amount of fun.
 
     2016.01         FROGGS
     2016.04         stmuk
+    2016.07         stmuk
 
 =cut
 
