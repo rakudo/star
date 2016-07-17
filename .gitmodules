@@ -45,7 +45,7 @@
 	url = git://github.com/perl6-community-modules/uri
 [submodule "modules/perl6-lwp-simple"]
 	path = modules/perl6-lwp-simple
-	url = git://github.com/cosimo/perl6-lwp-simple
+	url = git://github.com/perl6/perl6-lwp-simple
 [submodule "modules/jsonrpc"]
 	path = modules/jsonrpc
 	url = git://github.com/bbkr/jsonrpc
