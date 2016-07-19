@@ -15,6 +15,3 @@ Perl 6 distributions based on the tools here.  Run
 
 See tools/star/release-guide.pod for the steps needed to build
 a candidate release.
-
-See <https://github.com/rakudo/rakudo/wiki/What's-going-into-Rakudo-*%3F> 
-for a list of modules we want included in the distribution.

@@ -162,7 +162,7 @@ We'll generally accept patches in any form if we can get them to work, but
 unified diff from the 'git' command is greatly preferred.  See further
 instructions in the rakudo/ subdirectory for more details.  Other ways to
 create and submit patches are discussed at
-http://wiki.github.com/rakudo/rakudo/steps-to-create-a-patch.
+https://github.com/rakudo/rakudo/wiki/contrib-introduction
 
 
 AUTHOR
