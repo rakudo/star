@@ -7,10 +7,13 @@ my $pandabin   = shift @ARGV;
 
 my $exit = 0;
 
+my $path_sep = "/";
+$path_sep = "\\" if ( $^O eq 'MSWin32' );
+
 while (<>) {
     next if /^\s*(#|$)/;
     my ($module) = /(\S+)/;
-    $exit ||= system $perl6bin, $pandabin, '--force', "install", "modules/$module";
+    $exit ||= system $perl6bin, $pandabin, '--force', "install", "modules$path_sep$module";
 }
 
 exit $exit;
