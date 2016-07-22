@@ -216,6 +216,22 @@ Publicize the release in the appropriate places.  These include:
 
 =back
 
+Actively ask others to advertise the release as well. This incldues their social
+media accounts and blogs. Notable places include:
+
+=over 4
+
+=item * L<http://blogs.perl.org/>
+
+=item * L<Perl 6 Facebook Page|https://www.facebook.com/groups/1595443877388632/>
+
+=item * Reddit: L<r/perl|https://www.reddit.com/r/perl/>, L<r/perl6|https://www.reddit.com/r/perl6/>,
+and L<r/programming|https://www.reddit.com/r/programming/>
+
+=item * L<Rakudo's Twitter account|https://twitter.com/rakudoperl>
+
+=back
+
 =item 14
 
 Add this release and your name to the list of releases at the end of this
