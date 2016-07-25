@@ -216,7 +216,7 @@ Publicize the release in the appropriate places.  These include:
 
 =back
 
-Actively ask others to advertise the release as well. This incldues their social
+Actively ask others to advertise the release as well. This includes their social
 media accounts and blogs. Notable places include:
 
 =over 4
