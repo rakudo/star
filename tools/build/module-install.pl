@@ -13,7 +13,7 @@ $path_sep = "\\" if ( $^O eq 'MSWin32' );
 while (<>) {
     next if /^\s*(#|$)/;
     my ($module) = /(\S+)/;
-    $exit ||= system $perl6bin, $pandabin, '--force', "install", "modules$path_sep$module";
+    $exit ||= system $perl6bin, $pandabin, '--force', '--nodeps', "install", "modules$path_sep$module";
 }
 
 exit $exit;
