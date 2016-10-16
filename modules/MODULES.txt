@@ -34,3 +34,4 @@ debugger-ui-commandline
 library-make
 p6-native-resources                       # uses Librarymake
 Linenoise                                 # uses Native::Resources
+tap-harness6-prove6                       # have last so faster perl5 prove used                         

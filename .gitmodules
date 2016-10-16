@@ -100,3 +100,6 @@
 [submodule "modules/perl6-pod-to-bigpage"]
 	path = modules/perl6-pod-to-bigpage
 	url = git@github.com:gfldex/perl6-pod-to-bigpage.git
+[submodule "modules/tap-harness6-prove6"]
+	path = modules/tap-harness6-prove6
+	url = git@github.com:stmuk/tap-harness6-prove6.git
