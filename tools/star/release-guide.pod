@@ -103,7 +103,7 @@ for the Star release.  To bring all modules up to the current
 Create a temporary file as a basis for module changelog to be
 included in release announcement below:
 
-  $ git diff --submodule=log origin/master..HEAD > /tmp/mod.txt
+  $ git diff --submodule=log > /tmp/mod.txt
 
 Then you may commit your update of the submodules:
 
