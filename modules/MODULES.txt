@@ -26,6 +26,7 @@ NativeHelpers-Blob
 DBIish                                    # uses NativeHelpers::Blob
 jsonrpc                                   # uses PSGI
 Pod-To-HTML
+perl6-pod-to-bigpage
 p6-file-directory-tree
 p6-File-Temp                              # uses File::Directory::Tree
 doc                                       # uses File::Temp

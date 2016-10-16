@@ -97,3 +97,6 @@
 [submodule "modules/NativeHelpers-Blob"]
 	path = modules/NativeHelpers-Blob
 	url = git://github.com/salortiz/NativeHelpers-Blob
+[submodule "modules/perl6-pod-to-bigpage"]
+	path = modules/perl6-pod-to-bigpage
+	url = git@github.com:gfldex/perl6-pod-to-bigpage.git
