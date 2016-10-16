@@ -95,10 +95,15 @@ name to the modules/MODULES.txt file.
 
 Verify that all of the git submodules are at the desired commit
 for the Star release.  To bring all modules up to the current
-'master' branch, one can do
+'master' branch, one can do:
   
   # pull master in each submodule dir
   $ git submodule foreach git pull origin master
+
+Create a temporary file as a basis for module changelog to be
+included in release announcement below:
+
+  $ git diff --submodule=log origin/master..HEAD > /tmp/mod.txt
 
 Then you may commit your update of the submodules:
 
@@ -116,6 +121,9 @@ to any changes listed in Rakudo's ChangeLog.
   $ vi docs/announce/YYYY.MM.md
   $ git add docs/announce/YYYY.MM.md
   $ git commit docs
+
+The module changelog temporary file above can be used to help with
+the corresponding section in the announcement.
 
 At this point it is strongly advised that you push your changes so far, to get
 feedback on your announcement while you do other steps.
