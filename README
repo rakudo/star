@@ -1,6 +1,6 @@
 This is Rakudo Star, a useful, usable Perl 6 production distribution.
 
-This is the 2016.10 release of Rakudo Star.
+This is the 2016.10 release of Rakudo Star for the 6.c version of Perl 6.
 
 Rakudo Star is Copyright (C) 2010 - 2016 by the Rakudo Star Team.
 
@@ -109,40 +109,58 @@ issue with test suite versioning.  This can be ignored and it's hoped this will
 be fixed shortly.
 
 
-Release information
--------------------
-Information about the current release is placed in the docs/ directory, here
-is a brief overview:
+Perl 6 Documentation
+--------------------
+The official documentation site is https://docs.perl6.org/
+
+This distribution also contains documentation in the docs/ directory:
 
  docs/cheatsheet.txt             —   Perl 6 cheat sheet
  docs/2015-spw-perl6-course.pdf  —   A short Perl 6 course
  docs/perl6intro.pdf             —   Recent snapshot of http://perl6intro.com/
  docs/announce/                  —   Detailed release announcements
 
-Please note that the on-line version of perl6intro is available in multiple
-languages, French and German at the time of writing.
+http://perl6intro.com/ is available in multiple languages, Dutch, French,
+German, Japanese, Portuguese and Spanish at the time of writing.
+
+
+Installing Perl 6 Modules
+-------------------------
+panda is a module installer bundled with Rakudo Star. Currently it requires
+git as a runtime dependency.
+
+See https://github.com/tadzik/panda for panda documentation.
+
+zef is an alternative module installer.
+
+A list of modules available in the "ecosystem" is at http://modules.perl6.org/
 
 
 Where to get help or answers to questions
 -----------------------------------------
-The http://perl6.org/ website contains a great many links to resources for
-Perl 6 development, and is generally the starting point for information about
-Perl 6.
+'p6doc faq' will display a version of the FAQ.
+
+Also see http://faq.perl6.org/
 
 There are several mailing lists, IRC channels, and wikis available with help
-for Perl 6 and Rakudo.  Figuring out the right one to use is often the biggest
-battle.  Here are some rough guidelines:
+for Perl 6 and Rakudo.  
 
-If you have a question about Perl 6 syntax or the right way to approach a
-problem using Perl 6, you probably want the perl6-users@perl.org mailing list.
-This list is primarily for the people who want to use Perl 6 to write
-programs, as opposed to those who are implementing or developing the Perl 6
-language itself.
+A friendly IRC channel for new starter questions is irc.freenode.net/#perl6
+
+The Rakudo and MoarVM development teams tend to hang out on IRC a fair bit, on
+irc.freenode.net/#perl6-dev and irc.freenode.net/#moarvm, respectively.
+
+IRC tends to be busier than the mailing lists but if you have a question about
+Perl 6 syntax or the right way to approach a problem using Perl 6, you could
+use the perl6-users@perl.org mailing list.  This list is primarily for the
+people who want to use Perl 6 to write programs, as opposed to those who are
+implementing or developing the Perl 6 language itself.
 
 Questions about the Rakudo compiler can go to perl6-compiler@perl.org.
 
-The Rakudo and MoarVM development teams tend to hang out on IRC a fair
-bit, on irc.freenode.net/#perl6 and irc.freenode.net/#moarvm, respectively.
+The http://perl6.org/ website contains a great many links to resources for Perl
+6 development, and is generally the starting point for information about Perl
+6.
 
 Rakudo's official web site is http://rakudo.org/, where you can
 find useful information for developers and users alike.
