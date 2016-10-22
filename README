@@ -100,6 +100,10 @@ Running "make modules-test" will run the test suites of any installed modules.
 The modules currently have to be installed (via 'make install' or 'make
 modules-install') before the tests can be run.
 
+Currently a number of roast tests may be reported as missing due to a known
+issue with test suite versioning.  This can be ignored and it's hoped this will
+be fixed shortly.
+
 
 Release information
 -------------------
