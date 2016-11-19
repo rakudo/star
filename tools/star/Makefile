@@ -63,7 +63,10 @@ manifest: modules/DBIish/lib
 	sort -o MANIFEST MANIFEST
 	rm MANIFEST.1
 
-tarball: manifest
+patch:
+	patch -p1 < patches/perl6-pod-to-bigpage.patch
+
+tarball: manifest patch
 	[ -n "$(VERSION)" ] || ( echo "\nTry '$(MAKE) release VERSION=yyyy.mm'\n\n"; exit 1 )
 	[ -d $(STAR_REL) ] || ln -s . $(STAR_REL)
 	$(PREFIX) $(STAR_REL)/ MANIFEST | \
