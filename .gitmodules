@@ -25,9 +25,6 @@
 [submodule "modules/perl6-digest-md5"]
 	path = modules/perl6-digest-md5
 	url = git://github.com/cosimo/perl6-digest-md5
-[submodule "modules/panda"]
-	path = modules/panda
-	url = git://github.com/tadzik/panda
 [submodule "modules/perl6-http-status"]
 	path = modules/perl6-http-status
 	url = git://github.com/supernovus/perl6-http-status
@@ -103,3 +100,6 @@
 [submodule "modules/tap-harness6-prove6"]
 	path = modules/tap-harness6-prove6
 	url = git@github.com:stmuk/tap-harness6-prove6.git
+[submodule "modules/zef"]
+	path = modules/zef
+	url = git@github.com:ugexe/zef.git
