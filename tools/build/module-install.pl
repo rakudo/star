@@ -2,8 +2,8 @@
 
 use warnings;
 use strict;
-my $perl6bin   = shift @ARGV;
-my $pandabin   = shift @ARGV;
+my $perl6bin = shift @ARGV;
+my $zefbin   = shift @ARGV;
 
 my $exit = 0;
 
@@ -13,7 +13,9 @@ $path_sep = "\\" if ( $^O eq 'MSWin32' );
 while (<>) {
     next if /^\s*(#|$)/;
     my ($module) = /(\S+)/;
-    $exit ||= system $perl6bin, $pandabin, '--force', '--/depends', "install", "./modules$path_sep$module";
+    $exit ||= system $perl6bin, $zefbin,
+      '--/build-depends', '--/test-depends', '--/depends',
+      '--force', 'install', "./modules$path_sep$module";
 }
 
 exit $exit;
