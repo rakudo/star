@@ -200,28 +200,7 @@ Upload the release tarball to L<http://rakudo.org/downloads/star>:
 If you don't have permission to do this step, please ask one(pmichaud, jnthn,
 masak, PerlJam/perlpilot, tadzik, moritz) on #perl6 to do it for you.
 
-=item 13
-
-Update rakudo.org redirects to latest versions:
-
-    ssh rakudo@rakudo.org
-    pico public_html/.htaccess
-
-Find  a section that looks like this:
-
-    Redirect 303 /downloads/star/rakudo-star-latest.tar.gz http://rakudo.org/downloads/star/rakudo-star-2016.07.tar.gz
-    Redirect 303 /downloads/star/rakudo-star-latest.dmg http://rakudo.org/downloads/star/rakudo-star-2016.07.dmg
-    Redirect 303 "/downloads/star/rakudo-star-latest-x86_64 (JIT).msi" http://rakudo.org/downloads/star/rakudo-star-2016.07-x86_64%20(JIT).msi
-    Redirect 303 "/downloads/star/rakudo-star-latest-x86 (no JIT).msi" http://rakudo.org/downloads/star/rakudo-star-2016.01-x86%20(no%20JIT).msi
-
-And update the version numbers in the urls. Save the file and exit (^O, ^X).
-Ensure to test the URLs work and you did not make a typo:
-L<.tar.gz URL|http://rakudo.org/downloads/star/rakudo-star-latest.tar.gz>,
-L<.dmg URL|http://rakudo.org/downloads/star/rakudo-star-latest.dmg>,
-L<Win64 URL|http://rakudo.org/downloads/star/rakudo-star-latest-x86_64%20(JIT).msi>, and
-L<Win32 URL|http://rakudo.org/downloads/star/rakudo-star-latest-x86%20(no%20JIT).msi>
-
-=item 14.
+=item 13.
 
 Publicize the release in the appropriate places.  These include:
 
@@ -263,7 +242,7 @@ and L<r/programming|https://www.reddit.com/r/programming/>
 
 =back
 
-=item 15
+=item 14
 
 Add this release and your name to the list of releases at the end of this
 document (F<tools/star/release-guide.pod>).
@@ -272,7 +251,7 @@ document (F<tools/star/release-guide.pod>).
     $ git add tools/star/release-guide.pod
     $ git commit -m 'note YYYY.MM release in release-guide.pod
 
-=item 16.
+=item 15.
 
 You're done!  Celebrate with the appropriate amount of fun.
 
