@@ -12,12 +12,8 @@ uri
 perl6-lwp-simple                          # uses MIME::Base64, URI
 json
 perl6-digest-md5
-#file-find                                # panda dep do not uncomment
-#perl6-file-which
-#shell-command                            # panda dep do not uncomment
-#json_fast                                # panda dep do not uncomment
-#panda                                     # uses JSON::Fast
 perl6-http-status
+json_fast
 p6-Template-Mustache
 PSGI
 perl6-http-easy                           # uses PSGI
@@ -29,9 +25,12 @@ Pod-To-HTML
 perl6-pod-to-bigpage
 p6-file-directory-tree
 p6-File-Temp                              # uses File::Directory::Tree
+file-find
 doc                                       # uses File::Temp
 debugger-ui-commandline
+shell-command
 library-make
 p6-native-resources                       # uses Librarymake
 Linenoise                                 # uses Native::Resources
+perl6-file-which
 tap-harness6-prove6                       # have last so faster perl5 prove used                         
