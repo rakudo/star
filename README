@@ -126,8 +126,7 @@ German, Japanese, Portuguese and Spanish at the time of writing.
 
 Installing Perl 6 Modules
 -------------------------
-zef is a module installer bundled with Rakudo Star. Currently it requires
-git as a runtime dependency.
+zef is a module installer bundled with Rakudo Star.
 
 See https://github.com/ugexe/zef for zef documentation.
 
