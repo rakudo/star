@@ -34,3 +34,4 @@ p6-native-resources                       # uses Librarymake
 Linenoise                                 # uses Native::Resources
 perl6-file-which
 tap-harness6-prove6                       # have last so faster perl5 prove used                         
+panda

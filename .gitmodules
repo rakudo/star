@@ -103,3 +103,6 @@
 [submodule "modules/zef"]
 	path = modules/zef
 	url = git@github.com:ugexe/zef.git
+[submodule "modules/panda"]
+	path = modules/panda
+	url = git@github.com:tadzik/panda.git
