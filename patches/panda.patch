@@ -1,11 +1,10 @@
 --- ../modules/panda/bin/panda
 +++ ../modules/panda/bin/panda
-@@ -4,6 +4,8 @@
- use Panda::Ecosystem;
- use Panda::App;
+@@ -163,6 +163,7 @@
+ }
  
-+note "\n'panda' is shortly to be removed from Rakudo Star and replaced by 'zef'.\n'zef' can be used to install 'panda' when this happens.\n";
-+
- my $*MAIN-ALLOW-NAMED-ANYWHERE = True;
+ END {
++     note "\n'panda' is shortly to be removed from Rakudo Star and replaced by 'zef'.\n'zef' is available in this release and recommended over 'panda'";
+     rm_rf '.panda-work' if '.panda-work'.IO.e;
  
- # default opts for MAIN
+     for %failed.kv -> $source,$messages {
