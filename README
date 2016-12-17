@@ -134,6 +134,7 @@ panda is an alternative module installer.
 
 A list of modules available in the "ecosystem" is at http://modules.perl6.org/
 
+Git is useful for both zef and panda (and required with the latter).
 
 Where to get help or answers to questions
 -----------------------------------------
