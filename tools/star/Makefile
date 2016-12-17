@@ -65,6 +65,7 @@ manifest: modules/DBIish/lib
 
 patch:
 	patch -p1 < patches/perl6-pod-to-bigpage.patch
+	patch -p1 < patches/panda.patch
 
 tarball: manifest patch
 	[ -n "$(VERSION)" ] || ( echo "\nTry '$(MAKE) release VERSION=yyyy.mm'\n\n"; exit 1 )

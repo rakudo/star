@@ -1,0 +1,11 @@
+--- ../modules/panda/bin/panda
++++ ../modules/panda/bin/panda
+@@ -4,6 +4,8 @@
+ use Panda::Ecosystem;
+ use Panda::App;
+ 
++note "\n'panda' is shortly to be removed from Rakudo Star and replaced by 'zef'.\n'zef' can be used to install 'panda' when this happens.\n";
++
+ my $*MAIN-ALLOW-NAMED-ANYWHERE = True;
+ 
+ # default opts for MAIN
