@@ -19,6 +19,6 @@ is the root Applications directory and other locations won't work.
 
 4. Add the 'export' line above to .bash_profile or similar to persist.
 
-5. Useful commands are 'p6doc' and 'panda'.
+5. Useful commands are 'p6doc' and 'zef'.
 
 6. See also the documents in the 'Docs' folder and http://perl6.org
