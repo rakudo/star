@@ -4,7 +4,7 @@
  }
  
  END {
-+     note "\n'panda' is shortly to be removed from Rakudo Star and replaced by 'zef'.\n'zef' is available in this release and recommended over 'panda'";
++     note "\nDEPRECATED\n'panda' is shortly to be removed from Rakudo Star and replaced by 'zef'.\n'zef' is available in this release and recommended over 'panda'";
      rm_rf '.panda-work' if '.panda-work'.IO.e;
  
      for %failed.kv -> $source,$messages {
