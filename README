@@ -89,6 +89,9 @@ Rakudo Star can be built on Windows either using Microsoft tools (MSVC) and
 nmake or using gcc and gmake as bundled with Strawberry Perl.  In the latter
 case use cmd.exe rather than bash as a shell.
 
+Note that possible platform-specific errata may be covered under:
+https://perl6.org/downloads/
+
 
 Running the Perl 6 test suite
 -----------------------------
