@@ -291,7 +291,7 @@ sub download_text {
     ("The git repository contains the tools needed to build a Rakudo Star",
      "release, but does not contain a complete Rakudo Star release.",
      "To download and build the latest release of Rakudo Star, please",
-     "download a .tar.gz file from http://rakudo.org/downloads/star/ .")
+     "download a .tar.gz file from https://rakudo.perl6.org/downloads/star/ .")
 }
 
 sub worry {

@@ -193,9 +193,10 @@ that prove impossible, you can omit the C<-s> from the command line.
 
 =item 12.
 
-Upload the release tarball to L<http://rakudo.org/downloads/star>:
+Upload the release tarball to L<http://rakudo.org/downloads/star> and L<https://rakudo.perl6.org/downloads/star/>:
 
  $ scp rakudo-star-2012.08.tar.gz rakudo@rakudo.org:public_html/downloads/star
+ $ scp rakudo-star-2012.08.tar.gz rakudo@www.p6c.org:public_html/downloads/star
 
 If you don't have permission to do this step, please ask one(pmichaud, jnthn,
 masak, PerlJam/perlpilot, tadzik, moritz) on #perl6 to do it for you.

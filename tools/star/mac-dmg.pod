@@ -37,7 +37,7 @@ X 10.9 (and probably further).
 =item 1.
 
 Use your browser to download the latest star release, replace YYYY.MM by year and month:
-http://rakudo.org/downloads/star/rakudo-star-YYYY.MM.tar.gz
+https://rakudo.perl6.org/downloads/star/rakudo-star-YYYY.MM.tar.gz
 
 Unpack this .tar.gz to your hard disk. You will get a folder rakudo-star-YYYY.MM, again
 YYYY.MM is year and month of the star release.
@@ -100,9 +100,9 @@ them to the IRC channel or mailing list. If you alter scripts recommit them.
 
 =item 6.
 
-Upload the dmg package to L<http://rakudo.org/downloads/star>:
+Upload the dmg package to L<https://rakudo.perl6.org/downloads/star>:
 
- scp "rakudo-star-YYYY.MM.dmg" rakudo@rakudo.org:public_html/downloads/star
+ scp "rakudo-star-YYYY.MM.dmg" rakudo@www.p6c.org:public_html/downloads/star
 
 If you don't have permission to do this step, please ask one(pmichaud, jnthn,
 masak, PerlJam/perlpilot, tadzik, moritz) on #perl6 to do it for you.

@@ -8,10 +8,10 @@ STAR_TGZ    = $(STAR_REL).tar.gz
 SRC_DIR = src
 
 RAKUDO_TGZ = rakudo-$(RAKUDO_VER).tar.gz
-RAKUDO_URL = http://rakudo.org/downloads/rakudo/$(RAKUDO_TGZ)
+RAKUDO_URL = https://rakudo.perl6.org/downloads/rakudo/$(RAKUDO_TGZ)
 RAKUDO_SRC = $(SRC_DIR)/$(RAKUDO_TGZ)
 NQP_TGZ    = nqp-$(NQP_VER).tar.gz
-NQP_URL    = http://rakudo.org/downloads/nqp/$(NQP_TGZ)
+NQP_URL    = https://rakudo.perl6.org/downloads/nqp/$(NQP_TGZ)
 NQP_SRC    = $(SRC_DIR)/$(NQP_TGZ)
 MOAR_TGZ   = MoarVM-$(MOAR_VER).tar.gz
 MOAR_URL   = http://www.moarvm.org/releases/$(MOAR_TGZ)

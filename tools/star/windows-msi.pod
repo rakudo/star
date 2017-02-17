@@ -49,7 +49,7 @@ If there is one, remove it, perhaps after creating backup.
 =item 2.
 
 Use your browser to download the latest star release, replace YYYY.MM by year and month:
-http://rakudo.org/downloads/star/rakudo-star-YYYY.MM.tar.gz
+https://rakudo.perl6.org/downloads/star/rakudo-star-YYYY.MM.tar.gz
 
 Unpack this .tar.gz to your hard disk. You will get a folder rakudo-star-YYYY.MM, again
 YYYY.MM is year and month of the star release.
@@ -110,9 +110,10 @@ list.
 
 =item 9.
 
-Upload the msi package to L<http://rakudo.org/downloads/star>:
+Upload the msi package to L<http://rakudo.org/downloads/star> and L<https://rakudo.perl6.org/downloads/star/>:
 
  scp "rakudo-star-YYYY.MM-x86 (no JIT).msi" rakudo@rakudo.org:public_html/downloads/star
+ scp "rakudo-star-YYYY.MM-x86 (no JIT).msi" rakudo@www.p6c.org:public_html/downloads/star
 
 If you don't have permission to do this step, please ask one(pmichaud, jnthn,
 masak, PerlJam/perlpilot, tadzik, moritz) on #perl6 to do it for you.
