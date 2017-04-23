@@ -4,6 +4,7 @@ xml-writer
 svg                                       # uses XML::Writer
 svg-plot                                  # uses SVG
 Terminal-ANSIColor
+oo-monitors
 test-mock
 Grammar-Profiler-Simple
 grammar-debugger                          # uses Terminal::ANSIColor

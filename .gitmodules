@@ -106,3 +106,6 @@
 [submodule "modules/panda"]
 	path = modules/panda
 	url = git@github.com:tadzik/panda.git
+[submodule "modules/oo-monitors"]
+	path = modules/oo-monitors
+	url = git@github.com:jnthn/oo-monitors
