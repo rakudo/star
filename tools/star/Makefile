@@ -3,7 +3,7 @@ RAKUDO_VER  = 2017.04.3
 # note neither of the following two tarballs exist on the FTP site(s)
 # manually create under src/ 
 NQP_VER     = 2017.04-24-g87501f7b
-MOAR_VER    = 2017.04-44-gf0db8822
+MOAR_VER    = 2017.04-53-g66c6dda
 
 STAR_REL    = rakudo-star-$(VERSION)
 STAR_TGZ    = $(STAR_REL).tar.gz
