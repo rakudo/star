@@ -97,9 +97,6 @@
 [submodule "modules/perl6-pod-to-bigpage"]
 	path = modules/perl6-pod-to-bigpage
 	url = git@github.com:gfldex/perl6-pod-to-bigpage.git
-[submodule "modules/tap-harness6-prove6"]
-	path = modules/tap-harness6-prove6
-	url = git@github.com:stmuk/tap-harness6-prove6.git
 [submodule "modules/zef"]
 	path = modules/zef
 	url = git@github.com:ugexe/zef.git
@@ -109,3 +106,6 @@
 [submodule "modules/oo-monitors"]
 	path = modules/oo-monitors
 	url = git@github.com:jnthn/oo-monitors
+[submodule "modules/tap-harness6"]
+	path = modules/tap-harness6
+	url = git@github.com:perl6/tap-harness6.git
