@@ -85,8 +85,9 @@ Once Rakudo Star is installed, you can run Perl 6 programs by doing:
 
     $ ./perl6 hello.pl
 
-Programs can also be run by adding the "install/bin" or "$INSTDIR" directories
-to your PATH environment variable.
+Programs can also be run by adding the local "install/bin" directory or
+system-wide "$INSTDIR" directory (if you used the --prefix option) to
+your PATH environment variable.
 
 If the Rakudo compiler is invoked without an explicit script to run, it enters
 a small interactive mode that allows Perl 6 statements to be executed from the
