@@ -66,6 +66,13 @@ the source archive directory. Running make install will *not* install anything
 into /usr/local. If you want to change this behavior, specify the install
 prefix using the --prefix option.
 
+Configuring with the --prefix option
+------------------------------------
+If you want to install rakudo into a system-wide directory, you must either
+have root privileges or own the desired installation directory. Assuming you
+are root, use any of the desired configuration commands shown above and add
+"--prefix=$INSTDIR" to the end where $INSTDIR is the installation directory
+of choice.
 
 Building Rakudo Star
 --------------------
@@ -78,8 +85,9 @@ Once Rakudo Star is installed, you can run Perl 6 programs by doing:
 
     $ ./perl6 hello.pl
 
-Programs can also be run by adding the "install/bin" directory to your PATH
-environment variable.
+Programs can also be run by adding the local "install/bin" directory or
+system-wide "$INSTDIR" directory (if you used the --prefix option) to
+your PATH environment variable.
 
 If the Rakudo compiler is invoked without an explicit script to run, it enters
 a small interactive mode that allows Perl 6 statements to be executed from the
