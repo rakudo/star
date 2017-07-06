@@ -5,12 +5,12 @@ Since some time is often needed for module updates and testing
 after each Rakudo compiler release, the timing of Star releases
 varies from one release to the next.
 
-Also, while the Rakudo compiler issues monthly releases; Star
+Also, while the Rakudo compiler issues monthly releases, Star
 releases are free to choose a longer release cycle.  Star releases
-are also free to choose older releases of the compiler, NQP, and/or
+are also free to choose older releases of the compiler, NQP, or
 MoarVM.  The goal is to balance end-user stability needs with 
 progress being made on the compiler, modules, and other runtime 
-components.  Currently Star is on a monthly release cycle; we 
+components.  Currently, Star is on a monthly release cycle; we 
 expect to slow down to quarterly releases again sometime in the
 future.
 
@@ -30,7 +30,7 @@ wish to do so. Step 8 will make sure you do this regardless.
 
 =item 0.
 
-Make sure you have working C<perl6> binary in your C<$PATH>. Refer to
+Make sure you have a working C<perl6> binary in your C<$PATH>. Refer to
 L<http://rakudo.org/how-to-get-rakudo/> for how to do that. The exact version
 isn't very important at the moment, it just shouldn't be a year out of date.
 
@@ -40,7 +40,7 @@ Clone the git@github.com:rakudo/star repository.
 
   $ git clone git@github.com:rakudo/star
 
-If you already have clone of rakudo/star, make sure it is in sync
+If you already have a clone of rakudo/star, make sure it is in sync
 with github:
 
   $ git checkout master
@@ -56,12 +56,12 @@ reports a clean repository.
 
 =item 2.
 
-Change to the star repository directory, and edit the first three
+Change to the star repository directory and edit the first three
 lines of F<tools/star/Makefile> to indicate the desired releases of
-Rakudo, NQP and MoarVM to use.
+Rakudo, NQP, and MoarVM to use.
 
 Usually that means the last Rakudo release, the NQP version that is in the
-released Rakudo's F<tools/build/NQP_REVISION> file, the MoarVM version that
+released Rakudo's F<tools/build/NQP_REVISION> file, and the MoarVM version that
 is in the F<tools/build/MOAR_REVISION> file that is included in the NQP
 release.
 
@@ -100,7 +100,7 @@ for the Star release.  To bring all modules up to the current
   # pull master in each submodule dir
   $ git submodule foreach git pull origin master
 
-Create a temporary file as a basis for module changelog to be
+Create a temporary file as a basis for the module changelog to be
 included in release announcement below:
 
   $ git diff --submodule=log > /tmp/mod.txt
@@ -113,9 +113,9 @@ Then you may commit your update of the submodules:
 =item 6.
 
 If one doesn't already exist, create a release announcement in
-docs/announce/YYYY.MM.md .  You can often use the previous release's
+docs/announce/YYYY.MM.md.  You can often use the previous release's
 file as a starting point, updating the release number, version
-information, name, etc. as appropriate.  Be sure to pay attention
+information, name, etc., as appropriate.  Be sure to pay attention
 to any changes listed in Rakudo's ChangeLog.
 
   $ vi docs/announce/YYYY.MM.md
@@ -198,8 +198,10 @@ Upload the release tarball to L<http://rakudo.org/downloads/star> and L<https://
  $ scp rakudo-star-2012.08.tar.gz rakudo@rakudo.org:public_html/downloads/star
  $ scp rakudo-star-2012.08.tar.gz rakudo@www.p6c.org:public_html/downloads/star
 
-If you don't have permission to do this step, please ask one(pmichaud, jnthn,
-masak, PerlJam/perlpilot, tadzik, moritz) on #perl6 to do it for you.
+If you don't have permission to do this step, please ask one of the core devs 
+(pmichaud, jnthn, masak, PerlJam/perlpilot, tadzik, or moritz) on #perl6 to do
+it for you.
+
 
 =item 13.
 
@@ -263,6 +265,8 @@ You're done!  Celebrate with the appropriate amount of fun.
     Release         Release manager
     =======         ===============
 
+    2017.07         
+    2017.10         
 
 =head2 List of Previous Star Releases
 
@@ -323,8 +327,6 @@ You're done!  Celebrate with the appropriate amount of fun.
     2016.11         stmuk
     2017.01         stmuk
     2017.04         stmuk
-    2017.07         
-    2017.10         
 
 =cut
 
