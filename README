@@ -81,24 +81,38 @@ After configuration, build Rakudo Star on a UNIX-like system with:
     $ make
     $ make install
 
-Once Rakudo Star is installed, you can run Perl 6 programs by doing:
-
-    $ ./perl6 hello.pl
-
-Programs can also be run by adding the local "install/bin" directory or
-system-wide "$INSTDIR" directory (if you used the --prefix option) to
-your PATH environment variable.
-
-If the Rakudo compiler is invoked without an explicit script to run, it enters
-a small interactive mode that allows Perl 6 statements to be executed from the
-command line.
-
 Rakudo Star can be built on Windows either using Microsoft tools (MSVC) and
 nmake or using gcc and gmake as bundled with Strawberry Perl.  In the latter
 case use cmd.exe rather than bash as a shell.
 
 Note that possible platform-specific errata may be covered under:
 https://perl6.org/downloads/
+
+Setting up the environment
+--------------------------
+To set up the environment under a UNIX type system you will need to add the
+absolute path of the local "install/bin" directory under your source build
+directory or system-wide "${INSTDIR}/bin" directory (if you used the
+--prefix option) to your PATH environment variable.
+
+Note also that other executable scripts such as "p6doc" will be installed
+under "${INSTDIR}/share/perl6/site/bin" so you also need to add that to the
+PATH for development convenience.
+
+You will have to append the %PATH% in a similar way under Windows. You
+may have to use Windows type directory path separators.
+
+You will be reminded of the two additions to the PATH by a welcome message
+after the source build completes.
+
+Once Rakudo Star is installed (and assuming perl6 is in your PATH), you can
+run Perl 6 programs by doing:
+
+    $ perl6 hello.pl
+
+If the Rakudo compiler is invoked without an explicit script to run, it
+enters a small interactive mode that allows Perl 6 statements to be executed
+from the command line.
 
 
 Running the Perl 6 test suite
