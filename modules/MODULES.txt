@@ -37,3 +37,4 @@ perl6-tap-harness                         # have last so faster perl5 prove used
 panda
 p6-io-string
 perl6-Test-When
+perl6-encode

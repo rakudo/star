@@ -112,3 +112,6 @@
 [submodule "modules/perl6-Test-When"]
 	path = modules/perl6-Test-When
 	url = git@github.com:zoffixznet/perl6-Test-When.git
+[submodule "modules/perl6-encode"]
+	path = modules/perl6-encode
+	url = git@github.com:sergot/perl6-encode.git
