@@ -21,6 +21,7 @@ perl6-http-easy                           # uses PSGI
 Template-Mojo
 NativeHelpers-Blob
 DBIish                                    # uses NativeHelpers::Blob
+perl6-Test-When
 jsonrpc                                   # uses PSGI
 Pod-To-HTML
 perl6-pod-to-bigpage
@@ -36,5 +37,4 @@ perl6-file-which
 tap-harness6                         # have last so faster perl5 prove used
 panda
 p6-io-string
-perl6-Test-When
 perl6-encode
