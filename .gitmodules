@@ -109,3 +109,6 @@
 [submodule "modules/p6-io-string"]
 	path = modules/p6-io-string
 	url = git@github.com:hoelzro/p6-io-string.git
+[submodule "modules/perl6-Test-When"]
+	path = modules/perl6-Test-When
+	url = git@github.com:zoffixznet/perl6-Test-When.git
