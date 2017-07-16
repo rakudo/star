@@ -10,9 +10,7 @@ releases are free to choose a longer release cycle.  Star releases
 are also free to choose older releases of the compiler, NQP, or
 MoarVM.  The goal is to balance end-user stability needs with 
 progress being made on the compiler, modules, and other runtime 
-components.  Currently, Star is on a monthly release cycle; we 
-expect to slow down to quarterly releases again sometime in the
-future.
+components.  Currently, Star is on a quarterly release cycle.
 
 =head2 Steps to create a release
 

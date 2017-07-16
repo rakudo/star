@@ -11,9 +11,7 @@ releases are free to choose a longer release cycle.  Star releases
 are also free to choose older releases of the compiler, NQP, and/or
 MoarVM.  The goal is to balance end-user stability needs with
 progress being made on the compiler, modules, and other runtime
-components.  Currently Star is on a monthly release cycle; we
-expect to slow down to quarterly releases again sometime in the
-future.
+components.
 
 =head2 Steps to create an MSI package
 
