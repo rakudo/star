@@ -106,3 +106,6 @@
 [submodule "modules/tap-harness6"]
 	path = modules/tap-harness6
 	url = git@github.com:perl6/tap-harness6.git
+[submodule "modules/p6-io-string"]
+	path = modules/p6-io-string
+	url = git@github.com:hoelzro/p6-io-string.git
