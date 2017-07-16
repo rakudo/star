@@ -10,8 +10,8 @@ Grammar-Profiler-Simple
 grammar-debugger                          # uses Terminal::ANSIColor
 Perl6-MIME-Base64
 uri
-perl6-lwp-simple                          # uses MIME::Base64, URI
 json
+perl6-lwp-simple                          # uses MIME::Base64, URI, JSON::Tiny
 perl6-digest-md5
 perl6-http-status
 json_fast
