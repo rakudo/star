@@ -83,6 +83,8 @@ Finally create the MSI package.
 
   nmake msi
 
+(Note if you are using Strawberry Perl's GCC use 'build_msi')
+
 Depending on your architecture you either rename that msi to:
 
   rakudo-star-YYYY.MM-x86 (no JIT).msi
