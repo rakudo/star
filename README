@@ -32,7 +32,7 @@ with less.
 Build Prerequisites for Rakudo on the JVM
 -----------------------------------------
 Please note that this release of Rakudo Star is *not* fully functional with the
-JVM backend from the Rakudo compiler.  Use the MoarVM backend only if you are
+JVM backend from the Rakudo compiler.  Use the JVM backend only if you are
 trying to help with fixing JVM support (which is best done upstream with the
 monthly Rakudo release).  This is a known issue and it's not worth reporting
 JVM failures as bugs unless you have patches.
