@@ -58,7 +58,8 @@ Note that --gen-moar automatically builds a MoarVM for you, and implies
 Rakudo.
 
 Please note that this release of Rakudo Star is not fully functional with the
-JVM backend from the Rakudo compiler. Please use the MoarVM backend only.
+JVM backend from the Rakudo compiler. Please use the MoarVM backend only.  This
+is a known issue and it's not worth reporting JVM failures as bugs.
 
 Configured this way, one or more Perl 6 executables and selected Perl 6
 modules will be installed into the install/ subdirectory, which resides inside
@@ -160,6 +161,10 @@ panda is an alternative module installer.
 A list of modules available in the "ecosystem" is at http://modules.perl6.org/
 
 Git is useful for both zef and panda (and required with the latter).
+
+When upgrading between versions of perl6 it may currently be necessary to
+remove ~/.perl6 and/or ~/.zef due to a possible pre-compilation bug.
+
 
 Where to get help or answers to questions
 -----------------------------------------
