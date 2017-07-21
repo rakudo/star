@@ -164,8 +164,9 @@ A list of modules available in the "ecosystem" is at http://modules.perl6.org/
 
 Git is useful for both zef and panda (and required with the latter).
 
-When upgrading between versions of perl6 it may currently be necessary to
-remove ~/.perl6 and/or ~/.zef due to a possible toolchain bug.
+When upgrading between versions of perl 6 it may be necessary to remove
+~/.perl6 and/or ~/.zef due to a possible toolchain bug.  If you see this issue
+please email details as suggested in the "Reporting Bugs" section below.
 
 
 Where to get help or answers to questions
