@@ -31,6 +31,12 @@ with less.
 
 Build Prerequisites for Rakudo on the JVM
 -----------------------------------------
+Please note that this release of Rakudo Star is *not* fully functional with the
+JVM backend from the Rakudo compiler.  Use the MoarVM backend only if you are
+trying to help with fixing JVM support (which is best done upstream with the
+monthly Rakudo release).  This is a known issue and it's not worth reporting
+JVM failures as bugs unless you have patches.
+
 To build an experimental Rakudo Star on the JVM, you need at least a 'make'
 utility, both 'java' and 'javac' available in your path, and Perl 5.10.0 or
 newer. The 'java' and 'javac' are obtained by installing a Java Development
@@ -56,10 +62,6 @@ You can also build for all backends:
 Note that --gen-moar automatically builds a MoarVM for you, and implies
 --gen-nqp, which builds NQP, a subset of Perl 6 that is used to implement
 Rakudo.
-
-Please note that this release of Rakudo Star is not fully functional with the
-JVM backend from the Rakudo compiler. Please use the MoarVM backend only.  This
-is a known issue and it's not worth reporting JVM failures as bugs.
 
 Configured this way, one or more Perl 6 executables and selected Perl 6
 modules will be installed into the install/ subdirectory, which resides inside
