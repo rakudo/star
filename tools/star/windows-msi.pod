@@ -39,6 +39,10 @@ Visual C++ Express for version 2010 or perhaps newer.
 Finally, install the Windows Software Development Kit (SDK) for your Windows
 version.
 
+An alternative to ActivePerl and the Microsoft toolchain is to use Strawberry
+Perl which ships with GCC and a mingw toolchain.  Run these tools under cmd.exe
+and replace all following references to "nmake" by "gmake".
+
 =item 1.
 
 Make sure there is no C:\rakudo directory, as this will be our installation
@@ -83,7 +87,7 @@ Finally create the MSI package.
 
   nmake msi
 
-(Note if you are using Strawberry Perl's GCC use 'build_msi')
+(Note if you are using Strawberry Perl's GCC use 'build_msi' at this point)
 
 Depending on your architecture you either rename that msi to:
 
@@ -102,6 +106,10 @@ created installer, and do some sanity tests:
   perl6 -e "say $*KERNEL.bits"
   zef list --installed
   zef install Inline
+
+If you are using Strawberry Perl then move its directory temporarily to a
+different name in order to check all DDLs are correctly installed in the
+C:\rakudo folder.
 
 =item 8.
 
