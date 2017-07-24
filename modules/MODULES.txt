@@ -11,6 +11,7 @@ grammar-debugger                          # uses Terminal::ANSIColor
 Perl6-MIME-Base64
 uri
 json
+perl6-encode
 perl6-lwp-simple                          # uses MIME::Base64, URI, JSON::Tiny
 perl6-digest-md5
 perl6-http-status
@@ -37,4 +38,3 @@ perl6-file-which
 tap-harness6                         # have last so faster perl5 prove used
 panda
 p6-io-string
-perl6-encode
