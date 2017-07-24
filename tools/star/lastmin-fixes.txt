@@ -1,0 +1,37 @@
+"Last Minute Fixes”
+~~~~~~~~~~~~~~~~~~
+This process should be used sparingly, under protest and eventually be replaced
+by something better.
+
+The Problem
+~~~~~~~~~~~
+Conventionally Rakudo Star is built from monthly release tarballs of rakudo,
+nqp and moarvm which are named as YYYY.MM. Inevitably these sometimes contain
+bugs. Serious bugs are fixed in further releases of the components named as
+YYYY.MM.N where N is a (hopefully low) number. 
+
+Sometimes less serious bugs exist which are fixed in git shortly after the
+release but aren’t officially released as tarballs. It’s useful for some of
+these fixes to get pulled into Rakudo Star since it has a life longer than that
+of the monthly releases.
+
+A Solution
+~~~~~~~~~~
+In Rakudo Star ship tarballs based on git checkouts which are close to the
+official release but which contain extra fixes.
+
+Example
+~~~~~~~
+Replace nqp 2017.07 by nqp 2017.07-9-gc0abee7 to include --ll-exception fix  in c0abee7953ac7d6f090ccf4a762f6de5fc85ca70
+
+Edit ‘tools/star/Makefile’ setting NQP_VER as 2017.07-9-gc0abee7
+
+(From R* git checkout root)
+% mkdir src && cd src
+% git clone https://github.com/perl6/nqp.git && cd nqp
+% git checkout c0abee && echo MANIFEST >MANIFEST && git ls-files >>MANIFEST
+% rm -rf .git && echo 2017.07-9-gc0abee7 > VERSION && cd ..
+% tar cvfz nqp-2017.07-9-gc0abee7.tar.gz nqp && rm -rf nqp
+
+You can then proceed from the usual “make -f tools/star/Makefile” step in the release guide.
+

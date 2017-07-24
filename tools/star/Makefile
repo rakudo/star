@@ -1,8 +1,9 @@
+# Usually these exist as tarballs existing on the FTP site(s)
+# eg. 2017.07 etc.
+# Occasionally (mis-)used to pull in fixes (see 'lastmin-fixes.txt')
+# eg. 2017.07-9-gc0abee7 etc.
 RAKUDO_VER  = 2017.07
-# XXX Work around
-# note neither of the following two tarballs exist on the FTP site(s)
-# manually create under src/ 
-NQP_VER     = 2017.07
+NQP_VER     = 2017.07-9-gc0abee7
 MOAR_VER    = 2017.07
 
 STAR_REL    = rakudo-star-$(VERSION)
