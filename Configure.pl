@@ -53,6 +53,11 @@ MAIN: {
                "I see a .git directory here -- you appear to be trying",
               "to run Configure.pl from a clone of the Rakudo Star git",
               "repository.",
+              "You most probably should be following",
+              "    tools/star/release-guide.pod",
+              "instead. Please be aware that running Configure.pl from",
+              "a clone of the rakudo star git repo will never be",
+              "the right thing to do.",
               $options{'force'}
                 ? '--force specified, continuing'
                 : download_text()
