@@ -18,12 +18,12 @@ NQP_TGZ    = nqp-$(NQP_VER).tar.gz
 NQP_URL    = https://rakudo.perl6.org/downloads/nqp/$(NQP_TGZ)
 NQP_SRC    = $(SRC_DIR)/$(NQP_TGZ)
 MOAR_TGZ   = MoarVM-$(MOAR_VER).tar.gz
-MOAR_URL   = http://www.moarvm.org/releases/$(MOAR_TGZ)
+MOAR_URL   = https://www.moarvm.org/releases/$(MOAR_TGZ)
 MOAR_SRC   = $(SRC_DIR)/$(MOAR_TGZ)
 
 PERL   = perl
 PREFIX = $(PERL) $(CURDIR)/tools/star/prefix.pl
-WGET   = wget --no-check-certificate
+WGET   = wget
 
 all: rakudo nqp moar manifest
 
