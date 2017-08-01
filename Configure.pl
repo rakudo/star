@@ -34,7 +34,7 @@ MAIN: {
     GetOptions(\%options, 'help!', 'prefix=s',
                'sysroot=s', 'sdkroot=s',
                'backends=s', 'no-clean!',
-               'gen-nqp:s', 'gen-moar:s',
+               'gen-nqp:s', 'gen-moar:s', 'moar-option=s@',
                'make-install!', 'makefile-timing!',
                'force!',
     ) or do {
@@ -285,6 +285,8 @@ General Options:
     --gen-nqp[=branch]
                        Download and build a copy of NQP
     --makefile-timing  Enable timing of individual makefile commands
+    --moar-option='--option=value'
+                       Options to pass to MoarVM's Configure.pl
 
 Configure.pl also reads options from 'config.default' in the current directory.
 END
