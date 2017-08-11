@@ -1,0 +1,16 @@
+--- ../nqp/src/HLL/Compiler.nqp
++++ ../nqp/src/HLL/Compiler.nqp
+@@ -557,11 +557,11 @@ class HLL::Compiler does HLL::Backend::Default {
+         my $implementation := self.implementation();
+         my $language_name  := self.language_name();
+         if nqp::can(self, 'language_version') {
+-            nqp::say("This is $implementation version $version built on $backver\n" ~
++            nqp::say("This is $implementation Star version $version built on $backver\n" ~
+                 "implementing $language_name " ~ self.language_version() ~ ".");
+         }
+         else {
+-            nqp::say("This is $implementation version $version built on $backver");
++            nqp::say("This is $implementation Star version $version built on $backver");
+         }
+         nqp::exit(0);
+     }
