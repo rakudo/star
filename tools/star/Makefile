@@ -68,6 +68,7 @@ manifest: modules/DBIish/lib
 	rm MANIFEST.1
 
 patch:
+	patch -p1 < patches/star-ver.patch
 	patch -p1 < patches/perl6-pod-to-bigpage.patch
 	patch -p1 < patches/panda.patch
 
