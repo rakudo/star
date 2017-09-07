@@ -40,12 +40,11 @@ JVM failures as bugs unless you have patches.
 To build an experimental Rakudo Star on the JVM, you need at least a 'make'
 utility, both 'java' and 'javac' available in your path, and Perl 5.10.0 or
 newer. The 'java' and 'javac' are obtained by installing a Java Development
-kit, for example openjdk-7 or the Oracle JDK.
+kit, for example openjdk-8 or the Oracle JDK.
 
 The newer the JDK you have the better; due to bugs in the invokedynamic
-instruction in early JDK7 releases, JDK7 update 21 or above is suggested.
-JDK8, if available, is better still. The build can complete within a gigabyte
-of memory.
+instruction in early releases, JDK 8 or above is needed.  The build can
+complete within a gigabyte of memory.
 
 
 Configuring Rakudo Star
