@@ -36,5 +36,5 @@ library-make                              # check needed?
 Linenoise
 perl6-file-which
 tap-harness6                         # have last so faster perl5 prove used
-panda
+panda-stub
 p6-io-string
