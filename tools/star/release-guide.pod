@@ -258,15 +258,7 @@ You're done!  Celebrate with the appropriate amount of fun.
 
 =back
 
-=head2 List of Planned Releases and Release Managers
-
-    Release         Release manager
-    =======         ===============
-
-    2017.07         
-    2017.10         
-
-=head2 List of Previous Star Releases
+=head2 Star Releases
 
     Release         Release Manager
     =======         ===============
@@ -323,8 +315,11 @@ You're done!  Celebrate with the appropriate amount of fun.
     2016.07         stmuk
     2016.10         stmuk
     2016.11         stmuk
+
     2017.01         stmuk
     2017.04         stmuk
+    2017.07         stmuk
+    2017.10         stmuk
 
 =cut
 
