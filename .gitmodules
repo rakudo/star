@@ -118,3 +118,6 @@
 [submodule "modules/Test-META"]
 	path = modules/Test-META
 	url = git@github.com:jonathanstowe/Test-META.git
+[submodule "modules/perl6-datetime-format"]
+	path = modules/perl6-datetime-format
+	url = git@github.com:supernovus/perl6-datetime-format.git
