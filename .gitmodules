@@ -121,3 +121,18 @@
 [submodule "modules/perl6-datetime-format"]
 	path = modules/perl6-datetime-format
 	url = git@github.com:supernovus/perl6-datetime-format.git
+[submodule "modules/META6"]
+	path = modules/META6
+	url = git@github.com:jonathanstowe/META6.git
+[submodule "modules/JSON-Class"]
+	path = modules/JSON-Class
+	url = git@github.com:jonathanstowe/JSON-Class.git
+[submodule "modules/JSON-Marshal"]
+	path = modules/JSON-Marshal
+	url = git@github.com:jonathanstowe/JSON-Marshal.git
+[submodule "modules/JSON-Name"]
+	path = modules/JSON-Name
+	url = git@github.com:jonathanstowe/JSON-Name
+[submodule "modules/modules/uri"]
+	path = modules/modules/uri
+	url = git@github.com:perl6-community-modules/uri.git

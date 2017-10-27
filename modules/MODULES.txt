@@ -1,5 +1,12 @@
 # The order of modules here is significant; a module must be listed after
 # all of its dependencies.
+uri
+json_fast
+JSON-Name
+JSON-Unmarshal
+JSON-Marshal
+JSON-Class
+META6
 Test-META
 xml-writer
 svg                                       # uses XML::Writer
@@ -16,7 +23,6 @@ perl6-encode
 perl6-lwp-simple                          # uses MIME::Base64, URI, JSON::Tiny
 perl6-digest-md5
 perl6-http-status
-json_fast
 p6-Template-Mustache
 PSGI
 perl6-http-easy                           # uses PSGI
