@@ -1,5 +1,6 @@
 # The order of modules here is significant; a module must be listed after
 # all of its dependencies.
+Test-META
 xml-writer
 svg                                       # uses XML::Writer
 svg-plot                                  # uses SVG
