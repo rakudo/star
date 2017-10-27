@@ -136,3 +136,6 @@
 [submodule "modules/modules/uri"]
 	path = modules/modules/uri
 	url = git@github.com:perl6-community-modules/uri.git
+[submodule "modules/JSON-Unmarshal"]
+	path = modules/JSON-Unmarshal
+	url = git@github.com:tadzik/JSON-Unmarshal.git
