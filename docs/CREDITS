@@ -26,9 +26,15 @@ E: bbkr@post.pl
 N: Bruce Gray
 E: bruce.gray@acm.org
 
+N: Calvin Schwenzfeier
+E: calvin.schwenzfeier@gmail.com
+
 N: Carl Masak
 E: cmasak@gmail.com
 U: masak
+
+N: Christian Walde (Mithaldu)
+E: walde.christian@googlemail.com
 
 N: Coke
 E: will@coleda.com
@@ -47,6 +53,9 @@ E: gabor@szabgab.com
 N: gerd
 E: gp@zimt.uni-siegen.de
 
+N: Hinrik Örn Sigurðsson
+E: hinrik.sig@gmail.com
+
 N: Ingy dot Net
 E: ingy@ingy.net
 
@@ -56,8 +65,14 @@ E: nastavs@gmail.com
 N: Jens Rehsack
 E: sno@netbsd.org
 
+N: jnthn
+E: jonathan@edument.se
+
 N: John Gabriele
 E: jmg3000@gmail.com
+
+N: Jonathan
+E: jonathan@edument.se
 
 N: Jonathan Scott Duff
 U: perlpilot
@@ -73,6 +88,9 @@ E: liz@dijkmat.nl
 
 N: lue
 E: rnddim@gmail.com
+
+N: Mark Montague
+E: mark@catseye.org
 
 N: Martin Berends
 E: mberends@autoexec.demon.nl
@@ -90,6 +108,9 @@ E: alexmoquin@gmail.com
 N: Naoum Hankache
 E: naoum88@gmail.com
 U: hankache
+
+N: Nick Logan
+E: nick.logan@assurant.com
 
 N: Patrick R. Michaud
 U: pmichaud
@@ -120,5 +141,12 @@ E: timonator@perpetuum-immobile.de
 
 N: Tobias Leich
 E: email@froggs.de
+
+N: Tom Browder
+E: tom.browder@gmail.com
+
+N: Zoffix Znet
+E: cpan@zoffix.com
+W: perl6.party
 
 =cut
