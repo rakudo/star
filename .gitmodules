@@ -139,3 +139,9 @@
 [submodule "modules/JSON-Unmarshal"]
 	path = modules/JSON-Unmarshal
 	url = git@github.com:tadzik/JSON-Unmarshal.git
+[submodule "modules/http-useragent"]
+	path = modules/http-useragent
+	url = git://github.com/sergot/http-useragent.git
+[submodule "modules/datetime-parse"]
+	path = modules/datetime-parse
+	url = git://github.com/sergot/datetime-parse.git

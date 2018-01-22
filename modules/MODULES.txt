@@ -46,3 +46,5 @@ tap-harness6                         # have last so faster perl5 prove used
 panda-stub
 p6-io-string
 perl6-datetime-format
+datetime-parse # dependency for http-useragent
+http-useragent
