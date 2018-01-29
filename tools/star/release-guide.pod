@@ -188,6 +188,11 @@ If you have no PGP key, you might need to
 L<create one first|https://fedoraproject.org/wiki/Creating_GPG_Keys>. Should
 that prove impossible, you can omit the C<-s> from the command line.
 
+Also sign the release tarball with GPG and a suitable key
+eg. gpg --armor --detach-sig rakudo-star-2018.01.tar.gz
+
+Generate a SHA256 sum
+eg. sha256sum rakudo-star-2018.01.tar.gz | cut -f1 -d" " > rakudo-star-2018.01.tar.gz.sha256.txt
 
 =item 12.
 
@@ -195,6 +200,9 @@ Upload the release tarball to L<http://rakudo.org/downloads/star> and L<https://
 
  $ scp rakudo-star-2012.08.tar.gz rakudo@rakudo.org:public_html/downloads/star
  $ scp rakudo-star-2012.08.tar.gz rakudo@www.p6c.org:public_html/downloads/star
+
+Also upload the detached signature eg. rakudo-star-2018.01.tar.gz.asc
+and sha256 sum eg. rakudo-star-2018.01.tar.gz.sha256.txt
 
 If you don't have permission to do this step, please ask one of the core devs 
 (pmichaud, jnthn, masak, PerlJam/perlpilot, tadzik, or moritz) on #perl6 to do
