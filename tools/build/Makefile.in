@@ -57,7 +57,7 @@ modules-install: @backend_modules_install@
 modules-install-j: rakudo-install
 	@echo "== Installing modules for JVM"
 	cd modules/zef && @path@ $(DESTDIR)$(PERL6_J_INSTALL) -Ilib bin/zef install ."
-	@path@ $(PERL) tools/build/module-install.pl $(PERL6_J_INSTALL) $(DESTDIR)$(SITE_BIN_DIR)/zef-m $(MODULES)"
+	@path@ $(PERL) tools/build/module-install.pl $(PERL6_J_INSTALL) $(DESTDIR)$(SITE_BIN_DIR)/zef-j $(MODULES)"
 
 modules-install-m: rakudo-install
 	@echo "== Installing modules for MoarVM"
