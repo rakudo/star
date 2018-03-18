@@ -200,8 +200,12 @@ eg. sha256sum rakudo-star-2018.01.tar.gz | cut -f1 -d" " > rakudo-star-2018.01.t
 
 Upload the release tarball to L<http://rakudo.org/downloads/star> and L<https://rakudo.perl6.org/downloads/star/>:
 
- $ scp rakudo-star-2012.08.tar.gz rakudo@rakudo.org:public_html/downloads/star
  $ scp rakudo-star-2012.08.tar.gz rakudo@www.p6c.org:public_html/downloads/star
+ 
+REMOVE this part if rakudo.org already moved to new server, otherwise, this is
+still needed:
+
+ $ scp rakudo-star-2012.08.tar.gz rakudo@rakudo.org:public_html/downloads/star
 
 Also upload the detached signature eg. rakudo-star-2018.01.tar.gz.asc
 and sha256 sum eg. rakudo-star-2018.01.tar.gz.sha256.txt
@@ -210,16 +214,20 @@ If you don't have permission to do this step, please ask one of the core devs
 (pmichaud, jnthn, masak, PerlJam/perlpilot, tadzik, or moritz) on #perl6 to do
 it for you.
 
-
 =item 13.
+
+Commit announcement to rakudo.org repo. Clone the repo and run the script,
+giving it the Rakudo Star version it's uploading (you can also make and commit
+the post manually, but if you do, be sure to add C<%% title:> and C<%% date:> 
+metadate to the top of the file):
+
+  cd $(mktemp -d) &&
+  git clone https://github.com/perl6/rakudo.org/ . &&
+  ./push-latest-rakudo-star-announcement.p6   2018.01
 
 Publicize the release in the appropriate places.  These include:
 
 =over 4
-
-=item * rakudo.org
-
-=item * http://rakudo.org/how-to-get-rakudo
 
 =item * http://perl6.org/
 
