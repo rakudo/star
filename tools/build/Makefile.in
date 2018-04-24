@@ -3,7 +3,7 @@
 MOAR_DIR     = moarvm
 NQP_DIR      = nqp
 RAKUDO_DIR   = rakudo
-STAR_VERSION = 2018.01
+STAR_VERSION = 2018.04
 
 # install location
 PREFIX_DIR         = @prefix@

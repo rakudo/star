@@ -2,9 +2,9 @@
 # eg. 2017.07 etc.
 # Occasionally (mis-)used to pull in fixes (see 'lastmin-fixes.txt')
 # eg. 2017.07-9-gc0abee7 etc.
-RAKUDO_VER  = 2018.01
-NQP_VER     = 2018.01
-MOAR_VER    = 2018.01
+RAKUDO_VER  = 2018.04
+NQP_VER     = 2018.04
+MOAR_VER    = 2018.04
 
 STAR_REL    = rakudo-star-$(VERSION)
 STAR_TGZ    = $(STAR_REL).tar.gz
