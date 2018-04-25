@@ -1,12 +1,25 @@
-This git repository _only_ contains the tools needed to create a Rakudo Star distribution.
+# Rakudo Star
 
-To get the latest release of Rakudo Star, please download a .tar.gz or .msi file from
-https://rakudo.perl6.org/downloads/star/. Note: the tar files available from github.com
+This git repository contains _only_ the tools needed to create a Rakudo Star distribution.
+
+The `tar` files available from `github.com`
 are NOT suitable for building Rakudo Star; do not use them.
 
+## Get Rakudo Star
+To get the latest release of Rakudo Star, please download the corresponding file depending on your platform.
+
+* [Linux](https://rakudo.org/latest/star/source)
+* [Windows](https://rakudo.org/latest/star/win64)
+* [macOS](https://rakudo.org/latest/star/macos)
+
+## Build Rakudo Star
 If you're a Rakudo Star release manager, or someone who wants to create a new Perl 6
-distribution based on the tools here, then run "make -f tools/star/Makefile" to 
+distribution based on the tools here, then run `make -f tools/star/Makefile` to
 populate a distribution image.
 
-See tools/star/release-guide.pod for the steps needed to build
-a candidate release.
+## Guides
+* [Release guide](tools/star/release-guide.pod)
+
+* [Guide to build MSI packages](tools/star/windows-msi.pod)
+
+* [Guide to build DMG packages](tools/star/mac-dmg.pod)
