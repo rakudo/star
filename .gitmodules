@@ -145,3 +145,9 @@
 [submodule "modules/datetime-parse"]
 	path = modules/datetime-parse
 	url = git://github.com/sergot/datetime-parse.git
+[submodule "modules/io-capture-simple"]
+	path = modules/io-capture-simple
+	url = git@github.com:sergot/IO-Capture-Simple.git
+[submodule "modules/test-util-serverport"]
+	path = modules/test-util-serverport
+	url = git@github.com:jonathanstowe/Test-Util-ServerPort.git

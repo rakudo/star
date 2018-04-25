@@ -30,7 +30,6 @@ Template-Mojo
 NativeHelpers-Blob
 DBIish                                    # uses NativeHelpers::Blob
 perl6-Test-When
-jsonrpc                                   # uses PSGI
 Pod-To-HTML
 perl6-pod-to-bigpage
 p6-file-directory-tree
@@ -47,4 +46,7 @@ panda-stub
 p6-io-string
 perl6-datetime-format
 datetime-parse # dependency for http-useragent
+io-capture-simple
+test-util-serverport
 http-useragent
+jsonrpc                                   # uses PSGI & http-useragent
