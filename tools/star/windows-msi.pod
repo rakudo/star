@@ -105,7 +105,7 @@ created installer, and do some sanity tests:
 
   perl6 -e "say $*KERNEL.bits"
   zef list --installed
-  zef install Inline
+  zef install openssl
 
 If you are using Strawberry Perl then move its directory temporarily to a
 different name in order to check all DDLs are correctly installed in the
