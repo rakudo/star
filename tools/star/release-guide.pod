@@ -200,11 +200,6 @@ eg. sha256sum rakudo-star-2018.01.tar.gz | cut -f1 -d" " > rakudo-star-2018.01.t
 
 Upload the release tarball to L<http://rakudo.org/downloads/star> and L<https://rakudo.perl6.org/downloads/star/>:
 
- $ scp rakudo-star-2012.08.tar.gz rakudo@www.p6c.org:public_html/downloads/star
- 
-REMOVE this part if rakudo.org already moved to new server, otherwise, this is
-still needed:
-
  $ scp rakudo-star-2012.08.tar.gz rakudo@rakudo.org:public_html/downloads/star
 
 Also upload the detached signature eg. rakudo-star-2018.01.tar.gz.asc
