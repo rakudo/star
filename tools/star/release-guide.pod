@@ -212,8 +212,11 @@ it for you.
 =item 13.
 
 Commit announcement to the rakudo.org repo automatically by running the following
-command. (you can also make and commit the post manually, but if you do, be sure
-to add C<%% title:> and C<%% date:> metadate to the top of the file):
+command.  You will need perl6 in the PATH and to "zef install WWW" if you don't
+have it.
+
+You can also make and commit the post manually, but if you do, be sure
+to add C<%% title:> and C<%% date:> metadate to the top of the file:
 
   cd $(mktemp -d) &&
   git clone git@github.com:perl6/rakudo.org/. &&
