@@ -151,3 +151,6 @@
 [submodule "modules/openssl"]
 	path = modules/openssl
 	url = git@github.com:sergot/openssl
+[submodule "modules/io-socket-ssl"]
+	path = modules/io-socket-ssl
+	url = git@github.com:sergot/io-socket-ssl

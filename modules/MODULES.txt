@@ -51,3 +51,4 @@ test-util-serverport
 http-useragent
 jsonrpc                                   # uses PSGI & http-useragent
 openssl
+io-socket-ssl
