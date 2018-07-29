@@ -48,7 +48,7 @@ perl6-datetime-format
 datetime-parse # dependency for http-useragent
 io-capture-simple
 test-util-serverport
-http-useragent
-jsonrpc                                   # uses PSGI & http-useragent
 openssl
 io-socket-ssl
+http-useragent
+jsonrpc                                   # uses PSGI & http-useragent
