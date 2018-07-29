@@ -148,3 +148,6 @@
 [submodule "modules/test-util-serverport"]
 	path = modules/test-util-serverport
 	url = git@github.com:jonathanstowe/Test-Util-ServerPort.git
+[submodule "modules/openssl"]
+	path = modules/openssl
+	url = git@github.com:sergot/openssl

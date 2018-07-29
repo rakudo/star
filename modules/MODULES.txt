@@ -50,3 +50,4 @@ io-capture-simple
 test-util-serverport
 http-useragent
 jsonrpc                                   # uses PSGI & http-useragent
+openssl
