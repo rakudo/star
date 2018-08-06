@@ -1,0 +1,19 @@
+# From abf7d0c282eae412159fef36ef85f08d333dff6b Mon Sep 17 00:00:00 2001
+# From: Steve Mynott <steve.mynott@gmail.com>
+# Date: Fri, 22 Jun 2018 16:07:08 +0100
+# Subject: [PATCH] Use clang with OpenBSD since their ancient gcc creates a moar
+# which can't generate NQP anymore.
+#
+#See #878
+
+--- ../MoarVM/build/setup.pm
++++ ../MoarVM/build/setup.pm
+@@ -583,7 +583,7 @@ our %SYSTEMS = (
+     linux       => [ qw( posix gnu   gcc ),   { %OS_LINUX } ],
+     aix         => [ qw( posix gnu   gcc ),   { %OS_AIX } ],
+     darwin      => [ qw( posix gnu   clang ), { %OS_DARWIN } ],
+-    openbsd     => [ qw( posix bsd   gcc ),   { %OS_OPENBSD} ],
++    openbsd     => [ qw( posix bsd   clang ),   { %OS_OPENBSD} ],
+     netbsd      => [ qw( posix bsd   gcc ),   { %OS_NETBSD } ],
+     dragonfly   => [ qw( posix bsd   gcc ),   { %OS_DRAGONFLY } ],
+     freebsd     => [ qw( posix bsd), $OS_FREEBSD{cc} , { %OS_FREEBSD } ],
