@@ -90,7 +90,7 @@ Append your PATH as suggested in the 'README.txt' and look for reasonable output
 from the following kind of commands.
 
   perl6 -e "say 'hello'"
-  panda --installed list
+  zef list --installed
   p6doc -l
 
 =item 5.
