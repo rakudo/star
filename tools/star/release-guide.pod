@@ -222,6 +222,9 @@ to add C<%% title:> and C<%% date:> metadate to the top of the file:
   git clone git@github.com:perl6/rakudo.org/. &&
   ./push-latest-rakudo-star-announcement.p6 2018.01
 
+You will also have to bump versions manually in "templates/files.html.ep" in
+the rakudo.org repo.
+
 Publicize the release in the appropriate places.  These include:
 
 =over 4
