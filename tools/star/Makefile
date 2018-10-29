@@ -69,9 +69,6 @@ manifest: modules/DBIish/lib
 
 patch:
 	patch -p1 < patches/star-ver.patch
-	patch -p1 < patches/0001-Use-clang-with-OpenBSD-since-their-ancient-gcc-creat.patch
-	patch -p1 < patches/0001-Use-SPEC.dir-sep-for-separators-in-CompUnit-Reposito.patch
-
 
 tarball: manifest patch
 	[ -n "$(VERSION)" ] || ( echo "\nTry '$(MAKE) release VERSION=yyyy.mm'\n\n"; exit 1 )
