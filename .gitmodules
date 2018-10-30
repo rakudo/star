@@ -97,9 +97,6 @@
 [submodule "modules/zef"]
 	path = modules/zef
 	url = git@github.com:ugexe/zef.git
-[submodule "modules/panda-stub"]
-	path = modules/panda-stub
-	url = git@github.com:stmuk/p6-panda-stub.git
 [submodule "modules/oo-monitors"]
 	path = modules/oo-monitors
 	url = git@github.com:jnthn/oo-monitors
