@@ -20,6 +20,8 @@ Perl6-MIME-Base64
 uri
 json
 perl6-encode
+openssl
+io-socket-ssl
 perl6-lwp-simple                          # uses MIME::Base64, URI, JSON::Tiny
 perl6-digest-md5
 perl6-http-status
@@ -47,7 +49,5 @@ perl6-datetime-format
 datetime-parse # dependency for http-useragent
 io-capture-simple
 test-util-serverport
-openssl
-io-socket-ssl
 http-useragent
 jsonrpc                                   # uses PSGI & http-useragent
