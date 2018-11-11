@@ -342,6 +342,9 @@ You're done!  Celebrate with the appropriate amount of fun.
     2018.01         stmuk
     2018.04         stmuk
     2018.06         stmuk
+    2018.10         stmuk
+
+    2019.01         Apply within
 
 =cut
 
