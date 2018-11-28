@@ -63,6 +63,33 @@ die $USAGE if @ARGV != 2
            or $mm   !~ m{ \A \d{2} \z }msx
            or $mm < 1 or $mm > 12;
 
+# Sadly, Apple decided to remove the `-i` / `--addicon` option from the `sips`
+# utility.  Therefore, use of Cocoa is required, which we do via Python,
+# which has the added advantage of creating a _set_ of icons from the source
+# image, scaling as necessary to create a 512 x 512 top resolution icon
+# (whereas sips -i created a single, 128 x 128 icon).
+#
+# Thanks go to https://github.com/mklement0/fileicon/blob/master/bin/fileicon
+# and https://apple.stackexchange.com/a/161984/28668
+#
+# Note: setIcon_forFile_options_() seemingly always indicates True, even with
+# invalid image files, so  we attempt no error handling in the Python code.
+sub set_icon {
+    croak if not @_;
+    my ($img_file, $target_file) = @_;
+
+    print "Setting icon for $target_file\n" if $opt_verbose;
+
+    my $rc = system(qq{/usr/bin/python - "$img_file" "$target_file" <<'EOF'
+import Cocoa
+import sys
+
+Cocoa.NSWorkspace.sharedWorkspace().setIcon_forFile_options_(Cocoa.NSImage.alloc().initWithContentsOfFile_(sys.argv[1].decode('utf-8')), sys.argv[2].decode('utf-8'), 0)
+EOF
+    });
+    die if $rc != 0;
+}
+
 sub run {
     croak if not @_;
     my (@command) = @_;
@@ -134,9 +161,7 @@ run "cp -pr ../../../docs  '$vol_dir/Docs'";
 
 run "touch                        '$vol_dir/Rakudo/Icon\r'";
 run "cp ../2000px-Camelia.svg.icns $vol_dir/.VolumeIcon.icns";
-run "sips -i                       $vol_dir/.VolumeIcon.icns";
-run "DeRez -only icns              $vol_dir/.VolumeIcon.icns > tempicns.rsrc";
-run "Rez -append tempicns.rsrc -o '$vol_dir/Rakudo/bin/perl6'";
+set_icon "../2000px-Camelia.svg.icns", "$vol_dir/Rakudo/bin/perl6";
 run "mkdir                        $vol_dir/.background";
 run "cp ../installerbg.png        $vol_dir/.background"; 
 run "SetFile -c icnC              '$vol_dir/.VolumeIcon.icns'";
@@ -144,7 +169,6 @@ run "SetFile -a C                 '$vol_dir'";
 run "SetFile -a C                 '$vol_dir/Rakudo'";
 run "SetFile -a C                 '$vol_dir/Rakudo/bin/perl6'";
 run "SetFile -a V                 '$vol_dir/Rakudo/Icon\r'";
-run "rm tempicns.rsrc";
 
 
 print ">>> Adjusting sizes and positions in installation window\n";
