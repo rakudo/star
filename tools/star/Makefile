@@ -24,27 +24,31 @@ MOAR_SRC   = $(SRC_DIR)/$(MOAR_TGZ)
 PERL   = perl
 PREFIX = $(PERL) $(CURDIR)/tools/star/prefix.pl
 WGET   = wget
+TAR    = tar
 
 all: rakudo nqp moar manifest
 
 always:
 
 rakudo: nqp $(RAKUDO_SRC)
-	tar --xform 's!rakudo-[^/]*!rakudo!' -xvzf $(RAKUDO_SRC)
+	mkdir rakudo
+	$(TAR) -C rakudo --strip-components 1 -xvzf $(RAKUDO_SRC)
 
 $(RAKUDO_SRC):
 	mkdir -p $(SRC_DIR)
 	$(WGET) $(RAKUDO_URL) -O $(RAKUDO_SRC)
 
 nqp: moar $(NQP_SRC)
-	tar --xform 's!nqp-[^/]*!nqp!' -xvzf $(NQP_SRC)
+	mkdir nqp
+	$(TAR) -C nqp --strip-components 1 -xvzf $(NQP_SRC)
 
 $(NQP_SRC):
 	mkdir -p $(SRC_DIR)
 	$(WGET) $(NQP_URL) -O $(NQP_SRC)
 
 moar: $(MOAR_SRC)
-	tar --xform 's!MoarVM-[^/]*!MoarVM!' -xvzf $(MOAR_SRC)
+	mkdir MoarVM
+	$(TAR) -C MoarVM --strip-components 1 -xvzf $(MOAR_SRC)
 
 $(MOAR_SRC):
 	mkdir -p $(SRC_DIR)
@@ -74,7 +78,7 @@ tarball: manifest patch
 	[ -n "$(VERSION)" ] || ( echo "\nTry '$(MAKE) release VERSION=yyyy.mm'\n\n"; exit 1 )
 	[ -d $(STAR_REL) ] || ln -s . $(STAR_REL)
 	$(PREFIX) $(STAR_REL)/ MANIFEST | \
-	    tar -zcv -T - -f $(STAR_TGZ)
+	    $(TAR) -zcv -T - -f $(STAR_TGZ)
 	rm $(STAR_REL)
 
 release: tarball
