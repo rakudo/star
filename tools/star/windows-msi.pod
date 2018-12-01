@@ -1,4 +1,4 @@
-=head1 windows-msi.pod - guide to build MSI packages
+=head1 Guide to build MSI packages
 
 Rakudo Star releases are based on Rakudo compiler releases.
 Since some time is often needed for module updates and testing
@@ -24,48 +24,48 @@ to this release guide since your last run.
 
 =over 4
 
-=item 0.
+=item Step 0
 
 Download and install WiX Toolset, if needed adjust the PATH environment
-variable to point to its bin directory. The tools `heat`, `candle` and `light`
+variable to point to its bin directory. The tools C<heat>, C<candle> and C<light>
 should be available now.
 
-Install ActivePerl and make sure it is in PATH. `perl -V` should give a
+Install ActivePerl and make sure it is in C<PATH>. C<perl -V> should give a
 sensible output.
 
-If you do not have the C compiler "cl" installed yet, install the Microsoft
+If you do not have the C compiler C<cl> installed yet, install the Microsoft
 Visual C++ Express for version 2010 or perhaps newer.
 
 Finally, install the Windows Software Development Kit (SDK) for your Windows
 version.
 
 An alternative to ActivePerl and the Microsoft toolchain is to use Strawberry
-Perl which ships with GCC and a mingw toolchain.  Run these tools under cmd.exe
-and replace all following references to "nmake" by "gmake".
+Perl which ships with GCC and a mingw toolchain.  Run these tools under C<cmd.exe>
+and replace all following references to C<nmake> by C<gmake>.
 
-=item 1.
+=item Step 1
 
-Make sure there is no C:\rakudo directory, as this will be our installation
+Make sure there is no C<C:\rakudo> directory, as this will be our installation
 target.  If there is one, remove it, perhaps after creating backup.
 
-=item 2.
+=item Step 2
 
 Use your browser to download the latest star release, replace YYYY.MM by year
 and month: https://rakudo.perl6.org/downloads/star/rakudo-star-YYYY.MM.tar.gz
 
-Unpack this .tar.gz to your hard disk. You will get a folder
-rakudo-star-YYYY.MM, again YYYY.MM is year and month of the star release.
+Unpack this C<.tar.gz> to your hard disk. You will get a folder
+C<rakudo-star-YYYY.MM>, again YYYY.MM is year and month of the star release.
 
-=item 3.
+=item Step 3
 
 Run the Command Line for Visual Studio from the start menu. Alternatively you
-can run cmd.exe followed by vcvars32.bat.
+can run C<cmd.exe> followed by C<vcvars32.bat>.
 
 In either case, this should return a valid path:
 
   echo %VSINSTALLDIR%
 
-=item 4.
+=item Step 4
 
 Change the path to the directory created in step 2, and run:
 
@@ -73,21 +73,21 @@ Change the path to the directory created in step 2, and run:
 
 This will create a Makefile and will start to compile the MoarVM backend.
 
-=item 5.
+=item Step 5
 
 Compile NQP and Rakudo by doing:
 
   nmake install
 
-This will also precompile all modules and install binaries like `panda`.
+This will also precompile all modules and install binaries like C<zef>.
 
-=item 6.
+=item Step 6
 
 Finally create the MSI package.
 
   nmake msi
 
-(Note if you are using Strawberry Perl's GCC use 'build_msi' at this point)
+(Note if you are using Strawberry Perl's GCC use C<build_msi> at this point)
 
 Depending on your architecture you either rename that msi to:
 
@@ -98,9 +98,9 @@ or:
   rakudo-star-YYYY.MM-x86_64 (JIT).msi
 
 
-=item 7.
+=item Step 7
 
-Delete your C:\rakudo folder and make sure it got deleted. Then run the just
+Delete your C<C:\rakudo> folder and make sure it got deleted. Then run the just
 created installer, and do some sanity tests:
 
   perl6 -e "say $*KERNEL.bits"
@@ -109,14 +109,14 @@ created installer, and do some sanity tests:
 
 If you are using Strawberry Perl then move its directory temporarily to a
 different name in order to check all DDLs are correctly installed in the
-C:\rakudo folder.
+C<C:\rakudo> folder.
 
-=item 8.
+=item Step 8
 
 Stop the release process if step 7 failed. Post any issues to the irc channel
 or mailing list.
 
-=item 9.
+=item Step 9
 
 Upload the msi package to L<http://rakudo.org/downloads/star> and L<https://rakudo.perl6.org/downloads/star/>:
 
@@ -124,9 +124,9 @@ Upload the msi package to L<http://rakudo.org/downloads/star> and L<https://raku
  scp "rakudo-star-YYYY.MM-x86 (no JIT).msi" rakudo@www.p6c.org:public_html/downloads/star
 
 If you don't have permission to do this step, please ask one(pmichaud, jnthn,
-masak, PerlJam/perlpilot, tadzik, moritz) on #perl6 to do it for you.
+masak, PerlJam/perlpilot, tadzik, moritz) on C<#perl6> to do it for you.
 
-=item 10.
+=item Step 10
 
 Publicize the msi packages in the appropriate places.  These include:
 
@@ -138,7 +138,7 @@ Publicize the msi packages in the appropriate places.  These include:
 
 =back
 
-=item 11.
+=item Step 11
 
 You're done!  Celebrate with the appropriate amount of fun.
 
