@@ -1,15 +1,15 @@
-=head1 release_guide.pod - guide to Rakudo Star releases
+=head1 Guide to Rakudo Star releases
 
-Rakudo Star releases are based on Rakudo compiler releases.  
-Since some time is often needed for module updates and testing 
+Rakudo Star releases are based on Rakudo compiler releases.
+Since some time is often needed for module updates and testing
 after each Rakudo compiler release, the timing of Star releases
 varies from one release to the next.
 
 Also, while the Rakudo compiler issues monthly releases, Star
 releases are free to choose a longer release cycle.  Star releases
 are also free to choose older releases of the compiler, NQP, or
-MoarVM.  The goal is to balance end-user stability needs with 
-progress being made on the compiler, modules, and other runtime 
+MoarVM.  The goal is to balance end-user stability needs with
+progress being made on the compiler, modules, and other runtime
 components.  Currently, Star is on a quarterly release cycle.
 
 =head2 Steps to create a release
@@ -26,13 +26,13 @@ wish to do so. Step 8 will make sure you do this regardless.
 
 =over 4
 
-=item 0.
+=item Step 0
 
 Make sure you have a working C<perl6> binary in your C<$PATH>. Refer to
 L<http://rakudo.org/how-to-get-rakudo/> for how to do that. The exact version
 isn't very important at the moment, it just shouldn't be a year out of date.
 
-=item 1.
+=item Step 1
 
 Clone the git@github.com:rakudo/star repository.
 
@@ -52,7 +52,7 @@ Verify that
 
 reports a clean repository.
 
-=item 2.
+=item Step 2
 
 Change to the star repository directory and edit the first three
 lines of F<tools/star/Makefile> to indicate the desired releases of
@@ -66,9 +66,9 @@ release.
   $ cd star
   $ vi tools/star/Makefile
 
-=item 3.
+=item Step 3
 
-Run "make -f tools/star/Makefile" to populate the star directory 
+Run C<make -f tools/star/Makefile> to populate the star directory
 with the needed tarballs and module repositories for building Rakudo Star:
 
   $ make -f tools/star/Makefile
@@ -79,22 +79,22 @@ Assuming the Makefile ran successfully, you should now commit your changes.
 
   $ git commit tools
 
-=item 4.
+=item Step 4
 
-If there are any new modules to be added, use "git submodule" to add 
-its repo to the modules/ directory.  Also add the module directory 
-name to the modules/MODULES.txt file.
+If there are any new modules to be added, use C<git submodule> to add
+its repo to the modules/ directory.  Also add the module directory
+name to the C<modules/MODULES.txt> file.
 
   $ git submodule add git@github.com:user/acme-example modules/acme-example
   $ echo acme-example >>modules/MODULES.txt
   $ git commit . -m "Added acme-example to installed modules."
 
-=item 5.
+=item Step 5
 
 Verify that all of the git submodules are at the desired commit
 for the Star release.  To bring all modules up to the current
-'master' branch, one can do:
-  
+C<master> branch, one can do:
+
   # pull master in each submodule dir
   $ git submodule foreach git pull origin master
 
@@ -108,10 +108,10 @@ Then you may commit your update of the submodules:
   # commit submodules state to star repo
   $ git commit modules
 
-=item 6.
+=item Step 6
 
 If one doesn't already exist, create a release announcement in
-docs/announce/YYYY.MM.md.  You can often use the previous release's
+C<docs/announce/YYYY.MM.md>.  You can often use the previous release's
 file as a starting point, updating the release number, version
 information, name, etc., as appropriate.  Be sure to pay attention
 to any changes listed in Rakudo's ChangeLog.
@@ -128,14 +128,14 @@ feedback on your announcement while you do other steps.
 
   $ git push
 
-=item 7.
+=item Step 7
 
-Update the release number in the README and Makefile.in files.
+Update the release number in the C<README> and C<Makefile.in> files.
 
   $ vi README tools/build/Makefile.in
   $ git commit README tools/build/Makefile.in
 
-=item 8.
+=item Step 8
 
 Make sure any locally modified files have been pushed
 back to github.
@@ -143,16 +143,16 @@ back to github.
   $ git status
   $ git push
 
-=item 9.
+=item Step 9
 
 Create a candidate release tarball:
 
   $ make -f tools/star/Makefile release VERSION=2012.08
 
-This will create a tarball rakudo-star-2012.08.tar.gz in the
+This will create a tarball C<rakudo-star-2012.08.tar.gz> in the
 current directory.
 
-=item 10.
+=item Step 10
 
 Unpack the tarball somewhere else, and do a test build/install:
 
@@ -166,15 +166,15 @@ Unpack the tarball somewhere else, and do a test build/install:
   $ make rakudo-spectest
   $ make modules-test
 
-If there are failures in any of rakudo-test, rakudo-spectest, or
-modules-test, then do your best to fix them and return to step 8.
+If there are failures in any of C<rakudo-test>, C<rakudo-spectest>, or
+C<modules-test>, then do your best to fix them and return to step 8.
 
-STOP THE RELEASE PROCESS (i.e., do not issue a release) if there 
-are any errors that you're unable to fix.  File issue tickets 
+STOP THE RELEASE PROCESS (i.e., do not issue a release) if there
+are any errors that you're unable to fix.  File issue tickets
 (https://github.com/rakudo/star/issues) for failing tests
-and report them to #perl6.
+and report them to C<#perl6>.
 
-=item 11.
+=item Step 11
 
 Tag the release by its release month ("YYYY.MM").
 
@@ -191,28 +191,28 @@ L<create one first|https://fedoraproject.org/wiki/Creating_GPG_Keys>. Should
 that prove impossible, you can omit the C<-s> from the command line.
 
 Also sign the release tarball with GPG and a suitable key
-eg. gpg --armor --detach-sig rakudo-star-2018.01.tar.gz
+eg. C<gpg --armor --detach-sig rakudo-star-2018.01.tar.gz>
 
-Generate a SHA256 sum
-eg. sha256sum rakudo-star-2018.01.tar.gz | cut -f1 -d" " > rakudo-star-2018.01.tar.gz.sha256.txt
+Generate a SHA256 sum eg.
+    sha256sum rakudo-star-2018.01.tar.gz | cut -f1 -d" " > rakudo-star-2018.01.tar.gz.sha256.txt
 
-=item 12.
+=item Step 12
 
 Upload the release tarball to L<http://rakudo.org/downloads/star> and L<https://rakudo.perl6.org/downloads/star/>:
 
  $ scp rakudo-star-2012.08.tar.gz rakudo@rakudo.org:public_html/downloads/star
 
-Also upload the detached signature eg. rakudo-star-2018.01.tar.gz.asc
-and sha256 sum eg. rakudo-star-2018.01.tar.gz.sha256.txt
+Also upload the detached signature eg. C<rakudo-star-2018.01.tar.gz.asc>
+and sha256 sum eg. C<rakudo-star-2018.01.tar.gz.sha256.txt>
 
-If you don't have permission to do this step, please ask one of the core devs 
-(pmichaud, jnthn, masak, PerlJam/perlpilot, tadzik, or moritz) on #perl6 to do
+If you don't have permission to do this step, please ask one of the core devs
+(pmichaud, jnthn, masak, PerlJam/perlpilot, tadzik, or moritz) on C<#perl6> to do
 it for you.
 
-=item 13.
+=item Step 13
 
 Commit announcement to the rakudo.org repo automatically by running the following
-command.  You will need perl6 in the PATH and to "zef install WWW" if you don't
+command.  You will need C<perl6> in the C<PATH> and to C<zef install WWW> if you don't
 have it.
 
 You can also make and commit the post manually, but if you do, be sure
@@ -222,7 +222,7 @@ to add C<%% title:> and C<%% date:> metadate to the top of the file:
   git clone git@github.com:perl6/rakudo.org/. &&
   ./push-latest-rakudo-star-announcement.p6 2018.01
 
-You will also have to bump versions manually in "templates/files.html.ep" in
+You will also have to bump versions manually in C<templates/files.html.ep> in
 the rakudo.org repo.
 
 Publicize the release in the appropriate places.  These include:
@@ -261,7 +261,7 @@ and L<r/programming|https://www.reddit.com/r/programming/>
 
 =back
 
-=item 14
+=item Step 14
 
 Add this release and your name to the list of releases at the end of this
 document (F<tools/star/release-guide.pod>).
@@ -270,7 +270,7 @@ document (F<tools/star/release-guide.pod>).
     $ git add tools/star/release-guide.pod
     $ git commit -m 'note YYYY.MM release in release-guide.pod
 
-=item 15.
+=item Step 15
 
 You're done!  Celebrate with the appropriate amount of fun.
 
@@ -347,4 +347,3 @@ You're done!  Celebrate with the appropriate amount of fun.
     2019.01         Apply within
 
 =cut
-

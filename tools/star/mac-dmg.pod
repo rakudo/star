@@ -1,4 +1,4 @@
-=head1 mac-dmg.pod - guide to building DMG packages
+=head1 Guide to building DMG packages
 
 Rakudo Star releases are based on Rakudo compiler releases.
 Since some time is often needed for module updates and testing
@@ -11,11 +11,11 @@ releases are free to choose a longer release cycle.  Star releases
 are also free to choose older releases of the compiler, NQP, and/or
 MoarVM.  The goal is to balance end-user stability needs with
 progress being made on the compiler, modules, and other runtime
-components. 
+components.
 
 =head2 Steps to create an DMG package
 
-A ".dmg" is a file extension used for an Apple Disk Image which is the most
+A C<.dmg> is a file extension used for an Apple Disk Image which is the most
 popular way of running an installer on the Mac desktop
 
 If this is your first time releasing, B<read the whole guide before
@@ -27,87 +27,87 @@ to this release guide since your last run.
 
 =over 4
 
-=item 0.
+=item Step 0
 
-Download and install Xcode from Apple if you don't already have the clang C
+Download and install C<Xcode> from Apple if you don't already have the C<clang> C
 compiler installed. This process was tested on OS X 10.11.x as a build system
 using clang-700.1.76 and the result is known to run on as least far back as OS
-X 10.9 (and probably further). 
+X 10.9 (and probably further).
 
-=item 1.
+=item Step 1
 
 Use your browser to download the latest star release, replace YYYY.MM by year and month:
 https://rakudo.perl6.org/downloads/star/rakudo-star-YYYY.MM.tar.gz
 
-Unpack this .tar.gz to your hard disk. You will get a folder rakudo-star-YYYY.MM, again
+Unpack this C<.tar.gz> to your hard disk. You will get a folder C<rakudo-star-YYYY.MM>, again
 YYYY.MM is year and month of the star release.
 
-=item 2.
+=item Step 2
 
 Change the path to the directory created in the previous step, and run:
 
   cd ports/darwin_dmg
-  perl package_darwin_dmg.pl --build -v YYYY MM 
+  perl package_darwin_dmg.pl --build -v YYYY MM
 
-This should automatically compile the MoarVM version of star and all modules and create the .dmg
+This should automatically compile the MoarVM version of star and all modules and create the C<.dmg>
 
 In theory this all that needs doing and you can jump to step 4 below.
 
-=item 3.
+=item Step 3
 
 Watch the scrollback for errors.
 
-If the build is interrupted you will have to manually 'make clean' in the top
-level directory before rerunning the previous step. 
+If the build is interrupted you will have to manually C<make clean> in the top
+level directory before rerunning the previous step.
 
-Note the '--build' option will automatically delete the binary destination
-directory of '/Applications/Rakudo' if it exists before running but leaves it in
+Note the C<--build> option will automatically delete the binary destination
+directory of C</Applications/Rakudo> if it exists before running but leaves it in
 place after finishing.
 
-Omitting the '--build' option will just rebuild the .dmg from '/Applications/Rakudo' which is useful when debugging the final stage of .dmg build since it's much faster.
+Omitting the C<--build> option will just rebuild the C<.dmg> from C</Applications/Rakudo> which is useful when debugging the final stage of C<.dmg> build since it's much faster.
 
-=item 4.
+=item Step 4
 
-A correct build will create 'ports/darwin_dmg/Temp_build/Rakudo-Star-YYYY-MM.dmg'
+A correct build will create C<ports/darwin_dmg/Temp_build/Rakudo-Star-YYYY-MM.dmg>
 
 To sanity test
 
   open Temp_build/Rakudo-Star-YYYY-MM.dmg
 
-This should automount '/Volumes/Rakudo' and open a Finder window with a
+This should automount C</Volumes/Rakudo> and open a Finder window with a
 background image of Camelia and "Drag the Rakudo Folder to Applications"
 containing a README.txt, a Rakudo folder, Docs folder and a folder representing
 a sym link to Applications.
 
-Delete the directory used to create the .dmg.
+Delete the directory used to create the C<.dmg>.
 
- rm -rf /Applications/Rakudo 
+ rm -rf /Applications/Rakudo
 
-Now dragging the 'Rakudo' folder to the Applications Link folder (with arrow)
-should repopulate '/Applications/Rakudo'. 
+Now dragging the C<Rakudo> folder to the Applications Link folder (with arrow)
+should repopulate C</Applications/Rakudo>.
 
-Append your PATH as suggested in the 'README.txt' and look for reasonable output
+Append your C<PATH> as suggested in the C<README.txt> and look for reasonable output
 from the following kind of commands.
 
   perl6 -e "say 'hello'"
   zef list --installed
   p6doc -l
 
-=item 5.
+=item Step 5
 
 Stop the release process if you see serious issues with no obvious fix and post
 them to the IRC channel or mailing list. If you alter scripts recommit them.
 
-=item 6.
+=item Step 6
 
 Upload the dmg package to L<https://rakudo.perl6.org/downloads/star>:
 
  scp "rakudo-star-YYYY.MM.dmg" rakudo@www.p6c.org:public_html/downloads/star
 
 If you don't have permission to do this step, please ask one(pmichaud, jnthn,
-masak, PerlJam/perlpilot, tadzik, moritz) on #perl6 to do it for you.
+masak, PerlJam/perlpilot, tadzik, moritz) on C<#perl6> to do it for you.
 
-=item 7.
+=item Step 7
 
 Publicize the dmg packages in the appropriate places.  These include:
 
@@ -119,11 +119,10 @@ Publicize the dmg packages in the appropriate places.  These include:
 
 =back
 
-=item 11.
+=item Step 11
 
 You're done!  Celebrate with the appropriate amount of fun.
 
 =back
 
 =cut
-
