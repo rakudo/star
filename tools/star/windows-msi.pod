@@ -118,6 +118,12 @@ or mailing list.
 
 =item Step 9
 
+Generate a SHA256 sum eg.
+
+ $ sha256sum "rakudo-star-YYYY.MM-x86_64 (JIT).msi" | cut -f1 -d" " > "rakudo-star-YYYY.MM-x86_64 (JIT).msi.sha256.txt"
+
+=item Step 10
+
 Upload the msi package to L<http://rakudo.org/downloads/star> and L<https://rakudo.perl6.org/downloads/star/>:
 
  scp "rakudo-star-YYYY.MM-x86 (no JIT).msi" rakudo@rakudo.org:public_html/downloads/star
@@ -126,7 +132,9 @@ Upload the msi package to L<http://rakudo.org/downloads/star> and L<https://raku
 If you don't have permission to do this step, please ask one(pmichaud, jnthn,
 masak, PerlJam/perlpilot, tadzik, moritz) on C<#perl6> to do it for you.
 
-=item Step 10
+Also upload the sha256 sum eg. C<rakudo-star-YYYY.MM-x86_64 (JIT).msi.sha256.txt>
+
+=item Step 11
 
 Publicize the msi packages in the appropriate places.  These include:
 
@@ -138,7 +146,7 @@ Publicize the msi packages in the appropriate places.  These include:
 
 =back
 
-=item Step 11
+=item Step 12
 
 You're done!  Celebrate with the appropriate amount of fun.
 

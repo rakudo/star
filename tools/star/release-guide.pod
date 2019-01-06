@@ -194,7 +194,8 @@ Also sign the release tarball with GPG and a suitable key
 eg. C<gpg --armor --detach-sig rakudo-star-2018.01.tar.gz>
 
 Generate a SHA256 sum eg.
-    sha256sum rakudo-star-2018.01.tar.gz | cut -f1 -d" " > rakudo-star-2018.01.tar.gz.sha256.txt
+
+ $ sha256sum rakudo-star-2018.01.tar.gz | cut -f1 -d" " > rakudo-star-2018.01.tar.gz.sha256.txt
 
 =item Step 12
 
