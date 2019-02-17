@@ -93,46 +93,46 @@
 	url = git://github.com/salortiz/NativeHelpers-Blob
 [submodule "modules/perl6-pod-to-bigpage"]
 	path = modules/perl6-pod-to-bigpage
-	url = git@github.com:gfldex/perl6-pod-to-bigpage.git
+	url = git://github.com/gfldex/perl6-pod-to-bigpage.git
 [submodule "modules/zef"]
 	path = modules/zef
-	url = git@github.com:ugexe/zef.git
+	url = git://github.com/ugexe/zef.git
 [submodule "modules/oo-monitors"]
 	path = modules/oo-monitors
-	url = git@github.com:jnthn/oo-monitors
+	url = git://github.com/jnthn/oo-monitors
 [submodule "modules/tap-harness6"]
 	path = modules/tap-harness6
-	url = git@github.com:perl6/tap-harness6.git
+	url = git://github.com/perl6/tap-harness6.git
 [submodule "modules/p6-io-string"]
 	path = modules/p6-io-string
-	url = git@github.com:hoelzro/p6-io-string.git
+	url = git://github.com/hoelzro/p6-io-string.git
 [submodule "modules/perl6-Test-When"]
 	path = modules/perl6-Test-When
-	url = git@github.com:zoffixznet/perl6-Test-When.git
+	url = git://github.com/zoffixznet/perl6-Test-When.git
 [submodule "modules/perl6-encode"]
 	path = modules/perl6-encode
-	url = git@github.com:sergot/perl6-encode.git
+	url = git://github.com/sergot/perl6-encode.git
 [submodule "modules/Test-META"]
 	path = modules/Test-META
-	url = git@github.com:jonathanstowe/Test-META.git
+	url = git://github.com/jonathanstowe/Test-META.git
 [submodule "modules/perl6-datetime-format"]
 	path = modules/perl6-datetime-format
-	url = git@github.com:supernovus/perl6-datetime-format.git
+	url = git://github.com/supernovus/perl6-datetime-format.git
 [submodule "modules/META6"]
 	path = modules/META6
-	url = git@github.com:jonathanstowe/META6.git
+	url = git://github.com/jonathanstowe/META6.git
 [submodule "modules/JSON-Class"]
 	path = modules/JSON-Class
-	url = git@github.com:jonathanstowe/JSON-Class.git
+	url = git://github.com/jonathanstowe/JSON-Class.git
 [submodule "modules/JSON-Marshal"]
 	path = modules/JSON-Marshal
-	url = git@github.com:jonathanstowe/JSON-Marshal.git
+	url = git://github.com/jonathanstowe/JSON-Marshal.git
 [submodule "modules/JSON-Name"]
 	path = modules/JSON-Name
-	url = git@github.com:jonathanstowe/JSON-Name
+	url = git://github.com/jonathanstowe/JSON-Name
 [submodule "modules/JSON-Unmarshal"]
 	path = modules/JSON-Unmarshal
-	url = git@github.com:tadzik/JSON-Unmarshal.git
+	url = git://github.com/tadzik/JSON-Unmarshal.git
 [submodule "modules/http-useragent"]
 	path = modules/http-useragent
 	url = git://github.com/sergot/http-useragent.git
@@ -141,13 +141,13 @@
 	url = git://github.com/sergot/datetime-parse.git
 [submodule "modules/io-capture-simple"]
 	path = modules/io-capture-simple
-	url = git@github.com:sergot/IO-Capture-Simple.git
+	url = git://github.com/sergot/IO-Capture-Simple.git
 [submodule "modules/test-util-serverport"]
 	path = modules/test-util-serverport
-	url = git@github.com:jonathanstowe/Test-Util-ServerPort.git
+	url = git://github.com/jonathanstowe/Test-Util-ServerPort.git
 [submodule "modules/openssl"]
 	path = modules/openssl
-	url = git@github.com:sergot/openssl
+	url = git://github.com/sergot/openssl
 [submodule "modules/io-socket-ssl"]
 	path = modules/io-socket-ssl
-	url = git@github.com:sergot/io-socket-ssl
+	url = git://github.com/sergot/io-socket-ssl
