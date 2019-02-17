@@ -132,19 +132,12 @@ run "CpMac -r '$src_dir'    '$vol_dir'";
 run "cp ../HOW_TO_INSTALL.txt  '$vol_dir/README.txt'";
 run "cp -pr ../../../docs  '$vol_dir/Docs'";
 
-run "touch                        '$vol_dir/Rakudo/Icon\r'";
 run "cp ../2000px-Camelia.svg.icns $vol_dir/.VolumeIcon.icns";
-run "sips -i                       $vol_dir/.VolumeIcon.icns";
-run "DeRez -only icns              $vol_dir/.VolumeIcon.icns > tempicns.rsrc";
-run "Rez -append tempicns.rsrc -o '$vol_dir/Rakudo/bin/perl6'";
+run "../fileicon set '$vol_dir/Rakudo/bin/perl6' ../2000px-Camelia.svg.icns";
 run "mkdir                        $vol_dir/.background";
-run "cp ../installerbg.png        $vol_dir/.background"; 
+run "cp ../installerbg.png        $vol_dir/.background";
 run "SetFile -c icnC              '$vol_dir/.VolumeIcon.icns'";
 run "SetFile -a C                 '$vol_dir'";
-run "SetFile -a C                 '$vol_dir/Rakudo'";
-run "SetFile -a C                 '$vol_dir/Rakudo/bin/perl6'";
-run "SetFile -a V                 '$vol_dir/Rakudo/Icon\r'";
-run "rm tempicns.rsrc";
 
 
 print ">>> Adjusting sizes and positions in installation window\n";
