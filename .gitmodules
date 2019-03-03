@@ -151,3 +151,9 @@
 [submodule "modules/io-socket-ssl"]
 	path = modules/io-socket-ssl
 	url = git://github.com/sergot/io-socket-ssl
+[submodule "modules/app-prove6"]
+	path = modules/app-prove6
+	url = git://github.com/Leont/app-prove6
+[submodule "modules/getopt-long6"]
+	path = modules/getopt-long6
+	url = git://github.com/Leont/getopt-long6

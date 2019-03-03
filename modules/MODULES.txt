@@ -43,7 +43,6 @@ shell-command
 library-make                              # check needed?
 Linenoise
 perl6-file-which
-tap-harness6                         # have last so faster perl5 prove used
 p6-io-string
 perl6-datetime-format
 datetime-parse # dependency for http-useragent
@@ -51,3 +50,6 @@ io-capture-simple
 test-util-serverport
 http-useragent
 jsonrpc                                   # uses PSGI & http-useragent
+getopt-long6
+tap-harness6                         # have last so faster perl5 prove used
+app-prove6
