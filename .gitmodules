@@ -172,3 +172,6 @@
 [submodule "modules/License-SPDX"]
 	path = modules/License-SPDX
 	url = git@github.com:jonathanstowe/License-SPDX
+[submodule "modules/perl6-Test-Output"]
+	path = modules/perl6-Test-Output
+	url = git@github.com:perl6-community-modules/perl6-Test-Output
