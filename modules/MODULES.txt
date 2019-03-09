@@ -7,6 +7,7 @@ JSON-Unmarshal
 JSON-Marshal
 JSON-Class
 META6
+License-SPDX
 Test-META
 xml-writer
 svg                                       # uses XML::Writer
