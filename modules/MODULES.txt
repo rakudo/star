@@ -22,7 +22,7 @@ json
 perl6-encode
 openssl
 io-socket-ssl
-perl6-lwp-simple                          # uses MIME::Base64, URI, JSON::Tiny
+#perl6-lwp-simple                          # uses MIME::Base64, URI, JSON::Tiny
 perl6-digest-md5
 perl6-http-status
 p6-Template-Mustache
@@ -32,9 +32,13 @@ Template-Mojo
 NativeHelpers-Blob
 DBIish                                    # uses NativeHelpers::Blob
 perl6-Test-When
-Pod-To-HTML
-perl6-pod-to-bigpage
 p6-file-directory-tree
+libdigest-perl6
+perl6-Testo
+perl6-Temp-Path                           # uses Digest::SHA, File::Directory::Tree
+p6-pod-load                               # uses Temp::Path
+Pod-To-HTML                               # uses Pod::Load
+perl6-pod-to-bigpage
 p6-File-Temp                              # uses File::Directory::Tree
 file-find
 doc                                       # uses File::Temp
