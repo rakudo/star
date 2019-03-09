@@ -7,6 +7,7 @@ JSON-Unmarshal
 JSON-Marshal
 JSON-Class
 META6
+License-SPDX
 Test-META
 xml-writer
 svg                                       # uses XML::Writer
@@ -32,9 +33,14 @@ Template-Mojo
 NativeHelpers-Blob
 DBIish                                    # uses NativeHelpers::Blob
 perl6-Test-When
-Pod-To-HTML
-perl6-pod-to-bigpage
 p6-file-directory-tree
+libdigest-perl6
+perl6-Testo
+perl6-Temp-Path                           # uses Digest::SHA, File::Directory::Tree
+p6-pod-load                               # uses Temp::Path
+perl6-Test-Output
+Pod-To-HTML                               # uses Pod::Load
+perl6-pod-to-bigpage
 p6-File-Temp                              # uses File::Directory::Tree
 file-find
 doc                                       # uses File::Temp

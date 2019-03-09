@@ -1,9 +1,9 @@
-# Copyright (C) 2006-2018, The Perl Foundation.
+# Copyright (C) 2006-2019, The Perl Foundation.
 
 MOAR_DIR     = moarvm
 NQP_DIR      = nqp
 RAKUDO_DIR   = rakudo
-STAR_VERSION = 2018.10
+STAR_VERSION = 2019.03
 
 # install location
 PREFIX_DIR         = @prefix@

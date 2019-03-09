@@ -157,3 +157,21 @@
 [submodule "modules/getopt-long6"]
 	path = modules/getopt-long6
 	url = git://github.com/Leont/getopt-long6
+[submodule "modules/p6-pod-load"]
+	path = modules/p6-pod-load
+	url = git@github.com:JJ/p6-pod-load
+[submodule "modules/perl6-Temp-Path"]
+	path = modules/perl6-Temp-Path
+	url = git@github.com:ufobat/perl6-Temp-Path
+[submodule "modules/libdigest-perl6"]
+	path = modules/libdigest-perl6
+	url = git@github.com:grondilu/libdigest-perl6
+[submodule "modules/perl6-Testo"]
+	path = modules/perl6-Testo
+	url = git@github.com:perl6-community-modules/perl6-Testo
+[submodule "modules/License-SPDX"]
+	path = modules/License-SPDX
+	url = git@github.com:jonathanstowe/License-SPDX
+[submodule "modules/perl6-Test-Output"]
+	path = modules/perl6-Test-Output
+	url = git@github.com:perl6-community-modules/perl6-Test-Output

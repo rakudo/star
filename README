@@ -1,8 +1,8 @@
 This is Rakudo Star, a useful, usable Rakudo Perl 6 production distribution.
 
-This is the 2018.10 release of Rakudo Star for the 6.c version of Perl 6.
+This is the 2019.03 release of Rakudo Star for the 6.d version of Perl 6.
 
-Rakudo Star is Copyright (C) 2010 - 2018 by the Rakudo Star Team.
+Rakudo Star is Copyright (C) 2010 - 2019 by the Rakudo Star Team.
 
 
 License Information
@@ -110,7 +110,7 @@ after the source build completes.
 Once Rakudo Star is installed (and assuming perl6 is in your PATH), you can
 run Perl 6 programs by doing:
 
-    $ perl6 hello.pl
+    $ perl6 hello.p6
 
 If the Rakudo compiler is invoked without an explicit script to run, it
 enters a small interactive mode that allows Perl 6 statements to be executed
@@ -144,11 +144,12 @@ This distribution also contains documentation in the docs/ directory:
 
  docs/cheatsheet.txt             —   Perl 6 cheat sheet
  docs/2015-spw-perl6-course.pdf  —   A short Perl 6 course
- docs/perl6intro.pdf             —   Recent snapshot of http://perl6intro.com/
+ docs/perl6intro.pdf             —   Recent snapshot of https://perl6intro.com/
  docs/announce/                  —   Detailed release announcements
 
-http://perl6intro.com/ is available in multiple languages, Dutch, French,
-German, Japanese, Portuguese and Spanish at the time of writing.
+https://perl6intro.com/ is available in multiple languages, French, German,
+Japanese, Spanish, Portuguese, Dutch, Bulgarian, Chinese, Italian, Turkish,
+Indonesian and Russian at the time of writing.
 
 
 Installing Perl 6 Modules
@@ -157,11 +158,9 @@ zef is a module installer bundled with Rakudo Star.
 
 See https://github.com/ugexe/zef for zef documentation.
 
-panda is an alternative module installer.
+A list of modules available in the "ecosystem" is at https://modules.perl6.org/
 
-A list of modules available in the "ecosystem" is at http://modules.perl6.org/
-
-Git is useful for both zef and panda (and required with the latter).
+Git is useful for zef.
 
 When upgrading between versions of perl 6 it may be necessary to remove
 ~/.perl6 and/or ~/.zef due to a possible toolchain bug.  If you see this issue
@@ -172,10 +171,10 @@ Where to get help or answers to questions
 -----------------------------------------
 'p6doc faq' will display a version of the FAQ.
 
-Also see http://faq.perl6.org/
+Also see https://faq.perl6.org/
 
 There are several mailing lists, IRC channels, and wikis available with help
-for Perl 6 and Rakudo.  
+for Perl 6 and Rakudo.
 
 A friendly IRC channel for new starter questions is irc.freenode.net/#perl6
 
@@ -190,11 +189,11 @@ implementing or developing the Perl 6 language itself.
 
 Questions about the Rakudo compiler can go to perl6-compiler@perl.org.
 
-The http://perl6.org/ website contains a great many links to resources for Perl
+The https://perl6.org/ website contains a great many links to resources for Perl
 6 development, and is generally the starting point for information about Perl
 6.
 
-Rakudo's official web site is http://rakudo.org/, where you can
+Rakudo's official web site is https://rakudo.org/, where you can
 find useful information for developers and users alike.
 
 
@@ -228,4 +227,3 @@ AUTHOR
 Patrick Michaud (pmichaud@pobox.com) was originally the primary author and
 maintainer for Rakudo Star. See docs/CREDITS for further Rakudo Star authors,
 and */CREDITS for authors of other collected components.
-
