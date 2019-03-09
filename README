@@ -1,8 +1,8 @@
 This is Rakudo Star, a useful, usable Rakudo Perl 6 production distribution.
 
-This is the 2018.10 release of Rakudo Star for the 6.c version of Perl 6.
+This is the 2019.03 release of Rakudo Star for the 6.d version of Perl 6.
 
-Rakudo Star is Copyright (C) 2010 - 2018 by the Rakudo Star Team.
+Rakudo Star is Copyright (C) 2010 - 2019 by the Rakudo Star Team.
 
 
 License Information
@@ -175,7 +175,7 @@ Where to get help or answers to questions
 Also see http://faq.perl6.org/
 
 There are several mailing lists, IRC channels, and wikis available with help
-for Perl 6 and Rakudo.  
+for Perl 6 and Rakudo.
 
 A friendly IRC channel for new starter questions is irc.freenode.net/#perl6
 
@@ -228,4 +228,3 @@ AUTHOR
 Patrick Michaud (pmichaud@pobox.com) was originally the primary author and
 maintainer for Rakudo Star. See docs/CREDITS for further Rakudo Star authors,
 and */CREDITS for authors of other collected components.
-
