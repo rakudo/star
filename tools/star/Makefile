@@ -2,7 +2,7 @@
 # eg. 2017.07 etc.
 # Occasionally (mis-)used to pull in fixes (see 'lastmin-fixes.txt')
 # eg. 2017.07-9-gc0abee7 etc.
-RAKUDO_VER  = 2019.03
+RAKUDO_VER  = 2019.03.1
 NQP_VER     = 2019.03
 MOAR_VER    = 2019.03
 
