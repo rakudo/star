@@ -100,14 +100,28 @@ them to the IRC channel or mailing list. If you alter scripts recommit them.
 
 =item Step 6
 
-Upload the dmg package to L<https://rakudo.perl6.org/downloads/star>:
+Generate a SHA256 sum:
 
- scp "rakudo-star-YYYY.MM.dmg" rakudo@www.p6c.org:public_html/downloads/star
+  sha256sum rakudo-star-YYYY.MM.dmg | cut -f1 -d" " > rakudo-star-YYYY.MM.dmg.sha256.txt
+
+=item Step 7
+
+Generate a GPG signature for the DMG file:
+
+  gpg --armor --detach-sig rakudo-star-YYYY.MM.dmg
+
+This will create C<rakudo-star-YYYY.MM.dmg.asc>.
+
+=item Step 8
+
+Upload the dmg and SHA256 to L<https://rakudo.perl6.org/downloads/star>:
+
+ rsync -avz rakudo-star-YYYY.MM.dmg* rakudo@www.p6c.org:public_html/downloads/star
 
 If you don't have permission to do this step, please ask one(pmichaud, jnthn,
 masak, PerlJam/perlpilot, tadzik, moritz) on C<#perl6> to do it for you.
 
-=item Step 7
+=item Step 9
 
 Publicize the dmg packages in the appropriate places.  These include:
 
@@ -119,7 +133,7 @@ Publicize the dmg packages in the appropriate places.  These include:
 
 =back
 
-=item Step 11
+=item Step 10
 
 You're done!  Celebrate with the appropriate amount of fun.
 
