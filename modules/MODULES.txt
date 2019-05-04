@@ -37,7 +37,7 @@ p6-file-directory-tree
 libdigest-perl6
 perl6-Testo
 perl6-Temp-Path                           # uses Digest::SHA, File::Directory::Tree
-p6-pod-load                               # uses Temp::Path
+p6-pod-load                               
 perl6-Test-Output
 Pod-To-HTML                               # uses Pod::Load
 perl6-pod-to-bigpage
