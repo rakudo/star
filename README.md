@@ -8,9 +8,9 @@ are NOT suitable for building Rakudo Star; do not use them.
 ## Get Rakudo Star
 To get the latest release of Rakudo Star, please download the corresponding file depending on your platform.
 
-* [Linux](https://rakudo.org/latest/star/source)
-* [Windows](https://rakudo.org/latest/star/win64)
-* [macOS](https://rakudo.org/latest/star/macos)
+* [Linux](https://rakudo.org/files/star/source)
+* [Windows](https://rakudo.org/files/star/windows)
+* [macOS](https://rakudo.org/files/star/macos)
 
 ## Build Rakudo Star
 If you're a Rakudo Star release manager, or someone who wants to create a new Perl 6
