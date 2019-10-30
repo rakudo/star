@@ -171,7 +171,7 @@ MAIN: {
     my @prefixes = sort map substr($_, 0, 1), keys %backends;
 
     # determine the version of NQP we want
-    my ($nqp_want) = split(' ', slurp('rakudo/tools/build/NQP_REVISION'));
+    my ($nqp_want) = split(' ', slurp('rakudo/tools/templates/NQP_REVISION'));
 
     my %binaries;
     my %impls = gen_nqp($nqp_want, prefix => $prefix, backends => join(',', sort keys %backends), %options);
@@ -239,7 +239,7 @@ MAIN: {
     }
     sorry(@errors) if @errors;
 
-    fill_template_file('tools/build/Makefile.in', 'Makefile', %config);
+    fill_template_file('tools/template/Makefile.in', 'Makefile', %config);
 
     unless ($options{'no-clean'}) {
         no warnings;

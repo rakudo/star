@@ -22,7 +22,7 @@ moar:
   before_script:
     - apk add --no-cache bash build-base git perl
     - cd "$(mktemp -d)"
-    - tar xvf "$CI_PROJECT_DIR/release/rakudo-star-$CI_COMMIT_REF_NAME.tar.gz"
+    - tar xf "$CI_PROJECT_DIR/release/rakudo-star-$CI_COMMIT_REF_NAME.tar.gz"
   script:
     - cd "rakudo-star-$CI_COMMIT_REF_NAME"
     - perl Configure.pl --prefix=/usr/local --backend=moar --gen-moar

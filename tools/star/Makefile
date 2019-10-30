@@ -77,8 +77,18 @@ patch:
 tarball: manifest
 	[ -n "$(VERSION)" ] || ( echo "\nTry '$(MAKE) release VERSION=yyyy.mm'\n\n"; exit 1 )
 	[ -d $(STAR_REL) ] || ln -s . $(STAR_REL)
+
 	mkdir -p "release"
-	$(PREFIX) $(STAR_REL)/ MANIFEST | $(TAR) -zcv -T - -f "release/$(STAR_TGZ)"
+
+	$(PREFIX) $(STAR_REL)/ MANIFEST \
+		| grep -Ev '^$(STAR_REL)/release/' \
+		| $(TAR) -zc -T - -f "release/$(STAR_TGZ)"
+
 	rm $(STAR_REL)
 
 release: tarball
+
+clean:
+	rm -fr rakudo
+	rm -fr nqp
+	rm -fr MoarVM
