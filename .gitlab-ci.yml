@@ -24,6 +24,7 @@ moar:
     - cd "$(mktemp -d)"
     - tar xf "$CI_PROJECT_DIR/release/rakudo-star-$CI_COMMIT_REF_NAME.tar.gz"
   script:
+    - cd "rakudo-star-$CI_COMMIT_REF_NAME"
     - perl Configure.pl --prefix=/usr/local --backend=moar --gen-moar
   artifacts:
     paths:
