@@ -2,7 +2,7 @@ stages:
   - Package
   - Build
 
-tarball:
+Tarball:
   stage: Package
   image: alpine:latest
   before_script:
@@ -16,7 +16,7 @@ tarball:
     paths:
       - release
 
-moar:
+MoarVM:
   stage: Build
   image: alpine:latest
   before_script:
