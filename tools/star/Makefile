@@ -32,7 +32,7 @@ always:
 
 rakudo: nqp $(RAKUDO_SRC)
 	mkdir rakudo
-	$(TAR) -C rakudo --strip-components 1 -xvzf $(RAKUDO_SRC)
+	$(TAR) -C rakudo --strip-components 1 -xzf $(RAKUDO_SRC)
 
 $(RAKUDO_SRC):
 	mkdir -p $(SRC_DIR)
@@ -40,7 +40,7 @@ $(RAKUDO_SRC):
 
 nqp: moar $(NQP_SRC)
 	mkdir nqp
-	$(TAR) -C nqp --strip-components 1 -xvzf $(NQP_SRC)
+	$(TAR) -C nqp --strip-components 1 -xzf $(NQP_SRC)
 
 $(NQP_SRC):
 	mkdir -p $(SRC_DIR)
@@ -48,7 +48,7 @@ $(NQP_SRC):
 
 moar: $(MOAR_SRC)
 	mkdir MoarVM
-	$(TAR) -C MoarVM --strip-components 1 -xvzf $(MOAR_SRC)
+	$(TAR) -C MoarVM --strip-components 1 -xzf $(MOAR_SRC)
 
 $(MOAR_SRC):
 	mkdir -p $(SRC_DIR)
