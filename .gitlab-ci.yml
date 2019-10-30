@@ -6,7 +6,7 @@ tarball:
   stage: Package
   image: alpine:latest
   before_script:
-    - apk add --no-cache git make
+    - apk add --no-cache git make perl
   script:
     - git submodule sync
     - git submodule update --init --recursive
