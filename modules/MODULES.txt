@@ -19,7 +19,6 @@ Grammar::Profiler::Simple
 Grammar::Debugger          # Terminal::ANSIColor
 MIME::Base64
 JSON::Tiny
-Encode
 OpenSSL
 IO::Socket::SSL
 LWP::Simple                # MIME::Base64, URI, JSON::Tiny

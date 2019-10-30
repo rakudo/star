@@ -109,9 +109,6 @@
 [submodule "modules/Test::When"]
 	path = modules/Test::When
 	url = git://github.com/zoffixznet/perl6-Test-When.git
-[submodule "modules/perl6-encode"]
-	path = modules/perl6-encode
-	url = git://github.com/sergot/perl6-encode.git
 [submodule "modules/Test::META"]
 	path = modules/Test::META
 	url = git://github.com/jonathanstowe/Test-META.git
