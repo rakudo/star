@@ -221,8 +221,7 @@ sub gen_nqp {
     my $sdkroot     = $options{'sdkroot'} || '';
     my $startdir    = cwd();
 
-    my $PARROT_REVISION = 'nqp/tools/build/PARROT_REVISION';
-    my $MOAR_REVISION   = 'nqp/tools/build/MOAR_REVISION';
+    my $MOAR_REVISION   = 'nqp/tools/templates/MOAR_REVISION';
 
     my (%impls, %need);
 
