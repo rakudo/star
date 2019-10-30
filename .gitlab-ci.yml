@@ -1,0 +1,28 @@
+stages:
+  - Build
+  - Release
+
+#moar:
+#  stage: Build
+#  image: alpine:latest
+#  before_script:
+#    - apk add --no-cache bash build-base git perl
+#  script:
+#    - perl Configure.pl --prefix=/usr/local --backend=moar --gen-moar
+#  artifacts:
+#    paths:
+#      - /usr/local
+
+tarball:
+  stage: Release
+  image: registry.gitlab.com/tyil/docker-perl6:alpine-dev-latest
+  before_script:
+    - apk add --no-cache git
+  script:
+    - git submodule sync
+    - git submodule update --init --recursive
+    - git submodule foreach git pull origin master
+    - make -f tools/star/Makefile release VERSION=$CI_COOMIT_REF_NAME
+  artifacts:
+    paths:
+      - release

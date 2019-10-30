@@ -74,11 +74,11 @@ manifest: modules/DBIish/lib
 patch:
 	patch -p1 < patches/star-ver.patch
 
-tarball: manifest patch
+tarball: manifest
 	[ -n "$(VERSION)" ] || ( echo "\nTry '$(MAKE) release VERSION=yyyy.mm'\n\n"; exit 1 )
 	[ -d $(STAR_REL) ] || ln -s . $(STAR_REL)
-	$(PREFIX) $(STAR_REL)/ MANIFEST | \
-	    $(TAR) -zcv -T - -f $(STAR_TGZ)
+	mkdir -p "release"
+	$(PREFIX) $(STAR_REL)/ MANIFEST | $(TAR) -zcv -T - -f "release/$(STAR_TGZ)"
 	rm $(STAR_REL)
 
 release: tarball
