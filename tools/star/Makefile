@@ -92,3 +92,4 @@ clean:
 	rm -fr rakudo
 	rm -fr nqp
 	rm -fr MoarVM
+	rm -fr src
