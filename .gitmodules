@@ -1,177 +1,177 @@
-[submodule "modules/debugger-ui-commandline"]
-	path = modules/debugger-ui-commandline
-	url = git://github.com/jnthn/rakudo-debugger
-[submodule "modules/xml-writer"]
-	path = modules/xml-writer
-	url = git://github.com/masak/xml-writer
-[submodule "modules/svg"]
-	path = modules/svg
-	url = git://github.com/moritz/svg
-[submodule "modules/svg-plot"]
-	path = modules/svg-plot
-	url = git://github.com/moritz/svg-plot
-[submodule "modules/test-mock"]
-	path = modules/test-mock
-	url = git://github.com/jnthn/test-mock
-[submodule "modules/Grammar-Profiler-Simple"]
-	path = modules/Grammar-Profiler-Simple
-	url = git://github.com/perlpilot/Grammar-Profiler-Simple
-[submodule "modules/grammar-debugger"]
-	path = modules/grammar-debugger
-	url = git://github.com/jnthn/grammar-debugger
-[submodule "modules/json"]
-	path = modules/json
-	url = git://github.com/moritz/json
-[submodule "modules/perl6-digest-md5"]
-	path = modules/perl6-digest-md5
-	url = git://github.com/cosimo/perl6-digest-md5
-[submodule "modules/perl6-http-status"]
-	path = modules/perl6-http-status
-	url = git://github.com/supernovus/perl6-http-status
-[submodule "modules/perl6-http-easy"]
-	path = modules/perl6-http-easy
-	url = git://github.com/supernovus/perl6-http-easy
-[submodule "modules/Template-Mojo"]
-	path = modules/Template-Mojo
-	url = git://github.com/tadzik/Template-Mojo
+[submodule "modules/Debugger::UI::CommandLine"]
+	path = modules/Debugger::UI::CommandLine
+	url = git://github.com/jnthn/rakudo-debugger.git
+[submodule "modules/XML::Writer"]
+	path = modules/XML::Writer
+	url = git://github.com/masak/xml-writer.git
+[submodule "modules/SVG"]
+	path = modules/SVG
+	url = git://github.com/moritz/svg.git
+[submodule "modules/SVG::Plot"]
+	path = modules/SVG::Plot
+	url = git://github.com/moritz/svg-plot.git
+[submodule "modules/Test::Mock"]
+	path = modules/Test::Mock
+	url = git://github.com/jnthn/test-mock.git
+[submodule "modules/Grammar::Profiler::Simple"]
+	path = modules/Grammar::Profiler::Simple
+	url = git://github.com/perlpilot/Grammar-Profiler-Simple.git
+[submodule "modules/Grammar::Debugger"]
+	path = modules/Grammar::Debugger
+	url = git://github.com/jnthn/grammar-debugger.git
+[submodule "modules/JSON::Tiny"]
+	path = modules/JSON::Tiny
+	url = git://github.com/moritz/json.git
+[submodule "modules/Digest::MD5"]
+	path = modules/Digest::MD5
+	url = git://github.com/cosimo/perl6-digest-md5.git
+[submodule "modules/HTTP::Status"]
+	path = modules/HTTP::Status
+	url = git://github.com/supernovus/perl6-http-status.git
+[submodule "modules/HTTP::Easy"]
+	path = modules/HTTP::Easy
+	url = git://github.com/supernovus/perl6-http-easy.git
+[submodule "modules/Template::Mojo"]
+	path = modules/Template::Mojo
+	url = git://github.com/tadzik/Template-Mojo.git
 [submodule "modules/DBIish"]
 	path = modules/DBIish
-	url = git://github.com/perl6/DBIish
-[submodule "modules/uri"]
-	path = modules/uri
-	url = git://github.com/perl6-community-modules/uri
-[submodule "modules/perl6-lwp-simple"]
-	path = modules/perl6-lwp-simple
-	url = git://github.com/perl6/perl6-lwp-simple
-[submodule "modules/jsonrpc"]
-	path = modules/jsonrpc
-	url = git://github.com/bbkr/jsonrpc
-[submodule "modules/Pod-To-HTML"]
-	path = modules/Pod-To-HTML
-	url = git://github.com/perl6/Pod-To-HTML
-[submodule "modules/doc"]
-	path = modules/doc
-	url = git://github.com/perl6/doc
-[submodule "modules/Perl6-MIME-Base64"]
-	path = modules/Perl6-MIME-Base64
-	url = git://github.com/perl6/Perl6-MIME-Base64
+	url = git://github.com/perl6/DBIish.git
+[submodule "modules/URI"]
+	path = modules/URI
+	url = git://github.com/perl6-community-modules/uri.git
+[submodule "modules/LWP::Simple"]
+	path = modules/LWP::Simple
+	url = git://github.com/perl6/perl6-lwp-simple.git
+[submodule "modules/JSON::RPC"]
+	path = modules/JSON::RPC
+	url = git://github.com/bbkr/jsonrpc.git
+[submodule "modules/Pod::To::HTML"]
+	path = modules/Pod::To::HTML
+	url = git://github.com/perl6/Pod-To-HTML.git
+[submodule "modules/p6doc"]
+	path = modules/p6doc
+	url = git://github.com/perl6/doc.git
+[submodule "modules/MIME::Base64"]
+	path = modules/MIME::Base64
+	url = git://github.com/perl6/Perl6-MIME-Base64.git
 [submodule "modules/PSGI"]
 	path = modules/PSGI
-	url = git://github.com/supernovus/perl6-psgi
-[submodule "modules/shell-command"]
-	path = modules/shell-command
-	url = git://github.com/tadzik/Shell-Command
-[submodule "modules/file-find"]
-	path = modules/file-find
-	url = git://github.com/tadzik/File-Find
-[submodule "modules/p6-Template-Mustache"]
-	path = modules/p6-Template-Mustache
-	url = git://github.com/softmoth/p6-Template-Mustache
-[submodule "modules/p6-File-Temp"]
-	path = modules/p6-File-Temp
-	url = git://github.com/perlpilot/p6-File-Temp
-[submodule "modules/p6-file-directory-tree"]
-	path = modules/p6-file-directory-tree
-	url = git://github.com/labster/p6-file-directory-tree
-[submodule "modules/Terminal-ANSIColor"]
-	path = modules/Terminal-ANSIColor
-	url = git://github.com/tadzik/Terminal-ANSIColor
-[submodule "modules/json_fast"]
-	path = modules/json_fast
-	url = git://github.com/timo/json_fast
-[submodule "modules/library-make"]
-	path = modules/library-make
-	url = https://github.com/retupmoca/P6-LibraryMake/
+	url = git://github.com/supernovus/perl6-psgi.git
+[submodule "modules/Shell::Command"]
+	path = modules/Shell::Command
+	url = git://github.com/tadzik/Shell-Command.git
+[submodule "modules/File::Find"]
+	path = modules/File::Find
+	url = git://github.com/tadzik/File-Find.git
+[submodule "modules/Template::Mustache"]
+	path = modules/Template::Mustache
+	url = git://github.com/softmoth/p6-Template-Mustache.git
+[submodule "modules/File::Temp"]
+	path = modules/File::Temp
+	url = git://github.com/perlpilot/p6-File-Temp.git
+[submodule "modules/File::Directory::Tree"]
+	path = modules/File::Directory::Tree
+	url = git://github.com/labster/p6-file-directory-tree.git
+[submodule "modules/Terminal::ANSIColor"]
+	path = modules/Terminal::ANSIColor
+	url = git://github.com/tadzik/Terminal-ANSIColor.git
+[submodule "modules/JSON::Fast"]
+	path = modules/JSON::Fast
+	url = git://github.com/timo/json_fast.git
+[submodule "modules/LibraryMake"]
+	path = modules/LibraryMake
+	url = git://github.com/retupmoca/P6-LibraryMake.git
 [submodule "modules/Linenoise"]
 	path = modules/Linenoise
-	url = https://github.com/hoelzro/p6-linenoise/
-[submodule "modules/perl6-file-which"]
-	path = modules/perl6-file-which
-	url = git://github.com/azawawi/perl6-file-which
-[submodule "modules/NativeHelpers-Blob"]
-	path = modules/NativeHelpers-Blob
-	url = git://github.com/salortiz/NativeHelpers-Blob
-[submodule "modules/perl6-pod-to-bigpage"]
-	path = modules/perl6-pod-to-bigpage
+	url = git://github.com/hoelzro/p6-linenoise.git
+[submodule "modules/File::Which"]
+	path = modules/File::Which
+	url = git://github.com/azawawi/perl6-file-which.git
+[submodule "modules/NativeHelpers::Blob"]
+	path = modules/NativeHelpers::Blob
+	url = git://github.com/salortiz/NativeHelpers-Blob.git
+[submodule "modules/Pod::To::BigPage"]
+	path = modules/Pod::To::BigPage
 	url = git://github.com/gfldex/perl6-pod-to-bigpage.git
 [submodule "modules/zef"]
 	path = modules/zef
 	url = git://github.com/ugexe/zef.git
-[submodule "modules/oo-monitors"]
-	path = modules/oo-monitors
-	url = git://github.com/jnthn/oo-monitors
-[submodule "modules/tap-harness6"]
-	path = modules/tap-harness6
+[submodule "modules/OO::Monitors"]
+	path = modules/OO::Monitors
+	url = git://github.com/jnthn/oo-monitors.git
+[submodule "modules/TAP"]
+	path = modules/TAP
 	url = git://github.com/perl6/tap-harness6.git
-[submodule "modules/p6-io-string"]
-	path = modules/p6-io-string
+[submodule "modules/IO::String"]
+	path = modules/IO::String
 	url = git://github.com/hoelzro/p6-io-string.git
-[submodule "modules/perl6-Test-When"]
-	path = modules/perl6-Test-When
+[submodule "modules/Test::When"]
+	path = modules/Test::When
 	url = git://github.com/zoffixznet/perl6-Test-When.git
 [submodule "modules/perl6-encode"]
 	path = modules/perl6-encode
 	url = git://github.com/sergot/perl6-encode.git
-[submodule "modules/Test-META"]
-	path = modules/Test-META
+[submodule "modules/Test::META"]
+	path = modules/Test::META
 	url = git://github.com/jonathanstowe/Test-META.git
-[submodule "modules/perl6-datetime-format"]
-	path = modules/perl6-datetime-format
+[submodule "modules/DateTime::Format"]
+	path = modules/DateTime::Format
 	url = git://github.com/supernovus/perl6-datetime-format.git
 [submodule "modules/META6"]
 	path = modules/META6
 	url = git://github.com/jonathanstowe/META6.git
-[submodule "modules/JSON-Class"]
-	path = modules/JSON-Class
+[submodule "modules/JSON::Class"]
+	path = modules/JSON::Class
 	url = git://github.com/jonathanstowe/JSON-Class.git
-[submodule "modules/JSON-Marshal"]
-	path = modules/JSON-Marshal
+[submodule "modules/JSON::Marshal"]
+	path = modules/JSON::Marshal
 	url = git://github.com/jonathanstowe/JSON-Marshal.git
-[submodule "modules/JSON-Name"]
-	path = modules/JSON-Name
+[submodule "modules/JSON::Name"]
+	path = modules/JSON::Name
 	url = git://github.com/jonathanstowe/JSON-Name
-[submodule "modules/JSON-Unmarshal"]
-	path = modules/JSON-Unmarshal
+[submodule "modules/JSON::Unmarshal"]
+	path = modules/JSON::Unmarshal
 	url = git://github.com/tadzik/JSON-Unmarshal.git
-[submodule "modules/http-useragent"]
-	path = modules/http-useragent
+[submodule "modules/HTTP::UserAgent"]
+	path = modules/HTTP::UserAgent
 	url = git://github.com/sergot/http-useragent.git
-[submodule "modules/datetime-parse"]
-	path = modules/datetime-parse
+[submodule "modules/DateTime::Parse"]
+	path = modules/DateTime::Parse
 	url = git://github.com/sergot/datetime-parse.git
-[submodule "modules/io-capture-simple"]
-	path = modules/io-capture-simple
+[submodule "modules/IO::Capture::Simple"]
+	path = modules/IO::Capture::Simple
 	url = git://github.com/sergot/IO-Capture-Simple.git
-[submodule "modules/test-util-serverport"]
-	path = modules/test-util-serverport
+[submodule "modules/Test::Util::ServerPort"]
+	path = modules/Test::Util::ServerPort
 	url = git://github.com/jonathanstowe/Test-Util-ServerPort.git
-[submodule "modules/openssl"]
-	path = modules/openssl
-	url = git://github.com/sergot/openssl
-[submodule "modules/io-socket-ssl"]
-	path = modules/io-socket-ssl
-	url = git://github.com/sergot/io-socket-ssl
-[submodule "modules/app-prove6"]
-	path = modules/app-prove6
-	url = git://github.com/Leont/app-prove6
-[submodule "modules/getopt-long6"]
-	path = modules/getopt-long6
-	url = git://github.com/Leont/getopt-long6
-[submodule "modules/p6-pod-load"]
-	path = modules/p6-pod-load
-	url = git@github.com:JJ/p6-pod-load
-[submodule "modules/perl6-Temp-Path"]
-	path = modules/perl6-Temp-Path
-	url = git@github.com:ufobat/perl6-Temp-Path
-[submodule "modules/libdigest-perl6"]
-	path = modules/libdigest-perl6
-	url = git@github.com:grondilu/libdigest-perl6
-[submodule "modules/perl6-Testo"]
-	path = modules/perl6-Testo
-	url = git@github.com:perl6-community-modules/perl6-Testo
-[submodule "modules/License-SPDX"]
-	path = modules/License-SPDX
-	url = git@github.com:jonathanstowe/License-SPDX
-[submodule "modules/perl6-Test-Output"]
-	path = modules/perl6-Test-Output
-	url = git@github.com:perl6-community-modules/perl6-Test-Output
+[submodule "modules/OpenSSL"]
+	path = modules/OpenSSL
+	url = git://github.com/sergot/openssl.git
+[submodule "modules/IO::Socket::SSL"]
+	path = modules/IO::Socket::SSL
+	url = git://github.com/sergot/io-socket-ssl.git
+[submodule "modules/App::Prove6"]
+	path = modules/App::Prove6
+	url = git://github.com/Leont/app-prove6.git
+[submodule "modules/Getopt::Long"]
+	path = modules/Getopt::Long
+	url = git://github.com/Leont/getopt-long6.git
+[submodule "modules/Pod::Load"]
+	path = modules/Pod::Load
+	url = git://github.com/JJ/p6-pod-load.git
+[submodule "modules/Temp::Path"]
+	path = modules/Temp::Path
+	url = git://github.com/ufobat/perl6-Temp-Path.git
+[submodule "modules/Digest"]
+	path = modules/Digest
+	url = git://github.com/grondilu/libdigest-perl6.git
+[submodule "modules/Testo"]
+	path = modules/Testo
+	url = git://github.com/perl6-community-modules/perl6-Testo.git
+[submodule "modules/License::SPDX"]
+	path = modules/License::SPDX
+	url = git://github.com/jonathanstowe/License-SPDX.git
+[submodule "modules/Test::Output"]
+	path = modules/Test::Output
+	url = git://github.com/perl6-community-modules/perl6-Test-Output.git
