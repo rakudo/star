@@ -242,7 +242,7 @@ MAIN: {
     }
     sorry(@errors) if @errors;
 
-    fill_template_file('tools/template/Makefile.in', 'Makefile', %config);
+    fill_template_file('tools/build/Makefile.in', 'Makefile', %config);
 
     unless ($options{'no-clean'}) {
         no warnings;
