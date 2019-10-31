@@ -10,26 +10,24 @@ Tarball:
   script:
     - git submodule sync
     - git submodule update --init --recursive
-    - make -f tools/star/Makefile
-    - make -f tools/star/Makefile release VERSION=$CI_COMMIT_REF_NAME
+    - bin/mkrelease.sh "$CI_COMMIT_REF_NAME"
   artifacts:
     paths:
-      - release
+      - work/release
 
 MoarVM:
   stage: Build
   image: alpine:latest
   before_script:
     - apk add --no-cache bash build-base git perl
-    - cd "$(mktemp -d)"
-    - tar xf "$CI_PROJECT_DIR/release/rakudo-star-$CI_COMMIT_REF_NAME.tar.gz"
+    - cd -- "$(mktemp -d)"
+    - tar xzf "$CI_PROJECT_DIR/work/release/rakudo-star-$CI_COMMIT_REF_NAME.tar.gz"
   script:
     - cd "rakudo-star-$CI_COMMIT_REF_NAME"
-    - perl Configure.pl --prefix=/usr/local --backend=moar --gen-moar --make-install
+    - perl Configure.pl --prefix="$CI_PROJECT_DIR/work/install" --backend=moar --gen-moar --make-install
   artifacts:
     paths:
-      - "$CI_COMMIT_REF_NAME/release"
-      - /usr/local
+      - work/install
 
 # TODO: Run tests
 # TODO: Release an updated Docker container

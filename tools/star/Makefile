@@ -9,7 +9,9 @@ MOAR_VER    = 2019.07.1
 STAR_REL    = rakudo-star-$(VERSION)
 STAR_TGZ    = $(STAR_REL).tar.gz
 
-SRC_DIR = src
+SRC_DIR = work/src
+WORKDIR ?= $(shell pwd)/work/rakudo-star-$(VERSION)
+RELEASE_DIR = $(shell pwd)/work/release
 
 RAKUDO_TGZ = rakudo-$(RAKUDO_VER).tar.gz
 RAKUDO_URL = https://rakudo.perl6.org/downloads/rakudo/$(RAKUDO_TGZ)
@@ -26,29 +28,27 @@ PREFIX = $(PERL) $(CURDIR)/tools/star/prefix.pl
 WGET   = wget
 TAR    = tar
 
-all: rakudo nqp moar manifest
-
-always:
+all: rakudo nqp moarvm manifest
 
 rakudo: nqp $(RAKUDO_SRC)
-	mkdir rakudo
-	$(TAR) -C rakudo --strip-components 1 -xzf $(RAKUDO_SRC)
+	mkdir -p $(WORKDIR)/rakudo
+	$(TAR) -C $(WORKDIR)/rakudo --strip-components 1 -xzf $(RAKUDO_SRC)
 
 $(RAKUDO_SRC):
 	mkdir -p $(SRC_DIR)
 	$(WGET) $(RAKUDO_URL) -O $(RAKUDO_SRC)
 
-nqp: moar $(NQP_SRC)
-	mkdir nqp
-	$(TAR) -C nqp --strip-components 1 -xzf $(NQP_SRC)
+nqp: moarvm $(NQP_SRC)
+	mkdir -p $(WORKDIR)/nqp
+	$(TAR) -C $(WORKDIR)/nqp --strip-components 1 -xzf $(NQP_SRC)
 
 $(NQP_SRC):
 	mkdir -p $(SRC_DIR)
 	$(WGET) $(NQP_URL) -O $(NQP_SRC)
 
-moar: $(MOAR_SRC)
-	mkdir MoarVM
-	$(TAR) -C MoarVM --strip-components 1 -xzf $(MOAR_SRC)
+moarvm: $(MOAR_SRC)
+	mkdir -p $(WORKDIR)/MoarVM
+	$(TAR) -C $(WORKDIR)/MoarVM --strip-components 1 -xzf $(MOAR_SRC)
 
 $(MOAR_SRC):
 	mkdir -p $(SRC_DIR)
@@ -59,37 +59,59 @@ modules/DBIish/lib:
 	git submodule init
 	git submodule update
 
-manifest: modules/DBIish/lib
-	echo MANIFEST >MANIFEST
-	git ls-files >>MANIFEST
-	$(PREFIX) rakudo/ rakudo/MANIFEST >>MANIFEST
-	$(PREFIX) nqp/ nqp/MANIFEST >>MANIFEST
-	$(PREFIX) MoarVM/ MoarVM/MANIFEST >>MANIFEST
-	git submodule foreach --quiet 'git ls-files | $(PREFIX) $$path/' >>MANIFEST
-	grep -v -f tools/star/MANIFEST.exclude MANIFEST >MANIFEST.1
-	$(PERL) -n -e 'chomp; print "$$_\n"' MANIFEST.1 >MANIFEST
-	sort -o MANIFEST MANIFEST
-	rm MANIFEST.1
+manifest:
+	printf "%s\n" MANIFEST >> "$(WORKDIR)/MANIFEST"
+
+	# Add an assortment of files from this repository
+	git ls-files | grep -E '^docs' >> "$(WORKDIR)/MANIFEST"
+	git ls-files | grep -E '^modules' >> "$(WORKDIR)/MANIFEST"
+	git ls-files | grep -E '^ports' >> "$(WORKDIR)/MANIFEST"
+	git ls-files | grep -E '^tools' >> "$(WORKDIR)/MANIFEST"
+
+	printf "%s\n" build_msi.bat >> "$(WORKDIR)/MANIFEST"
+	printf "%s\n" Configure.pl >> "$(WORKDIR)/MANIFEST"
+	printf "%s\n" LICENSE >> "$(WORKDIR)/MANIFEST"
+	printf "%s\n" README.md >> "$(WORKDIR)/MANIFEST"
+
+	# Add the 3 core parts for Raku
+	cd -- "$(WORKDIR)" && $(PREFIX) rakudo/ rakudo/MANIFEST >> "$(WORKDIR)/MANIFEST"
+	cd -- "$(WORKDIR)" && $(PREFIX) nqp/ nqp/MANIFEST >> "$(WORKDIR)/MANIFEST"
+	cd -- "$(WORKDIR)" && $(PREFIX) MoarVM/ MoarVM/MANIFEST >> "$(WORKDIR)/MANIFEST"
+
+	# Add ecosystem modules
+	git submodule foreach --quiet 'git ls-files | $(PREFIX) $$path/' >> $(WORKDIR)/MANIFEST
+
+	# Remove explicitly removed files
+	grep -v -f tools/star/MANIFEST.exclude $(WORKDIR)/MANIFEST > $(WORKDIR)/MANIFEST.1
+	mv -- "$(WORKDIR)/MANIFEST.1" "$(WORKDIR)/MANIFEST"
+
+	# Clean up whitespace
+	$(PERL) -n -e 'chomp; print "$$_\n"' $(WORKDIR)/MANIFEST > $(WORKDIR)/MANIFEST.1
+	mv -- "$(WORKDIR)/MANIFEST.1" "$(WORKDIR)/MANIFEST"
+
+	# Sort the MANIFEST
+	sort -o $(WORKDIR)/MANIFEST $(WORKDIR)/MANIFEST
 
 patch:
 	patch -p1 < patches/star-ver.patch
 
 tarball: manifest
 	[ -n "$(VERSION)" ] || ( echo "\nTry '$(MAKE) release VERSION=yyyy.mm'\n\n"; exit 1 )
-	[ -d $(STAR_REL) ] || ln -s . $(STAR_REL)
 
-	mkdir -p "release"
+	mkdir -p "$(RELEASE_DIR)"
+	cp -r modules "$(WORKDIR)/."
+	cp -r docs "$(WORKDIR)/."
+	cp -r ports "$(WORKDIR)/."
+	cp -r tools "$(WORKDIR)/."
+	cp LICENSE "$(WORKDIR)/."
+	cp bundle/README.md "$(WORKDIR)/."
+	cp bundle/build_msi.bat "$(WORKDIR)/."
+	cp bundle/Configure.pl "$(WORKDIR)/."
 
-	$(PREFIX) $(STAR_REL)/ MANIFEST \
-		| grep -Ev '^$(STAR_REL)/release/' \
-		| $(TAR) -zc -T - -f "release/$(STAR_TGZ)"
-
-	rm $(STAR_REL)
+	cd -- work && $(PREFIX) $(STAR_REL)/ "$(WORKDIR)/MANIFEST" \
+		| $(TAR) -zc -T - -f "$(RELEASE_DIR)/$(STAR_TGZ)"
 
 release: tarball
 
 clean:
-	rm -fr rakudo
-	rm -fr nqp
-	rm -fr MoarVM
-	rm -fr src
+	rm -fr work

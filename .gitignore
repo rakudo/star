@@ -6,11 +6,7 @@
 # Temporary files used to build a new Rakudo Star release
 MANIFEST
 Makefile
-MoarVM
 config.status
-install
-nqp
 perl6
-rakudo
 release
-src
+work
