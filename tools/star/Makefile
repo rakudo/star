@@ -67,7 +67,7 @@ manifest: modules/DBIish/lib
 	$(PREFIX) MoarVM/ MoarVM/MANIFEST >>MANIFEST
 	git submodule foreach --quiet 'git ls-files | $(PREFIX) $$path/' >>MANIFEST
 	grep -v -f tools/star/MANIFEST.exclude MANIFEST >MANIFEST.1
-	$(PERL) -n -e 'chomp; -f && print "$$_\n"' MANIFEST.1 >MANIFEST
+	$(PERL) -n -e 'chomp; print "$$_\n"' MANIFEST.1 >MANIFEST
 	sort -o MANIFEST MANIFEST
 	rm MANIFEST.1
 
