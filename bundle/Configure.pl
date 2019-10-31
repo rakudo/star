@@ -49,53 +49,56 @@ MAIN: {
     }
 
     if (-d '.git') {
-        worry( $options{'force'},
-               "I see a .git directory here -- you appear to be trying",
-              "to run Configure.pl from a clone of the Rakudo Star git",
-              "repository.",
-              "You most probably should be following",
-              "    tools/star/release-guide.pod",
-              "instead. Please be aware that running Configure.pl from",
-              "a clone of the rakudo star git repo will never be",
-              "the right thing to do.",
-              $options{'force'}
-                ? '--force specified, continuing'
-                : download_text()
+        worry(
+            $options{'force'},
+            "I see a .git directory here -- you appear to be trying",
+            "to run Configure.pl from a clone of the Rakudo Star git",
+            "repository.",
+            "You most probably should be following",
+            "    tools/star/release-guide.pod",
+            "instead. Please be aware that running Configure.pl from",
+            "a clone of the rakudo star git repo will never be",
+            "the right thing to do.",
+            $options{'force'} ? '--force specified, continuing' : download_text()
         );
     }
 
     unless (defined $options{prefix}) {
-	my $default = defined($options{sysroot}) ? '/usr' : File::Spec->catdir(getcwd, 'install');
+
+    my $default = defined($options{sysroot}) ? '/usr' : File::Spec->catdir(getcwd, 'install');
         print "ATTENTION: no --prefix supplied, building and installing to $default\n";
+
         $options{prefix} = $default;
     }
+
     $options{prefix} = File::Spec->rel2abs($options{prefix});
 
     my $prefix         = $options{'prefix'};
     my %known_backends = (jvm => 1, moar => 1);
     my %letter_to_backend;
     my $default_backend;
+
     for (keys %known_backends) {
         $letter_to_backend{ substr($_, 0, 1) } = $_;
     }
+
     my %backends;
+
     if (defined $options{backends}) {
-        $options{backends} = 'moar,jvm'
-            if lc($options{backends}) eq 'all';
+        $options{backends} = 'moar,jvm' if lc($options{backends}) eq 'all';
+
         for my $b (split /,\s*/, $options{backends}) {
             $b = lc $b;
-            if ($b eq 'parrot') {
-                die "Parrot support has been suspended from Rakudo Star. Please use version 2015.02 if you need Parrot support, or otherwise the MoarVM backend.\n";
+
+            if (!$known_backends{$b}) {
+                die "Unknown backend '$b'; Supported backends are: " .  join(", ", sort keys %known_backends) .  "\n";
             }
-            unless ($known_backends{$b}) {
-                die "Unknown backend '$b'; Supported backends are: " .
-                    join(", ", sort keys %known_backends) .
-                    "\n";
-            }
+
             $backends{$b} = 1;
             $default_backend ||= $b;
         }
-        unless (%backends) {
+
+        if (!%backends) {
             die "--prefix given, but no valid backend?!\n";
         }
     }
@@ -171,7 +174,7 @@ MAIN: {
     my @prefixes = sort map substr($_, 0, 1), keys %backends;
 
     # determine the version of NQP we want
-    my ($nqp_want) = split(' ', slurp('rakudo/tools/build/NQP_REVISION'));
+    my ($nqp_want) = split(' ', slurp('rakudo/tools/templates/NQP_REVISION'));
 
     my %binaries;
     my %impls = gen_nqp($nqp_want, prefix => $prefix, backends => join(',', sort keys %backends), %options);
