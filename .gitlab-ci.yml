@@ -7,7 +7,7 @@ Tarball:
   stage: Package
   image: alpine:latest
   before_script:
-    - apk add --no-cache git make perl
+    - apk add --no-cache coreutils git make perl
   script:
     - git submodule sync
     - git submodule update --init --recursive
@@ -21,7 +21,7 @@ Rakudo Star:
   stage: Build
   image: alpine:latest
   before_script:
-    - apk add --no-cache bash build-base git perl
+    - apk add --no-cache coreutils bash build-base git perl
     - cd -- "$CI_PROJECT_DIR/work/build"
     - bin/mkchecksum.sh "work/release/rakudo-star-$CI_COMMIT_REF_NAME.tar.gz"
     - tar xzf "$CI_PROJECT_DIR/work/release/rakudo-star-$CI_COMMIT_REF_NAME.tar.gz"
