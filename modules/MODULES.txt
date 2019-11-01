@@ -26,15 +26,15 @@ Digest::MD5
 HTTP::Status
 Template::Mustache
 PSGI
-HTTP-Easy                  # PSGI
-Template-Mojo
-NativeHelpers-Blob
+HTTP::Easy                  # PSGI
+Template::Mojo
+NativeHelpers::Blob
 DBIish                     # NativeHelpers::Blob
 Test::When
-File-Directory-Tree
+File::Directory::Tree
 Digest
 Testo
-Temp-Path                  # Digest::SHA, File::Directory::Tree
+Temp::Path                  # Digest::SHA, File::Directory::Tree
 Pod::Load                  # Temp::Path
 Test::Output
 Pod::To::HTML              # Pod::Load
