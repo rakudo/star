@@ -1,6 +1,7 @@
 stages:
   - Package
   - Build
+  - Test
 
 Tarball:
   stage: Package
@@ -16,21 +17,44 @@ Tarball:
     paths:
       - work/release
 
-MoarVM:
+Rakudo Star:
   stage: Build
   image: alpine:latest
   before_script:
     - apk add --no-cache bash build-base git perl
-    - cd -- "$(mktemp -d)"
+    - cd -- "$CI_PROJECT_DIR/work/build"
     - bin/mkchecksum.sh "work/release/rakudo-star-$CI_COMMIT_REF_NAME.tar.gz"
     - tar xzf "$CI_PROJECT_DIR/work/release/rakudo-star-$CI_COMMIT_REF_NAME.tar.gz"
   script:
-    - cd "rakudo-star-$CI_COMMIT_REF_NAME"
+    - cd -- "rakudo-star-$CI_COMMIT_REF_NAME"
     - perl Configure.pl --prefix="$CI_PROJECT_DIR/work/install" --backend=moar --gen-moar --make-install
   artifacts:
     paths:
-      - work/install
+      - work/build
 
-# TODO: Run tests
+Rakudo Test:
+  stage: Test
+  image: alpine:latest
+  before_script:
+    - apk add --no-cache make
+  script:
+    - make rakudo-test
+
+Rakudo Spectest:
+  stage: Test
+  image: alpine:latest
+  before_script:
+    - apk add --no-cache make
+  script:
+    - make rakudo-spectest
+
+Community Modules:
+  stage: Test
+  image: alpine:latest
+  before_script:
+    - apk add --no-cache build-base
+  script:
+    - make modules-test
+
 # TODO: Release an updated Docker container
 # TODO: Release the tarball to some Raku server
