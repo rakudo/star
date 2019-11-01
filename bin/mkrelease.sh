@@ -17,7 +17,7 @@ main()
 
 usage()
 {
-  print "NYI"
+  print "NYI\n"
 }
 
 main "$@"
