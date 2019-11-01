@@ -2,6 +2,7 @@ stages:
   - Package
   - Build
   - Test
+  - Release
 
 Tarball:
   stage: Package
@@ -60,5 +61,14 @@ Community Modules:
   script:
     - make modules-test
 
-# TODO: Release an updated Docker container
+Docker:
+  stage: Release
+  image: docker:stable
+  services:
+    - docker:dind
+  before_script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker build --build-arg "VERSION=$CI_COMMIT_REF_NAME" -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME" .
+    - docker push "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME"
+
 # TODO: Release the tarball to some Raku server
