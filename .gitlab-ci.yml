@@ -33,6 +33,7 @@ Rakudo Star:
   artifacts:
     paths:
       - work/build
+      - work/install
 
 Rakudo Test:
   stage: Test
