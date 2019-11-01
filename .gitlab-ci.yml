@@ -40,7 +40,7 @@ Rakudo Test:
   image: alpine:latest
   before_script:
     - apk add --no-cache make
-    - cd -- work/install
+    - cd -- work/build
   script:
     - make rakudo-test
 
@@ -49,7 +49,7 @@ Rakudo Spectest:
   image: alpine:latest
   before_script:
     - apk add --no-cache make
-    - cd -- work/install
+    - cd -- work/build
   script:
     - make rakudo-spectest
 
@@ -58,7 +58,7 @@ Community Modules:
   image: alpine:latest
   before_script:
     - apk add --no-cache build-base
-    - cd -- work/install
+    - cd -- work/build
   script:
     - make modules-test
 
