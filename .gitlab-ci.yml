@@ -39,7 +39,7 @@ Rakudo Test:
   stage: Test
   image: alpine:latest
   before_script:
-    - apk add --no-cache make
+    - apk add --no-cache build-base perl
     - cd -- "work/build/rakudo-star-$CI_COMMIT_REF_NAME"
   script:
     - make rakudo-test
@@ -48,7 +48,7 @@ Rakudo Spectest:
   stage: Test
   image: alpine:latest
   before_script:
-    - apk add --no-cache make
+    - apk add --no-cache build-base perl
     - cd -- "work/build/rakudo-star-$CI_COMMIT_REF_NAME"
   script:
     - make rakudo-spectest
@@ -57,7 +57,7 @@ Community Modules:
   stage: Test
   image: alpine:latest
   before_script:
-    - apk add --no-cache build-base
+    - apk add --no-cache build-base perl
     - cd -- "work/build/rakudo-star-$CI_COMMIT_REF_NAME"
   script:
     - make modules-test
