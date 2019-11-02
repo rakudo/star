@@ -90,6 +90,6 @@ dist.tyil.nl:
     FTP_HOST: minion4.tyil.net
     FTP_PORT: "3386"
   before_script:
-    - apk add --no-cache lftp
+    - apk add --no-cache coreutils lftp
   script:
     - bin/release-ftp.sh

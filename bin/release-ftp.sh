@@ -1,5 +1,6 @@
 #! /usr/bin/env sh
 
+readonly BASEDIR=$(CDPATH="" cd -- "$(dirname -- "$0")/.." && pwd -P)
 readonly DISTNAME="rakudo-star-$CI_COMMIT_REF_NAME"
 
 main()
@@ -26,11 +27,15 @@ list_releases()
 
 upload_release()
 {
+	checksums=$(mktemp)
+	$BASEDIR/bin/mkchecksum.sh "work/release/$DISTNAME" > "$checksums"
+
 	lftp -e <<-EOI
 	open $FTP_HOST:${FTP_PORT:-21};
 	user sftp://$FTP_USER $FTP_PASSWORD;
 	cd ${FTP_DIR:-rakudo-star};
-	put work/release/rakudo-star-$CI_COMMIT_REF_NAME;
+	put work/release/$DISTNAME;
+	put $checksums -o $DISTNAME.checksums.txt;
 	bye;
 	EOI
 }
