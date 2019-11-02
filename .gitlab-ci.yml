@@ -1,8 +1,8 @@
 stages:
   - Package
   - Build
-  - Test
   - Release
+  - Test
 
 Tarball:
   stage: Package
