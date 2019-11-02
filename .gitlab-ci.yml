@@ -53,6 +53,15 @@ Rakudo Spectest:
   script:
     - make rakudo-spectest
 
+Debug Test:
+  stage: Test
+  image: alpine:latest
+  before_script:
+    - apk add --no-cache build-base git perl
+    - export PATH="$CI_PROJECT_DIR/work/install/bin:$CI_PROJECT_DIR/work/install/share/perl6/site/bin:$PATH"
+  script:
+    - sh "$CI_PROJECT_DIR/dev-bin/ci-debug.sh"
+
 Community Modules:
   stage: Test
   image: alpine:latest
