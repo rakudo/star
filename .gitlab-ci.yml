@@ -47,6 +47,7 @@ Rakudo Test:
 Rakudo Spectest:
   stage: Test
   image: alpine:latest
+  allow_failure: true
   before_script:
     - apk add --no-cache build-base git perl
     - cd -- "work/build/rakudo-star-$CI_COMMIT_REF_NAME"
