@@ -86,7 +86,7 @@ Docker:
 dist.tyil.nl:
   stage: Release
   image: alpine:latest
-  env:
+  environment:
     FTP_HOST: minion4.tyil.net
     FTP_PORT: "3386"
   before_script:
