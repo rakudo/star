@@ -82,6 +82,3 @@ Docker:
   script:
     - docker build --build-arg "VERSION=$CI_COMMIT_REF_NAME" -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME" .
     - docker push "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME"
-  artifacts:
-    paths:
-      - work
