@@ -2,15 +2,18 @@ FROM alpine:latest AS build
 
 ARG VERSION
 
-COPY work /tmp
+COPY work /tmp/work
 
-RUN cd -- "$(mktemp -d)"
-RUN tar xzf "/tmp/release/rakudo-star-$VERSION.tar.gz"
-RUN cd -- "rakudo-star-$VERSION"
+WORKDIR /tmp/rakudo-star
+
 RUN apk add --no-cache build-base git perl perl-utils libressl
-RUN perl Configure.pl --prefix=/usr/local --backend=moar --gen-moar --make-install
+RUN tar xzf "/tmp/work/release/rakudo-star-$VERSION.tar.gz"
+RUN cd -- "rakudo-star-$VERSION" \
+	&& perl Configure.pl --prefix=/usr/local --backend=moar --gen-moar --make-install
 
 FROM alpine:latest
+
+WORKDIR /root
 
 RUN apk add --no-cache libressl
 
