@@ -1,8 +1,8 @@
 stages:
   - Package
   - Build
-  - Release
   - Test
+  - Release
 
 Tarball:
   stage: Package
@@ -85,17 +85,3 @@ Docker:
   artifacts:
     paths:
       - work
-
-dist.tyil.nl:
-  stage: Release
-  image: alpine:latest
-  variables:
-    FTP_HOST: minion4.tyil.net
-    FTP_PORT: "3386"
-  before_script:
-    - apk add --no-cache coreutils lftp
-  script:
-    - bin/release-ftp.sh
-  artifacts:
-    paths:
-      - work/release
