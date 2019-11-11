@@ -27,3 +27,12 @@ If you're a Rakudo Star release manager, or someone who wants to create a
 user-friendly Raku distribution based on the tools here, check the `guides`
 directory. This contains documentation on how to make a Rakudo Star tarball, as
 well as information on how to create Windows `.msi` and MacOS `.dmg` packages.
+
+### Quickstart
+
+    export VERSION=quickstart # Update to whatever version number you want to use
+    ./bin/mkrelease.sh "$VERSION"
+    mkdir -p work/build
+    tar xzf "work/release/rakudo-star-$VERSION.tar.gz" -C work/build
+    cd "work/build/rakudo-star-$VERSION"
+    perl Configure.pl --prefix="../../install" --backend=moar --gen-moar --make-install
