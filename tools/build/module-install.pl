@@ -2,21 +2,31 @@
 
 use warnings;
 use strict;
+
 my $perl6bin = shift @ARGV;
 my $zefbin   = shift @ARGV;
-
-my $exit = 0;
-
-my $path_sep = "/";
-$path_sep = "\\" if ( $^O eq 'MSWin32' );
+my $exit     = 0;
+my $path_sep = $^O eq 'MSWin32' ? '\\' : '/';
 
 while (<>) {
-    next if /^\s*(#|$)/;
-    my ($module) = /(\S+)/;
-    $exit ||= system $perl6bin, $zefbin,
-      '--/build-depends', '--/test-depends', '--/depends', 
-      '--/p6c', '--/metacpan', '--/cpan',
-      '--force', 'install', "./modules$path_sep$module";
+	# Skip comments
+	next if /^\s*(#|$)/;
+
+	# Extract only the module name from the current line
+	my ($module) = /(\S+)/;
+
+	# Create the command list
+	my @cmd = (
+		$perl6bin, $zefbin,
+		'--/build-depends', '--/test-depends', '--/depends', 
+		'--force', 'install', "./modules$path_sep$module"
+	);
+
+	# Show the command that's going to be ran, for debugging purposes
+	printf "@cmd\n";
+
+	# Actually run the command
+	$exit ||= system "@cmd";
 }
 
 exit $exit;
