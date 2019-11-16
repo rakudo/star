@@ -178,3 +178,6 @@
 [submodule "modules/Readline"]
 	path = modules/Readline
 	url = git://github.com/drforr/perl6-readline.git
+[submodule "modules/Encode"]
+	path = modules/Encode
+	url = git://github.com/sergot/perl6-encode.git

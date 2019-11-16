@@ -51,7 +51,8 @@ DateTime::Format
 DateTime::Parse            # HTTP::UserAgent
 IO::Capture::Simple
 Test::Util::ServerPort
-HTTP::UserAgent
+Encode
+HTTP::UserAgent            # Encode
 JSON::RPC                  # PSGI, HTTP::UserAgent
 Getopt::Long
 TAP
