@@ -43,10 +43,9 @@ File::Temp                 # File::Directory::Tree
 File::Find
 p6doc                      # File::Temp
 Debugger::UI::CommandLine
-Shell::Command
-LibraryMake                # check needed?
-Linenoise
 File::Which
+Shell::Command             # File::Which, File::Temp
+LibraryMake                # Shell::Command
 IO::String
 DateTime::Format
 DateTime::Parse            # HTTP::UserAgent
@@ -57,3 +56,5 @@ JSON::RPC                  # PSGI, HTTP::Useragent
 Getopt::Long
 TAP
 App::Prove6
+LibraryCheck
+Readline                   # LibraryCheck

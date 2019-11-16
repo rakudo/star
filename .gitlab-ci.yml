@@ -22,7 +22,7 @@ Rakudo Star:
   stage: Build
   image: alpine:latest
   before_script:
-    - apk add --no-cache coreutils bash build-base git linenoise-dev perl
+    - apk add --no-cache coreutils bash build-base git openssl-dev perl readline-dev
     - bin/mkchecksum.sh "work/release/rakudo-star-$CI_COMMIT_REF_NAME.tar.gz"
     - mkdir -p "$CI_PROJECT_DIR/work/build"
     - cd -- "$CI_PROJECT_DIR/work/build"
