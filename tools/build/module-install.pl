@@ -17,9 +17,15 @@ while (<>) {
 
 	# Create the command list
 	my @cmd = (
-		$perl6bin, $zefbin,
-		'--/build-depends', '--/test-depends', '--/depends', 
-		'--force', 'install', "./modules$path_sep$module"
+		$perl6bin,
+		$zefbin,
+		'--/build-depends',
+		'--/depends',
+		'--/test',
+		'--/test-depends',
+		'--force',
+		'install',
+		"./modules$path_sep$module"
 	);
 
 	# Show the command that's going to be ran, for debugging purposes
