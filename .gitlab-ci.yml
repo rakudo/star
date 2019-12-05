@@ -67,7 +67,7 @@ Community Modules:
   stage: Test
   image: alpine:latest
   before_script:
-    - apk add --no-cache build-base perl
+    - apk add --no-cache build-base openssl-dev perl readline-dev
     - cd -- "work/build/rakudo-star-$CI_COMMIT_REF_NAME"
   script:
     - make modules-test
