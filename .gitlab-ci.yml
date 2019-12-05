@@ -22,7 +22,7 @@ Rakudo Star:
   stage: Build
   image: alpine:latest
   before_script:
-    - apk add --no-cache coreutils bash build-base git linenoise-dev perl
+    - apk add --no-cache coreutils bash build-base git openssl-dev perl readline-dev
     - bin/mkchecksum.sh "work/release/rakudo-star-$CI_COMMIT_REF_NAME.tar.gz"
     - mkdir -p "$CI_PROJECT_DIR/work/build"
     - cd -- "$CI_PROJECT_DIR/work/build"
@@ -58,8 +58,8 @@ Debug Test:
   stage: Test
   image: alpine:latest
   before_script:
-    - apk add --no-cache build-base git perl
     - export PATH="$CI_PROJECT_DIR/work/install/bin:$CI_PROJECT_DIR/work/install/share/perl6/site/bin:$PATH"
+    - apk add --no-cache build-base git perl
   script:
     - sh "$CI_PROJECT_DIR/dev-bin/ci-debug.sh"
 
@@ -67,10 +67,11 @@ Community Modules:
   stage: Test
   image: alpine:latest
   before_script:
-    - apk add --no-cache build-base perl
+    - export PATH="$CI_PROJECT_DIR/work/install/bin:$CI_PROJECT_DIR/work/install/share/perl6/site/bin:$PATH"
+    - apk add --no-cache build-base openssl-dev perl perl-test-harness-utils readline-dev
     - cd -- "work/build/rakudo-star-$CI_COMMIT_REF_NAME"
   script:
-    - make modules-test
+    - make verbose-modules-test
 
 Docker:
   stage: Release

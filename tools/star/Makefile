@@ -2,9 +2,9 @@
 # eg. 2017.07 etc.
 # Occasionally (mis-)used to pull in fixes (see 'lastmin-fixes.txt')
 # eg. 2017.07-9-gc0abee7 etc.
-RAKUDO_VER  = 2019.07.1
-NQP_VER     = 2019.07.1
-MOAR_VER    = 2019.07.1
+RAKUDO_VER  = 2019.11
+NQP_VER     = 2019.11
+MOAR_VER    = 2019.11
 
 STAR_REL    = rakudo-star-$(VERSION)
 STAR_TGZ    = $(STAR_REL).tar.gz
@@ -17,7 +17,7 @@ RAKUDO_TGZ = rakudo-$(RAKUDO_VER).tar.gz
 RAKUDO_URL = https://rakudo.perl6.org/downloads/rakudo/$(RAKUDO_TGZ)
 RAKUDO_SRC = $(SRC_DIR)/$(RAKUDO_TGZ)
 NQP_TGZ    = nqp-$(NQP_VER).tar.gz
-NQP_URL    = https://dist.tyil.nl/raku/nqp/$(NQP_TGZ)
+NQP_URL    = https://rakudo.perl6.org/downloads/nqp/$(NQP_TGZ)
 NQP_SRC    = $(SRC_DIR)/$(NQP_TGZ)
 MOAR_TGZ   = MoarVM-$(MOAR_VER).tar.gz
 MOAR_URL   = https://www.moarvm.org/releases/$(MOAR_TGZ)

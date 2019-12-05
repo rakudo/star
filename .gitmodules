@@ -172,3 +172,12 @@
 [submodule "modules/Test::Output"]
 	path = modules/Test::Output
 	url = git://github.com/perl6-community-modules/perl6-Test-Output.git
+[submodule "modules/LibraryCheck"]
+	path = modules/LibraryCheck
+	url = git://github.com/jonathanstowe/LibraryCheck.git
+[submodule "modules/Readline"]
+	path = modules/Readline
+	url = git://github.com/drforr/perl6-readline.git
+[submodule "modules/Encode"]
+	path = modules/Encode
+	url = git://github.com/sergot/perl6-encode.git
