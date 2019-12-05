@@ -70,7 +70,7 @@ Community Modules:
     - apk add --no-cache build-base openssl-dev perl readline-dev
     - cd -- "work/build/rakudo-star-$CI_COMMIT_REF_NAME"
   script:
-    - make modules-test
+    - make verbose-modules-test
 
 Docker:
   stage: Release
