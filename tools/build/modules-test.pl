@@ -31,7 +31,7 @@ while (<>) {
 		);
 
 		# Show the command that's going to be ran, for debugging purposes
-		print "@cmd\n";
+		print "[" . getcwd . "] @cmd\n";
 
 		# Actually run the command
 		my $exit = system "@cmd";
