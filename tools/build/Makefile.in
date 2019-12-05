@@ -67,12 +67,12 @@ modules-install-m: rakudo-install
 modules-test: @backend_modules_test@
 verbose-modules-test: @backend_modules_test@
 
-modules-test-j: modules-install-j
+modules-test-j:
 	$(PERL) tools/build/modules-test.pl $(CURDIR) $(DESTDIR)$(PERL6_J_INSTALL) $(MODULES)
 verbose-modules-test-j: modules-install-j
 	$(PERL) tools/build/modules-test.pl --verbose $(CURDIR) $(DESTDIR)$(PERL6_J_INSTALL) $(MODULES)
 
-modules-test-m: modules-install-m
+modules-test-m:
 	$(PERL) tools/build/modules-test.pl $(CURDIR) $(DESTDIR)$(PERL6_M_INSTALL) $(MODULES)
 verbose-modules-test-m: modules-install-m
 	$(PERL) tools/build/modules-test.pl --verbose $(CURDIR) $(DESTDIR)$(PERL6_M_INSTALL) $(MODULES)
