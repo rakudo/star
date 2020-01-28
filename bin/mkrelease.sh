@@ -15,8 +15,8 @@ main()
 
 	# Make the release
 	cd -- "$BASEDIR"
-	make -f tools/star/Makefile all VERSION="$1"
-	make -f tools/star/Makefile release VERSION="$1"
+	make -f tools/star/Makefile all VERSION="$1" \
+		&& make -f tools/star/Makefile release VERSION="$1"
 }
 
 opts()
