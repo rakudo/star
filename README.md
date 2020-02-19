@@ -36,3 +36,9 @@ well as information on how to create Windows `.msi` and MacOS `.dmg` packages.
     tar xzf "work/release/rakudo-star-$VERSION.tar.gz" -C work/build
     cd "work/build/rakudo-star-$VERSION"
     perl Configure.pl --prefix="../../install" --backend=moar --gen-moar --make-install
+
+If you're satisfied, you probably want to generate checksums and a detached PGP
+signature for the release.
+
+    ./bin/mkchecksum "work/release/rakudo-star-$VERSION.tar.gz"
+    gpg --armor --detach-sign "work/release/rakudo-star-$VERSION.tar.gz"
