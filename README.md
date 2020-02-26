@@ -18,7 +18,7 @@ To get the latest release of Rakudo Star, please download the corresponding
 file depending on your platform.
 
 - [Linux](https://rakudo.org/latest/star/source)
-- [Windows](https://rakudo.org/latest/star/win64)
+- [Windows](https://rakudo.org/latest/star/win)
 - [macOS](https://rakudo.org/latest/star/macos)
 
 ## Build Rakudo Star
