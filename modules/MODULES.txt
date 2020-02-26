@@ -1,61 +1,61 @@
 # The order of modules here is significant; a module must be listed after
 # all of its dependencies.
-uri
-json_fast
-JSON-Name
-JSON-Unmarshal
-JSON-Marshal
-JSON-Class
+URI
+JSON::Fast
+JSON::Name
+JSON::Unmarshal
+JSON::Marshal
+JSON::Class
 META6
-License-SPDX
-Test-META
-xml-writer
-svg                                       # uses XML::Writer
-svg-plot                                  # uses SVG
-Terminal-ANSIColor
-oo-monitors
-test-mock
-Grammar-Profiler-Simple
-grammar-debugger                          # uses Terminal::ANSIColor
-Perl6-MIME-Base64
-uri
-json
-perl6-encode
-openssl
-io-socket-ssl
-perl6-lwp-simple                          # uses MIME::Base64, URI, JSON::Tiny
-perl6-digest-md5
-perl6-http-status
-p6-Template-Mustache
+License::SPDX
+Test::META
+XML::Writer
+SVG                        # XML::Writer
+SVG::Plot                  # SVG
+Terminal::ANSIColor
+OO::Monitors
+Test::Mock
+Grammar::Profiler::Simple
+Grammar::Debugger          # Terminal::ANSIColor
+MIME::Base64
+JSON::Tiny
+OpenSSL
+IO::Socket::SSL
+LWP::Simple                # MIME::Base64, URI, JSON::Tiny
+Digest::MD5
+HTTP::Status
+Template::Mustache
 PSGI
-perl6-http-easy                           # uses PSGI
-Template-Mojo
-NativeHelpers-Blob
-DBIish                                    # uses NativeHelpers::Blob
-perl6-Test-When
-p6-file-directory-tree
-libdigest-perl6
-perl6-Testo
-perl6-Temp-Path                           # uses Digest::SHA, File::Directory::Tree
-p6-pod-load                               # uses Temp::Path
-perl6-Test-Output
-Pod-To-HTML                               # uses Pod::Load
-perl6-pod-to-bigpage
-p6-File-Temp                              # uses File::Directory::Tree
-file-find
-doc                                       # uses File::Temp
-debugger-ui-commandline
-shell-command
-library-make                              # check needed?
-Linenoise
-perl6-file-which
-p6-io-string
-perl6-datetime-format
-datetime-parse # dependency for http-useragent
-io-capture-simple
-test-util-serverport
-http-useragent
-jsonrpc                                   # uses PSGI & http-useragent
-getopt-long6
-tap-harness6                         # have last so faster perl5 prove used
-app-prove6
+HTTP::Easy                 # PSGI
+Template::Mojo
+NativeHelpers::Blob
+DBIish                     # NativeHelpers::Blob
+Test::When
+File::Directory::Tree
+Digest
+Testo
+Temp::Path                 # Digest::SHA, File::Directory::Tree
+Pod::Load
+Test::Output
+Pod::To::HTML              # Pod::Load
+Pod::To::BigPage
+File::Temp                 # File::Directory::Tree
+File::Find
+p6doc                      # File::Temp
+Debugger::UI::CommandLine
+File::Which
+Shell::Command             # File::Which, File::Temp
+LibraryMake                # Shell::Command
+IO::String
+DateTime::Format
+DateTime::Parse            # HTTP::UserAgent
+IO::Capture::Simple
+Test::Util::ServerPort
+Encode
+HTTP::UserAgent            # Encode
+JSON::RPC                  # PSGI, HTTP::UserAgent
+Getopt::Long
+TAP
+App::Prove6
+LibraryCheck
+Readline                   # LibraryCheck

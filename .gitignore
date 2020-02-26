@@ -1,12 +1,12 @@
-MANIFEST
-rakudo
-nqp
-MoarVM
-src
-config.status
-Makefile
-install
-perl6
+# Editor specific files
 *.swp
 *~
 \#*#
+
+# Temporary files used to build a new Rakudo Star release
+MANIFEST
+Makefile
+config.status
+perl6
+release
+work
