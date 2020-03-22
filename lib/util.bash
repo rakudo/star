@@ -45,7 +45,7 @@ die() {
 }
 
 # Fetch a file from an URL. Using this function introduces a dependency on curl.
-fetch() {
+fetch_http() {
 	local OPTIND
 	local buffer
 

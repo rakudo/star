@@ -49,7 +49,7 @@ download_core() {
 
 	mkdir -p -- "$destination"
 
-	tarball="$(fetch "$source")"
+	tarball="$(fetch_http "$source")"
 	tar xzf "$tarball" -C "$destination" --strip-components=1 && return
 
 	crit "Failed to download $destination"
@@ -89,7 +89,7 @@ download_module_http() {
 		return 0
 	fi
 
-	tarball="$(fetch "$url")"
+	tarball="$(fetch_http "$url")"
 	extracted="$(tmpdir)"
 
 	notice "Extracting $tarball into $extracted"
