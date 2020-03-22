@@ -4,9 +4,11 @@ A user-friendly distribution of the Raku programming language.
 
 ## Quickstart
 
-After downloading and extracting the tarball (or cloning the git repository),
-run `./bin/rstar install`. Follow any on-screen instructions as they appear.
-That is all!
+After downloading and extracting the tarball, run `./bin/rstar install`. Follow
+any on-screen instructions as they appear. That is all!
+
+*If you cloned the git repository, you will need to run `./bin/rstar fetch`
+first.*
 
 If you happen to find any bugs, please refer to the **Bugs, Feedback and
 Patches** section later on in this document to find out how you can get help.
@@ -27,7 +29,7 @@ required. If any of these are missing, `rstar` will throw an error about it.
 
 #### Exit codes
 
-- `  1` - die() was encountered. This is always a bug;
+- `  1` - `die()` was encountered. This is always a bug;
 - `  2` - The program was invoked incorrectly;
 - `  3` - Some required dependencies are missing.
 
@@ -97,9 +99,32 @@ list is also a good choice, as are public places such as Reddit.
 
 ## Bugs, Feedback and Patches
 
-Bugs, feedback or patches for this project can be sent to
-`p.spek+rakudo-star@tyil.work`. Alternatively, you can reach out to `tyil` on
-Freenode, DareNET or Matrix.
+Patches for this project can be sent through email to
+`p.spek+rakudo-star@tyil.work`.
+
+To report bugs or provide other feedback, email is an option, but IRC and
+[Matrix](https://matrix.org/) are also available. For IRC, reach out to `tyil`
+on [Freenode](https://freenode.net/) or [DareNET](https://www.darenet.org/).
+For Matrix, sent a message to `tyil:matrix.org`.
+
+### Bugs
+
+If you're reporting a bug, please include the full logs of `rstar` with
+`RSTAR_DEBUG=1`, and the output of `rstar sysinfo` in your message.
+
+### Code Contributions
+
+Code patches can be sent through email. For help getting started with
+contributing in this fashion, check out https://git-send-email.io/.
+
+The `rstar` utility is written in `bash`. All additional features should be
+based on this. Using other utilities is accepted, but effort should be made to
+avoid introducing new utilities. Furthermore, all code should be linted against
+[`shellcheck`](https://www.shellcheck.net/) and not produce any warnings.
+
+Also, try to be generous with comments. Especially when introducing new utility
+functions, a little description of what it does and what problem it is intended
+to solve go a long way.
 
 ## License
 
