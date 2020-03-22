@@ -63,7 +63,7 @@ The git protocol clones a single ref, with a depth of 1. Which ref is going to
 be cloned is specified in the 4th column of its `modules.txt` entry. After
 cloning, the `.git` directory is removed.
 
-##### `http 
+##### `http`
 
 The http protocol is the most straightforward, it downloads a tarball
 (`.tar.gz`) and unpacks it. If a value is specified in the 4th column of the
