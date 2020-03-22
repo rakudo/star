@@ -82,6 +82,7 @@ depcheck_bin() {
 
 	for tool in "${RSTAR_DEPS_BIN[@]}"
 	do
+		debug "Checking for availability of $tool"
 		command -v "$tool" > /dev/null && continue
 
 		missing+=("$tool")
@@ -108,9 +109,10 @@ depcheck_perl() {
 
 	for module in "${RSTAR_DEPS_PERL[@]}"
 	do
+		debug "Checking for availability of $module"
 		perl -M"$module" -e 0 2> /dev/null && continue
 
-		missing+=("$tool")
+		missing+=("$module")
 	done
 
 	if [[ ${missing[*]} ]]
