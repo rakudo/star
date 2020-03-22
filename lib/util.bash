@@ -74,6 +74,28 @@ fetch() {
 	return $exit_code
 }
 
+# Pretty print a duration between a starting point (in seconds) and an end
+# point (in seconds). If no end point is given, the current time will be used.
+# A good way to get a current timestamp in seconds is through date's "%s"
+# format.
+pp_duration() {
+	local start=$1
+	local end=$2
+	local diff
+
+	if [[ -z "$end" ]]
+	then
+		end="$(date +%s)"
+	fi
+
+	diff=$((end - start))
+
+	printf "%dh %02dm %02ds\n" \
+		"$((diff / 60 / 60))" \
+		"$((diff / 60))" \
+		"$((diff % 60))"
+}
+
 # Create a temporary directory. Similar to tempfile, but you'll get a directory
 # instead.
 tmpdir() {

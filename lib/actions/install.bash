@@ -16,6 +16,8 @@ action() {
 	local OPTIND
 	local prefix_absolute
 	local modules
+	local init
+	local duration
 
 	while getopts ":b:p:" opt
 	do
@@ -33,6 +35,7 @@ action() {
 	prefix_absolute="$(CDPATH="" cd -- "$RSTAR_PREFIX" && pwd -P)"
 
 	info "Installing Raku in $prefix_absolute"
+	init="$(date +%s)"
 
 	# Compile all core components
 	for component in moarvm nqp rakudo
@@ -73,9 +76,12 @@ action() {
 		done
 	fi
 
+	duration="$(pp_duration "$init")"
+
 	# Friendly message
-	# TODO: Add information on the time it took"
 	info "Rakudo Star has been installed into $prefix_absolute!"
+	info "The installation took $duration."
+	info ""
 	info "You may need to add the following paths to your \$PATH:"
 	info "  $prefix_absolute/bin"
 	info "  $prefix_absolute/share/perl6/site/bin"
