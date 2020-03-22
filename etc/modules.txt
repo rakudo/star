@@ -1,0 +1,69 @@
+# Zef, the package manager
+zef                        git  https://github.com/ugexe/zef.git                    v0.8.3
+
+# Documentation utilities
+rakudoc                    git  https://github.com/Raku/doc.git                     master
+
+# Config
+Hash-Merge                 git  https://github.com/scriptkitties/p6-Hash-Merge.git  v1.0.0
+Config                     git  https://github.com/scriptkitties/p6-Config.git      v2.0.1
+
+# Taken from the previous iteration of Rakudo Star
+URI                        git  https://github.com/raku-community-modules/uri.git   master
+JSON::Fast
+JSON::Name
+JSON::Unmarshal
+JSON::Marshal
+JSON::Class
+META6
+License::SPDX
+Test::META
+XML::Writer
+SVG
+SVG::Plot
+Terminal::ANSIColor
+OO::Monitors
+Test::Mock
+Grammar::Profiler::Simple
+Grammar::Debugger
+MIME::Base64
+JSON::Tiny
+OpenSSL
+IO::Socket::SSL
+LWP::Simple
+Digest::MD5
+HTTP::Status
+Template::Mustache
+PSGI
+HTTP::Easy
+Template::Mojo
+NativeHelpers::Blob
+DBIish
+Test::When
+File::Directory::Tree
+Digest
+Testo
+Temp::Path
+Pod::Load
+Test::Output
+Pod::To::HTML
+Pod::To::BigPage
+File::Temp
+File::Find
+Debugger::UI::CommandLine
+File::Which
+Shell::Command
+LibraryMake
+IO::String
+DateTime::Format
+DateTime::Parse
+IO::Capture::Simple
+Test::Util::ServerPort
+Encode
+HTTP::UserAgent
+JSON::RPC
+Getopt::Long
+TAP
+App::Prove6
+LibraryCheck
+Readline

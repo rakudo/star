@@ -1,0 +1,15 @@
+#!/bin/sh
+
+export BASEDIR=$(CDPATH="" cd -- "$(dirname -- "$0")/.." && pwd -P)
+
+main() {
+	if ! command -v bash > /dev/null
+	then
+		printf "You need bash to run rstar\n" >&2
+		exit 1
+	fi
+
+	exec bash "$BASEDIR/lib/main.bash" "$@"
+}
+
+main "$@"
