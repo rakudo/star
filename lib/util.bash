@@ -144,10 +144,3 @@ tmpfile() {
 
 	printf "%s" "$file"
 }
-
-export -f chgdir
-export -f config_etc_kv
-export -f die
-export -f fetch
-export -f tmpdir
-export -f tmpfile

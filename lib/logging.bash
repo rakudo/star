@@ -49,12 +49,3 @@ alert() {
 emerg() {
 	log -c "\e[1;4;31m" -- "$*"
 }
-
-export -f log
-export -f debug
-export -f info
-export -f notice
-export -f warn
-export -f crit
-export -f alert
-export -f emerg
