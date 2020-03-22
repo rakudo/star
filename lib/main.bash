@@ -22,10 +22,15 @@ main() {
 		exit 2
 	fi
 
-	# Set some global defaults
-	RSTAR_TOOLS=()
-	RSTAR_BACKEND=moar
-	RSTAR_PREFIX="$BASEDIR"
+	# Declare some global variables
+	declare -a RSTAR_TOOLS
+	declare RSTAR_BACKEND=moar
+	declare RSTAR_PREFIX="$BASEDIR"
+	declare -A RSTAR_PLATFORM
+
+	# Figure out system details
+	debug "Discovering system information"
+	discover_system
 
 	# Source the file defining the action.
 	debug "Sourcing $action_path"
@@ -34,10 +39,6 @@ main() {
 	# Ensure all required tools are available
 	depcheck_bin || exit 3
 	depcheck_perl || exit 3
-
-	# TODO: Figure out which OS/distro we're on, to allow for working
-	# around edge-cases. Probably expose this info as RSTAR_PLATFORM, in an
-	# associative array.
 
 	# Maintain our own tempdir
 	export TMPDIR="$BASEDIR/tmp"
@@ -72,6 +73,7 @@ Actions:
 	fetch    Fetch all required sources.
 	install  Install Raku on this system.
 	test     Run tests on Raku and the bundled ecosystem modules.
+	sysinfo  Show information about your system. Useful for debugging.
 EOF
 }
 
@@ -125,6 +127,41 @@ depcheck_perl() {
 		done
 
 		return 1
+	fi
+}
+
+# Discover information about the system. If any bugs are reported and you want
+# more information about the system the user is running on, additional checks
+# can be added here, and the user will simply have to include the output of the
+# sysinfo command in their message to you.
+discover_system() {
+	RSTAR_PLATFORM["os"]="$(discover_system_os)"
+
+	if [[ ${RSTAR_PLATFORM[os]} == "gnu_linux" ]]
+	then
+		RSTAR_PLATFORM["distro"]="$(discover_system_distro)"
+		RSTAR_PLATFORM["kernel"]="$(discover_system_kernel)"
+		RSTAR_PLATFORM["kernel_version"]="$(discover_system_kernel_version)"
+	fi
+}
+
+discover_system_distro() {
+	awk -F= '$1 == "NAME" {print tolower($2);q}' /etc/*release
+}
+
+discover_system_kernel() {
+	printf "%s" "$(uname -s | awk '{print tolower($0)}')"
+}
+
+discover_system_kernel_version() {
+	printf "%s" "$(uname -r | awk '{print tolower($0)}')"
+}
+
+discover_system_os() {
+	if command -v uname > /dev/null
+	then
+		printf "%s" "$(uname -o | awk '{print tolower($0)}' | sed 's_[/+]_\__g')"
+		return
 	fi
 }
 
