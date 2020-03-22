@@ -14,12 +14,15 @@ RSTAR_DEPS_PERL+=(
 
 action() {
 	local OPTIND
+	local prefix_absolute
+	local modules
 
 	while getopts ":b:p:" opt
 	do
 		case "$opt" in
 			b) RSTAR_BACKEND=$OPTARG ;;
 			p) RSTAR_PREFIX=$OPTARG ;;
+			*) emerg "Invalid option specified: $opt" ;;
 		esac
 	done
 
@@ -27,7 +30,7 @@ action() {
 	# TODO: Check if binaries are available
 
 	mkdir -p -- "$RSTAR_PREFIX"
-	local prefix_absolute="$(CDPATH="" cd -- "$RSTAR_PREFIX" && pwd -P)"
+	prefix_absolute="$(CDPATH="" cd -- "$RSTAR_PREFIX" && pwd -P)"
 
 	info "Installing Raku in $prefix_absolute"
 
@@ -45,8 +48,11 @@ action() {
 
 	# Install community modules
 	failed_modules=()
+	modules="$(tmpfile)"
 
-	for module in $(awk '/^[^#]/ {print $1}' "$BASEDIR/etc/modules.txt")
+	awk '/^[^#]/ {print $1}' "$BASEDIR/etc/modules.txt" > "$modules"
+
+	while read -r module
 	do
 		info "Installing $module"
 
@@ -54,10 +60,10 @@ action() {
 			&& continue
 
 		failed_modules+=("$module")
-	done
+	done < "$modules"
 
 	# Show a list of all modules that failed to install
-	if [[ $failed_modules ]]
+	if [[ ${failed_modules[*]} ]]
 	then
 		crit "The following modules failed to install:"
 
@@ -68,6 +74,7 @@ action() {
 	fi
 
 	# Friendly message
+	# TODO: Add information on the time it took"
 	info "Rakudo Star has been installed into $prefix_absolute!"
 	info "You may need to add the following paths to your \$PATH:"
 	info "  $prefix_absolute/bin"
@@ -113,7 +120,9 @@ build_rakudo() {
 
 build_prepare() {
 	local source="$1"
-	local destination="$(tempdir)"
+	local destination
+
+	destination="$(tmpdir)"
 
 	notice "Using $destination as working directory"
 

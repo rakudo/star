@@ -7,18 +7,18 @@
 log() {
 	local OPTIND
 	local color
-	local format="[%s] %s\n"
 
 	while getopts ":c:" opt
 	do
 		case "$opt" in
 			c) color=$OPTARG ;;
+			*) alert "Unused argument specified: $opt" ;;
 		esac
 	done
 
 	shift $(( OPTIND - 1 ))
 
-	printf "$color[%s] %s\e[0m\n" "$(date +%FT%T)" "$*" >&2
+	printf "${color}[%s] %s\e[0m\n" "$(date +%FT%T)" "$*" >&2
 }
 
 debug() {

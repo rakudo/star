@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-RSTAR_DEPS_BIN=(
+RSTAR_DEPS_BIN+=(
 	awk
 	curl
 	git
@@ -20,22 +20,26 @@ action() {
 	mkdir -p "$BASEDIR/dist/src/modules"
 
 	# Download all modules available over http
-	list_modules "http" | while read -r name proto url prefix
+	list_modules "http" | while read -r name _ url prefix
 	do
 		download_module_http "$name" "$url" "$prefix"
 	done
 
 	# Download all modules available over git
-	list_modules "git" | while read -r name proto url ref
+	list_modules "git" | while read -r name _ url ref
 	do
 		download_module_git "$name" "$url" "$ref"
 	done
 }
 
 download_core() {
-	local version="$(config_etc_kv "dist_$1.txt" "version")"
-	local source="$(echo "$(config_etc_kv "dist_$1.txt" "url")" | sed "s/%s/$version/g")"
-	local destination="$BASEDIR/dist/src/core/$1-$version"
+	local version
+	local source
+	local destination
+
+	version="$(config_etc_kv "dist_$1.txt" "version")"
+	source="$(config_etc_kv "dist_$1.txt" "url" | sed "s/%s/$version/g")"
+	destination="$BASEDIR/dist/src/core/$1-$version"
 
 	if [[ -d $destination ]]
 	then
@@ -76,6 +80,8 @@ download_module_http() {
 	local url=$2
 	local prefix=$3
 	local destination="$BASEDIR/dist/src/modules/$name"
+	local tarball
+	local extracted
 
 	if [[ -d "$destination" ]]
 	then
@@ -83,8 +89,8 @@ download_module_http() {
 		return 0
 	fi
 
-	local tarball="$(fetch "$url")"
-	local extracted="$(tempdir)"
+	tarball="$(fetch "$url")"
+	extracted="$(tmpdir)"
 
 	notice "Extracting $tarball into $extracted"
 	tar xzf "$tarball" -C "$extracted"

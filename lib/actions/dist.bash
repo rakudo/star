@@ -11,7 +11,7 @@ action() {
 
 	info "Creating distribution contents at $WORKDIR"
 
-	cd -- "$BASEDIR"
+	chgdir "$BASEDIR"
 
 	# Include files from this project
 	for file in $(git ls-files)
@@ -26,7 +26,7 @@ action() {
 	done
 
 	# Add a MANIFEST.txt
-	cd -- "$WORKDIR"
+	chgdir "$WORKDIR"
 	find . > MANIFEST.txt
 
 	# Tar it all up into a distribution tarball
@@ -35,9 +35,12 @@ action() {
 	local tarball="$BASEDIR/dist/rakudo-star-$version.tar.gz"
 
 	mkdir -p -- "$(dirname "$tarball")"
-	cd -- "$BASEDIR/tmp"
+	chgdir "$BASEDIR/tmp"
 
 	tar czf "$tarball" "rakudo-star-$version"
+
+	# TODO: Create checksums
+	# TODO: Create PGP signature
 
 	info "Distribution tarball available at $tarball"
 }

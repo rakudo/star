@@ -87,7 +87,7 @@ depcheck_bin() {
 		missing+=("$tool")
 	done
 
-	if [[ $missing ]]
+	if [[ ${missing[*]} ]]
 	then
 		alert "Some required tools are missing:"
 
@@ -113,11 +113,11 @@ depcheck_perl() {
 		missing+=("$tool")
 	done
 
-	if [[ $missing ]]
+	if [[ ${missing[*]} ]]
 	then
 		alert "Some required Perl modules are missing:"
 
-		for modules in "${missing[@]}"
+		for module in "${missing[@]}"
 		do
 			alert "  $module"
 		done

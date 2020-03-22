@@ -1,6 +1,8 @@
 #!/bin/sh
 
-export BASEDIR=$(CDPATH="" cd -- "$(dirname -- "$0")/.." && pwd -P)
+BASEDIR="$(CDPATH="" cd -- "$(dirname -- "$0")/.." && pwd -P)"
+
+export BASEDIR
 
 main() {
 	if ! command -v bash > /dev/null
