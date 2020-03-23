@@ -63,15 +63,25 @@ fetch_http() {
 
 	notice "Downloading $1 to $buffer"
 
-	# TODO: Switch to the most appropriate downloading tool, depending on
-	# what is available.
+	for util in curl wget
+	do
+		command -v "$util" > /dev/null || continue
+		"fetch_http_$util" "$1" "$buffer" || continue
+		local exit_code=$?
 
-	curl -Ls "$1" > "$buffer"
-	local exit_code=$?
+		printf "%s" "$buffer"
+		return $exit_code
+	done
 
-	printf "%s" "$buffer"
+	die "Unable to download file over HTTP!"
+}
 
-	return $exit_code
+fetch_http_curl() {
+	curl -Ls "$1" > "$2"
+}
+
+fetch_http_wget() {
+	wget --quiet --output-document "$2" "$1"
 }
 
 # Pretty print a duration between a starting point (in seconds) and an end
