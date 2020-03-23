@@ -49,11 +49,12 @@ download_core() {
 
 	mkdir -p -- "$destination"
 
-	tarball="$(fetch_http "$source")"
-	tar xzf "$tarball" -C "$destination" --strip-components=1 && return
+	tarball="$(fetch_http "$source")" \
+		&& tar xzf "$tarball" -C "$destination" --strip-components=1 \
+		&& return
 
 	crit "Failed to download $destination"
-	rm -f -- "$destination"
+	rm -fr -- "$destination"
 }
 
 download_module_git() {
