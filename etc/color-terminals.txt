@@ -1,0 +1,2 @@
+screen-256color
+xterm-termite
