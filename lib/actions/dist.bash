@@ -2,6 +2,13 @@
 
 RSTAR_DEPS_BIN+=(
 	git
+	gpg
+	md5sum
+	sha1sum
+	sha224sum
+	sha256sum
+	sha384sum
+	sha512sum
 	tar
 )
 
@@ -39,8 +46,16 @@ action() {
 
 	tar czf "$tarball" "rakudo-star-$version"
 
-	# TODO: Create checksums
-	# TODO: Create PGP signature
+	chgdir "$(dirname "$tarball")"
+
+	info "Generating checksums for $tarball"
+	for sum in md5 sha{1,224,256,384,512}
+	do
+		dist_checksum "$sum" "$tarball" >> "$tarball.checksums.txt"
+	done
+
+	info "Generating a PGP signature for $tarball"
+	gpg --armor --detach-sign --output "$tarball.asc" "$tarball"
 
 	info "Distribution tarball available at $tarball"
 }
@@ -48,4 +63,34 @@ action() {
 dist_include() {
 	mkdir -p -- "$(dirname "${WORKDIR}$1")"
 	cp -r -- "${BASEDIR}$1" "${WORKDIR}$1"
+}
+
+dist_checksum() {
+	printf "%-6s  %s\n" \
+		"$1" \
+		"$("dist_checksum_$1" "$2")"
+}
+
+dist_checksum_md5() {
+	md5sum "$1" | awk '{print $1}'
+}
+
+dist_checksum_sha1() {
+	sha1sum "$1" | awk '{print $1}'
+}
+
+dist_checksum_sha224() {
+	sha224sum "$1" | awk '{print $1}'
+}
+
+dist_checksum_sha256() {
+	sha256sum "$1" | awk '{print $1}'
+}
+
+dist_checksum_sha384() {
+	sha384sum "$1" | awk '{print $1}'
+}
+
+dist_checksum_sha512() {
+	sha512sum "$1" | awk '{print $1}'
 }
