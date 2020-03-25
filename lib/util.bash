@@ -128,21 +128,9 @@ tmpdir() {
 # however, it will apply additional checks to ensure everything is going
 # correctly, and the files will be cleaned up automatically at the end.
 tmpfile() {
-	local OPTIND
-	local extension="tmp"
 	local file
 
-	while getopts ":x:" opt
-	do
-		case "$opt" in
-			x) extension=$OPTARG ;;
-			*) alert "Unused argument specified: $opt" ;;
-		esac
-	done
-
-	shift $(( OPTIND -1 ))
-
-	file="$(mktemp --suffix ".$extension")"
+	file="$(mktemp)"
 
 	# Ensure the file was created succesfully
 	if [[ ! -f "$file" ]]
