@@ -63,17 +63,28 @@ main() {
 
 usage() {
 	cat <<EOF
-Usage: rstar <action> [options] [arguments]
+Usage:
+	rstar -h
+	rstar clean
+	rstar dist [version]
+	rstar fetch
+	rstar install [-b backend] [-p prefix]
+	rstar sysinfo
+	rstar test
 
 rstar is the entry point for all utilities to deal with Rakudo Star.
 
 Actions:
 	clean    Clean up the repository.
-	dist     Create a distributable tarball of this repository.
+	dist     Create a distributable tarball of this repository. If no
+	         version identifier is specified, it will use the current year
+	         and month in "yyyy.mm" notation.
 	fetch    Fetch all required sources.
-	install  Install Raku on this system.
-	test     Run tests on Raku and the bundled ecosystem modules.
+	install  Install Raku on this system. By default, MoarVM will be used
+	         as the only backend. The Rakudo Star directory will be used as
+	         prefix.
 	sysinfo  Show information about your system. Useful for debugging.
+	test     Run tests on Raku and the bundled ecosystem modules.
 EOF
 }
 
