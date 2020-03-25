@@ -4,14 +4,21 @@ A user-friendly distribution of the Raku programming language.
 
 ## Quickstart
 
-After downloading and extracting the tarball, run `./bin/rstar install`. Follow
-any on-screen instructions as they appear. That is all!
-
 *If you cloned the git repository, you will need to run `./bin/rstar fetch`
 first.*
 
+After downloading and extracting the tarball, run `./bin/rstar install`. Follow
+any on-screen instructions as they appear. That is all!
+
 If you happen to find any bugs, please refer to the **Bugs, Feedback and
 Patches** section later on in this document to find out how you can get help.
+
+### FreeBSD
+
+The following command will install the (binary) packages that are required to
+install Rakudo Star on FreeBSD.
+
+    pkg install bash gcc perl5
 
 ## Advanced usage
 
