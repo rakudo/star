@@ -9,7 +9,7 @@ RSTAR_DEPS_BIN+=(
 
 action() {
 	# Ensure the directory to download to exists
-	mkdir -p "$BASEDIR/dist/src/core"
+	mkdir -p "$BASEDIR/src"
 
 	# Download all core components
 	for component in moarvm nqp rakudo
@@ -17,7 +17,7 @@ action() {
 		download_core "$component"
 	done
 
-	mkdir -p "$BASEDIR/dist/src/modules"
+	mkdir -p "$BASEDIR/src/rakudo-star-modules"
 
 	# Download all modules available over http
 	list_modules "http" | while read -r name _ url prefix
@@ -39,7 +39,7 @@ download_core() {
 
 	version="$(config_etc_kv "dist_$1.txt" "version")"
 	source="$(config_etc_kv "dist_$1.txt" "url" | sed "s/%s/$version/g")"
-	destination="$BASEDIR/dist/src/core/$1-$version"
+	destination="$BASEDIR/src/$1-$version"
 
 	if [[ -d $destination ]]
 	then
@@ -61,7 +61,7 @@ download_module_git() {
 	local name=$1
 	local url=$2
 	local ref=$3
-	local destination="$BASEDIR/dist/src/modules/$name"
+	local destination="$BASEDIR/src/rakudo-star-modules/$name"
 
 	if [[ -d "$destination" ]]
 	then
@@ -80,7 +80,7 @@ download_module_http() {
 	local name=$1
 	local url=$2
 	local prefix=$3
-	local destination="$BASEDIR/dist/src/modules/$name"
+	local destination="$BASEDIR/src/rakudo-star-modules/$name"
 	local tarball
 	local extracted
 

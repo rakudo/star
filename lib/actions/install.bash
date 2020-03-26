@@ -59,7 +59,7 @@ action() {
 	do
 		info "Installing $module"
 
-		install_raku_module "$BASEDIR/dist/src/modules/$module" \
+		install_raku_module "$BASEDIR/src/rakudo-star-modules/$module" \
 			&& continue
 
 		failed_modules+=("$module")
@@ -92,7 +92,7 @@ action() {
 build_moarvm() {
 	info "Starting build on MoarVM"
 
-	build_prepare "$BASEDIR/dist/src/core/moarvm-$VERSION" || return
+	build_prepare "$BASEDIR/src/moarvm-$VERSION" || return
 	perl Configure.pl \
 		"$@" \
 		&& make \
@@ -103,7 +103,7 @@ build_moarvm() {
 build_nqp() {
 	info "Starting build on NQP"
 
-	build_prepare "$BASEDIR/dist/src/core/nqp-$VERSION" || return
+	build_prepare "$BASEDIR/src/nqp-$VERSION" || return
 	perl Configure.pl \
 		--backend="$RSTAR_BACKEND" \
 		"$@" \
@@ -115,7 +115,7 @@ build_nqp() {
 build_rakudo() {
 	info "Starting build on Rakudo"
 
-	build_prepare "$BASEDIR/dist/src/core/rakudo-$VERSION" || return
+	build_prepare "$BASEDIR/src/rakudo-$VERSION" || return
 	perl Configure.pl \
 		--backend="$RSTAR_BACKEND" \
 		"$@" \

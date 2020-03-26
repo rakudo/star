@@ -27,7 +27,7 @@ action() {
 	done
 
 	# Include the sources of all components
-	for src in dist/src/*
+	for src in src/*
 	do
 		dist_include "/$src"
 	done
