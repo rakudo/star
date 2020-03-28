@@ -3,6 +3,7 @@
 action() {
 	local OPTIND
 	local raku
+	local failures=0
 
 	while getopts ":p:" opt
 	do
@@ -39,24 +40,63 @@ action() {
 			continue
 		fi
 
-		"action_test_$target"
+		"action_test_$target" && continue
+
+		failures=$(( failures + 1 ))
 	done
+
+	if (( failures > 0 ))
+	then
+		return 4
+	fi
 }
 
 action_test_modules() {
 	local modules
-	local prove
+	local failures
 
 	modules="$(tmpfile)"
-	prove="$RSTAR_PREFIX/share/perl6/vendor/bin/prove6"
+
+	# Manually set a minimal PATH
+	PATH="/bin:/usr/bin:/usr/local/bin"
+
+	# Add the Rakudo bin directories from RSTAR_PREFIX
+	PATH+=":$(readlink -f "$RSTAR_PREFIX/bin")"
+	PATH+=":$(readlink -f "$RSTAR_PREFIX/share/perl6/site/bin")"
+	PATH+=":$(readlink -f "$RSTAR_PREFIX/share/perl6/vendor/bin")"
+	PATH+=":$(readlink -f "$RSTAR_PREFIX/share/perl6/core/bin")"
+
+	# And export this version to the tests
+	export PATH
+
+	debug "PATH set to $PATH"
 
 	awk '/^[^#]/ {print $1}' "$BASEDIR/etc/modules.txt" > "$modules"
 
+	# Go through each module and run the tests
 	while read -r module
 	do
 		chgdir "$BASEDIR/src/rakudo-star-modules/$module"
-		"$prove" -v .
+		prove6 -v . && continue
+
+		failures+=("$module")
 	done < "$modules"
+
+	# Return cleanly if no failures occurred
+	if [[ -z ${failures[*]} ]]
+	then
+		return 0
+	fi
+
+	# Or inform the user of the failing modules
+	emerg "One or more modules failed their tests:"
+
+	for module in "${failures[@]}"
+	do
+		emerg "  $module"
+	done
+
+	return 1
 }
 
 action_test_spectest() {
