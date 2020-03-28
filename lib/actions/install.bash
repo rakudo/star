@@ -14,10 +14,8 @@ RSTAR_DEPS_PERL+=(
 
 action() {
 	local OPTIND
-	local prefix_absolute
-	local modules
-	local init
 	local duration
+	local init
 
 	while getopts ":b:p:" opt
 	do
@@ -28,14 +26,51 @@ action() {
 		esac
 	done
 
-	shift $(( OPTIND -1 ))
-	# TODO: Check if binaries are available
+	shift $(( OPTIND - 1 ))
 
 	mkdir -p -- "$RSTAR_PREFIX"
+
+	# If no specific targets are specified, set all targets
+	if (( $# < 1 ))
+	then
+		set -- core modules
+	fi
+
+	# Take note of the current time, so we can show how long it took later
+	# on
+	init="$(date +%s)"
+
+	# Run each installation target
+	for target in "$@"
+	do
+		if [[ $(type -t "action_install_$target") != "function" ]]
+		then
+			crit "Installation target '$target' is invalid"
+			continue
+		fi
+
+		"action_install_$target"
+	done
+
+	duration="$(pp_duration "$init")"
+
+	# Friendly message
+	info "Rakudo Star has been installed into $prefix_absolute!"
+	info "The installation took $duration."
+	info ""
+	info "You may need to add the following paths to your \$PATH:"
+	info "  $prefix_absolute/bin"
+	info "  $prefix_absolute/share/perl6/site/bin"
+	info "  $prefix_absolute/share/perl6/vendor/bin"
+	info "  $prefix_absolute/share/perl6/core/bin"
+}
+
+action_install_core() {
+	local prefix_absolute
+
 	prefix_absolute="$(CDPATH="" cd -- "$RSTAR_PREFIX" && pwd -P)"
 
 	info "Installing Raku in $prefix_absolute"
-	init="$(date +%s)"
 
 	# Compile all core components
 	for component in moarvm nqp rakudo
@@ -48,9 +83,12 @@ action() {
 
 		die "Build failed!"
 	done
+}
 
-	# Install community modules
-	failed_modules=()
+action_install_modules() {
+	local failed_modules
+	local modules
+
 	modules="$(tmpfile)"
 
 	awk '/^[^#]/ {print $1}' "$BASEDIR/etc/modules.txt" > "$modules"
@@ -75,18 +113,6 @@ action() {
 			crit "  $module"
 		done
 	fi
-
-	duration="$(pp_duration "$init")"
-
-	# Friendly message
-	info "Rakudo Star has been installed into $prefix_absolute!"
-	info "The installation took $duration."
-	info ""
-	info "You may need to add the following paths to your \$PATH:"
-	info "  $prefix_absolute/bin"
-	info "  $prefix_absolute/share/perl6/site/bin"
-	info "  $prefix_absolute/share/perl6/vendor/bin"
-	info "  $prefix_absolute/share/perl6/core/bin"
 }
 
 build_moarvm() {
@@ -140,3 +166,4 @@ build_prepare() {
 install_raku_module() {
 	"$RSTAR_PREFIX/bin/raku" "$BASEDIR/lib/install-module.raku" "$1"
 }
+
