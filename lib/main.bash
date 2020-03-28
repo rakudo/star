@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
+# shellcheck source=lib/util.bash
 source "$(dirname "${BASH_SOURCE[0]}")/util.bash"
+
+# shellcheck source=lib/logging.bash
 source "$(dirname "${BASH_SOURCE[0]}")/logging.bash"
 
 main() {
@@ -31,6 +34,12 @@ main() {
 	# Figure out system details
 	debug "Discovering system information"
 	discover_system
+
+	# Export RSTAR_ variables
+	export RSTAR_TOOLS
+	export RSTAR_BACKEND
+	export RSTAR_PREFIX
+	export RSTAR_PLATFORM
 
 	# Source the file defining the action.
 	debug "Sourcing $action_path"
@@ -122,18 +131,21 @@ depcheck_bin() {
 		then
 			local packages
 			local pacman_cmd
+			local package
 
 			debug "bindep_db found"
 
 			# Create a list of packages that needs to be installed
 			for tool in "${missing[@]}"
 			do
-				local package="$(config_etc_kv "$bindep_db" "$tool")"
+				package="$(config_etc_kv "$bindep_db" "$tool")"
 
 				# Don't add duplicates
 				in_args "$package" "${packages[@]}" && continue
 
 				packages+=("$package")
+
+				unset package
 			done
 
 			# Figure out which package manager command install on

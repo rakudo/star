@@ -101,7 +101,7 @@ in_args() {
 
 	for arg in "$@"
 	do
-		[[ $needle == $arg ]] && return 0
+		[[ $needle == "$arg" ]] && return 0
 	done
 
 	return 1
