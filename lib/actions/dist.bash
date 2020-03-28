@@ -26,11 +26,8 @@ action() {
 		dist_include "/$file"
 	done
 
-	# Include the sources of all components
-	for src in src/*
-	do
-		dist_include "/$src"
-	done
+	# Include the component sources
+	dist_include "/src"
 
 	# Add a MANIFEST.txt
 	chgdir "$WORKDIR"
