@@ -74,7 +74,7 @@ usage() {
 	cat <<EOF
 Usage:
 	rstar -h
-	rstar clean
+	rstar clean [-s]
 	rstar dist [version]
 	rstar fetch
 	rstar install [-b backend] [-p prefix] [core] [modules]
@@ -84,7 +84,8 @@ Usage:
 rstar is the entry point for all utilities to deal with Rakudo Star.
 
 Actions:
-	clean    Clean up the repository.
+	clean    Clean up the repository. If -s is given, the src directory
+	         will also be removed.
 	dist     Create a distributable tarball of this repository. If no
 	         version identifier is specified, it will use the current year
 	         and month in "yyyy.mm" notation.
