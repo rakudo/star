@@ -77,9 +77,9 @@ Usage:
 	rstar clean
 	rstar dist [version]
 	rstar fetch
-	rstar install [-b backend] [-p prefix]
+	rstar install [-b backend] [-p prefix] [core] [modules]
 	rstar sysinfo
-	rstar test
+	rstar test [spectest] [modules]
 
 rstar is the entry point for all utilities to deal with Rakudo Star.
 
@@ -90,10 +90,13 @@ Actions:
 	         and month in "yyyy.mm" notation.
 	fetch    Fetch all required sources.
 	install  Install Raku on this system. By default, MoarVM will be used
-	         as the only backend. The Rakudo Star directory will be used as
-	         prefix.
+	         as the only backend, and the Rakudo Star directory will be
+	         used as prefix. If neither core nor modules are given as
+	         explicit targets, all targets will be installed.
 	sysinfo  Show information about your system. Useful for debugging.
-	test     Run tests on Raku and the bundled ecosystem modules.
+	test     Run tests on Raku and the bundled ecosystem modules. If
+	         neither spectest nor modules are given as explicit targets,
+	         all targets will be tested.
 EOF
 }
 
