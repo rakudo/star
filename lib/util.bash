@@ -3,6 +3,7 @@
 # Change the working directory. In usage, this is the same as using cd,
 # however,  it will make additional checks to ensure everything is going fine.
 chgdir() {
+	debug "Changing workdir to $1"
 	cd -- "$1" || die "Failed to change directory to $1"
 }
 
