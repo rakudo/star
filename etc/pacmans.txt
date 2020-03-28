@@ -1,0 +1,1 @@
+gnu_linux-ubuntu=apt update && apt install -y

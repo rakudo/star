@@ -9,6 +9,8 @@ chgdir() {
 # Read a particular value from a key/value configuration file. Using this
 # function introduces a dependency on awk.
 config_etc_kv() {
+	local value
+
 	local file="$BASEDIR/etc/$1"
 	shift
 
@@ -20,7 +22,14 @@ config_etc_kv() {
 
 	debug "Reading value for $1 from $file"
 
-	awk -F= '$1 == "'"$1"'" { print $NF }' "$file"
+	value="$(awk -F= '$1 == "'"$1"'" { print $NF }' "$file")"
+
+	if [[ -z $value ]]
+	then
+		crit "Empty value for $1 from $file?"
+	fi
+
+	printf "%s" "$value"
 }
 
 # Log a message as error, and exit the program. This is intended for serious
@@ -82,6 +91,40 @@ fetch_http_curl() {
 
 fetch_http_wget() {
 	wget --quiet --output-document "$2" "$1"
+}
+
+# Check if the first argument given appears in the list of all following
+# arguments.
+in_args() {
+	local needle="$1"
+	shift
+
+	for arg in "$@"
+	do
+		[[ $needle == $arg ]] && return 0
+	done
+
+	return 1
+}
+
+# Join a list of arguments into a single string. By default, this will join
+# using a ",", but you can set a different character using -c. Note that this
+# only joins with a single character, not a string of characters.
+join_args() {
+	local OPTIND
+	local IFS=","
+
+	while getopts ":c:" opt
+	do
+		case "$opt" in
+			c) IFS="$OPTARG" ;;
+			*) warn "Unused opt specified: $opt" ;;
+		esac
+	done
+
+	shift $(( OPTIND - 1))
+
+	printf "%s" "$*"
 }
 
 # Pretty print a duration between a starting point (in seconds) and an end

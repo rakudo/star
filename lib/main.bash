@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-source "$(dirname "$BASH_SOURCE")/util.bash"
-source "$(dirname "$BASH_SOURCE")/logging.bash"
+source "$(dirname "${BASH_SOURCE[0]}")/util.bash"
+source "$(dirname "${BASH_SOURCE[0]}")/logging.bash"
 
 main() {
 	[[ -z $1 ]] && usage && exit 2
@@ -92,6 +92,7 @@ EOF
 # $PATH environment variable.
 depcheck_bin() {
 	local missing=()
+	local bindep_db
 
 	for tool in "${RSTAR_DEPS_BIN[@]}"
 	do
@@ -107,10 +108,43 @@ depcheck_bin() {
 
 		for tool in "${missing[@]}"
 		do
-			# TODO: Include current distro's package name
-			# containing the tool
 			alert "  $tool"
 		done
+
+		# Resolve the basename for the bindep file
+		bindep_db="bindeps.d/${RSTAR_PLATFORM[key]}.txt"
+
+		debug "bindep_db resolved to $bindep_db"
+
+		# If there's a bindep file, use it to resolve the missing utils
+		# into a list of package names.
+		if [[ -f "etc/$bindep_db" ]]
+		then
+			local packages
+			local pacman_cmd
+
+			debug "bindep_db found"
+
+			# Create a list of packages that needs to be installed
+			for tool in "${missing[@]}"
+			do
+				local package="$(config_etc_kv "$bindep_db" "$tool")"
+
+				# Don't add duplicates
+				in_args "$package" "${packages[@]}" && continue
+
+				packages+=("$package")
+			done
+
+			# Figure out which package manager command install on
+			# the current platform.
+			pacman_cmd="$(config_etc_kv pacmans.txt "${RSTAR_PLATFORM[key]}") "
+
+			# Tell the user of the command to install missing
+			# dependencies
+			info "The missing tools can be installed using your system package manager:"
+			info "$pacman_cmd$(join_args -c " " "${packages[@]}")"
+		fi
 
 		return 1
 	fi
@@ -137,6 +171,9 @@ depcheck_perl() {
 			alert "  $module"
 		done
 
+		info "The missing Perl modules can be installed using this command:"
+		info "$(config_etc_kv perlmans.txt "${RSTAR_PLATFORM[key]}") $(join_args -c " " "${missing[@]}")"
+
 		return 1
 	fi
 }
@@ -154,9 +191,17 @@ discover_system() {
 		RSTAR_PLATFORM["kernel"]="$(discover_system_kernel)"
 		RSTAR_PLATFORM["kernel_version"]="$(discover_system_kernel_version)"
 	fi
+
+	RSTAR_PLATFORM[key]="$(discover_system_key)"
 }
 
 discover_system_distro() {
+	if [[ -f /etc/os-release ]]
+	then
+		printf "%s" "$(source /etc/os-release && printf "%s" "$NAME" | awk '{print tolower($0)}')"
+		return
+	fi
+
 	awk -F= '$1 == "NAME" {print tolower($2);q}' /etc/*release
 }
 
@@ -166,6 +211,17 @@ discover_system_kernel() {
 
 discover_system_kernel_version() {
 	printf "%s" "$(uname -r | awk '{print tolower($0)}')"
+}
+
+discover_system_key() {
+	key+="${RSTAR_PLATFORM[os]}"
+
+	if [[ ${RSTAR_PLATFORM[distro]} ]]
+	then
+		key+="-${RSTAR_PLATFORM[distro]}"
+	fi
+
+	printf "%s" "$key"
 }
 
 discover_system_os() {
