@@ -86,10 +86,13 @@ Your first step will be to prepare a new tarball.
     rstar clean -s              # Clean up old sources
     $EDITOR etc/fetch_core.txt  # Update values as necessary
     $EDITOR etc/modules.txt     # Update values as necessary
+    git commit                  # Create a commit for this particular release
     rstar fetch                 # Download new sources
     rstar install               # Compile and install Rakudo Star
     rstar test                  # Run tests
     rstar dist                  # Create a new distribution tarball
+
+Additionally, you *should* make a tag that represents the current release name.
 
 Once you have a tarball, you should upload it to be available to others. Common
 places include:
