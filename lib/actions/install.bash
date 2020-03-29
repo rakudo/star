@@ -13,7 +13,9 @@ RSTAR_DEPS_PERL+=(
 )
 
 action() {
+	local LC_ALL
 	local OPTIND
+	local SOURCE_DATE_EPOCH
 	local duration
 	local init
 
@@ -28,7 +30,14 @@ action() {
 
 	shift $(( OPTIND - 1 ))
 
-	mkdir -p -- "$RSTAR_PREFIX"
+	# Prepare environment for a reproducible install
+	LC_ALL=C.UTF-8
+	SOURCE_DATE_EPOCH="$(git log -1 --pretty=format:%at)"
+
+	debug "SOURCE_DATE_EPOCH set to $SOURCE_DATE_EPOCH"
+
+	export LC_ALL
+	export SOURCE_DATE_EPOCH
 
 	# If no specific targets are specified, set all targets
 	if (( $# < 1 ))
@@ -39,6 +48,9 @@ action() {
 	# Take note of the current time, so we can show how long it took later
 	# on
 	init="$(date +%s)"
+
+	# Create the installation directory
+	mkdir -p -- "$RSTAR_PREFIX"
 
 	# Run each installation target
 	for target in "$@"
