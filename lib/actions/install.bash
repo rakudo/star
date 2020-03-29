@@ -15,7 +15,6 @@ RSTAR_DEPS_PERL+=(
 action() {
 	local LC_ALL
 	local OPTIND
-	local SOURCE_DATE_EPOCH
 	local duration
 	local init
 	local prefix_absolute
@@ -34,6 +33,7 @@ action() {
 	# Prepare environment for a reproducible install
 	LC_ALL=C.UTF-8
 
+	# Distribution tarballs come with an epoch set, use it if you find it.
 	if [[ -f "$BASEDIR/etc/epoch.txt" ]]
 	then
 		SOURCE_DATE_EPOCH="$(head -n1 "$BASEDIR/etc/epoch.txt")"
