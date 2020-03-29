@@ -13,8 +13,24 @@ RSTAR_DEPS_BIN+=(
 )
 
 action() {
-	local version="${1:-$(date +%Y.%m)}"
+	local LC_ALL
+	local SOURCE_DATE_EPOCH
+	local basename
+	local tarball
+	local version
+
+	# Prepare environment for a reproducible tarball
+	LC_ALL=C.UTF-8
+	SOURCE_DATE_EPOCH="$(git log -1 --pretty=format:%at)"
+
+	# Set a version if none was specified explicitly
+	version="${1:-$(datetime %Y.%m)}"
 	WORKDIR="$BASEDIR/tmp/rakudo-star-$version"
+
+	debug "SOURCE_DATE_EPOCH set to $SOURCE_DATE_EPOCH"
+
+	export LC_ALL
+	export SOURCE_DATE_EPOCH
 
 	info "Creating distribution contents at $WORKDIR"
 
@@ -31,17 +47,27 @@ action() {
 
 	# Add a MANIFEST.txt
 	chgdir "$WORKDIR"
-	find . > MANIFEST.txt
+	touch MANIFEST.txt
+	find . -type f | sed 's|^./||' | sort > MANIFEST.txt
 
 	# Tar it all up into a distribution tarball
 	info "Creating tarball out of $WORKDIR"
 
-	local tarball="$BASEDIR/dist/rakudo-star-$version.tar.gz"
+	basename="rakudo-star-$version"
+	tarball="$BASEDIR/dist/$basename.tar.gz"
 
 	mkdir -p -- "$(dirname "$tarball")"
 	chgdir "$BASEDIR/tmp"
 
-	tar czf "$tarball" "rakudo-star-$version"
+	awk '{ print "'"$basename"'/"$0 }' "$WORKDIR/MANIFEST.txt" \
+		| tar -c -T - \
+			--mtime @"$SOURCE_DATE_EPOCH" \
+			--mode=go=rX,u+rw,a-s \
+			--format=gnu \
+			--numeric-owner --owner=0 --group=0 \
+		| gzip -9cn \
+		> "$tarball"
+	touch -d"$(datetime)" "$tarball"
 
 	chgdir "$(dirname "$tarball")"
 

@@ -33,6 +33,22 @@ config_etc_kv() {
 	printf "%s" "$value"
 }
 
+# Create a datetime stamp. This is a wrapper around the date utility, ensuring
+# that the date being formatted is always in UTC and respect SOURCE_DATE_EPOCH,
+# if it is set.
+datetime() {
+	local date_opts
+
+	# Apply SOURCE_DATE_EPOCH as the date to base off of.
+	if [[ $SOURCE_DATE_EPOCH ]]
+	then
+		date_opts+=("-d@$SOURCE_DATE_EPOCH")
+		date_opts+=("-u")
+	fi
+
+	date "${date_opts[@]}" +"${1:-%FT%T}"
+}
+
 # Log a message as error, and exit the program. This is intended for serious
 # issues that prevent the script from running correctly. The exit code can be
 # specified with -i, or will default to 1.
