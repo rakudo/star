@@ -1,2 +1,0 @@
-url=https://github.com/perl6/nqp/releases/download/%s/nqp-%s.tar.gz
-version=2020.01

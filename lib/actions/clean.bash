@@ -27,5 +27,6 @@ action() {
 	if [[ $clean_src ]]
 	then
 		rm -fr -- "$BASEDIR/src"
+		rm -f -- "$BASEDIR/etc/epoch.txt"
 	fi
 }

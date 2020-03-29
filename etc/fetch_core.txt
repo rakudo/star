@@ -1,0 +1,12 @@
+# These are the version numbers of the core components of Rakudo Star. Change
+# these if you want to create a distribution containing different core
+# component versions.
+moarvm_version=2020.01.1
+nqp_version=2020.01
+rakudo_version=2020.01
+
+# These are the URLs to fetch the sources from. You can use %s in the URLs as a
+# placeholder for the version number, specified above.
+moarvm_url=https://www.moarvm.org/releases/MoarVM-%s.tar.gz
+nqp_url=https://github.com/perl6/nqp/releases/download/%s/nqp-%s.tar.gz
+rakudo_url=https://github.com/rakudo/rakudo/releases/download/%s/rakudo-%s.tar.gz

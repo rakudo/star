@@ -45,6 +45,9 @@ action() {
 	# Include the component sources
 	dist_include "/src"
 
+	# Set the SOURCE_DATE_EPOCH for the installation phase
+	printf "%d\n" "$SOURCE_DATE_EPOCH" > "$WORKDIR/etc/epoch.txt"
+
 	# Add a MANIFEST.txt
 	chgdir "$WORKDIR"
 	touch MANIFEST.txt

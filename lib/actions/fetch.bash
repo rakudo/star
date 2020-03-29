@@ -37,8 +37,8 @@ download_core() {
 	local source
 	local destination
 
-	version="$(config_etc_kv "dist_$1.txt" "version")"
-	source="$(config_etc_kv "dist_$1.txt" "url" | sed "s/%s/$version/g")"
+	version="$(config_etc_kv "fetch_core.txt" "${1}_version")"
+	source="$(config_etc_kv "fetch_core.txt" "${1}_url" | sed "s/%s/$version/g")"
 	destination="$BASEDIR/src/$1-$version"
 
 	if [[ -d $destination ]]

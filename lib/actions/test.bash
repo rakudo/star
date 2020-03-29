@@ -104,7 +104,7 @@ action_test_spectest() {
 	local source
 
 	destination="$(tmpdir)"
-	source="$BASEDIR/src/rakudo-$(config_etc_kv "dist_rakudo.txt" "version")"
+	source="$BASEDIR/src/rakudo-$(config_etc_kv "fetch_core.txt" "rakudo_version")"
 
 	notice "Using $destination as working directory"
 

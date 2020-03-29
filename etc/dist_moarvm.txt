@@ -1,2 +1,0 @@
-url=https://www.moarvm.org/releases/MoarVM-%s.tar.gz
-version=2020.01.1

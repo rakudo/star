@@ -18,6 +18,7 @@ action() {
 	local SOURCE_DATE_EPOCH
 	local duration
 	local init
+	local prefix_absolute
 
 	while getopts ":b:p:" opt
 	do
@@ -32,9 +33,12 @@ action() {
 
 	# Prepare environment for a reproducible install
 	LC_ALL=C.UTF-8
-	SOURCE_DATE_EPOCH="$(git log -1 --pretty=format:%at)"
 
-	debug "SOURCE_DATE_EPOCH set to $SOURCE_DATE_EPOCH"
+	if [[ -f "$BASEDIR/etc/epoch.txt" ]]
+	then
+		SOURCE_DATE_EPOCH="$(head -n1 "$BASEDIR/etc/epoch.txt")"
+		debug "SOURCE_DATE_EPOCH set to $SOURCE_DATE_EPOCH (epoch.txt)"
+	fi
 
 	export LC_ALL
 	export SOURCE_DATE_EPOCH
@@ -48,6 +52,10 @@ action() {
 	# Take note of the current time, so we can show how long it took later
 	# on
 	init="$(date +%s)"
+
+	# Use an absolute path when reporting about the installation path
+	prefix_absolute="$(CDPATH="" cd -- "$RSTAR_PREFIX" && pwd -P)"
+	info "Installing Raku in $prefix_absolute"
 
 	# Create the installation directory
 	mkdir -p -- "$RSTAR_PREFIX"
@@ -78,16 +86,10 @@ action() {
 }
 
 action_install_core() {
-	local prefix_absolute
-
-	prefix_absolute="$(CDPATH="" cd -- "$RSTAR_PREFIX" && pwd -P)"
-
-	info "Installing Raku in $prefix_absolute"
-
 	# Compile all core components
 	for component in moarvm nqp rakudo
 	do
-		VERSION="$(config_etc_kv "dist_$component.txt" "version")" \
+		VERSION="$(config_etc_kv "fetch_core.txt" "${component}_version")" \
 			build_"$component" \
 				--prefix="$RSTAR_PREFIX" \
 				--relocatable \

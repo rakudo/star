@@ -1,2 +1,0 @@
-url=https://github.com/rakudo/rakudo/releases/download/%s/rakudo-%s.tar.gz
-version=2020.01

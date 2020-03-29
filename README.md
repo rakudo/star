@@ -83,10 +83,8 @@ extracted sources are moved into the `dist` directory.
 
 Your first step will be to prepare a new tarball.
 
-    rstar clean                 # Clean up old sources
-    $EDITOR etc/dist_moarvm.txt # Update values as necessary
-    $EDITOR etc/dist_nqp.txt    # Update values as necessary
-    $EDITOR etc/dist_rakudo.txt # Update values as necessary
+    rstar clean -s              # Clean up old sources
+    $EDITOR etc/fetch_core.txt  # Update values as necessary
     $EDITOR etc/modules.txt     # Update values as necessary
     rstar fetch                 # Download new sources
     rstar install               # Compile and install Rakudo Star
@@ -96,7 +94,8 @@ Your first step will be to prepare a new tarball.
 Once you have a tarball, you should upload it to be available to others. Common
 places include:
 
-- rakudo.org (ask around in #raku-dev for someone to help you if needed);
+- [rakudo.org](https://rakudo.org/) (ask around in `#raku-dev` for someone to
+  help you if needed);
 - Your personal website.
 
 Next up, you will have to tell people of the new distribution tarball existing.
