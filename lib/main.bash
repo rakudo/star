@@ -187,8 +187,11 @@ depcheck_perl() {
 			alert "  $module"
 		done
 
-		info "The missing Perl modules can be installed using this command:"
-		info "$(config_etc_kv perlmans.txt "${RSTAR_PLATFORM[key]}") $(join_args -c " " "${missing[@]}")"
+		if grep -q "^${RSTAR_PLATFORM[key]}=" "$BASEDIR/etc/perlmans.txt"
+		then
+			info "The missing Perl modules can be installed using this command:"
+			info "$(config_etc_kv perlmans.txt "${RSTAR_PLATFORM[key]}") $(join_args -c " " "${missing[@]}")"
+		fi
 
 		return 1
 	fi
