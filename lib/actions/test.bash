@@ -2,8 +2,9 @@
 
 action() {
 	local OPTIND
-	local raku
 	local failures=0
+	local init
+	local raku
 
 	while getopts ":p:" opt
 	do
@@ -31,6 +32,10 @@ action() {
 		set -- spectest modules
 	fi
 
+	# Take note of the current time, so we can show how long it took later
+	# on
+	init="$(date +%s)"
+
 	# Run each test target
 	for target in "$@"
 	do
@@ -44,6 +49,8 @@ action() {
 
 		failures=$(( failures + 1 ))
 	done
+
+	info "Testing took $(pp_duration "$init")"
 
 	if (( failures > 0 ))
 	then
