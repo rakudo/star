@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
 RSTAR_DEPS_BIN+=(
 	awk
