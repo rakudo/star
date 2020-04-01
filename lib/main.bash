@@ -200,15 +200,19 @@ depcheck_perl() {
 # sysinfo command in their message to you.
 discover_system() {
 	RSTAR_PLATFORM["os"]="$(discover_system_os)"
+	RSTAR_PLATFORM["arch"]="$(discover_system_arch)"
+	RSTAR_PLATFORM["version"]="$(discover_system_version)"
 
-	if [[ ${RSTAR_PLATFORM[os]} == "gnu_linux" ]]
+	if [[ ${RSTAR_PLATFORM[os]} == "linux" ]]
 	then
 		RSTAR_PLATFORM["distro"]="$(discover_system_distro)"
-		RSTAR_PLATFORM["kernel"]="$(discover_system_kernel)"
-		RSTAR_PLATFORM["kernel_version"]="$(discover_system_kernel_version)"
 	fi
 
 	RSTAR_PLATFORM[key]="$(discover_system_key)"
+}
+
+discover_system_arch() {
+	uname -m
 }
 
 discover_system_distro() {
@@ -221,11 +225,7 @@ discover_system_distro() {
 	awk -F= '$1 == "NAME" {print tolower($2);q}' /etc/*release
 }
 
-discover_system_kernel() {
-	printf "%s" "$(uname -s | awk '{print tolower($0)}')"
-}
-
-discover_system_kernel_version() {
+discover_system_version() {
 	printf "%s" "$(uname -r | awk '{print tolower($0)}')"
 }
 
@@ -243,7 +243,7 @@ discover_system_key() {
 discover_system_os() {
 	if command -v uname > /dev/null
 	then
-		printf "%s" "$(uname -o | awk '{print tolower($0)}' | sed 's_[/+]_\__g')"
+		printf "%s" "$(uname -s | awk '{print tolower($0)}' | sed 's_[/+]_\__g')"
 		return
 	fi
 }

@@ -1,1 +1,1 @@
-gnu_linux-ubuntu=apt install -y cpanminus && cpanm -v
+linux-ubuntu=apt install -y cpanminus && cpanm -v
