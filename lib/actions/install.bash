@@ -86,14 +86,21 @@ action() {
 }
 
 action_install_core() {
+	local args
+
+	args+=("--prefix=$RSTAR_PREFIX")
+
+	# Build relocatable components when not on OpenBSD.
+	if [[ ${RSTAR_PLATFORM[os]} != "openbsd" ]]
+	then
+		args+=("--relocatable")
+	fi
+
 	# Compile all core components
 	for component in moarvm nqp rakudo
 	do
 		VERSION="$(config_etc_kv "fetch_core.txt" "${component}_version")" \
-			build_"$component" \
-				--prefix="$RSTAR_PREFIX" \
-				--relocatable \
-			&& continue
+			build_"$component" "${args[@]}" && continue
 
 		die "Build failed!"
 	done
