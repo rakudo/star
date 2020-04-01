@@ -1,0 +1,3 @@
+gcc=gcc libc-dev
+make=make
+perl=perl
