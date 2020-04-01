@@ -1,2 +1,3 @@
-linux-ubuntu=apt update && apt install -y
 freebsd=pkg update && pkg install -y
+linux-debian_gnu_linux=apt update && apt install -y
+linux-ubuntu=apt update && apt install -y
