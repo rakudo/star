@@ -221,7 +221,7 @@ discover_system_arch() {
 discover_system_distro() {
 	if [[ -f /etc/os-release ]]
 	then
-		printf "%s" "$(source /etc/os-release && printf "%s" "$NAME" | awk '{print tolower($0)}')"
+		printf "%s" "$(source /etc/os-release && printf "%s" "$NAME" | awk '{print tolower($0)}' | sed 's@[/+ ]@_@g')"
 		return
 	fi
 
@@ -246,7 +246,7 @@ discover_system_key() {
 discover_system_os() {
 	if command -v uname > /dev/null
 	then
-		printf "%s" "$(uname -s | awk '{print tolower($0)}' | sed 's_[/+]_\__g')"
+		printf "%s" "$(uname -s | awk '{print tolower($0)}' | sed 's@[/+ ]@_@g')"
 		return
 	fi
 }
