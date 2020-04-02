@@ -1,0 +1,24 @@
+FROM archlinux:{{TAG}} AS base
+
+RUN pacman -Sy && pacman --noconfirm -S gcc make
+
+COPY . /home/rstar
+
+RUN /home/rstar/bin/rstar install \
+    -p /home/raku {{INSTALL_OPTIONS}}
+
+RUN pacman --noconfirm -Rs gcc make
+
+FROM archlinux:{{TAG}}
+
+COPY --from=base /home/raku /usr/local
+COPY --from=base /usr/lib   /usr/lib
+
+ENV PATH=/usr/local/share/perl6/site/bin:$PATH
+ENV PATH=/usr/local/share/perl6/vendor/bin:$PATH
+ENV PATH=/usr/local/share/perl6/core/bin:$PATH
+ENV PERL6LIB=/app/lib
+
+WORKDIR /app
+
+CMD [ "raku" ]
