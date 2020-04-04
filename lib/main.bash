@@ -206,7 +206,8 @@ discover_system() {
 	RSTAR_PLATFORM["arch"]="$(discover_system_arch)"
 	RSTAR_PLATFORM["version"]="$(discover_system_version)"
 
-	if [[ ${RSTAR_PLATFORM[os]} == "linux" ]]
+	# When on a Linux-using OS, check for the specific distribution in use.
+	if [[ ${RSTAR_PLATFORM[os]} == *"linux"* ]]
 	then
 		RSTAR_PLATFORM["distro"]="$(discover_system_distro)"
 	fi
@@ -225,7 +226,14 @@ discover_system_distro() {
 		return
 	fi
 
-	awk -F= '$1 == "NAME" {print tolower($2);q}' /etc/*release
+	crit "No /etc/os-release found. Are you sure you're on a sane GNU+Linux distribution?"
+
+	if command -v pacman > /dev/null
+	then
+		warn "Found pacman, assuming Archlinux as distro."
+		printf "%s" "archlinux"
+		return
+	fi
 }
 
 discover_system_version() {
