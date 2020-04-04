@@ -3,5 +3,6 @@ linux-alpine_linux=apk add --no-cache
 linux-archlinux=pacman -Sy --noconfirm
 linux-centos_linux=yum install -y
 linux-debian_gnu_linux=apt update && apt install -y
+linux-fedora=yum install -y
 linux-ubuntu=apt update && apt install -y
 linux-void=xbps-install -Sy
