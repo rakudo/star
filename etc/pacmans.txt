@@ -3,3 +3,4 @@ linux-debian_gnu_linux=apt update && apt install -y
 linux-ubuntu=apt update && apt install -y
 linux-alpine_linux=apk add --no-cache
 linux-void=xbps-install -Sy
+linux-centos_linux=yum install -y
