@@ -212,6 +212,7 @@ discover_system() {
 	RSTAR_PLATFORM["os"]="$(discover_system_os)"
 	RSTAR_PLATFORM["arch"]="$(discover_system_arch)"
 	RSTAR_PLATFORM["version"]="$(discover_system_version)"
+	RSTAR_PLATFORM["term"]="$TERM"
 
 	# When on a Linux-using OS, check for the specific distribution in use.
 	if [[ ${RSTAR_PLATFORM[os]} == *"linux"* ]]
