@@ -1,18 +1,14 @@
-FROM debian:{{TAG}} AS base
-
-RUN apt-get update
-RUN apt-get install -y \
-    git build-essential libreadline7
+FROM debian:latest AS base
 
 COPY . /home/rstar
 
-RUN /home/rstar/bin/rstar install \
-    -p /home/raku {{INSTALL_OPTIONS}}
-
+RUN apt-get update
+RUN apt-get install -y git build-essential libreadline7
+RUN /home/rstar/bin/rstar install -p /home/raku
 RUN apt-get -y remove git build-essential
 RUN apt-get -y autoremove
 
-FROM debian:{{TAG}}
+FROM debian:latest
 
 COPY --from=base /home/raku /usr/local
 COPY --from=base /lib       /lib

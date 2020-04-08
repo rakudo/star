@@ -1,0 +1,8 @@
+.git
+dist
+bin
+!bin/rstar
+lib/libmoar.so
+include
+share
+tmp

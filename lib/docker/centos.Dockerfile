@@ -1,15 +1,12 @@
-FROM centos:{{TAG}} AS base
-
-RUN yum -y install perl git gcc make
+FROM centos:latest AS base
 
 COPY . /home/rstar
 
-RUN /home/rstar/bin/rstar install \
-    -p /home/raku {{INSTALL_OPTIONS}}
-
+RUN yum -y install perl git gcc make
+RUN /home/rstar/bin/rstar install -p /home/raku
 RUN yum -y remove perl git gcc make
 
-FROM centos:{{TAG}}
+FROM centos:latest
 
 COPY --from=base /home/raku /usr/local
 COPY --from=base /usr/lib64 /usr/lib64

@@ -27,9 +27,10 @@ main() {
 
 	# Declare some global variables
 	declare -a RSTAR_TOOLS
-	declare RSTAR_BACKEND=moar
-	declare RSTAR_PREFIX="$BASEDIR"
 	declare -A RSTAR_PLATFORM
+
+	[[ -z $RSTAR_BACKEND ]] && RSTAR_BACKEND="moar"
+	[[ -z $RSTAR_PREFIX ]] && RSTAR_PREFIX="$BASEDIR"
 
 	# Figure out system details
 	debug "Discovering system information"
@@ -74,6 +75,7 @@ usage() {
 	cat <<EOF
 Usage:
 	rstar -h
+	rstar build-docker [-T tag] [-b backend] [-d description] [-l] [-n name] [-t version] <base>
 	rstar clean [-s]
 	rstar dist [version]
 	rstar fetch
@@ -84,20 +86,25 @@ Usage:
 rstar is the entry point for all utilities to deal with Rakudo Star.
 
 Actions:
-	clean    Clean up the repository. If -s is given, the src directory
-	         will also be removed.
-	dist     Create a distributable tarball of this repository. If no
-	         version identifier is specified, it will use the current year
-	         and month in "yyyy.mm" notation.
-	fetch    Fetch all required sources.
-	install  Install Raku on this system. By default, MoarVM will be used
-	         as the only backend, and the Rakudo Star directory will be
-	         used as prefix. If neither core nor modules are given as
-	         explicit targets, all targets will be installed.
-	sysinfo  Show information about your system. Useful for debugging.
-	test     Run tests on Raku and the bundled ecosystem modules. If
-	         neither spectest nor modules are given as explicit targets,
-	         all targets will be tested.
+	build-docker  Build a Docker image for Rakudo Star. You can specify the
+	              tag of the resulting image using -T, which will cause -d,
+	              -t, and -l to be ignored. -n specifies the name of the
+	              image. If -l is passed, a "latest" tag will also be made.
+	              You can specify a specific backend with -b.
+	clean         Clean up the repository. If -s is given, the src
+	              directory will also be removed.
+	dist          Create a distributable tarball of this repository. If no
+	              version identifier is specified, it will use the current
+	              year and month in "yyyy.mm" notation.
+	fetch         Fetch all required sources.
+	install       Install Raku on this system. By default, MoarVM will be
+	              used as the only backend, and the Rakudo Star directory
+	              will be used as prefix. If neither core nor modules are
+	              given as explicit targets, all targets will be installed.
+	sysinfo       Show information about your system. Useful for debugging.
+	test          Run tests on Raku and the bundled ecosystem modules. If
+	              neither spectest nor modules are given as explicit
+	              targets, all targets will be tested.
 EOF
 }
 

@@ -1,16 +1,13 @@
-FROM alpine:{{TAG}} AS base
-
-RUN apk add --no-cache \
-    bash build-base git perl readline
+FROM archlinux:latest AS base
 
 COPY . /home/rstar
 
-RUN /home/rstar/bin/rstar install \
-    -p /home/raku {{INSTALL_OPTIONS}}
+RUN pacman -Sy
+RUN pacman --noconfirm -S gcc make
+RUN /home/rstar/bin/rstar install -p /home/raku
+RUN pacman --noconfirm -Rs gcc make
 
-RUN apk del bash build-base git perl
-
-FROM alpine:{{TAG}}
+FROM archlinux:latest
 
 COPY --from=base /home/raku /usr/local
 COPY --from=base /usr/lib   /usr/lib

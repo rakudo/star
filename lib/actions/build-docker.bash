@@ -1,76 +1,90 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
 action() {
 	local OPTIND
-	local base_image
-	local base_tag
-	local output_tag
+	local name
+	local version
+	local description
+	local tag
 	local dockerfile
-	local template
-	local install_options
+	local target
 
-	while getopts ":B:b:f:T:t:" opt
+	while getopts ":T:b:d:ln:t:" opt
 	do
 		case "$opt" in
+			T) tag=$OPTARG ;;
 			b) RSTAR_BACKEND=$OPTARG ;;
-			B) base_image=$OPTARG ;;
-			T) base_tag=$OPTARG ;;
-			t) output_tag=$OPTARG ;;
-			f) template=$OPTARG ;;
+			d) description=$OPTARG ;;
+			l) tag_latest=1 ;;
+			n) name=$OPTARG ;;
+			t) version=$OPTARG ;;
 			*) emerg "Invalid option specified: $opt" ;;
 		esac
 	done
 
-	# Base image must be specified
-	if [[ -z $base_image ]]
+	shift $(( OPTIND - 1 ))
+
+	SOURCE_DATE_EPOCH="$(git log -1 --pretty=format:%at)"
+
+	if (( $# < 1 ))
 	then
-		emerg "Must specify a base image with -B"
-		exit 2
+		alert "You must specify a base image to build for"
+		action_build_docker_list
+		return 2
 	fi
 
-	# Tag of base image defaults to 'latest'
-	[[ -z $base_tag ]] && base_tag="latest"
+	target=$1
 
-	# Set a default tag for the built image with relevant information
-	if [[ -z "$output_tag" ]]
+	if (( 1 < $# ))
 	then
-		output_tag="rakudo:$base_image-$base_tag"
-		if [[ ! -z $RSTAR_BACKEND ]]
-		then
-			output_tag="$output_tag-$RSTAR_BACKEND"
-		fi
+		warn "Only $target will be built, additional arguments are being ignored!"
 	fi
 
-	dockerfile=$(tempfile)
+	# Set defaults for the Docker tag value
+	[[ -z $name ]] && name="$USER/rakudo-star"
 
-	# We use the Dockerfile template for this image + tag pair if it exists,
-	# or use the image default template
-	if [[ -z $template ]] && [[ -f "$BASEDIR/lib/docker/$base_image/$base_tag" ]]
+	# Build up a nice tag if none was explicitly defined
+	if [[ -z $tag ]]
 	then
-		template="$BASEDIR/lib/docker/$base_image/$base_tag"
-	else
-		if [[ -f "$BASEDIR/lib/docker/$base_image" ]]
-		then
-			template="$BASEDIR/lib/docker/$base_image"
-		else
-			# Die if we have not found a template to use
-			emerg "No Dockerfile template found for '$base_image:$base_tag'!"
-			exit 2
-		fi
+		[[ -z $version ]] && version="$(datetime %Y.%m)"
+		[[ -z $description ]] && description="$target"
+
+		tag="$version-$description"
 	fi
 
-	# Fill in template placeholders
-	if [[ ! -z $RSTAR_BACKEND ]]
+	dockerfile="$BASEDIR/lib/docker/$target.Dockerfile"
+
+	debug "Using $dockerfile"
+
+	if [[ ! -f $dockerfile ]]
 	then
-		install_options="$install_options -b "'"'"$RSTAR_BACKEND"'"'
+		alert "Target '$target' is not supported"
+		action_build_docker_list
+		return 2
 	fi
 
-	sed < "$template" > "$dockerfile" \
-		-e "s/{{INSTALL_OPTIONS}}/$install_options/" \
-		-e "s/{{TAG}}/$base_tag/"
+	# Build the image
+	docker build \
+		-t "$name:$tag" \
+		-f "$dockerfile" \
+		--build-arg SOURCE_DATE_EPOCH="$SOURCE_DATE_EPOCH" \
+		--build-arg RSTAR_BACKEND="$RSTAR_BACKEND" \
+		"$BASEDIR"
 
-	# Build the image with the generated Dockerfile
-	docker build -t "$output_tag" -f "$dockerfile" "$BASEDIR"
+	# Also tag the image as "latest"
+	if [[ $tag_latest ]]
+	then
+		docker tag "$name:$tag" "$name:latest-$target"
+	fi
+}
 
-	shift $(( OPTIND -1 ))
+action_build_docker_list() {
+	chgdir "$BASEDIR/lib/docker" > /dev/null
+
+	info "Available targets are:"
+
+	for target in *.Dockerfile
+	do
+		info "  ${target%.*}"
+	done
 }
