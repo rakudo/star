@@ -81,7 +81,7 @@ Usage:
 	rstar fetch
 	rstar install [-b backend] [-p prefix] [core] [modules]
 	rstar sysinfo
-	rstar test [spectest] [modules]
+	rstar test [-p prefix] [spectest] [modules]
 
 rstar is the entry point for all utilities to deal with Rakudo Star.
 

@@ -1,0 +1,133 @@
+stages:
+  - Dist
+  - Install
+  - Test
+  - Docker
+
+Tarball:
+  stage: Dist
+  image: alpine:latest
+  before_script:
+    - apk add --no-cache bash coreutils curl git gnupg tar
+  script:
+    - ./bin/rstar sysinfo
+    - ./bin/rstar fetch
+    - ./bin/rstar dist "$CI_COMMIT_SHA"
+  artifacts:
+    paths:
+      - dist
+
+Rakudo Star:
+  stage: Install
+  image: alpine:latest
+  before_script:
+    - apk add --no-cache bash gcc libc-dev make perl
+    - cd "$(mktemp -d)"
+    - tar xzf "$CI_PROJECT_DIR/dist/rakudo-star-$CI_COMMIT_SHA.tar.gz"
+    - cd "rakudo-star-$CI_COMMIT_SHA"
+    - mkdir -p "$CI_PROJECT_DIR/opt"
+  script:
+    - ./bin/rstar sysinfo
+    - ./bin/rstar install -p "$CI_PROJECT_DIR/opt"
+  artifacts:
+    paths:
+      - "$CI_PROJECT_DIR/opt"
+
+QA:
+  stage: Test
+  image: alpine:latest
+  before_script:
+    - apk add --no-cache shellcheck
+  script:
+    - shellcheck bin/rstar
+    - find lib -type f -iname "*.*sh" | xargs shellcheck
+
+Rakudo Spectest:
+  stage: Test
+  image: alpine:latest
+  before_script:
+    - apk add --no-cache bash gcc libc-dev make perl
+    - cd "$(mktemp -d)"
+    - tar xzf "$CI_PROJECT_DIR/dist/rakudo-star-$CI_COMMIT_SHA.tar.gz"
+    - cd "rakudo-star-$CI_COMMIT_SHA"
+  script:
+    - ./bin/rstar sysinfo
+    - ./bin/rstar test -p "$CI_PROJECT_DIR/opt" spectest
+  allow_failure: true
+
+Community Modules:
+  stage: Test
+  image: alpine:latest
+  before_script:
+    - apk add --no-cache bash git
+    - cd "$(mktemp -d)"
+    - tar xzf "$CI_PROJECT_DIR/dist/rakudo-star-$CI_COMMIT_SHA.tar.gz"
+    - cd "rakudo-star-$CI_COMMIT_SHA"
+  script:
+    - ./bin/rstar sysinfo
+    - ./bin/rstar test -p "$CI_PROJECT_DIR/opt" modules
+  allow_failure: true
+
+Alpine:
+  stage: Docker
+  image: docker:stable
+  services:
+    - docker:dind
+  before_script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" "$CI_REGISTRY"
+    - apk add --no-cache bash
+    - cd "$(mktemp -d)"
+    - tar xzf "$CI_PROJECT_DIR/dist/rakudo-star-$CI_COMMIT_SHA.tar.gz"
+    - cd "rakudo-star-$CI_COMMIT_SHA"
+  script:
+    - ./bin/rstar sysinfo
+    - ./bin/rstar build-docker -l -n "$CI_REGISTRY_IMAGE" alpine
+    - docker push "$CI_REGISTRY_IMAGE:latest-alpine"
+
+Archlinux:
+  stage: Docker
+  image: docker:stable
+  services:
+    - docker:dind
+  before_script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" "$CI_REGISTRY"
+    - apk add --no-cache bash
+    - cd "$(mktemp -d)"
+    - tar xzf "$CI_PROJECT_DIR/dist/rakudo-star-$CI_COMMIT_SHA.tar.gz"
+    - cd "rakudo-star-$CI_COMMIT_SHA"
+  script:
+    - ./bin/rstar sysinfo
+    - ./bin/rstar build-docker -l -n "$CI_REGISTRY_IMAGE" archlinux
+    - docker push "$CI_REGISTRY_IMAGE:latest-archlinux"
+
+Debian:
+  stage: Docker
+  image: docker:stable
+  services:
+    - docker:dind
+  before_script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" "$CI_REGISTRY"
+    - apk add --no-cache bash
+    - cd "$(mktemp -d)"
+    - tar xzf "$CI_PROJECT_DIR/dist/rakudo-star-$CI_COMMIT_SHA.tar.gz"
+    - cd "rakudo-star-$CI_COMMIT_SHA"
+  script:
+    - ./bin/rstar sysinfo
+    - ./bin/rstar build-docker -l -n "$CI_REGISTRY_IMAGE" debian
+    - docker push "$CI_REGISTRY_IMAGE:latest-debian"
+
+CentOS:
+  stage: Docker
+  image: docker:stable
+  services:
+    - docker:dind
+  before_script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" "$CI_REGISTRY"
+    - apk add --no-cache bash
+    - cd "$(mktemp -d)"
+    - tar xzf "$CI_PROJECT_DIR/dist/rakudo-star-$CI_COMMIT_SHA.tar.gz"
+    - cd "rakudo-star-$CI_COMMIT_SHA"
+  script:
+    - ./bin/rstar sysinfo
+    - ./bin/rstar build-docker -l -n "$CI_REGISTRY_IMAGE" centos
+    - docker push "$CI_REGISTRY_IMAGE:latest-centos"

@@ -2,7 +2,7 @@
 
 action() {
 	local OPTIND
-	local clean_source
+	local clean_src
 
 	while getopts ":s" opt
 	do
