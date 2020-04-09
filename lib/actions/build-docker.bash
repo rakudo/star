@@ -34,8 +34,15 @@ action() {
 	fi
 
 	target=$1
+	shift
 
-	if (( 1 < $# ))
+	# Show warnings
+	if [[ -n $tag ]] && [[ -n $tag_latest ]]
+	then
+		warn "-l is ignored if -T is given"
+	fi
+
+	if (( 0 < $# ))
 	then
 		warn "Only $target will be built, additional arguments are being ignored!"
 	fi
