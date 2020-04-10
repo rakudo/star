@@ -2,7 +2,8 @@
 zef  git  https://github.com/ugexe/zef.git  v0.8.3
 
 # Documentation utilities
-rakudoc  git  https://github.com/Raku/doc.git  master
+Perl6-TypeGraph  git  https://github.com/antoniogamiz/Perl6-TypeGraph.git  v2.1.1
+rakudoc          git  https://github.com/Raku/doc.git                      master
 
 # Config
 Hash-Merge  git  https://github.com/scriptkitties/p6-Hash-Merge.git  v1.0.0
