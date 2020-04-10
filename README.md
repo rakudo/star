@@ -107,7 +107,7 @@ Patches for this project can be sent through email to
 To report bugs or provide other feedback, email is an option, but IRC and
 [Matrix](https://matrix.org/) are also available. For IRC, reach out to `tyil`
 on [Freenode](https://freenode.net/) or [DareNET](https://www.darenet.org/).
-For Matrix, sent a message to `tyil:matrix.org`.
+For Matrix, send a message to `tyil:matrix.org`.
 
 ### Bugs
 
@@ -127,6 +127,18 @@ avoid introducing new utilities. Furthermore, all code should be linted against
 Also, try to be generous with comments. Especially when introducing new utility
 functions, a little description of what it does and what problem it is intended
 to solve go a long way.
+
+### Repositories
+
+The main git repository lives at https://home.tyil.nl/git. This should be used
+as the reference to clone from.
+
+Additionally, there are mirrors of this repository at other places. You _can_
+make use of these mirrors and the services they offer (such as issue tracking
+or web-based "merge requests"), but they are in no way guaranteed to be taken
+into account.
+
+- http://gitlab.com/tyil/rakudo-star
 
 ## License
 
