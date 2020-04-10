@@ -59,7 +59,7 @@ Community Modules:
   stage: Test
   image: alpine:latest
   before_script:
-    - apk add --no-cache bash git openssl-dev
+    - apk add --no-cache bash gcc git openssl-dev
     - cd "$(mktemp -d)"
     - tar xzf "$CI_PROJECT_DIR/dist/rakudo-star-$CI_COMMIT_SHA.tar.gz"
     - cd "rakudo-star-$CI_COMMIT_SHA"
