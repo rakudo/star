@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+RSTAR_DEPS_BIN+=(
+	find
+	rm
+)
+
 action() {
 	local OPTIND
 	local clean_src
@@ -14,9 +19,7 @@ action() {
 
 	shift $(( OPTIND - 1 ))
 
-	shopt -s extglob
-
-	rm -fr -- "!($BASEDIR/bin/rstar)"
+	find "$BASEDIR/bin" ! -name rstar -type f -exec rm -f {} +
 	rm -fr -- "$BASEDIR/dist"
 	rm -fr -- "$BASEDIR/include"
 	rm -fr -- "$BASEDIR/lib/libmoar.so"
