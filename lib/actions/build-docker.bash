@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+RSTAR_DEPS_BIN+=(
+	docker
+)
+
 action() {
 	local OPTIND
 	local name
