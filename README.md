@@ -138,7 +138,8 @@ make use of these mirrors and the services they offer (such as issue tracking
 or web-based "merge requests"), but they are in no way guaranteed to be taken
 into account.
 
-- http://gitlab.com/tyil/rakudo-star
+- https://git.sr.ht/~tyil/rakudo-star
+- https://gitlab.com/tyil/rakudo-star
 
 ## License
 
