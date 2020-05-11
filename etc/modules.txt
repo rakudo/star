@@ -14,11 +14,11 @@ Hash-Merge  git  https://github.com/scriptkitties/p6-Hash-Merge.git  v1.0.0
 Config      git  https://github.com/scriptkitties/p6-Config.git      v2.0.1
 
 # Database interaction
-File-Directory-Tree   git  https://github.com/labster/p6-file-directory-tree.git  master
-File-Temp             git  https://github.com/rbt/raku-File-Temp.git              master
-NativeCall::TypeDiag  git  https://github.com/Skarsnik/nativecall-typediag.git    master
-NativeHelpers-Blob    git  https://github.com/salortiz/NativeHelpers-Blob.git     master
-DBIish                git  https://github.com/raku-community-modules/DBIish.git   master
+File-Directory-Tree  git  https://github.com/labster/p6-file-directory-tree.git  master
+File-Temp            git  https://github.com/rbt/raku-File-Temp.git              master
+NativeCall-TypeDiag  git  https://github.com/Skarsnik/nativecall-typediag.git    master
+NativeHelpers-Blob   git  https://github.com/salortiz/NativeHelpers-Blob.git     master
+DBIish               git  https://github.com/raku-community-modules/DBIish.git   master
 
 # Taken from the previous iteration of Rakudo Star
 URI                      git  https://github.com/raku-community-modules/uri.git                master
