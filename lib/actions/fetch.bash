@@ -70,10 +70,23 @@ download_module_git() {
 	fi
 
 	notice "Cloning $url@$ref to $destination"
-	git clone -b "$ref" "$url" --depth=1 --single-branch "$destination" \
-		> /dev/null 2>&1
 
-	rm -fr -- "$destination/.git"
+	mkdir -p -- "$destination"
+	pushd -- "$destination" > /dev/null
+
+	git init > /dev/null
+	git remote add origin "$url" 2> /dev/null
+	git fetch origin -a 2> /dev/null
+
+	# Try to use the ref (branch or tag)
+	if ! git reset --hard "origin/$ref" 2>&1 > /dev/null
+	then
+		# Or the commit hash
+		git reset --hard "$(git log -1 --format=format:"%H" "$ref")"
+	fi
+
+	rm -fr -- .git
+	popd -- "$destination" > /dev/null
 }
 
 download_module_http() {
