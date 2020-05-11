@@ -3,10 +3,10 @@
 # to be resolved manually by including all dependencies here as well.
 
 # Zef, the package manager
-zef  git  https://github.com/ugexe/zef.git  v0.8.3
+zef  git  https://github.com/ugexe/zef.git  v0.8.4
 
 # Documentation utilities
-Perl6-TypeGraph  git  https://github.com/antoniogamiz/Perl6-TypeGraph.git  v2.1.1
+Perl6-TypeGraph  git  https://github.com/antoniogamiz/Perl6-TypeGraph.git  a1da2d3ce804895086cd2aa441893c5e4e34aaf3
 rakudoc          git  https://github.com/Raku/doc.git                      master
 
 # Configuration management
