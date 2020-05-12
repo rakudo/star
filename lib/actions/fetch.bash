@@ -72,21 +72,20 @@ download_module_git() {
 	notice "Cloning $url@$ref to $destination"
 
 	mkdir -p -- "$destination"
-	pushd -- "$destination" > /dev/null
+	chgdir "$destination"
 
 	git init > /dev/null
 	git remote add origin "$url" 2> /dev/null
 	git fetch origin -a 2> /dev/null
 
 	# Try to use the ref (branch or tag)
-	if ! git reset --hard "origin/$ref" 2>&1 > /dev/null
+	if ! git reset --hard "origin/$ref" > /dev/null 2>&1
 	then
 		# Or the commit hash
 		git reset --hard "$(git log -1 --format=format:"%H" "$ref")"
 	fi
 
 	rm -fr -- .git
-	popd -- "$destination" > /dev/null
 }
 
 download_module_http() {
