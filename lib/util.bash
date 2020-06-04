@@ -162,7 +162,7 @@ pp_duration() {
 
 	printf "%dh %02dm %02ds\n" \
 		"$((diff / 60 / 60))" \
-		"$((diff / 60))" \
+		"$((diff / 60 % 60))" \
 		"$((diff % 60))"
 }
 
