@@ -1,0 +1,27 @@
+image: freebsd/latest
+arch: amd64
+packages:
+  - gcc
+  - perl5
+  - p5-App-cpanminus
+secrets:
+  - 63069bd6-993a-4133-aaf9-51398b07d60e
+tasks:
+  - prepare: |
+      mkdir -p "/tmp/ci-$JOB_ID"
+      mkdir -p ~/.ssh
+      cat <<-EOF > ~/.ssh/config
+      StrictHostKeyChecking no
+      UserKnownHostsFile /dev/null
+      EOF
+      cpanm -v ExtUtils::Command Pod::Usage
+  - build: |
+      ./rakudo-star/bin/rstar fetch
+      ./rakudo-star/bin/rstar install -p "/tmp/ci-$JOB_ID"
+  - package: |
+      COMMIT="$(git -C rakudo-star rev-parse HEAD)"
+      SOURCE_DATE_EPOCH="$(git -C rakudo-star log -1 --pretty=format:%at)"
+      cd -- "/tmp/ci-$JOB_ID"
+      tar -cf - . | gzip -9cn > "/tmp/rakudo-star-amd64-fbsd-$COMMIT.tar.gz"
+  - upload: |
+      scp /tmp/rakudo-star-amd64-fbsd-*.tar.gz dist@store0-0.tyil.net:data/tmp/.
