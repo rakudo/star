@@ -1,10 +1,10 @@
-image: alpine/latest
+image: debian/stable
+arch: amd64
 packages:
-  - bash
+  - cpanminus
+  - curl
   - gcc
-  - libc-dev
   - make
-  - perl
 secrets:
   - 63069bd6-993a-4133-aaf9-51398b07d60e
 tasks:
@@ -15,6 +15,7 @@ tasks:
       StrictHostKeyChecking no
       UserKnownHostsFile /dev/null
       EOF
+      cpanm -v ExtUtils::Command Pod::Usage
   - build: |
       ./rakudo-star/bin/rstar fetch
       ./rakudo-star/bin/rstar install -p "/tmp/ci-$JOB_ID"
@@ -29,6 +30,6 @@ tasks:
         --numeric-owner --owner=0 --group=0 \
         . \
         | gzip -9cn \
-        > "/tmp/rakudo-star-x86_64-musl-$COMMIT.tar.gz"
+        > "/tmp/rakudo-star-amd64-gnu-$COMMIT.tar.gz"
   - upload: |
-      scp /tmp/rakudo-star-x86_64-musl-*.tar.gz dist@store0-0.tyil.net:data/tmp/.
+      scp /tmp/rakudo-star-amd64-gnu-*.tar.gz dist@store0-0.tyil.net:data/tmp/.
