@@ -230,7 +230,12 @@ discover_system_arch() {
 discover_system_distro() {
 	if [[ -f /etc/os-release ]]
 	then
-		printf "%s" "$(source /etc/os-release && printf "%s" "$NAME" | awk '{print tolower($0)}' | sed 's@[/+ ]@_@g')"
+		(
+			source /etc/os-release
+			printf "%s" "$NAME" \
+				| awk '{print tolower($0)}' \
+				| sed 's@[/+ ]@_@g'
+		)
 		return
 	fi
 
