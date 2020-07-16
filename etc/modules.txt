@@ -75,3 +75,5 @@ TAP                      git  https://github.com/Raku/tap-harness6.git          
 App-Prove6               git  https://github.com/Leont/app-prove6.git                          master
 LibraryCheck             git  https://github.com/jonathanstowe/LibraryCheck.git                master
 Readline                 git  https://github.com/drforr/perl6-readline.git                     master
+
+# vim: textwidth=0
