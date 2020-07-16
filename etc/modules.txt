@@ -10,8 +10,21 @@ Perl6-TypeGraph  git  https://github.com/antoniogamiz/Perl6-TypeGraph.git  v2.1.
 rakudoc          git  https://github.com/Raku/doc.git                      master
 
 # Configuration management
-Hash-Merge  git  https://github.com/scriptkitties/p6-Hash-Merge.git  v1.0.0
-Config      git  https://github.com/scriptkitties/p6-Config.git      v2.0.1
+Hash-Merge          git  https://github.com/scriptkitties/p6-Hash-Merge.git         v1.0.0
+Log                 git  https://home.tyil.nl/git/raku/Log                          v0.3.1
+IO-Path-XDG         git  https://home.tyil.nl/git/raku/IO::Path::XDG                v0.2.0
+Config              git  https://home.tyil.nl/git/raku/Config                       v3.0.0
+
+Crane               git  https://github.com/atweiden/crane.git                      master
+Config-TOML         git  https://github.com/atweiden/config-toml.git                master
+Config-Parser-toml  git  https://home.tyil.nl/git/raku/Config::Parser::toml         v1.0.2
+
+MIME-Base64         git  https://github.com/raku-community-modules/MIME-Base64.git  master
+YAMLish             git  https://github.com/Leont/yamlish.git                       master
+Config-Parser-yaml  git  https://home.tyil.nl/git/raku/Config::Parser::yaml         v1.0.0
+
+JSON-Fast           git  https://github.com/timo/json_fast.git                      master
+Config-Parser-json  git  https://github.com/arjancwidlak/p6-Config-Parser-json.git  master
 
 # Database interaction
 File-Directory-Tree  git  https://github.com/labster/p6-file-directory-tree.git  master
@@ -22,7 +35,6 @@ DBIish               git  https://github.com/raku-community-modules/DBIish.git  
 
 # Taken from the previous iteration of Rakudo Star
 URI                      git  https://github.com/raku-community-modules/uri.git                master
-JSON-Fast                git  https://github.com/timo/json_fast.git                            master
 JSON-Name                git  https://github.com/jonathanstowe/JSON-Name.git                   master
 JSON-Unmarshal           git  https://github.com/tadzik/JSON-Unmarshal.git                     master
 JSON-Marshal             git  https://github.com/jonathanstowe/JSON-Marshal.git                master
@@ -38,7 +50,6 @@ OO-Monitors              git  https://github.com/jnthn/oo-monitors.git          
 Test-Mock                git  https://github.com/jnthn/test-mock.git                           master
 Grammar-Profiler-Simple  git  https://github.com/perlpilot/Grammar-Profiler-Simple.git         master
 Grammar-Debugger         git  https://github.com/jnthn/grammar-debugger.git                    master
-MIME-Base64              git  https://github.com/raku-community-modules/MIME-Base64.git        master
 JSON-Tiny                git  https://github.com/moritz/json.git                               master
 OpenSSL                  git  https://github.com/sergot/openssl.git                            master
 IO-Socket-SSL            git  https://github.com/sergot/io-socket-ssl.git                      master
