@@ -139,7 +139,7 @@ action_install_modules() {
 build_moarvm() {
 	info "Starting build on MoarVM"
 
-	build_prepare "$BASEDIR/src/moarvm-$VERSION" || return
+	build_prepare "$BASEDIR/src/moarvm-$VERSION/MoarVM-$VERSION" || return
 	perl Configure.pl \
 		"$@" \
 		&& make \
@@ -150,7 +150,7 @@ build_moarvm() {
 build_nqp() {
 	info "Starting build on NQP"
 
-	build_prepare "$BASEDIR/src/nqp-$VERSION" || return
+	build_prepare "$BASEDIR/src/nqp-$VERSION/nqp-$VERSION" || return
 	perl Configure.pl \
 		--backend="$RSTAR_BACKEND" \
 		"$@" \
@@ -162,7 +162,7 @@ build_nqp() {
 build_rakudo() {
 	info "Starting build on Rakudo"
 
-	build_prepare "$BASEDIR/src/rakudo-$VERSION" || return
+	build_prepare "$BASEDIR/src/rakudo-$VERSION/rakudo-$VERSION" || return
 	perl Configure.pl \
 		--backend="$RSTAR_BACKEND" \
 		"$@" \
