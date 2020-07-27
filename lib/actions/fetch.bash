@@ -50,7 +50,7 @@ download_core() {
 	mkdir -p -- "$destination"
 
 	tarball="$(fetch_http "$source")" \
-		&& tar xzf "$tarball" -C "$destination" --strip-components=1 \
+		&& tar xzf "$tarball" -C "$destination" \
 		&& return
 
 	crit "Failed to download $destination"
