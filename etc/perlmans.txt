@@ -1,2 +1,3 @@
 linux-debian_gnu_linux=apt install -y cpanminus && cpanm -v
 linux-ubuntu=apt install -y cpanminus && cpanm -v
+openbsd=curl -L http://cpanmin.us | perl - App::cpanminus && cpanm -v
