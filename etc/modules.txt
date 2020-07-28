@@ -37,6 +37,7 @@ File-Directory-Tree  git  https://github.com/labster/p6-file-directory-tree.git 
 File-Temp            git  https://github.com/rbt/raku-File-Temp.git              master
 NativeCall-TypeDiag  git  https://github.com/Skarsnik/nativecall-typediag.git    master
 NativeHelpers-Blob   git  https://github.com/salortiz/NativeHelpers-Blob.git     master
+NativeLibs           git  https://github.com/salortiz/NativeLibs.git             master
 DBIish               git  https://github.com/raku-community-modules/DBIish.git   master
 
 # Taken from the previous iteration of Rakudo Star
