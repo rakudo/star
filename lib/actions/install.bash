@@ -30,6 +30,18 @@ action() {
 
 	shift $(( OPTIND - 1 ))
 
+	# Throw OS-specific warnings, if any
+	case ${RSTAR_PLATFORM["key"]} in
+		openbsd)
+			# Check for userlimits
+			if [[ -z "$(userinfo "$(whoami)" | awk '$1 == "class" { print $2 }')" ]]
+			then
+				warn "Your user does not have a class, this may limit the installer's memory"
+				warn "usage, which can result in failure to compile."
+			fi
+			;;
+	esac
+
 	# Prepare environment for a reproducible install
 	LC_ALL=C.UTF-8
 
