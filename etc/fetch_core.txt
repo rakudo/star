@@ -3,7 +3,7 @@
 # component versions.
 moarvm_version=2020.08
 nqp_version=2020.08
-rakudo_version=2020.08.1
+rakudo_version=2020.08.2
 
 # These are the URLs to fetch the sources from. You can use %s in the URLs as a
 # placeholder for the version number, specified above.
