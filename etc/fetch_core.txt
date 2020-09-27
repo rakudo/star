@@ -1,9 +1,9 @@
 # These are the version numbers of the core components of Rakudo Star. Change
 # these if you want to create a distribution containing different core
 # component versions.
-moarvm_version=2020.08
-nqp_version=2020.08
-rakudo_version=2020.08.2
+moarvm_version=2020.09
+nqp_version=2020.09
+rakudo_version=2020.09
 
 # These are the URLs to fetch the sources from. You can use %s in the URLs as a
 # placeholder for the version number, specified above.
