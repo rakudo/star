@@ -91,6 +91,6 @@ Getopt-Long              git  https://github.com/Leont/getopt-long6.git         
 TAP                      git  https://github.com/Raku/tap-harness6.git                         master
 App-Prove6               git  https://github.com/Leont/app-prove6.git                          master
 LibraryCheck             git  https://github.com/jonathanstowe/LibraryCheck.git                master
-Readline                 git  https://github.com/fooist/perl6-readline.git                     master
+Readline                 git  https://github.com/fooist/perl6-readline.git                     0.1.6
 
 # vim: textwidth=0
