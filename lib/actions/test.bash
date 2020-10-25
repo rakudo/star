@@ -117,7 +117,7 @@ action_test_spectest() {
 
 	# Grab the source files
 	cp -R -- "$source/." "$destination"
-	chgdir "$destination"
+	chgdir "$destination/rakudo-$(config_etc_kv "fetch_core.txt" "rakudo_version")"
 
 	# Run the spectest
 	perl Configure.pl --prefix="$RSTAR_PREFIX"
