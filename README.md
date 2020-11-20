@@ -140,7 +140,7 @@ into account.
 
 - https://git.sr.ht/~tyil/rakudo-star
 - https://gitlab.com/tyil/rakudo-star
-- https://github.com/raku/rakudo-star
+- https://github.com/rakudo/star
 
 ## License
 
