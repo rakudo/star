@@ -130,8 +130,8 @@ to solve go a long way.
 
 ### Repositories
 
-The main git repository lives at https://home.tyil.nl/git. This should be used
-as the reference to clone from.
+The main git repository lives at https://git.tyil.nl/rakudo-star. This should
+be used as the reference to clone from.
 
 Additionally, there are mirrors of this repository at other places. You _can_
 make use of these mirrors and the services they offer (such as issue tracking
