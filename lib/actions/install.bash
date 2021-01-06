@@ -149,38 +149,61 @@ action_install_modules() {
 }
 
 build_moarvm() {
+	local logfile
+
+	logfile="$(tmpfile)"
+
 	info "Starting build on MoarVM"
 
 	build_prepare "$BASEDIR/src/moarvm-$VERSION/MoarVM-$VERSION" || return
-	perl Configure.pl \
-		"$@" \
+
+	info "Build log available at $logfile"
+
+	{
+		perl Configure.pl "$@" \
 		&& make \
 		&& make install \
+		> "$logfile" \
 		|| return
+	} > "$logfile" 2>&1
 }
 
 build_nqp() {
+	local logfile
+
+	logfile="$(tmpfile)"
+
 	info "Starting build on NQP"
 
 	build_prepare "$BASEDIR/src/nqp-$VERSION/nqp-$VERSION" || return
-	perl Configure.pl \
-		--backend="$RSTAR_BACKEND" \
-		"$@" \
+
+	info "Build log available at $logfile"
+
+	{
+		perl Configure.pl --backend="$RSTAR_BACKEND" "$@" \
 		&& make \
 		&& make install \
 		|| return
+	} > "$logfile" 2>&1
 }
 
 build_rakudo() {
+	local logfile
+
+	logfile="$(tmpfile)"
+
 	info "Starting build on Rakudo"
 
 	build_prepare "$BASEDIR/src/rakudo-$VERSION/rakudo-$VERSION" || return
-	perl Configure.pl \
-		--backend="$RSTAR_BACKEND" \
-		"$@" \
+
+	info "Build log available at $logfile"
+
+	{
+		perl Configure.pl --backend="$RSTAR_BACKEND" "$@" \
 		&& make \
 		&& make install \
 		|| return
+	} > "$logfile" 2>&1
 }
 
 build_prepare() {
