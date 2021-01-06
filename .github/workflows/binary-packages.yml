@@ -4,8 +4,6 @@ on:
   release:
     types:
       - created
-      - released
-      - prereleased
 
 jobs:
   amd64-gnu:
