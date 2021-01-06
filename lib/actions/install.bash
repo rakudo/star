@@ -151,15 +151,17 @@ action_install_modules() {
 }
 
 build_moarvm() {
-	local logfile
-
-	logfile="$(tmpfile)"
+	local logfile="/dev/stdout"
 
 	info "Starting build on MoarVM"
 
 	build_prepare "$BASEDIR/src/moarvm-$VERSION/MoarVM-$VERSION" || return
 
-	notice "Build log available at $logfile"
+	if [[ -z "$RSTAR_DEBUG" ]]
+	then
+		logfile="$(tmpfile)"
+		notice "Build log available at $logfile"
+	fi
 
 	{
 		perl Configure.pl "$@" \
@@ -171,15 +173,17 @@ build_moarvm() {
 }
 
 build_nqp() {
-	local logfile
-
-	logfile="$(tmpfile)"
+	local logfile="/dev/stdout"
 
 	info "Starting build on NQP"
 
 	build_prepare "$BASEDIR/src/nqp-$VERSION/nqp-$VERSION" || return
 
-	notice "Build log available at $logfile"
+	if [[ -z "$RSTAR_DEBUG" ]]
+	then
+		logfile="$(tmpfile)"
+		notice "Build log available at $logfile"
+	fi
 
 	{
 		perl Configure.pl --backend="$RSTAR_BACKEND" "$@" \
@@ -190,15 +194,17 @@ build_nqp() {
 }
 
 build_rakudo() {
-	local logfile
-
-	logfile="$(tmpfile)"
+	local logfile="/dev/stdout"
 
 	info "Starting build on Rakudo"
 
 	build_prepare "$BASEDIR/src/rakudo-$VERSION/rakudo-$VERSION" || return
 
-	notice "Build log available at $logfile"
+	if [[ -z "$RSTAR_DEBUG" ]]
+	then
+		logfile="$(tmpfile)"
+		notice "Build log available at $logfile"
+	fi
 
 	{
 		perl Configure.pl --backend="$RSTAR_BACKEND" "$@" \
