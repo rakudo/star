@@ -54,5 +54,5 @@ jobs:
         with:
           upload_url: ${{ steps.release_info.outputs.upload_url }}
           asset_path: /tmp/dist.tar.gz
-          asset_name: rakudo-star-amd64-gnu-${{ env.GITHUB_REF }}.tar.gz
+          asset_name: rakudo-star-amd64-gnu-${{ steps.release_info.outputs.name }}.tar.gz
           asset_content_type: application/gzip
