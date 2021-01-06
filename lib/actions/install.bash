@@ -43,7 +43,10 @@ action() {
 	esac
 
 	# Prepare environment for a reproducible install
-	LC_ALL=C.UTF-8
+	case ${RSTAR_PLATFORM["key"]} in
+		linux-arch_linux) LC_ALL=en_US.UTF-8 ;;
+		*)                LC_ALL=C.UTF-8     ;;
+	esac
 
 	# Distribution tarballs come with an epoch set, use it if you find it.
 	if [[ -f "$BASEDIR/etc/epoch.txt" ]]
