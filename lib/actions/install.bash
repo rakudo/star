@@ -122,6 +122,8 @@ action_install_modules() {
 	local failed_modules
 	local modules
 
+	notice "Starting installation of bundled modules"
+
 	modules="$(tmpfile)"
 
 	awk '/^[^#]/ {print $1}' "$BASEDIR/etc/modules.txt" > "$modules"
@@ -157,7 +159,7 @@ build_moarvm() {
 
 	build_prepare "$BASEDIR/src/moarvm-$VERSION/MoarVM-$VERSION" || return
 
-	info "Build log available at $logfile"
+	notice "Build log available at $logfile"
 
 	{
 		perl Configure.pl "$@" \
@@ -177,7 +179,7 @@ build_nqp() {
 
 	build_prepare "$BASEDIR/src/nqp-$VERSION/nqp-$VERSION" || return
 
-	info "Build log available at $logfile"
+	notice "Build log available at $logfile"
 
 	{
 		perl Configure.pl --backend="$RSTAR_BACKEND" "$@" \
@@ -196,7 +198,7 @@ build_rakudo() {
 
 	build_prepare "$BASEDIR/src/rakudo-$VERSION/rakudo-$VERSION" || return
 
-	info "Build log available at $logfile"
+	notice "Build log available at $logfile"
 
 	{
 		perl Configure.pl --backend="$RSTAR_BACKEND" "$@" \
