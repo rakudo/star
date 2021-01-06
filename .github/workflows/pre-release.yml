@@ -1,0 +1,26 @@
+name: Prerelease
+
+on:
+  push:
+    tags:
+      - '*-rc*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: ${{ github.ref }}
+          body: |
+            This is a release candidate of Rakudo Star. It is ment for testing
+            purposes, to eventually release a production quality release.
+          draft: false
+          prerelease: true

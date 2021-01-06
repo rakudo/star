@@ -1,0 +1,58 @@
+name: Binary Packages
+
+on:
+  release:
+    types:
+      - created
+      - released
+      - prereleased
+
+jobs:
+  amd64-gnu:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Deduce release
+        uses: bruceadams/get-release@v1.2.2
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+
+      - name: Prepare
+        run: |
+          sudo apt update
+          sudo apt install -y cpanminus curl gcc make
+          cpanm -v ExtUtils::Command Pod::Usage
+
+      - name: Fetch
+        run: |
+          ./bin/rstar fetch
+
+      - name: Install
+        run: |
+          ./bin/rstar install -p "/tmp/ci-$GITHUB_RUN_ID"
+
+      - name: Package
+        run: |
+          COMMIT="$(git rev-parse HEAD)"
+          SOURCE_DATE_EPOCH="$(git log -1 --pretty=format:%at)"
+          cd -- "/tmp/ci-$GITHUB_RUN_ID"
+          tar -c \
+            --mtime "@$SOURCE_DATE_EPOCH" \
+            --mode=go=rX,u+rw,a-s \
+            --format=gnu \
+            --numeric-owner --owner=0 --group=0 \
+            . \
+            | gzip -9cn \
+            > "/tmp/rakudo-star-amd64-gnu-$GITHUB_SHA.tar.gz"
+
+      - name: Upload
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          upload_url: ${{ steps.deduce_release.outputs.upload_url }}
+          asset_path: /tmp/rakudo-star-amd64-gnu-${{ env.GITHUB_SHA }}.tar.gz
+          asset_name: rakudo-star-amd64-gnu-${{ env.GITHUB_REF }}.tar.gz
+          asset_content_type: application/gzip
