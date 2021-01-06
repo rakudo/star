@@ -24,15 +24,16 @@ jobs:
           sudo apt install -y cpanminus curl gcc make
           cpanm -v ExtUtils::Command Pod::Usage
 
+      - name: System Information
+        run: ./bin/rstar sysinfo
+
       - name: Fetch
-        run: |
-          ./bin/rstar fetch
+        run: ./bin/rstar fetch
 
       - name: Install
         env:
           RSTAR_DEBUG: "1"
-        run: |
-          ./bin/rstar install -p "/tmp/ci-$GITHUB_RUN_ID"
+        run: ./bin/rstar install -p "/tmp/ci-$GITHUB_RUN_ID"
 
       - name: Package
         run: |
