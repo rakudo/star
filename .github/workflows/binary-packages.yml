@@ -36,17 +36,15 @@ jobs:
 
       - name: Package
         run: |
-          COMMIT="$(git rev-parse HEAD)"
-          SOURCE_DATE_EPOCH="$(git log -1 --pretty=format:%at)"
           cd -- "/tmp/ci-$GITHUB_RUN_ID"
           tar -c \
-            --mtime "@$SOURCE_DATE_EPOCH" \
+            --mtime "@$(git -C "$GITHUB_WORKSPACE" log -1 --pretty=format:%at)" \
             --mode=go=rX,u+rw,a-s \
             --format=gnu \
             --numeric-owner --owner=0 --group=0 \
             . \
             | gzip -9cn \
-            > "/tmp/rakudo-star-amd64-gnu-$GITHUB_SHA.tar.gz"
+            > "/tmp/dist.tar.gz"
 
       - name: Upload
         uses: actions/upload-release-asset@v1
@@ -54,6 +52,6 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         with:
           upload_url: ${{ steps.release_info.outputs.upload_url }}
-          asset_path: /tmp/rakudo-star-amd64-gnu-${{ env.GITHUB_SHA }}.tar.gz
+          asset_path: /tmp/dist.tar.gz
           asset_name: rakudo-star-amd64-gnu-${{ env.GITHUB_REF }}.tar.gz
           asset_content_type: application/gzip
