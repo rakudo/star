@@ -15,7 +15,8 @@ jobs:
       - name: Release
         uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: ${{ github.token }}
+          GITHUB_USER: ${{ secrets.WORKFLOW_RELEASE_USER }}
+          GITHUB_TOKEN: ${{ secrets.WORKFLOW_RELEASE_PAT }}
         with:
           tag_name: ${{ github.ref }}
           release_name: ${{ github.ref }}
