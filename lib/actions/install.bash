@@ -68,12 +68,12 @@ action() {
 	# on
 	init="$(date +%s)"
 
+	# Create the installation directory
+	mkdir -p -- "$RSTAR_PREFIX"
+
 	# Use an absolute path when reporting about the installation path
 	prefix_absolute="$(CDPATH="" cd -- "$RSTAR_PREFIX" 2> /dev/null && pwd -P)"
 	info "Installing Raku in $prefix_absolute"
-
-	# Create the installation directory
-	mkdir -p -- "$RSTAR_PREFIX"
 
 	# Run each installation target
 	for target in "$@"
