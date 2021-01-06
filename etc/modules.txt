@@ -19,7 +19,7 @@ Log-Colored         git  https://home.tyil.nl/git/raku/Log::Colored         v0.1
 Hash-Merge          git  https://github.com/scriptkitties/p6-Hash-Merge.git         v2.0.0
 IO-Path-XDG         git  https://home.tyil.nl/git/raku/IO::Path::XDG                v0.2.0
 Glob-IO             git  https://github.com/zostay/raku-IO-Glob.git                 master
-Config              git  https://home.tyil.nl/git/raku/Config                       v3.0.0
+Config              git  https://home.tyil.nl/git/raku/Config                       v3.0.3
 
 Crane               git  https://github.com/atweiden/crane.git                      master
 Config-TOML         git  https://github.com/atweiden/config-toml.git                master
