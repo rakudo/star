@@ -21,6 +21,6 @@ jobs:
           tag_name: ${{ github.ref }}
           release_name: ${{ github.ref }}
           body: |
-            This is just a drill, don't panic!
-          draft: true
+            This is release ${{ github.ref }} of Rakudo Star.
+          draft: false
           prerelease: false
