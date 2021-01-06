@@ -16,10 +16,10 @@ Terminal-ANSIColor  git  https://github.com/tadzik/Terminal-ANSIColor.git   mast
 Log-Colored         git  https://git.tyil.nl/raku/Log::Colored              v0.1.1
 
 # Configuration management
-Hash-Merge          git  https://github.com/scriptkitties/p6-Hash-Merge.git         v2.0.0
-IO-Path-XDG         git  https://git.tyil.nl/raku/IO::Path::XDG                     v0.2.0
-Glob-IO             git  https://github.com/zostay/raku-IO-Glob.git                 master
-Config              git  https://git.tyil.nl/raku/Config                            v3.0.3
+Hash-Merge          git  https://github.com/scriptkitties/p6-Hash-Merge.git            v2.0.0
+IO-Path-XDG         git  https://git.tyil.nl/raku/IO::Path::XDG                        v0.2.0
+Glob-IO             git  https://github.com/zostay/raku-IO-Glob.git                    master
+Config              http https://git.tyil.nl/raku/Config/snapshot/Config-3.0.3.tar.gz  Config-3.0.3
 
 Crane               git  https://github.com/atweiden/crane.git                      master
 Config-TOML         git  https://github.com/atweiden/config-toml.git                master
