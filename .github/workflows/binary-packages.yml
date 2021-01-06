@@ -29,6 +29,8 @@ jobs:
           ./bin/rstar fetch
 
       - name: Install
+        env:
+          RSTAR_DEBUG: "1"
         run: |
           ./bin/rstar install -p "/tmp/ci-$GITHUB_RUN_ID"
 
