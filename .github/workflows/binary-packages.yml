@@ -13,6 +13,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Deduce release
+        id: release_info
         uses: bruceadams/get-release@v1.2.2
         env:
           GITHUB_TOKEN: ${{ github.token }}
@@ -50,7 +51,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
-          upload_url: ${{ steps.deduce_release.outputs.upload_url }}
+          upload_url: ${{ steps.release_info.outputs.upload_url }}
           asset_path: /tmp/rakudo-star-amd64-gnu-${{ env.GITHUB_SHA }}.tar.gz
           asset_name: rakudo-star-amd64-gnu-${{ env.GITHUB_REF }}.tar.gz
           asset_content_type: application/gzip
