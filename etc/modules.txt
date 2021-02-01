@@ -3,7 +3,7 @@
 # to be resolved manually by including all dependencies here as well.
 
 # Zef, the package manager
-zef  git  https://github.com/ugexe/zef.git  v0.11.2
+zef  git  https://github.com/ugexe/zef.git  v0.11.4
 
 # Documentation utilities
 Perl6-TypeGraph  git  https://github.com/antoniogamiz/Perl6-TypeGraph.git  v2.1.3
