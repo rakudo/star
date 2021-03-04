@@ -190,8 +190,8 @@ build_nqp() {
 
 	{
 		perl Configure.pl --backend="$RSTAR_BACKEND" "$@" \
-		&& make \
-		&& make install \
+		&& ${RSTAR_PLATFORM[make]} \
+		&& ${RSTAR_PLATFORM[make]} install \
 		|| return
 	} > "$logfile" 2>&1
 }
@@ -211,8 +211,8 @@ build_rakudo() {
 
 	{
 		perl Configure.pl --backend="$RSTAR_BACKEND" "$@" \
-		&& make \
-		&& make install \
+		&& ${RSTAR_PLATFORM[make]} \
+		&& ${RSTAR_PLATFORM[make]} install \
 		|| return
 	} > "$logfile" 2>&1
 }

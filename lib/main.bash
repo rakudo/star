@@ -213,6 +213,7 @@ discover_system() {
 	RSTAR_PLATFORM["arch"]="$(discover_system_arch)"
 	RSTAR_PLATFORM["version"]="$(discover_system_version)"
 	RSTAR_PLATFORM["term"]="$TERM"
+	RSTAR_PLATFORM["make"]="$(discover_system_make)"
 
 	# When on a Linux-using OS, check for the specific distribution in use.
 	if [[ ${RSTAR_PLATFORM[os]} == *"linux"* ]]
@@ -247,6 +248,16 @@ discover_system_distro() {
 		printf "%s" "archlinux"
 		return
 	fi
+}
+
+discover_system_make() {
+	for m in gmake make
+	do
+		command -v "$m" > /dev/null || continue
+
+		printf "%s" "$m"
+		return
+	done
 }
 
 discover_system_version() {
