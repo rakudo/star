@@ -16,6 +16,8 @@ tasks:
       UserKnownHostsFile /dev/null
       EOF
   - build: |
+      export RSTAR_DEBUG=1
+      ./rakudo-star/bin/rstar sysinfo
       ./rakudo-star/bin/rstar fetch
       ./rakudo-star/bin/rstar install -p "/tmp/ci-$JOB_ID"
   - package: |
