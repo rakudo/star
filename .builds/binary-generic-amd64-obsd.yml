@@ -25,4 +25,4 @@ tasks:
       cd -- "/tmp/ci-$JOB_ID"
       tar -cf - . | gzip -9cn > "/tmp/rakudo-star-amd64-obsd-$COMMIT.tar.gz"
   - upload: |
-      scp /tmp/rakudo-star-amd64-obsd-*.tar.gz dist@dist.tyil.net:raku/star-build
+      echo 'put /tmp/rakudo-star-amd64-obsd-'*'.tar.gz' | sftp dist@dist.tyil.nl:raku/star-build

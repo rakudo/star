@@ -34,4 +34,4 @@ tasks:
         | gzip -9cn \
         > "/tmp/rakudo-star-arm64-gnu-$COMMIT.tar.gz"
   - upload: |
-      scp /tmp/rakudo-star-arm64-gnu-*.tar.gz dist@dist.tyil.net:raku/star-build
+      echo 'put /tmp/rakudo-star-arm64-gnu-'*'.tar.gz' | sftp dist@dist.tyil.nl:raku/star-build
