@@ -3,7 +3,7 @@ arch: amd64
 packages:
   - gcc
 secrets:
-  - 63069bd6-993a-4133-aaf9-51398b07d60e
+  - 53a0d643-e454-4f3b-96af-9ca28cfd6ddd
 tasks:
   - prepare: |
       mkdir -p "/tmp/ci-$JOB_ID"
@@ -23,4 +23,4 @@ tasks:
       cd -- "/tmp/ci-$JOB_ID"
       tar -cf - . | gzip -9cn > "/tmp/rakudo-star-amd64-obsd-$COMMIT.tar.gz"
   - upload: |
-      scp /tmp/rakudo-star-amd64-obsd-*.tar.gz dist@store0-0.tyil.net:data/tmp/.
+      scp /tmp/rakudo-star-amd64-obsd-*.tar.gz dist@dist.tyil.net:raku/star-build
