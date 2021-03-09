@@ -6,7 +6,7 @@ packages:
   - gcc
   - make
 secrets:
-  - 53a0d643-e454-4f3b-96af-9ca28cfd6ddd
+  - ae8f3553-d201-4358-ad35-2f04e7cc3976
 tasks:
   - prepare: |
       mkdir -p "/tmp/ci-$JOB_ID"
