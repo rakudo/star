@@ -44,6 +44,7 @@ action() {
 
 	# Prepare environment for a reproducible install
 	case ${RSTAR_PLATFORM["key"]} in
+		dragonfly)        LC_ALL=C           ;;
 		linux-arch_linux) LC_ALL=en_US.UTF-8 ;;
 		*)                LC_ALL=C.UTF-8     ;;
 	esac

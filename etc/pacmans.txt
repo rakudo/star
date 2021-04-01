@@ -1,3 +1,4 @@
+dragonfly=pkg update && pkg install-y
 freebsd=pkg update && pkg install -y
 linux-alpine_linux=apk add --no-cache
 linux-archlinux=pacman -Sy --noconfirm

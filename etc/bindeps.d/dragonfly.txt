@@ -1,0 +1,2 @@
+gcc=gcc
+perl=perl5
