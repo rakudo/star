@@ -62,7 +62,7 @@ IO-Socket-SSL            git  https://github.com/sergot/io-socket-ssl.git       
 LWP-Simple               git  https://github.com/raku-community-modules/raku-lwp-simple.git    master
 Digest-MD5               git  https://github.com/cosimo/perl6-digest-md5.git                   master
 HTTP-Status              git  https://github.com/supernovus/perl6-http-status.git              master
-Template-Mustache        git  https://github.com/softmoth/p6-Template-Mustache.git             master
+Template-Mustache        git  https://github.com/softmoth/p6-Template-Mustache.git             main
 PSGI                     git  https://github.com/supernovus/perl6-psgi.git                     master
 HTTP-Easy                git  https://github.com/supernovus/perl6-http-easy.git                master
 Template-Mojo            git  https://github.com/tadzik/Template-Mojo.git                      master
