@@ -40,6 +40,11 @@ NativeHelpers-Blob   git  https://github.com/salortiz/NativeHelpers-Blob.git    
 NativeLibs           git  https://github.com/salortiz/NativeLibs.git             master
 DBIish               git  https://github.com/raku-community-modules/DBIish.git   master
 
+# Inline::*
+System-Query                       git  https://github.com/tony-o/p6-warthog.git                       master
+Distribution-Builder-MakeFromJSON  git https://github.com/niner/Distribution-Builder-MakeFromJSON.git  master
+Inline-Perl5                       git  https://github.com/niner/Inline-Perl5.git                      master
+
 # Taken from the previous iteration of Rakudo Star
 URI                      git  https://github.com/raku-community-modules/uri.git                master
 JSON-Name                git  https://github.com/jonathanstowe/JSON-Name.git                   master
