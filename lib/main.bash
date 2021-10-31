@@ -78,7 +78,7 @@ Usage:
 	rstar build-docker [-T tag] [-b backend] [-d description] [-l] [-n name] [-t version] <base>
 	rstar clean [-s]
 	rstar dist [version]
-	rstar fetch
+	rstar fetch [-l]
 	rstar install [-b backend] [-p prefix] [core] [modules]
 	rstar sysinfo
 	rstar test [-p prefix] [spectest] [modules]
@@ -94,9 +94,15 @@ Actions:
 	clean         Clean up the repository. If -s is given, the src
 	              directory will also be removed.
 	dist          Create a distributable tarball of this repository. If no
-	              version identifier is specified, it will use the current
-	              year and month in "yyyy.mm" notation.
-	fetch         Fetch all required sources.
+	              version identifier is specified, it will assume it should
+	              build ontop of the latest RAKUDO release and therefore
+	              check "https://github.com/rakudo/rakudo/releases/latest"
+	              for something like i.e. "2020.08" or "2020.08.1".
+	              If the "RAKUDO latest" doesn't match, it will use the
+	              current year and month in "yyyy.mm" notation.
+	fetch         Fetch all required sources. If -l is given, the GitHub
+	              "latest" releases from all components will be fetched.
+	              If GitHub latest doesn't fit, fallback to "fetch_core.txt"
 	install       Install Raku on this system. By default, MoarVM will be
 	              used as the only backend, and the Rakudo Star directory
 	              will be used as prefix. If neither core nor modules are
