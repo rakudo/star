@@ -10,22 +10,32 @@ RSTAR_DEPS_BIN+=(
 	sha384sum
 	sha512sum
 	tar
+	curl
 )
 
 action() {
 	local LC_ALL
 	local SOURCE_DATE_EPOCH
+	local RKD_LATEST
 	local basename
 	local tarball
-	local version
+	local VERSION
 
 	# Prepare environment for a reproducible tarball
 	LC_ALL=C.UTF-8
 	SOURCE_DATE_EPOCH="$(git log -1 --pretty=format:%at)"
 
-	# Set a version if none was specified explicitly
-	version="${1:-$(datetime %Y.%m)}"
-	WORKDIR="$BASEDIR/tmp/rakudo-star-$version"
+	# Set a VERSION if none was specified explicitly
+	## defaults to the latest GitHub RAKUDO release, as long as "latest" matches something like 2020.08 or 2020.08.1
+	## takes YEAR.month else, so something like 2020.08
+	if [[ "$(curl -s https://github.com/rakudo/rakudo/releases/latest)" =~ /tag/([0-9]+.[0-9]+)(.[0-9]+) ]]
+	then
+		RKD_LATEST="${BASH_REMATCH[1]}${BASH_REMATCH[2]}"
+	else
+		RKD_LATEST="$(datetime %Y.%m)"
+	fi
+	VERSION="${1:-$RKD_LATEST}"
+	WORKDIR="$BASEDIR/tmp/rakudo-star-$VERSION"
 
 	debug "SOURCE_DATE_EPOCH set to $SOURCE_DATE_EPOCH"
 
@@ -56,7 +66,7 @@ action() {
 	# Tar it all up into a distribution tarball
 	info "Creating tarball out of $WORKDIR"
 
-	basename="rakudo-star-$version"
+	basename="rakudo-star-$VERSION"
 	tarball="$BASEDIR/dist/$basename.tar.gz"
 
 	mkdir -p -- "$(dirname "$tarball")"
@@ -87,6 +97,12 @@ action() {
 }
 
 dist_include() {
+	if [[ ! -e "${BASEDIR}$1" ]]
+	then
+		crit "\"${BASEDIR}$1\" expected but not found, you may need to run \"rstar fetch\" first"
+		exit 7
+	fi
+	
 	mkdir -p -- "$(dirname "${WORKDIR}$1")"
 	cp -r -- "${BASEDIR}$1" "${WORKDIR}$1"
 }

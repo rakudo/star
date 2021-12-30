@@ -8,6 +8,20 @@ RSTAR_DEPS_BIN+=(
 )
 
 action() {
+ 
+	local RKD_VERSION_GH_LATEST
+	
+	# If -l is set, get the "GitHub latest" releases of every $component below
+	while getopts ":l" opt
+	do
+		case "$opt" in
+			l) RKD_VERSION_GH_LATEST=1 ;;
+			*) emerg "Invalid option specified: $opt" ;;
+		esac
+	done
+
+	shift "$(( OPTIND - 1 ))"
+	
 	# Ensure the directory to download to exists
 	mkdir -p "$BASEDIR/src"
 
@@ -33,13 +47,28 @@ action() {
 }
 
 download_core() {
-	local version
+	local VERSION
 	local source
 	local destination
 
-	version="$(config_etc_kv "fetch_core.txt" "${1}_version")"
-	source="$(config_etc_kv "fetch_core.txt" "${1}_url" | sed "s/%s/$version/g")"
-	destination="$BASEDIR/src/$1-$version"
+	if [[ $RKD_VERSION_GH_LATEST ]]
+	then
+		TMP_VERSION="$(config_etc_kv "fetch_core.txt" "${1}_url" | sed -E "s|(https://github.com/.+/.+/releases)/download/.+|\1/latest|")"
+		
+		if [[ "$(curl -s $TMP_VERSION)" =~ /tag/([0-9]+.[0-9]+)(.[0-9]+) ]]
+		then
+			VERSION="${BASH_REMATCH[1]}${BASH_REMATCH[2]}"
+		else
+			warn "\"-l\" option set but \"$TMP_VERSION\" doesn't match an expected ${1} GitHub release tag"
+			warn "falling back to the version given in \"fetch_core.txt\""
+			VERSION="$(config_etc_kv "fetch_core.txt" "${1}_version")"
+		fi
+	else
+		VERSION="$(config_etc_kv "fetch_core.txt" "${1}_version")"
+	fi
+	
+	source="$(config_etc_kv "fetch_core.txt" "${1}_url" | sed "s/%s/$VERSION/g")"
+	destination="$BASEDIR/src/$1-$VERSION"
 
 	if [[ -d $destination ]]
 	then
