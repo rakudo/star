@@ -1,0 +1,77 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Build Rakudo Star Releases (Windows MSI and Linux RSTAR source)
+
+# Create triggers the workflow on new tag's or branches
+on:
+  create: #[push, create, workflow_dispatch]
+    tags:
+    - 2[0-9]+.[0-1][0-1]'**'
+
+jobs:
+  build_Rakudo-Star_Windows_MSI_package:
+    # Windows-latest has almost all requirements to build rakudo-star-win
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Setup VS Dev Environment
+        uses: seanmiddleditch/gha-setup-vsdevenv@v3
+      - name: Run the build-with-choco.ps1 script
+        run: pwsh -command ".\$GITHUB_WORKSPACE\tools\build\binary-release\Windows\build-with-choco.ps1"
+      - name: Upload Rakudo-Star Windows artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: output
+          path: tools/build/binary-release/Windows/*
+          if-no-files-found: error
+          
+  build_Rakudo-Star_Linux_source:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Prepare
+        run: |
+          sudo apt update
+          sudo apt install -y cpanminus curl gcc make
+          cpanm -v ExtUtils::Command Pod::Usage
+      - name: Collect RSTAR System Informations
+        env:
+          RSTAR_DEBUG: "1"
+        run: ./bin/rstar sysinfo
+      - name: Fetch RSTAR Components
+        run: ./bin/rstar fetch -l
+      - name: Create RSTAR Distrubution
+        run: ./bin/rstar dist
+      - name: List my stuff
+        run: |
+          ls -laR
+      - name: Upload Rakudo-Star Linux artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: output
+          path: dist/*
+          if-no-files-found: error
+      
+  release_Rakudo-Star_artifacts:
+    needs: [build_Rakudo-Star_Windows_MSI_package, build_Rakudo-Star_Linux_source]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/download-artifact@v2
+      with:
+        path: Rakudo-Star_artifacts
+    - name: List my stuff
+      run: |
+        ls -laR
+    - name: Release Rakudo-Star Windows MSI and Linux RSTAR releases
+      uses: ncipollo/release-action@v1
+      with:
+        # ncipollo/release-action needs a tag! Either a usual "GIT TAG" or an dedicated TAG, see below!
+        #tag: 2021.06 # set a TAG if you want a release to be build on GitHub _BUT_ do not provide a GIT TAG
+        allowUpdates: true
+        artifactErrorsFailBuild: true
+        artifacts: "Rakudo-Star_artifacts/output/rakudo-star-*,Rakudo-Star_artifacts/output/Windows/rakudo-star-*"
+        token: ${{ secrets.GITHUB_TOKEN }}
+        
+

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Product Id="*"
+			Language="1033"
+			Manufacturer="The Raku Community"
+			Name="Rakudo Star $(var.STARVERSION)"
+			UpgradeCode="08B7EB05-7EAC-4B60-9F5B-AF6E367FE0FD"
+			Version="1.0.0">
+        <Package Compressed="yes"
+				InstallerVersion="301"
+				Platform="x64"
+				Manufacturer="The Raku Community"
+				Description="Installs Rakudo Star $(var.STARVERSION)"
+				Keywords="Raku, Rakudo"
+				Comments="(c) 2021 The Raku Community"/>
+		<Media Id="1" Cabinet="product.cab" EmbedCab="yes" />
+		
+		<!-- Installation Path as given by user in the prompt -->
+		<Property Id="WIXUI_INSTALLDIR" Value="INSTALLROOT" />
+		<!-- Rakudo Star Icon -->
+		<Icon Id="RakudoStarIcon" SourceFile="rakudostar.ico" />
+		<!-- Icon under Add/Remove Programs -->
+		<Property Id="ARPPRODUCTICON" Value="RakudoStarIcon" />
+		
+		<!--Directory structure-->
+        <Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="INSTALLROOT" Name="rakudo">
+				<Directory Id="DIR_BIN" Name="bin" />
+				<Directory Id="DIR_INCLUDE" Name="include" />
+				<Directory Id="DIR_SHARE" Name="share" />
+			</Directory>
+			<Directory Id="ProgramMenuFolder">
+				<Directory Id="RakudoMenuFolder" Name="Rakudo Star" />
+			</Directory>
+			
+			<!--PATH-->
+			<Component Id="RakudoStarPath" Guid="45669CAC-166D-4569-900A-6EF775EDC8F5">
+				<Environment Id="MYPATH" Name="PATH" Action="set" Part="last"
+							Value="[INSTALLROOT]bin;[INSTALLROOT]share\perl6\site\bin"
+							System="no" Permanent="no" />
+				<Condition>MYENVIRONMENTSETPATH</Condition>
+			</Component>
+			
+			<!--Extension handler-->
+			<Component Id="RakuExtensions" Guid="3E1C3BD1-D757-48EE-ACB6-3C5938096568">
+				<ProgId Id='foo.raku' Description='Raku file'>
+					<Extension Id='raku' ContentType='application/raku'>
+						<Verb Id='open' Command='Open' TargetFile="raku.exe" Argument='"%1"' />
+					</Extension>
+				</ProgId>
+			</Component>
+        </Directory>
+		
+		<!--Start Menu Shortcuts-->
+		<DirectoryRef Id="RakudoMenuFolder">
+			<Component Id="RakudoStarShortcuts" Guid="B5BD7AEC-C8dC-4F84-AF2E-4A417350D642">
+				<Shortcut Id="RakudoShortcut"
+						Name="Rakudo"
+						Description="The Rakudo REPL"
+						Target="[INSTALLROOT]bin\raku"
+						WorkingDirectory="INSTALLROOT"
+						Icon="RakudoStarIcon" >	
+				</Shortcut>
+				<Shortcut Id="UninstallShortcut"
+						Name="Uninstall Rakudo Star"
+						Description="Uninstalls Rakudo Star"
+						Target="[System64Folder]msiexec.exe"
+						Arguments="/x [ProductCode]" />
+				<RemoveFolder Id="RakudoMenuFolder" On="uninstall" />
+				<RegistryValue Root="HKCU" Key="Software\Microsoft\Rakudo" Name="installed" Type="integer" Value="1" KeyPath="yes" />
+			</Component>
+		</DirectoryRef>
+		
+		<!--Features-->
+        <Feature Id="ProductFeature" Level="1" Title="Rakudo Star $(var.STARVERSION)">
+			<ComponentGroupRef Id="FilesBin" />
+			<ComponentGroupRef Id="FilesInclude" />
+			<ComponentGroupRef Id="FilesShare" />
+			<ComponentRef Id="RakudoStarShortcuts" />
+			<ComponentRef Id="RakudoStarPath" />
+			<ComponentRef Id="RakuExtensions" />
+        </Feature>
+
+		<!--UI Reference-->
+		<UIRef Id="WixUI_Common" />
+		<!--Artisric License-->
+		<WixVariable Id="WixUILicenseRtf" Value="License.rtf" />
+		
+        <UI Id="WixUI_InstallDir">
+            <TextStyle Id="WixUI_Font_Normal" FaceName="Tahoma" Size="8" />
+            <TextStyle Id="WixUI_Font_Bigger" FaceName="Tahoma" Size="12" />
+            <TextStyle Id="WixUI_Font_Title" FaceName="Tahoma" Size="9" Bold="yes" />
+
+            <Property Id="DefaultUIFont" Value="WixUI_Font_Normal" />
+            <Property Id="WixUI_Mode" Value="InstallDir" />
+
+            <DialogRef Id="BrowseDlg" />
+            <DialogRef Id="DiskCostDlg" />
+            <DialogRef Id="ErrorDlg" />
+            <DialogRef Id="FatalError" />
+            <DialogRef Id="FilesInUse" />
+            <DialogRef Id="MsiRMFilesInUse" />
+            <DialogRef Id="PrepareDlg" />
+            <DialogRef Id="ProgressDlg" />
+            <DialogRef Id="ResumeDlg" />
+            <DialogRef Id="UserExit" />
+			<Dialog Id="MySetPathDlg" Width="370" Height="270" Title="!(loc.InstallDirDlg_Title)">
+                <Control Id="Next" Type="PushButton" X="236" Y="243" Width="56" Height="17" Default="yes" Text="!(loc.WixUINext)" >
+                  <Publish Property="WixUI_InstallMode" Value="Update">Installed AND PATCH</Publish>
+                </Control>
+                <Control Id="Cancel" Type="PushButton" X="304" Y="243" Width="56" Height="17" Cancel="yes" Text="!(loc.WixUICancel)">
+                  <Publish Event="SpawnDialog" Value="CancelDlg">1</Publish>
+                </Control>
+                <Control Id="Bitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="234" TabSkip="no" Text="!(loc.WelcomeDlgBitmap)" />
+                <Control Id="Back" Type="PushButton" X="180" Y="243" Width="56" Height="17" Text="!(loc.WixUIBack)" />
+                <Control Id="BottomLine" Type="Line" X="0" Y="234" Width="370" Height="0" />
+                <Control Id="Title" Type="Text" X="135" Y="20" Width="220" Height="60" Transparent="yes" NoPrefix="yes" Text="Environment Variables" />
+                <Control Id="Description" Type="Text" X="135" Y="60" Width="220" Height="15" Transparent="yes" NoPrefix="yes" Text="The following directories need to be added to PATH:" />
+                <Control Id="Path1" Type="Text" X="145" Y="80" Width="220" Height="10" Transparent="yes" NoPrefix="yes" Text="[INSTALLROOT]bin" />
+                <Control Id="Path2" Type="Text" X="145" Y="90" Width="220" Height="15" Transparent="yes" NoPrefix="yes" Text="[INSTALLROOT]share\perl6\site\bin" />
+                <Control Id="MyCheckBoxSetPath" Type="CheckBox" X="135" Y="160" Width="290" Height="17" Property="MYENVIRONMENTSETPATH" CheckBoxValue="1" Text="Set PATH environment variable automatically." />
+            </Dialog>
+            
+            <Publish Dialog="BrowseDlg" Control="OK" Event="DoAction" Value="WixUIValidatePath" Order="3">1</Publish>
+            <Publish Dialog="BrowseDlg" Control="OK" Event="SpawnDialog" Value="InvalidDirDlg" Order="4"><![CDATA[WIXUI_INSTALLDIR_VALID<>"1"]]></Publish>
+
+            <Publish Dialog="ExitDialog" Control="Finish" Event="EndDialog" Value="Return" Order="999">1</Publish>
+
+            <Publish Dialog="WelcomeDlg" Control="Next" Event="NewDialog" Value="LicenseAgreementDlg">NOT Installed</Publish>
+            <Publish Dialog="WelcomeDlg" Control="Next" Event="NewDialog" Value="VerifyReadyDlg">Installed AND PATCH</Publish>
+
+            <Publish Dialog="LicenseAgreementDlg" Control="Back" Event="NewDialog" Value="WelcomeDlg">1</Publish>
+            <Publish Dialog="LicenseAgreementDlg" Control="Next" Event="NewDialog" Value="InstallDirDlg">LicenseAccepted = "1"</Publish>
+
+            <Publish Dialog="InstallDirDlg" Control="Back" Event="NewDialog" Value="LicenseAgreementDlg">1</Publish>
+            <Publish Dialog="InstallDirDlg" Control="Next" Event="SetTargetPath" Value="[WIXUI_INSTALLDIR]" Order="1">1</Publish>
+            <Publish Dialog="InstallDirDlg" Control="Next" Event="DoAction" Value="WixUIValidatePath" Order="2">NOT WIXUI_DONTVALIDATEPATH</Publish>
+            <Publish Dialog="InstallDirDlg" Control="Next" Event="SpawnDialog" Value="InvalidDirDlg" Order="3"><![CDATA[NOT WIXUI_DONTVALIDATEPATH AND WIXUI_INSTALLDIR_VALID<>"1"]]></Publish>
+            <Publish Dialog="InstallDirDlg" Control="Next" Event="NewDialog" Value="MySetPathDlg" Order="4">WIXUI_DONTVALIDATEPATH OR WIXUI_INSTALLDIR_VALID="1"</Publish>
+            <Publish Dialog="InstallDirDlg" Control="ChangeFolder" Property="_BrowseProperty" Value="[WIXUI_INSTALLDIR]" Order="1">1</Publish>
+            <Publish Dialog="InstallDirDlg" Control="ChangeFolder" Event="SpawnDialog" Value="BrowseDlg" Order="2">1</Publish>
+			
+			<Publish Dialog="MySetPathDlg" Control="Back" Event="NewDialog" Value="InstallDirDlg">1</Publish>
+            <Publish Dialog="MySetPathDlg" Control="Next" Event="NewDialog" Value="VerifyReadyDlg">1</Publish>
+            
+            <Publish Dialog="VerifyReadyDlg" Control="Back" Event="NewDialog" Value="MySetPathDlg" Order="1">NOT Installed</Publish>
+            <Publish Dialog="VerifyReadyDlg" Control="Back" Event="NewDialog" Value="MaintenanceTypeDlg" Order="2">Installed AND NOT PATCH</Publish>
+            <Publish Dialog="VerifyReadyDlg" Control="Back" Event="NewDialog" Value="WelcomeDlg" Order="2">Installed AND PATCH</Publish>
+
+            <Publish Dialog="MaintenanceWelcomeDlg" Control="Next" Event="NewDialog" Value="MaintenanceTypeDlg">1</Publish>
+
+            <Publish Dialog="MaintenanceTypeDlg" Control="RepairButton" Event="NewDialog" Value="VerifyReadyDlg">1</Publish>
+            <Publish Dialog="MaintenanceTypeDlg" Control="RemoveButton" Event="NewDialog" Value="VerifyReadyDlg">1</Publish>
+            <Publish Dialog="MaintenanceTypeDlg" Control="Back" Event="NewDialog" Value="MaintenanceWelcomeDlg">1</Publish>
+
+            <Property Id="ARPNOMODIFY" Value="1" />
+			<Property Id="MYENVIRONMENTSETPATH">1</Property>
+        </UI>
+    </Product>
+</Wix>
