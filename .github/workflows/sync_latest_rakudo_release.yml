@@ -1,0 +1,47 @@
+# See https://stackoverflow.com/questions/58465057/trigger-a-github-action-when-another-repository-creates-a-new-release
+# 
+# This Action works only because of the avilable "build_rakudo-star.yml" Action.
+## Actually this here triggers the other build Action by adding a new TAG (Rakudo releases are having TAGs)
+## TODO: switch to env vars later
+
+name: Synchronize Rakudo Star with the latest Rakudo release
+
+on:
+  schedule:
+    - cron:  '55 1 * * *'
+  workflow_dispatch:
+
+jobs:
+  synchronize_star_release_version:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Get the latest Rakudo release version
+      id: rakudo-release
+      run: echo ::set-output name=release::$(curl -s https://github.com/rakudo/rakudo/releases/latest | grep -Po "releases/tag/(\d+\.\d+.+)" | grep -Po "(\d+\.\d+)(\\.[0-9]+)?")
+
+    - name: Get the latest Rakudo Star release version
+      id: star-release
+      run: echo ::set-output name=release::$(curl -s https://github.com/rakudo/star/releases/latest | grep -Po "releases/tag/(\d+\.\d+.+)" | grep -Po "(\d+\.\d+)(\\.[0-9]+)?")
+
+    - name: Show the found Rakudo releases
+      run: |
+        echo "Rakudo latest is: ${{steps.rakudo-release.outputs.release}}"
+        echo "Rakudo Star latest is: ${{steps.star-release.outputs.release}}"
+
+    - name: Compare the latest Rakudo and Rakudo Star releases
+      id: update-star-release
+      if: (steps.rakudo-release.outputs.release && steps.star-release.outputs.release && (steps.rakudo-release.outputs.release != steps.star-release.outputs.release))
+      run: echo ::set-output name=update_star_release::'true'
+
+    - name: Checkout Rakudo Star repository
+      if: steps.update-star-release.outputs.update_star_release
+      uses: actions/checkout@v2
+
+    - name: Publish latest Rakudo Star release
+      if: steps.update-star-release.outputs.update_star_release
+      run: |
+        git config --global user.name 'Rakudo Star Releaser'
+        git config --global user.email 'Rakudo.Star.Releaser@noreply.github.com'
+        git tag -a ${{steps.rakudo-release.outputs.release}} -m 'Following the https://github.com/rakudo/rakudo/ release cycle'
+        git push --tags
