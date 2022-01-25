@@ -37,6 +37,8 @@ jobs:
     - name: Checkout Rakudo Star repository
       if: steps.update-star-release.outputs.update_star_release
       uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
 
     - name: Publish latest Rakudo Star release
       if: steps.update-star-release.outputs.update_star_release
