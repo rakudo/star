@@ -93,7 +93,7 @@ Select-String -Path rakudo-star-modules.txt -Pattern " http "," git " -SimpleMat
   $moduleName = $moduleName.replace("-","::")
   Write-Host "   INFO - zef: installing $moduleName, $moduleUrl"
   IF ( $moduleName -ne "zef" ) {
-    IF ( [string]( & zef install $moduleName --install-to=$PrefixPath\share\perl6\site\ --error ) -match 'No candidates found matching identity' ) { & zef install $moduleUrl --install-to=$PrefixPath\share\perl6\site\ --error }
+    IF ( [string]( & zef install $moduleName --install-to=$PrefixPath\share\perl6\site\ --error --force-test) -match 'No candidates found matching identity' ) { & zef install $moduleUrl --install-to=$PrefixPath\share\perl6\site\ --error --force-test}
   }
 }
 
@@ -112,23 +112,26 @@ Write-Host "   INFO - Creating the .msi Package"
 cd $ScriptRoot
 IF ( !(Test-Path -Path Windows )) { New-Item -ItemType directory -Path Windows | Out-Null }
 $Wixtoolpath = [Environment]::GetEnvironmentVariable('WIX', 'Machine') + "bin"
+$msiBinFile = "Windows\rakudo-star-$RAKUDO_VER-win-x86_64-msvc.msi"
+$msiChecksumFile = "$msiBinFile" + ".sha256.txt"
 & $Wixtoolpath\heat.exe dir $PrefixPath\bin -dr DIR_BIN -cg FilesBin -gg -g1 -sfrag -srd -suid -ke -sw5150 -var "var.BinDir" -out files-bin.wxs
 & $Wixtoolpath\heat.exe dir $PrefixPath\include -dr DIR_INCLUDE -cg FilesInclude -gg -g1 -sfrag -srd -ke -sw5150 -var "var.IncludeDir" -out files-include.wxs
 & $Wixtoolpath\heat.exe dir $PrefixPath\share -dr DIR_SHARE -cg FilesShare -gg -g1 -sfrag -srd -ke -sw5150 -var "var.ShareDir" -out files-share.wxs
 & $Wixtoolpath\candle.exe files-bin.wxs files-include.wxs files-share.wxs -dBinDir="$PrefixPath\bin" -dIncludeDir="$PrefixPath\include" -dShareDir="$PrefixPath\share"
 & $Wixtoolpath\candle.exe star.wxs -dSTARVERSION="$RAKUDO_VER"
-& $Wixtoolpath\light.exe -b $PrefixPath -ext WixUIExtension files-bin.wixobj files-include.wixobj files-share.wixobj star.wixobj -sw1076 -o "Windows\rakudo-star-$RAKUDO_VER-win-x86_64-msvc.msi"
-Write-Host "   INFO - .msi Package `"Windows\rakudo-star-$RAKUDO_VER-win-x86_64-msvc.msi`" created"
+& $Wixtoolpath\light.exe -b $PrefixPath -ext WixUIExtension files-bin.wixobj files-include.wixobj files-share.wixobj star.wixobj -sw1076 -o $msiBinFile
+Write-Host "   INFO - .msi Package `"$msiBinFile`" created"
 
 # SHA256, create a hash sum 
-Write-Host "   INFO - Creating the checksum file `"Windows\rakudo-star-$RAKUDO_VER-win-x86_64-msvc.msi.sha256.txt`""
-& CertUtil -hashfile "Windows\rakudo-star-$RAKUDO_VER-win-x86_64-msvc.msi" SHA256 | findstr /V ":" > "Windows\rakudo-star-$RAKUDO_VER-win-x86_64-msvc.msi.sha256.txt"
+Write-Host "   INFO - Creating the checksum file `"$msiChecksumFile`""
+# & CertUtil -hashfile "Windows\rakudo-star-$RAKUDO_VER-win-x86_64-msvc.msi" SHA256 | findstr /V ":" > "Windows\rakudo-star-$RAKUDO_VER-win-x86_64-msvc.msi.sha256.txt"
+Write-Host -NoNewline (Get-FileHash -Path $msiBinFile -Algorithm SHA256).Hash ($msiBinFile).Split("\")[-1] *> $msiChecksumFile
 
 
 # GPG signature
 IF ( $sign ) {
   Write-Host "   INFO - gpg signing the .msi package"
-	& gpg --armor --detach-sig "Windows\rakudo-star-$RAKUDO_VER-win-x86_64-msvc.msi"
+	& gpg --armor --detach-sig $msiBinFile
 }
 
 IF ( ! $keep ) {

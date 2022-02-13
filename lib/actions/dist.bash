@@ -89,6 +89,8 @@ action() {
 	do
 		dist_checksum "$sum" "$tarball" >> "$tarball.checksums.txt"
 	done
+	
+	sha256sum "$tarball" | while read SHA256 TARPATH; do echo "$SHA256 $(basename $TARPATH)"; done > "$tarball.sha256.checksum.txt"
 
 	info "Generating a PGP signature for $tarball"
 	gpg --armor --detach-sign --output "$tarball.asc" "$tarball"
@@ -111,7 +113,7 @@ dist_checksum() {
 	printf "%-6s  %s\n" \
 		"$1" \
 		"$("dist_checksum_$1" "$2")"
-}
+ }
 
 dist_checksum_md5() {
 	md5sum "$1" | awk '{print $1}'

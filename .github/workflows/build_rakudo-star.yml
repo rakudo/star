@@ -19,6 +19,9 @@ jobs:
         uses: seanmiddleditch/gha-setup-vsdevenv@v3
       - name: Run the build-with-choco.ps1 script
         run: pwsh -command ".\$GITHUB_WORKSPACE\tools\build\binary-release\Windows\build-with-choco.ps1"
+      - name: List my stuff
+        run: |
+          ls -lAR
       - name: Upload Rakudo-Star Windows artifacts
         uses: actions/upload-artifact@v2
         with:
@@ -46,7 +49,7 @@ jobs:
         run: ./bin/rstar dist
       - name: List my stuff
         run: |
-          ls -laR
+          ls -lAR -I ".git" -I "src"
       - name: Upload Rakudo-Star Linux artifacts
         uses: actions/upload-artifact@v2
         with:
@@ -63,15 +66,20 @@ jobs:
         path: Rakudo-Star_artifacts
     - name: List my stuff
       run: |
-        ls -laR
+        ls -lAR
+    - name: Craete the SHA256 checksum file
+      run: |
+        cat Rakudo-Star_artifacts/output/Windows/rakudo-star-2022.02-win-x86_64-msvc.msi.sha256.txt > Rakudo-Star_artifacts/output/sha256.checksums.txt
+        cat Rakudo-Star_artifacts/output/rakudo-star-2022.02.tar.gz.sha256.checksum.txt >> Rakudo-Star_artifacts/output/sha256.checksums.txt
     - name: Release Rakudo-Star Windows MSI and Linux RSTAR releases
       uses: ncipollo/release-action@v1
       with:
         # ncipollo/release-action needs a tag! Either a usual "GIT TAG" or an dedicated TAG, see below!
         #tag: 2021.06 # set a TAG if you want a release to be build on GitHub _BUT_ do not provide a GIT TAG
+        draft: true
         allowUpdates: true
         artifactErrorsFailBuild: true
-        artifacts: "Rakudo-Star_artifacts/output/rakudo-star-*,Rakudo-Star_artifacts/output/Windows/rakudo-star-*"
+        artifacts: "Rakudo-Star_artifacts/output/rakudo-star-*,Rakudo-Star_artifacts/output/Windows/rakudo-star-*,Rakudo-Star_artifacts/output/sha256.checksums.txt"
         token: ${{ secrets.GITHUB_TOKEN }}
         
 

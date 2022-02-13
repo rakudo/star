@@ -43,7 +43,7 @@ jobs:
     - name: Publish latest Rakudo Star release
       if: steps.update-star-release.outputs.update_star_release
       run: |
-        git config --global user.name 'Rakudo Star Releaser'
-        git config --global user.email 'Rakudo.Star.Releaser@noreply.github.com'
+        git config --global user.name 'AntonOks'
+        git config --global user.email 'anton.oks@gmx.de'
         git tag -a ${{steps.rakudo-release.outputs.release}} -m 'Following the https://github.com/rakudo/rakudo/ release cycle'
         git push --tags
