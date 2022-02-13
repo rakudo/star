@@ -21,7 +21,7 @@ jobs:
         run: pwsh -command ".\$GITHUB_WORKSPACE\tools\build\binary-release\Windows\build-with-choco.ps1"
       - name: List my stuff
         run: |
-          ls -lAR
+          Get-ChildItem -Exclude ".git" -Recurse
       - name: Upload Rakudo-Star Windows artifacts
         uses: actions/upload-artifact@v2
         with:
