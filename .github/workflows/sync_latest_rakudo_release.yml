@@ -8,7 +8,7 @@ name: Synchronize Rakudo Star with the latest Rakudo release
 
 on:
   schedule:
-    - cron:  '55 1 * * *'
+    - cron:  '55 23 * * 1,4'
   workflow_dispatch:
 
 jobs:
