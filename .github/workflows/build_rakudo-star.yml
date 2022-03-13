@@ -77,7 +77,7 @@ jobs:
       with:
         # ncipollo/release-action needs a tag! Either a usual "GIT TAG" or an dedicated TAG, see below!
         #tag: 2021.06 # set a TAG if you want a release to be build on GitHub _BUT_ do not provide a GIT TAG
-        draft: true
+        draft: false
         allowUpdates: true
         artifactErrorsFailBuild: true
         artifacts: "Rakudo-Star_artifacts/output/rakudo-star-*,Rakudo-Star_artifacts/output/Windows/rakudo-star-*,Rakudo-Star_artifacts/output/sha256.checksums.txt"
