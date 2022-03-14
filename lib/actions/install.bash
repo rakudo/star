@@ -233,6 +233,11 @@ build_prepare() {
 }
 
 install_raku_module() {
+	if [[ -f "$1/Build.pm6" ]]
+	then
+		"$RSTAR_PREFIX/bin/raku" "$RSTAR_PREFIX/share/perl6/vendor/bin/zef" build "$1"
+	fi
+
 	"$RSTAR_PREFIX/bin/raku" "$BASEDIR/lib/install-module.raku" "$1"
 }
 
