@@ -2,7 +2,7 @@
 # these if you want to create a distribution containing different core
 # component versions.
 moarvm_version=2022.02
-nqp_version=2022.024
+nqp_version=2022.02
 rakudo_version=2022.02
 
 # These are the URLs to fetch the sources from. You can use %s in the URLs as a
