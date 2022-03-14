@@ -7,6 +7,7 @@ zef  git  https://github.com/ugexe/zef.git  v0.11.7
 
 # Documentation utilities
 Perl6-TypeGraph  git  https://github.com/antoniogamiz/Perl6-TypeGraph.git  v2.1.3
+File-Find        git  https://github.com/tadzik/File-Find.git              master
 rakudoc          git  https://github.com/Raku/doc.git                      master
 
 # Logging
@@ -25,7 +26,7 @@ Crane               git  https://github.com/atweiden/crane.git                  
 Config-TOML         git  https://github.com/atweiden/config-toml.git                master
 Config-Parser-toml  git  https://git.tyil.nl/raku/Config::Parser::toml              v1.0.2
 
-MIME-Base64         git  https://github.com/raku-community-modules/MIME-Base64.git  master
+MIME-Base64         git  https://github.com/raku-community-modules/MIME-Base64.git  main
 YAMLish             git  https://github.com/Leont/yamlish.git                       master
 Config-Parser-yaml  git  https://git.tyil.nl/raku/Config::Parser::yaml              v1.0.0
 
@@ -42,6 +43,7 @@ DBIish               git  https://github.com/raku-community-modules/DBIish.git  
 
 # Taken from the previous iteration of Rakudo Star
 URI                      git  https://github.com/raku-community-modules/uri.git                master
+JSON-OptIn               git  https://github.com/jonathanstowe/JSON-OptIn.git                  main
 JSON-Name                git  https://github.com/jonathanstowe/JSON-Name.git                   master
 JSON-Unmarshal           git  https://github.com/tadzik/JSON-Unmarshal.git                     master
 JSON-Marshal             git  https://github.com/jonathanstowe/JSON-Marshal.git                master
@@ -57,6 +59,7 @@ Test-Mock                git  https://github.com/jnthn/test-mock.git            
 Grammar-Profiler-Simple  git  https://github.com/perlpilot/Grammar-Profiler-Simple.git         master
 Grammar-Debugger         git  https://github.com/jnthn/grammar-debugger.git                    master
 JSON-Tiny                git  https://github.com/moritz/json.git                               master
+Perl6-PathTools          git  https://github.com/ugexe/Perl6-PathTools.git                     master
 OpenSSL                  git  https://github.com/sergot/openssl.git                            master
 IO-Socket-SSL            git  https://github.com/sergot/io-socket-ssl.git                      master
 LWP-Simple               git  https://github.com/raku-community-modules/raku-lwp-simple.git    master
@@ -77,13 +80,12 @@ Encode                   git  https://github.com/sergot/perl6-encode.git        
 HTTP-UserAgent           git  https://github.com/sergot/http-useragent.git                     master
 Pod-To-HTML              git  https://github.com/perl6/Pod-To-HTML.git                         master
 Pod-To-BigPage           git  https://github.com/perl6/perl6-pod-to-bigpage.git                master
-File-Find                git  https://github.com/tadzik/File-Find.git                          master
 Debugger-UI-CommandLine  git  https://github.com/jnthn/rakudo-debugger.git                     master
 File-Which               git  https://github.com/azawawi/perl6-file-which.git                  master
 Shell-Command            git  https://github.com/tadzik/Shell-Command.git                      master
 LibraryMake              git  https://github.com/retupmoca/P6-LibraryMake.git                  master
 IO-String                git  https://github.com/hoelzro/p6-io-string.git                      master
-DateTime-Format          git  https://github.com/supernovus/perl6-datetime-format.git          master
+DateTime-Format          git  https://github.com/supernovus/perl6-datetime-format.git          main
 IO-Capture-Simple        git  https://github.com/sergot/IO-Capture-Simple.git                  master
 Test-Util-ServerPort     git  https://github.com/jonathanstowe/Test-Util-ServerPort.git        master
 JSON-RPC                 git  https://github.com/bbkr/jsonrpc.git                              master
