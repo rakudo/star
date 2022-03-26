@@ -113,7 +113,7 @@ cd $ScriptRoot
 IF ( !(Test-Path -Path Windows )) { New-Item -ItemType directory -Path Windows | Out-Null }
 $Wixtoolpath = [Environment]::GetEnvironmentVariable('WIX', 'Machine') + "bin"
 $msiBinFile = "Windows\rakudo-star-$RAKUDO_VER-win-x86_64-msvc.msi"
-$msiChecksumFile = "$msiBinFile" + ".sha256.txt"
+$msiChecksumFile = "$msiBinFile" + ".checksums.txt"
 & $Wixtoolpath\heat.exe dir $PrefixPath\bin -dr DIR_BIN -cg FilesBin -gg -g1 -sfrag -srd -suid -ke -sw5150 -var "var.BinDir" -out files-bin.wxs
 & $Wixtoolpath\heat.exe dir $PrefixPath\include -dr DIR_INCLUDE -cg FilesInclude -gg -g1 -sfrag -srd -ke -sw5150 -var "var.IncludeDir" -out files-include.wxs
 & $Wixtoolpath\heat.exe dir $PrefixPath\share -dr DIR_SHARE -cg FilesShare -gg -g1 -sfrag -srd -ke -sw5150 -var "var.ShareDir" -out files-share.wxs
@@ -122,16 +122,18 @@ $msiChecksumFile = "$msiBinFile" + ".sha256.txt"
 & $Wixtoolpath\light.exe -b $PrefixPath -ext WixUIExtension files-bin.wixobj files-include.wixobj files-share.wixobj star.wixobj -sw1076 -o $msiBinFile
 Write-Host "   INFO - .msi Package `"$msiBinFile`" created"
 
-# SHA256, create a hash sum 
+# create a checksum file
 Write-Host "   INFO - Creating the checksum file `"$msiChecksumFile`""
 # & CertUtil -hashfile "Windows\rakudo-star-$RAKUDO_VER-win-x86_64-msvc.msi" SHA256 | findstr /V ":" > "Windows\rakudo-star-$RAKUDO_VER-win-x86_64-msvc.msi.sha256.txt"
-Write-Host -NoNewline (Get-FileHash -Path $msiBinFile -Algorithm SHA256).Hash ($msiBinFile).Split("\")[-1] *> $msiChecksumFile
-
+# Write-Host -NoNewline (Get-FileHash -Path $msiBinFile -Algorithm SHA256).Hash ($msiBinFile).Split("\")[-1] *> $msiChecksumFile
+foreach ($HashAlg in "MD5", "SHA1", "SHA256", "SHA384", "SHA512") {
+  Write-Host ("{0,-6:G}" -f "$HashAlg") (Get-FileHash -Path $msiBinFile -Algorithm $HashAlg).Hash *>> $msiChecksumFile
+}
 
 # GPG signature
 IF ( $sign ) {
   Write-Host "   INFO - gpg signing the .msi package"
-	& gpg --armor --detach-sig $msiBinFile
+  & gpg --armor --detach-sig $msiBinFile
 }
 
 IF ( ! $keep ) {
