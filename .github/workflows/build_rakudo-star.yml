@@ -76,7 +76,7 @@ jobs:
         draft: false
         allowUpdates: true
         artifactErrorsFailBuild: true
-        artifacts: "Rakudo-Star_artifacts/output/rakudo-star-*,Rakudo-Star_artifacts/output/Windows/rakudo-star-*,Rakudo-Star_artifacts/output/sha256.checksums.txt"
+        artifacts: "Rakudo-Star_artifacts/output/rakudo-star-*,Rakudo-Star_artifacts/output/Windows/rakudo-star-*"
         token: ${{ secrets.GITHUB_TOKEN }}
         
 
