@@ -68,10 +68,6 @@ jobs:
     - name: List my stuff
       run: |
         ls -lAR
-    - name: Craete the SHA256 checksum file
-      run: |
-        cat Rakudo-Star_artifacts/output/Windows/rakudo-star-2022.02-win-x86_64-msvc.msi.sha256.txt > Rakudo-Star_artifacts/output/sha256.checksums.txt
-        cat Rakudo-Star_artifacts/output/rakudo-star-2022.02.tar.gz.sha256.checksum.txt >> Rakudo-Star_artifacts/output/sha256.checksums.txt
     - name: Release Rakudo-Star Windows MSI and Linux RSTAR releases
       uses: ncipollo/release-action@v1
       with:
