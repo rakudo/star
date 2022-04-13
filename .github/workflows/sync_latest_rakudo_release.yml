@@ -11,6 +11,9 @@ on:
     - cron:  '55 23 * * 1,4'
   workflow_dispatch:
 
+env:
+  RKD_REVISION: 01 # Change this if a build revision ever changes. 
+
 jobs:
   synchronize_star_release_version:
     runs-on: ubuntu-latest
@@ -45,12 +48,12 @@ jobs:
     - name: Write the Release version
       if: steps.update-star-release.outputs.update_star_release
       run: |
-        echo "${{ steps.rakudo-release.outputs.release }}-01" "===>" $(date) > RELEASE
+        echo "${{ steps.rakudo-release.outputs.release }}-$RKD_REVISION" "===>" $(date) > RELEASE
 
     - name: Publish latest Rakudo Star release
       if: steps.update-star-release.outputs.update_star_release
       uses: EndBug/add-and-commit@v8
       with:
-        message: "Following the https://github.com/rakudo/rakudo/ release cycle, see https://github.com/rakudo/rakudo/releases/tag/2022.02 for release informations"
+        message: "Following the https://github.com/rakudo/rakudo/ release cycle, see https://github.com/rakudo/rakudo/releases/tag/${{ steps.rakudo-release.outputs.release }} for release informations"
         tag: "${{ steps.rakudo-release.outputs.release }}"
         push: "true"
