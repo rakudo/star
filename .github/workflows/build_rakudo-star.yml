@@ -23,8 +23,7 @@ jobs:
       - name: Run the build-with-choco.ps1 script
         run: pwsh -command ".\$GITHUB_WORKSPACE\tools\build\binary-release\Windows\build-with-choco.ps1"
       - name: List my stuff
-        run: |
-          Get-ChildItem -Exclude ".git" -Recurse
+        run: Get-ChildItem -Exclude ".git" -Recurse
       - name: Upload Rakudo-Star Windows artifacts
         uses: actions/upload-artifact@v2
         with:
@@ -51,8 +50,7 @@ jobs:
       - name: Create RSTAR Distrubution
         run: ./bin/rstar dist
       - name: List my stuff
-        run: |
-          ls -lAR -I ".git" -I "src"
+        run: ls -lAR -I ".git" -I "src"
       - name: Upload Rakudo-Star Linux artifacts
         uses: actions/upload-artifact@v2
         with:
@@ -68,8 +66,7 @@ jobs:
       with:
         path: Rakudo-Star_artifacts
     - name: List my stuff
-      run: |
-        ls -lAR
+      run: ls -lAR
     - name: Release Rakudo-Star Windows MSI and Linux RSTAR releases
       uses: ncipollo/release-action@v1
       with:
