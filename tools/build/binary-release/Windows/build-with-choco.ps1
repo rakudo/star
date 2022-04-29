@@ -34,6 +34,7 @@ IF ((( & cl /v 2>&1 | Select-String "^Microsoft .+ Compiler Version .+ for") -ma
   EXIT
 }
 
+
 # Let's use choco to make sure all prerequisites are installed
 # Check if choco is installed. If not, install it.
 Write-Host "   INFO - Checking all prerequisites (choco, git, perl5, WiX toolset, gpg) and installing them, if required"
@@ -57,6 +58,7 @@ IF ( -NOT ($RAKUDO_VER) ) {
   Write-Host "   INFO - Will continue and try to build `"`$RAKUDO_VER`" $RAKUDO_VER"
 }
 
+
 Write-Host "   INFO - Cloning `"https://github.com/rakudo/rakudo.git`"..."
 & git.exe -c advice.detachedHead=false clone --quiet --single-branch -b $RAKUDO_VER "https://github.com/rakudo/rakudo.git" rakudo-$RAKUDO_VER | Out-Null
 cd rakudo-$RAKUDO_VER
@@ -74,6 +76,7 @@ nmake /C
 # nmake /C test
 nmake /C install
 
+
 # Download Zef and install
 Write-Host "   INFO - Cloning `"https://github.com/ugexe/zef.git`"..."
 & git.exe clone --quiet https://github.com/ugexe/zef.git
@@ -81,10 +84,12 @@ cd zef
 Write-Host "   INFO - Installing ZEF"
 & $PrefixPath\bin\raku.exe -I. bin\zef install . --install-to=$PrefixPath\share\perl6\site\ --error
 
+
 # Add the required rakudo folders to PATH in order for some modules to test correctly (File::Which)
 Write-Host "   INFO - Changing the %PATH% variable"
 $orgEnvPath = $Env:Path
 $Env:Path += ";$PrefixPath\bin;$PrefixPath\share\perl6\site\bin"
+
 
 Write-Host "   INFO - ZEF: installing `"https://raw.githubusercontent.com/rakudo/star/master/etc/modules.txt`" modules into `"$PrefixPath\share\perl6\site\`""
 & curl.exe -s https://raw.githubusercontent.com/rakudo/star/master/etc/modules.txt --output rakudo-star-modules.txt
@@ -96,8 +101,6 @@ Select-String -Path rakudo-star-modules.txt -Pattern " http "," git " -SimpleMat
     IF ( [string]( & zef install $moduleName --install-to=$PrefixPath\share\perl6\site\ --error --force-test) -match 'No candidates found matching identity' ) { & zef install $moduleUrl --install-to=$PrefixPath\share\perl6\site\ --error --force-test}
   }
 }
-
-
 
 $LibWinPThread = (Join-Path (Split-Path (Get-Command perl).Path) libwinpthread-1.dll)
  $LibGcc_S_Seh = (Join-Path (Split-Path (Get-Command perl).Path) libgcc_s_seh-1.dll)
@@ -122,19 +125,26 @@ $msiChecksumFile = "$msiBinFile" + ".checksums.txt"
 & $Wixtoolpath\light.exe -b $PrefixPath -ext WixUIExtension files-bin.wixobj files-include.wixobj files-share.wixobj star.wixobj -sw1076 -o $msiBinFile
 Write-Host "   INFO - .msi Package `"$msiBinFile`" created"
 
-# create a checksum file
-#Write-Host "   INFO - Creating the checksum file `"$msiChecksumFile`""
-# & CertUtil -hashfile "Windows\rakudo-star-$RAKUDO_VER-win-x86_64-msvc.msi" SHA256 | findstr /V ":" > "Windows\rakudo-star-$RAKUDO_VER-win-x86_64-msvc.msi.sha256.txt"
-# Write-Host -NoNewline (Get-FileHash -Path $msiBinFile -Algorithm SHA256).Hash ($msiBinFile).Split("\")[-1] *> $msiChecksumFile
-#foreach ($HashAlg in "MD5", "SHA1", "SHA256", "SHA384", "SHA512") {
-#  Write-Host ("{0,-6:G}" -f "$HashAlg") (Get-FileHash -Path $msiBinFile -Algorithm $HashAlg).Hash *>> $msiChecksumFile
-#}
 
-# GPG signature
-#IF ( $sign ) {
-#  Write-Host "   INFO - gpg signing the .msi package"
-#  & gpg --armor --detach-sig $msiBinFile
-#}
+Write-Host "   INFO - Creating the checksum file `"$msiChecksumFile`""
+#& CertUtil -hashfile "Windows\rakudo-star-$RAKUDO_VER-win-x86_64-msvc.msi" SHA256 | findstr /V ":" > "Windows\rakudo-star-$RAKUDO_VER-win-x86_64-msvc.msi.sha256.txt"
+#Write-Host -NoNewline (Get-FileHash -Path $msiBinFile -Algorithm SHA256).Hash ($msiBinFile).Split("\")[-1] *> $msiChecksumFile
+# Get-FileHash doesn't support SHA224, so we skip that for now.
+FOREACH ($HashAlg in "MD5", "SHA1", "SHA256", "SHA384", "SHA512") {
+  Write-Host "$HashAlg ($(Split-Path $msiBinFile -Leaf)) = $((Get-FileHash -Path $msiBinFile -Algorithm $HashAlg).Hash)" *>> $msiChecksumFile
+}
+
+IF ( $sign ) {
+  $unsigned = "$msiChecksumFile" + ".unsigned"
+  $asc = "$msiBinFile" + ".asc"
+  Write-Host "   INFO - gpg signing the .msi package"
+  echo gpg --detach-sign --armor -u $env:GPG_FINGERPRINT --output "$asc" -- "$msiBinFile"
+  & gpg --detach-sign --armor -u $env:GPG_FINGERPRINT --output "$asc" -- "$msiBinFile"
+  Move-Item "$msiChecksumFile" "$unsigned"
+  & gpg --clearsign -u $env:GPG_FINGERPRINT --output "$msiChecksumFile" -- "$unsigned"
+  Remove-Item "$unsigned"
+}
+
 
 IF ( ! $keep ) {
   Write-Host "   INFO - Cleaning up..."

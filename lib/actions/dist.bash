@@ -67,7 +67,8 @@ action() {
 	info "Creating tarball out of $WORKDIR"
 
 	basename="rakudo-star-$VERSION"
-	tarball="$BASEDIR/dist/$basename.tar.gz"
+	tarball_name="$basename.tar.gz"
+	tarball="$BASEDIR/dist/$tarball_name"
 
 	mkdir -p -- "$(dirname "$tarball")"
 	chgdir "$BASEDIR/tmp"
@@ -84,16 +85,18 @@ action() {
 
 	chgdir "$(dirname "$tarball")"
 
-	#info "Generating checksums for $tarball"
-	#for sum in md5 sha{1,224,256,384,512}
-	#do
-	#	dist_checksum "$sum" "$tarball" >> "$tarball.checksums.txt"
-	#done
+	info "Generating checksums for $tarball_name"
+	md5sum --tag $tarball_name >> $tarball_name.checksums.txt.unsigned
+	sha1sum --tag $tarball_name >> $tarball_name.checksums.txt.unsigned
+	sha224sum --tag $tarball_name >> $tarball_name.checksums.txt.unsigned
+	sha256sum --tag $tarball_name >> $tarball_name.checksums.txt.unsigned
+	sha384sum --tag $tarball_name >> $tarball_name.checksums.txt.unsigned
+	sha512sum --tag $tarball_name >> $tarball_name.checksums.txt.unsigned
+	gpg2 --batch --clearsign -u $GPG_FINGERPRINT --output $tarball_name.checksums.txt -- $tarball_name.checksums.txt.unsigned
+	rm $tarball_name.checksums.txt.unsigned
 	
-	#sha256sum "$tarball" | while read SHA256 TARPATH; do echo "$SHA256 $(basename $TARPATH)"; done > "$tarball.sha256.checksum.txt"
-
-	#info "Generating a PGP signature for $tarball"
-	#gpg --armor --detach-sign --output "$tarball.asc" "$tarball"
+	info "Generating a PGP signature for $tarball_name"
+	gpg2 --batch --detach-sign --armor -u $GPG_FINGERPRINT --output "$tarball_name.asc" -- $tarball_name
 
 	info "Distribution tarball available at $tarball"
 }
@@ -109,32 +112,3 @@ dist_include() {
 	cp -r -- "${BASEDIR}$1" "${WORKDIR}$1"
 }
 
-dist_checksum() {
-	printf "%-6s  %s\n" \
-		"$1" \
-		"$("dist_checksum_$1" "$2")"
- }
-
-dist_checksum_md5() {
-	md5sum "$1" | awk '{print $1}'
-}
-
-dist_checksum_sha1() {
-	sha1sum "$1" | awk '{print $1}'
-}
-
-dist_checksum_sha224() {
-	sha224sum "$1" | awk '{print $1}'
-}
-
-dist_checksum_sha256() {
-	sha256sum "$1" | awk '{print $1}'
-}
-
-dist_checksum_sha384() {
-	sha384sum "$1" | awk '{print $1}'
-}
-
-dist_checksum_sha512() {
-	sha512sum "$1" | awk '{print $1}'
-}

@@ -11,6 +11,9 @@ on:
     - 2[0-9]+.[0-1][0-1]'**'
   workflow_dispatch:
 
+env:
+  GPG_FINGERPRINT: 3E7E3C6EAF916676AC549285A2919382E961E2EE
+
 jobs:
   build_Rakudo-Star_Windows_MSI_package:
     # Windows-latest doesn't work since it's 2022. We need to fall back to windows-2019
@@ -20,8 +23,15 @@ jobs:
         uses: actions/checkout@v3
       - name: Setup VS Dev Environment
         uses: seanmiddleditch/gha-setup-vsdevenv@v3
+      - name: Import gpg key
+        id: import_gpg
+        uses: crazy-max/ghaction-import-gpg@v4
+        with:
+          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+          passphrase: ${{ secrets.PASSPHRASE }}
+          fingerprint: ${{ env.GPG_FINGERPRINT }}
       - name: Run the build-with-choco.ps1 script
-        run: pwsh -command ".\$GITHUB_WORKSPACE\tools\build\binary-release\Windows\build-with-choco.ps1"
+        run: pwsh -command ".\$GITHUB_WORKSPACE\tools\build\binary-release\Windows\build-with-choco.ps1" -sign
       - name: List my stuff
         run: Get-ChildItem -Exclude ".git" -Recurse
       - name: Upload Rakudo-Star Windows artifacts
@@ -47,6 +57,13 @@ jobs:
         run: ./bin/rstar sysinfo
       - name: Fetch RSTAR Components
         run: ./bin/rstar fetch -l
+      - name: Import gpg key
+        id: import_gpg
+        uses: crazy-max/ghaction-import-gpg@v4
+        with:
+          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+          passphrase: ${{ secrets.PASSPHRASE }}
+          fingerprint: ${{ env.GPG_FINGERPRINT }}
       - name: Create RSTAR Distrubution
         run: ./bin/rstar dist
       - name: List my stuff
@@ -67,26 +84,6 @@ jobs:
         path: Rakudo-Star_artifacts
     - name: List my stuff
       run: ls -lAR
-    - name: Import gpg key
-      id: import_gpg
-      uses: crazy-max/ghaction-import-gpg@v4
-      with:
-        gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
-        passphrase: ${{ secrets.PASSPHRASE }}
-        fingerprint: "3E7E3C6EAF916676AC549285A2919382E961E2EE"
-    - name: Sign files and create checksums
-      run: |
-        for X in Rakudo-Star_artifacts/output/rakudo-star-* Rakudo-Star_artifacts/output/Windows/rakudo-star-* ; do
-          gpg2 --batch --detach-sign --armor -u ${{ steps.import_gpg.outputs.fingerprint }} -- $X
-          md5sum --tag ${X} >> ${X}.checksums.txt.unsigned
-          sha1sum --tag ${X} >> ${X}.checksums.txt.unsigned
-          sha224sum --tag ${X} >> ${X}.checksums.txt.unsigned
-          sha256sum --tag ${X} >> ${X}.checksums.txt.unsigned
-          sha384sum --tag ${X} >> ${X}.checksums.txt.unsigned
-          sha512sum --tag ${X} >> ${X}.checksums.txt.unsigned
-          gpg2 --batch --clearsign --output ${X}.checksums.txt -u ${{ steps.import_gpg.outputs.fingerprint }} -- ${X}.checksums.txt.unsigned
-          rm ${X}.checksums.txt.unsigned
-        done
     - name: Release Rakudo-Star Windows MSI and Linux RSTAR releases
       uses: ncipollo/release-action@v1
       with:
