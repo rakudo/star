@@ -123,18 +123,18 @@ $msiChecksumFile = "$msiBinFile" + ".checksums.txt"
 Write-Host "   INFO - .msi Package `"$msiBinFile`" created"
 
 # create a checksum file
-Write-Host "   INFO - Creating the checksum file `"$msiChecksumFile`""
+#Write-Host "   INFO - Creating the checksum file `"$msiChecksumFile`""
 # & CertUtil -hashfile "Windows\rakudo-star-$RAKUDO_VER-win-x86_64-msvc.msi" SHA256 | findstr /V ":" > "Windows\rakudo-star-$RAKUDO_VER-win-x86_64-msvc.msi.sha256.txt"
 # Write-Host -NoNewline (Get-FileHash -Path $msiBinFile -Algorithm SHA256).Hash ($msiBinFile).Split("\")[-1] *> $msiChecksumFile
-foreach ($HashAlg in "MD5", "SHA1", "SHA256", "SHA384", "SHA512") {
-  Write-Host ("{0,-6:G}" -f "$HashAlg") (Get-FileHash -Path $msiBinFile -Algorithm $HashAlg).Hash *>> $msiChecksumFile
-}
+#foreach ($HashAlg in "MD5", "SHA1", "SHA256", "SHA384", "SHA512") {
+#  Write-Host ("{0,-6:G}" -f "$HashAlg") (Get-FileHash -Path $msiBinFile -Algorithm $HashAlg).Hash *>> $msiChecksumFile
+#}
 
 # GPG signature
-IF ( $sign ) {
-  Write-Host "   INFO - gpg signing the .msi package"
-  & gpg --armor --detach-sig $msiBinFile
-}
+#IF ( $sign ) {
+#  Write-Host "   INFO - gpg signing the .msi package"
+#  & gpg --armor --detach-sig $msiBinFile
+#}
 
 IF ( ! $keep ) {
   Write-Host "   INFO - Cleaning up..."

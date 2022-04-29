@@ -84,16 +84,16 @@ action() {
 
 	chgdir "$(dirname "$tarball")"
 
-	info "Generating checksums for $tarball"
-	for sum in md5 sha{1,224,256,384,512}
-	do
-		dist_checksum "$sum" "$tarball" >> "$tarball.checksums.txt"
-	done
+	#info "Generating checksums for $tarball"
+	#for sum in md5 sha{1,224,256,384,512}
+	#do
+	#	dist_checksum "$sum" "$tarball" >> "$tarball.checksums.txt"
+	#done
 	
-	sha256sum "$tarball" | while read SHA256 TARPATH; do echo "$SHA256 $(basename $TARPATH)"; done > "$tarball.sha256.checksum.txt"
+	#sha256sum "$tarball" | while read SHA256 TARPATH; do echo "$SHA256 $(basename $TARPATH)"; done > "$tarball.sha256.checksum.txt"
 
-	info "Generating a PGP signature for $tarball"
-	gpg --armor --detach-sign --output "$tarball.asc" "$tarball"
+	#info "Generating a PGP signature for $tarball"
+	#gpg --armor --detach-sign --output "$tarball.asc" "$tarball"
 
 	info "Distribution tarball available at $tarball"
 }
