@@ -22,7 +22,8 @@ jobs:
     - name: Check the latest Rakudo release version
       id: rakudo-release
       run: |
-        rakudo_release=$(curl -v https://github.com/rakudo/rakudo/releases/latest 2>&1 | grep "Location: " | grep -Po "(\d+\.\d+)(\\.[0-9]+)?")
+        rakudo_release=$(curl -v https://github.com/rakudo/rakudo/releases/latest 2>&1 | grep 'Location: ' | grep -Po "(\d+\.\d+)(\\.[0-9]+)?")
+        echo "\"rakudo_release\" is now $rakudo_release"
         echo ::set-output name=release::$rakudo_release
 
     - name: Check the latest Rakudo Star release version
