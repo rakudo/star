@@ -48,7 +48,7 @@ IF ( ($sign) -AND ( -NOT ((Get-Command "gpg.exe" -ErrorAction SilentlyContinue).
 # If no Rakudo release is given, build the latest from github
 IF ( -NOT ($RAKUDO_VER) ) {
   Write-Host "   INFO - `"`$RAKUDO_VER`" not found, try to guess it from `"https://github.com/rakudo/rakudo/releases/latest`""
-  ( & curl.exe -s https://github.com/rakudo/rakudo/releases/latest ) -match 'https://github.com/rakudo/rakudo/releases/tag/(?<RAKUDO_VERSION>[\d]{4}\.[\d]{2})(?<RAKUDO_PATCH>\.[\d]+)?' | Out-Null
+  ( Invoke-WebRequest https://github.com/rakudo/rakudo/releases/latest ) -match 'https://github.com/rakudo/rakudo/releases/tag/(?<RAKUDO_VERSION>[\d]{4}\.[\d]{2})(?<RAKUDO_PATCH>\.[\d]+)?' | Out-Null
   IF ( $Matches.RAKUDO_PATCH ) {
     $RAKUDO_VER = $Matches.RAKUDO_VERSION + $Matches.RAKUDO_PATCH
   } ELSE {
