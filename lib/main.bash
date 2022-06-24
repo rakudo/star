@@ -111,6 +111,11 @@ Actions:
 	test          Run tests on Raku and the bundled ecosystem modules. If
 	              neither spectest nor modules are given as explicit
 	              targets, all targets will be tested.
+
+Environment variables:
+   GPG_FINGERPRINT
+                  The fingerprint of the key to use for signing release files.
+
 EOF
 }
 
