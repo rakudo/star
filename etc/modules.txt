@@ -11,10 +11,11 @@ File-Find        git  https://github.com/tadzik/File-Find.git              maste
 rakudoc          git  https://github.com/Raku/doc.git                      master
 
 # Logging
-Log                 git  https://git.tyil.nl/raku/Log                       v0.3.1
+Log                  git  https://git.tyil.nl/raku/Log                       v0.3.1
+Log-Colored          git  https://git.tyil.nl/raku/Log::Colored              v0.1.1
 
-Terminal-ANSIColor  git  https://github.com/tadzik/Terminal-ANSIColor.git   master
-Log-Colored         git  https://git.tyil.nl/raku/Log::Colored              v0.1.1
+Terminal-ANSIColor   git  https://github.com/tadzik/Terminal-ANSIColor.git   master
+Terminal::LineEditor git  https://github.com/japhb/Terminal-LineEditor.git   main
 
 # Configuration management
 Hash-Merge          git  https://github.com/scriptkitties/p6-Hash-Merge.git            v2.0.0
