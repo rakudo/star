@@ -46,7 +46,6 @@ action() {
 	case ${RSTAR_PLATFORM["key"]} in
                 darwin)           LC_ALL=en_US.UTF-8 ;;
 		dragonfly)        LC_ALL=C           ;;
-		linux-arch_linux) LC_ALL=en_US.UTF-8 ;;
 		*)                LC_ALL=C.UTF-8     ;;
 	esac
 
