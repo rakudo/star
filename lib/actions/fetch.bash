@@ -55,7 +55,7 @@ download_core() {
 	then
 		TMP_VERSION="$(config_etc_kv "fetch_core.txt" "${1}_url" | sed -E "s|(https://github.com/.+/.+/releases)/download/.+|\1/latest|")"
 		
-		if [[ "$(curl -v $TMP_VERSION)" =~ /tag/([0-9]+.[0-9]+)(.[0-9]+) ]]
+		if [[ "$(curl -v --stderr - $TMP_VERSION | egrep -i 'location:')" =~ /tag/([0-9]+.[0-9]+)(.[0-9]+) ]]
 		then
 			VERSION="${BASH_REMATCH[1]}${BASH_REMATCH[2]}"
 		else
