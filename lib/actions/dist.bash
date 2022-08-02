@@ -32,7 +32,8 @@ action() {
 	then
 		RKD_LATEST="${BASH_REMATCH[1]}${BASH_REMATCH[2]}"
 	else
-		RKD_LATEST="$(datetime %Y.%m)"
+		# RKD_LATEST="$(datetime %Y.%m)"
+        RKD_LATEST="$(config_etc_kv "fetch_core.txt" "rakudo_version")"
 	fi
 	VERSION="${1:-$RKD_LATEST}"
 	WORKDIR="$BASEDIR/tmp/rakudo-star-$VERSION"
