@@ -9,7 +9,7 @@ on:
   create: #[push, create, workflow_dispatch]
     tags:
     - 2[0-9]+.[0-1][0-1]'**'
-  workflow_dispatch:
+  # workflow_dispatch: # IF you want to enable a GH dispatch (manual build) you MUST set a TAG in "ncipollo/release-action" below!!!
 
 env:
   GPG_FINGERPRINT: 3E7E3C6EAF916676AC549285A2919382E961E2EE
