@@ -28,7 +28,7 @@ action() {
 	# Set a VERSION if none was specified explicitly
 	## defaults to the latest GitHub RAKUDO release, as long as "latest" matches something like 2020.08 or 2020.08.1
 	## takes YEAR.month else, so something like 2020.08
-	if [[ "$(curl -s https://github.com/rakudo/rakudo/releases/latest)" =~ /tag/([0-9]+.[0-9]+)(.[0-9]+) ]]
+	if [[ "$(curl -v --stderr - https://github.com/rakudo/rakudo/releases/latest | egrep -i 'location: ')" =~ /tag/([0-9]+.[0-9]+)(.[0-9]+) ]]
 	then
 		RKD_LATEST="${BASH_REMATCH[1]}${BASH_REMATCH[2]}"
 	else
