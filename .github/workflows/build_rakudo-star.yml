@@ -22,10 +22,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
       - name: Setup VS Dev Environment
-        uses: seanmiddleditch/gha-setup-vsdevenv@v3
+        uses: seanmiddleditch/gha-setup-vsdevenv@v4
       - name: Import gpg key
         id: import_gpg
-        uses: crazy-max/ghaction-import-gpg@v4
+        uses: crazy-max/ghaction-import-gpg@v5
         with:
           gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
@@ -35,7 +35,7 @@ jobs:
       - name: List my stuff
         run: Get-ChildItem -Exclude ".git" -Recurse
       - name: Upload Rakudo-Star Windows artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: output
           path: tools/build/binary-release/Windows/*
@@ -59,7 +59,7 @@ jobs:
         run: ./bin/rstar fetch -l
       - name: Import gpg key
         id: import_gpg
-        uses: crazy-max/ghaction-import-gpg@v4
+        uses: crazy-max/ghaction-import-gpg@v5
         with:
           gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
@@ -69,7 +69,7 @@ jobs:
       - name: List my stuff
         run: ls -lAR -I ".git" -I "src"
       - name: Upload Rakudo-Star Linux artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: output
           path: dist/*
@@ -79,7 +79,7 @@ jobs:
     needs: [build_Rakudo-Star_Windows_MSI_package, build_Rakudo-Star_Linux_source]
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/download-artifact@v2
+    - uses: actions/download-artifact@v3
       with:
         path: Rakudo-Star_artifacts
     - name: List my stuff
