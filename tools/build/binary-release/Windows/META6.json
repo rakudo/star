@@ -64,8 +64,9 @@
 		"TAP",
 		"App::Prove6",
 		"Pod::Utilities",
-		"Slang::Tuxic"
+		"Slang::Tuxic",
+		"Win32::DrivesAndTypes",
+		"Win32::Registry"
     ],
     "provides" : { }
 }
-
