@@ -92,6 +92,9 @@ Test-Util-ServerPort     git  https://github.com/jonathanstowe/Test-Util-ServerP
 JSON-RPC                 git  https://github.com/bbkr/jsonrpc.git                              master
 Getopt-Long              git  https://github.com/Leont/getopt-long6.git                        master
 TAP                      git  https://github.com/Raku/tap-harness6.git                         master
+Path-Finder              git  https://github.com/Leont/path-finder.git                         master
+Pod-Usage                git  https://github.com/Leont/pod-usage.git                           main
+sigpipe                  git  https://github.com/Leont/sigpipe.git                             master
 App-Prove6               git  https://github.com/Leont/app-prove6.git                          master
 LibraryCheck             git  https://github.com/jonathanstowe/LibraryCheck.git                master
 Readline                 git  https://github.com/fooist/perl6-readline.git                     0.1.6
