@@ -10,7 +10,7 @@ which manages the Linux build, and the [chocolatey bases build script](https://g
 ### RSTAR utility
 
 * BASH based tool, should work on any Linux OS (_and maybe also macOS_?)
-* More information can be found in the [related Wiki page](https://github.com/rakudo/star/wiki/Rakudo-Star---Linux-package)
+* More information can be found in the [related Wiki page](https://github.com/rakudo/star/wiki/01_Rakudo-Star---Linux-package) 
 
 ### build-with-choco.ps1 script
 * [Powershell script](https://github.com/rakudo/star/blob/master/tools/build/binary-release/Windows/build-with-choco.ps1)
