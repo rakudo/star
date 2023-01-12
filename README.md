@@ -4,7 +4,8 @@ A *user-friendly* distribution of the [Raku programming language](https://raku.o
 
 ## Docker Image
 
-Please refer to the [Rakodo-Star on Docker Hub](https://hub.docker.com/_/rakudo-star)
+* Please refer to [Rakodo-Star on Docker Hub](https://hub.docker.com/_/rakudo-star) for an image
+* Find the related Docker files on the ["Raku Docker" GitHub repository](https://github.com/Raku/docker) 
 
 ## What's in this GIT repo
 
