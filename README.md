@@ -2,6 +2,10 @@
 
 A *user-friendly* distribution of the [Raku programming language](https://raku.org/).
 
+## Docker Image
+
+Please refer to the [Rakodo-Star on Docker Hub](https://hub.docker.com/_/rakudo-star)
+
 ## What's in this GIT repo
 
 There are currently two different tools within this repo. The so called [`RSTAR utility`](https://github.com/rakudo/star/blob/master/bin/rstar),
