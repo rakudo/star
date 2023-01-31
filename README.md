@@ -27,7 +27,7 @@ which manages the Linux build, and the [chocolatey bases build script](https://g
 One of Rakudo Star's main features is in supplying users with a number of
 popular community modules.
 
-*You should always prefer to use a pinned version of a module, whereever versions are available!*
+*You should always prefer to use a pinned version of a module, wherever versions are available!*
 
 #### [modules.txt](https://github.com/rakudo/star/blob/master/etc/modules.txt)
 
