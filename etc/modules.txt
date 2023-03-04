@@ -14,14 +14,17 @@ rakudoc          git  https://github.com/Raku/doc.git                      maste
 Log                  git  https://git.tyil.nl/raku/Log                       v0.3.1
 Log-Colored          git  https://git.tyil.nl/raku/Log::Colored              v0.1.1
 
-Terminal-ANSIColor   git  https://github.com/tadzik/Terminal-ANSIColor.git   master
-Terminal::LineEditor git  https://github.com/japhb/Terminal-LineEditor.git   main
+Terminal-ANSIColor     git  https://github.com/tadzik/Terminal-ANSIColor.git   master
+Term-termios           git  https://github.com/krunen/term-termios             master
+Terminal-ANSIParser    git  https://github.com/japhb/Terminal-ANSIParser.git   0.0.3
+Text-MiscUtils-Layout  git  git://github.com/japhb/Text-MiscUtils.git          v0.0.6
+Terminal-LineEditor    git  https://github.com/japhb/Terminal-LineEditor.git   main
 
 # Configuration management
-Hash-Merge          git  https://github.com/scriptkitties/p6-Hash-Merge.git            v2.0.0
-IO-Path-XDG         git  https://git.tyil.nl/raku/IO::Path::XDG                        v0.2.0
-Glob-IO             git  https://github.com/zostay/raku-IO-Glob.git                    master
-Config              http https://git.tyil.nl/raku/Config/snapshot/Config-3.0.3.tar.gz  Config-3.0.3
+Hash-Merge          git  https://github.com/scriptkitties/p6-Hash-Merge.git         v2.0.0
+IO-Path-XDG         git  https://git.tyil.nl/raku/IO::Path::XDG                     v0.2.0
+Glob-IO             git  https://github.com/zostay/raku-IO-Glob.git                 master
+Config              git  https://github.com/scriptkitties/p6-Config                 v3.0.3
 
 Crane               git  https://github.com/atweiden/crane.git                      master
 Config-TOML         git  https://github.com/atweiden/config-toml.git                master
@@ -73,7 +76,9 @@ Template-Mojo            git  https://github.com/tadzik/Template-Mojo.git       
 Test-When                git  https://github.com/raku-community-modules/perl6-Test-When.git    master
 Digest                   git  https://github.com/grondilu/libdigest-perl6.git                  master
 Testo                    git  https://github.com/raku-community-modules/perl6-Testo.git        master
+
 Temp-Path                git  https://github.com/ufobat/perl6-Temp-Path.git                    master
+
 Pod-Load                 git  https://github.com/JJ/p6-pod-load.git                            master
 Test-Output              git  https://github.com/raku-community-modules/perl6-Test-Output.git  master
 DateTime-Parse           git  https://github.com/sergot/datetime-parse.git                     master
