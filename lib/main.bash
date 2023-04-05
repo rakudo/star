@@ -50,6 +50,9 @@ main() {
 	depcheck_bin || exit 3
 	depcheck_perl || exit 3
 
+	# Set the GIT default branch name
+	git config init.defaultBranch main
+
 	# Maintain our own tempdir
 	export TMPDIR="$BASEDIR/tmp"
 	mkdir -p -- "$TMPDIR"
