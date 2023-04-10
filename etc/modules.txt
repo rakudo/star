@@ -3,27 +3,37 @@
 # to be resolved manually by including all dependencies here as well.
 
 # Zef, the package manager
-zef                      git  https://github.com/ugexe/zef.git                                 v0.18.2
+zef                      git https://github.com/ugexe/zef.git                                  v0.18.2
 
 # Documentation utilities
-Perl6-TypeGraph          git  https://github.com/antoniogamiz/Perl6-TypeGraph.git              v2.1.3
+Perl6-TypeGraph          git https://github.com/antoniogamiz/Perl6-TypeGraph.git               v2.2.1.1
 File-Find                git  https://github.com/tadzik/File-Find.git                          master
-rakudoc                  git  https://github.com/Raku/doc.git                                  v666.pre
+rakudoc                  git https://github.com/Raku/doc.git                                   v1.006d
 
-Terminal-ANSIColor       git  https://github.com/tadzik/Terminal-ANSIColor.git                 0.9
+# Logging
+Log                      git https://git.tyil.nl/raku/log                                      master
+Log-Colored              git https://git.tyil.nl/raku/log-colored                              master
+
+Terminal-ANSIColor       git https://github.com/tadzik/Terminal-ANSIColor.git                  0.9
 Term-termios             git  https://github.com/krunen/term-termios                           master
 Terminal-ANSIParser      git  https://github.com/japhb/Terminal-ANSIParser.git                 0.0.3
-Terminal-LineEditor      git  https://github.com/japhb/Terminal-LineEditor.git                 0.0.13
+Terminal-LineEditor      git https://github.com/japhb/Terminal-LineEditor.git                  0.0.13
 
 # Configuration management
 Hash-Merge               git  https://github.com/scriptkitties/p6-Hash-Merge.git               v2.0.0
-Glob-IO                  git  https://github.com/zostay/raku-IO-Glob.git                       v0.9.0
+IO-Path-XDG              git https://git.tyil.nl/raku/io-path-xdg                              master
+Glob-IO                  git https://github.com/zostay/raku-IO-Glob.git                        v0.9.0
 Config                   git  https://github.com/scriptkitties/p6-Config                       v3.0.3
+
 Crane                    git  https://github.com/atweiden/crane.git                            master
 Config-TOML              git  https://github.com/atweiden/config-toml.git                      master
-MIME-Base64              git  https://github.com/raku-community-modules/MIME-Base64.git        1.2.3
+Config-Parser-toml       git https://git.tyil.nl/raku/config-parser-toml                       master
+
+MIME-Base64              git https://github.com/raku-community-modules/MIME-Base64.git         1.2.3
 YAMLish                  git  https://github.com/Leont/yamlish.git                             master
-JSON-Fast                git  https://github.com/timo/json_fast.git                            0.17
+Config-Parser-yaml       git https://git.tyil.nl/raku/config-parser-yaml                       master
+
+JSON-Fast                git https://github.com/timo/json_fast.git                             0.17
 Config-Parser-json       git  https://github.com/arjancwidlak/p6-Config-Parser-json.git        master
 
 # Database interaction
@@ -32,63 +42,65 @@ File-Temp                git  https://github.com/rbt/raku-File-Temp.git         
 NativeCall-TypeDiag      git  https://github.com/Skarsnik/nativecall-typediag.git              master
 NativeHelpers-Blob       git  https://github.com/salortiz/NativeHelpers-Blob.git               master
 NativeLibs               git  https://github.com/salortiz/NativeLibs.git                       master
-DBIish                   git  https://github.com/raku-community-modules/DBIish.git             0.6.6
+DBIish                   git https://github.com/raku-community-modules/DBIish.git              0.6.6
 
 # Taken from the previous iteration of Rakudo Star
-URI                      git  https://github.com/raku-community-modules/uri.git                0.1.5
-JSON-OptIn               git  https://github.com/jonathanstowe/JSON-OptIn.git                  v0.0.2
-JSON-Name                git  https://github.com/jonathanstowe/JSON-Name.git                   v0.0.1
+URI                      git https://github.com/raku-community-modules/uri.git                 v0.3.6
+JSON-OptIn               git https://github.com/jonathanstowe/JSON-OptIn.git                   v0.0.2
+JSON-Name                git https://github.com/jonathanstowe/JSON-Name.git                    v0.0.7
 JSON-Unmarshal           git  https://github.com/tadzik/JSON-Unmarshal.git                     master
-JSON-Marshal             git  https://github.com/jonathanstowe/JSON-Marshal.git                v0.0.5
-JSON-Class               git  https://github.com/jonathanstowe/JSON-Class.git                  v0.0.1
-META6                    git  https://github.com/jonathanstowe/META6.git                       v0.0.3
-License-SPDX             git  https://github.com/jonathanstowe/License-SPDX.git                v3.9.0
-Test-META                git  https://github.com/jonathanstowe/Test-META.git                   v0.0.1
+JSON-Marshal             git https://github.com/jonathanstowe/JSON-Marshal.git                 v0.0.24
+JSON-Class               git https://github.com/jonathanstowe/JSON-Class.git                   v0.0.19
+META6                    git https://github.com/jonathanstowe/META6.git                        v0.0.29
+License-SPDX             git https://github.com/jonathanstowe/License-SPDX.git                 v3.20.0
+Test-META                git https://github.com/jonathanstowe/Test-META.git                    v0.0.19
 XML-Writer               git  https://github.com/masak/xml-writer.git                          master
 SVG                      git  https://github.com/moritz/svg.git                                master
 SVG-Plot                 git  https://github.com/moritz/svg-plot.git                           master
-OO-Monitors              git  https://github.com/jnthn/oo-monitors.git                         release-1.1.1
-Test-Mock                git  https://github.com/jnthn/test-mock.git                           release-1.6
+OO-Monitors              git https://github.com/jnthn/oo-monitors.git                          release-1.1.1
+Test-Mock                git https://github.com/jnthn/test-mock.git                            release-1.6
 Grammar-Profiler-Simple  git  https://github.com/perlpilot/Grammar-Profiler-Simple.git         master
 Grammar-Debugger         git  https://github.com/jnthn/grammar-debugger.git                    master
-JSON-Tiny                git  https://github.com/moritz/json.git                               version-0.1.0
-Perl6-PathTools          git  https://github.com/ugexe/Perl6-PathTools.git                     v0.2.0
-OpenSSL                  git  https://github.com/sergot/openssl.git                            main
+JSON-Tiny                git https://github.com/moritz/json.git                                version-0.1.0
+Perl6-PathTools          git https://github.com/ugexe/Perl6-PathTools.git                      v0.2.0
+OpenSSL                  git https://github.com/sergot/openssl.git                             main
 IO-Socket-SSL            git  https://github.com/sergot/io-socket-ssl.git                      master
-LWP-Simple               git  https://github.com/raku-community-modules/raku-lwp-simple.git    0.109
-Digest-MD5               git  https://github.com/cosimo/perl6-digest-md5.git                   v0.01
-HTTP-Status              git  https://github.com/supernovus/perl6-http-status.git              0.0.4
-Template-Mustache        git  https://github.com/softmoth/p6-Template-Mustache.git             1.2.3
-PSGI                     git  https://github.com/supernovus/perl6-psgi.git                     1.2.1
-HTTP-Easy                git  https://github.com/supernovus/perl6-http-easy.git                1.2
+LWP-Simple               git https://github.com/raku-community-modules/raku-lwp-simple.git     0.109
+Digest-MD5               git https://github.com/cosimo/perl6-digest-md5.git                    0.05
+HTTP-Status              git https://github.com/supernovus/perl6-http-status.git               0.0.4
+Template-Mustache        git https://github.com/softmoth/p6-Template-Mustache.git              1.2.3
+PSGI                     git https://github.com/supernovus/perl6-psgi.git                      1.2.1
+HTTP-Easy                git https://github.com/supernovus/perl6-http-easy.git                 1.2
 Template-Mojo            git  https://github.com/tadzik/Template-Mojo.git                      master
-Test-When                git  https://github.com/raku-community-modules/perl6-Test-When.git    v1.001009
+Test-When                git https://github.com/raku-community-modules/perl6-Test-When.git     v1.001009
 Digest                   git  https://github.com/grondilu/libdigest-perl6.git                  master
-Testo                    git  https://github.com/raku-community-modules/perl6-Testo.git        1.002001
+Testo                    git https://github.com/raku-community-modules/perl6-Testo.git         1.002001
+
 Temp-Path                git  https://github.com/ufobat/perl6-Temp-Path.git                    master
-Pod-Load                 git  https://github.com/JJ/p6-pod-load.git                            v0.7.2
-Test-Output              git  https://github.com/raku-community-modules/perl6-Test-Output.git  v1.001001
+
+Pod-Load                 git https://github.com/JJ/p6-pod-load.git                             v0.7.2
+Test-Output              git https://github.com/raku-community-modules/perl6-Test-Output.git   v1.001001
 DateTime-Parse           git  https://github.com/sergot/datetime-parse.git                     master
 Encode                   git  https://github.com/sergot/perl6-encode.git                       master
-HTTP-UserAgent           git  https://github.com/sergot/http-useragent.git                     v1.1.38
-Pod-To-HTML              git  https://github.com/perl6/Pod-To-HTML.git                         v0.7.1
+HTTP-UserAgent           git https://github.com/sergot/http-useragent.git                      v1.1.38
+Pod-To-HTML              git https://github.com/perl6/Pod-To-HTML.git                          v0.7.1
 Pod-To-BigPage           git  https://github.com/perl6/perl6-pod-to-bigpage.git                master
-Debugger-UI-CommandLine  git  https://github.com/jnthn/rakudo-debugger.git                     2014.01
-File-Which               git  https://github.com/azawawi/perl6-file-which.git                  1.0.4
+Debugger-UI-CommandLine  git https://github.com/jnthn/rakudo-debugger.git                      2014.01
+File-Which               git https://github.com/azawawi/perl6-file-which.git                   1.0.4
 Shell-Command            git  https://github.com/tadzik/Shell-Command.git                      master
 LibraryMake              git  https://github.com/retupmoca/P6-LibraryMake.git                  master
 IO-String                git  https://github.com/hoelzro/p6-io-string.git                      master
-DateTime-Format          git  https://github.com/supernovus/perl6-datetime-format.git          0.1.4
+DateTime-Format          git https://github.com/supernovus/perl6-datetime-format.git           0.1.4
 IO-Capture-Simple        git  https://github.com/sergot/IO-Capture-Simple.git                  master
-Test-Util-ServerPort     git  https://github.com/jonathanstowe/Test-Util-ServerPort.git        v0.0.4
+Test-Util-ServerPort     git https://github.com/jonathanstowe/Test-Util-ServerPort.git         v0.0.4
 JSON-RPC                 git  https://github.com/bbkr/jsonrpc.git                              master
-Getopt-Long              git  https://github.com/Leont/getopt-long6.git                        0.4.2
-TAP                      git  https://github.com/Raku/tap-harness6.git                         0.3.14
-Path-Finder              git  https://github.com/Leont/path-finder.git                         0.4.5
+Getopt-Long              git https://github.com/Leont/getopt-long6.git                         0.4.2
+TAP                      git https://github.com/Raku/tap-harness6.git                          0.3.14
+Path-Finder              git https://github.com/Leont/path-finder.git                          0.4.5
 Pod-Usage                git  https://github.com/Leont/pod-usage.git                           main
-sigpipe                  git  https://github.com/Leont/sigpipe.git                             0.0.3
-App-Prove6               git  https://github.com/Leont/app-prove6.git                          0.0.17
-LibraryCheck             git  https://github.com/jonathanstowe/LibraryCheck.git                v0.0.4
+sigpipe                  git https://github.com/Leont/sigpipe.git                              0.0.3
+App-Prove6               git https://github.com/Leont/app-prove6.git                           0.0.17
+LibraryCheck             git https://github.com/jonathanstowe/LibraryCheck.git                 v0.0.11
 Readline                 git  https://github.com/fooist/perl6-readline.git                     0.1.6
 
 # vim: textwidth=0
