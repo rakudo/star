@@ -234,9 +234,19 @@ build_prepare() {
 install_raku_module() {
 	if [[ -f "$1/Build.pm6" ]]
 	then
-		"$RSTAR_PREFIX/bin/raku" "$RSTAR_PREFIX/share/perl6/vendor/bin/zef" build "$1"
+		"$RSTAR_PREFIX/bin/raku" "$RSTAR_PREFIX/share/perl6/site/bin/zef" build "$1"
 	fi
 
-	"$RSTAR_PREFIX/bin/raku" "$BASEDIR/lib/install-module.raku" "$1"
+	if [[ "$1" =~ /zef ]]
+	then
+	  pushd "$1" > /dev/null
+	  PATH="$RSTAR_PREFIX/bin/:$PATH"
+	  "$RSTAR_PREFIX/bin/raku" -I. bin/zef install .
+	  popd > /dev/null
+	else
+	  "$RSTAR_PREFIX/bin/raku" "$RSTAR_PREFIX/share/perl6/site/bin/zef" install --force-test "$1"
+	fi
+
+	# "$RSTAR_PREFIX/bin/raku" "$BASEDIR/lib/install-module.raku" "$1"
 }
 

@@ -103,15 +103,15 @@ download_module_git() {
 	mkdir -p -- "$destination"
 	chgdir "$destination"
 
-	git init > /dev/null
+	git -c init.defaultBranch=main init > /dev/null
 	git remote add origin "$url" 2> /dev/null
-	git fetch origin -a 2> /dev/null
+	git fetch --quiet origin -a 2> /dev/null
 
 	# Try to use the ref (branch or tag)
-	if ! git reset --hard "origin/$ref" > /dev/null 2>&1
+	if ! git reset --quiet --hard "origin/$ref" > /dev/null 2>&1
 	then
 		# Or the commit hash
-		git reset --hard "$(git log -1 --format=format:"%H" "$ref")"
+		git reset --quiet --hard "$(git log -1 --format=format:"%H" "$ref")"
 	fi
 
 	rm -fr -- .git
