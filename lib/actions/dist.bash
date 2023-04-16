@@ -3,6 +3,7 @@
 RSTAR_DEPS_BIN+=(
 	git
 	gpg
+	gpg2
 	md5sum
 	sha1sum
 	sha224sum
