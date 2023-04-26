@@ -89,7 +89,7 @@ Shell-Command            git  https://github.com/tadzik/Shell-Command.git       
 LibraryMake              git  https://github.com/retupmoca/P6-LibraryMake.git                  master
 IO-String                git  https://github.com/hoelzro/p6-io-string.git                      master
 DateTime-Format          git https://github.com/supernovus/perl6-datetime-format.git           0.1.4
-IO-Capture-Simple        git  https://github.com/sergot/IO-Capture-Simple.git                  master
+IO-Capture-Simple        git  https://github.com/JJ/raku-io-capture-simple.git                 v0.0.2
 Test-Util-ServerPort     git https://github.com/jonathanstowe/Test-Util-ServerPort.git         v0.0.4
 JSON-RPC                 git  https://github.com/bbkr/jsonrpc.git                              master
 Getopt-Long              git https://github.com/Leont/getopt-long6.git                         0.4.2
