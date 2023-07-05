@@ -4,6 +4,26 @@ param ([string]$RAKUDO_VER, [switch]$sign, [switch]$keep)
 # expected $RAKUDO_VER is something like "2021.03"
 # if none is given, we will try to get the "latest" from gihub
 
+# $ErrorActionPreference = "stop"
+
+# Make sure Powershell 7 doesn't just silently swallows errors.
+# https://david.gardiner.net.au/2020/04/azure-pipelines-powershell-7-errors.html
+# https://github.com/microsoft/azure-pipelines-tasks/issues/12799
+$ErrorView = 'NormalView'
+
+function CheckLastExitCode {
+  if ($LastExitCode -ne 0) {
+    $msg = @"
+!!!
+!!! Program failed with exit code: $LastExitCode
+!!!
+!!! Callstack: $(Get-PSCallStack | Out-String)
+!!!
+"@
+    throw $msg
+  }
+}
+
 IF ( $PSScriptRoot ) { $ScriptRoot = $PSScriptRoot} ELSE { $ScriptRoot = Get-Location }
 Write-Host "   INFO - `"`$ScriptRoot`" set to `"$ScriptRoot`""
 
@@ -26,7 +46,7 @@ IF ( -NOT ((Get-Command "cl.exe" -ErrorAction SilentlyContinue).Path) ) {
 IF ( $ScriptRoot -ne (pwd).Path ) { cd $ScriptRoot }
 
 
-IF ((( & cl /v 2>&1 | Select-String "^Microsoft .+ Compiler Version .+ for") -match "^Microsoft .+ Compiler Version (?<VERSION>\d{2}).+" ) -AND ( $Matches.VERSION -ge 19 )) {
+IF ((( &cl.exe /v 2>&1 | Select-String "^Microsoft .+ Compiler Version .+ for") -match "^Microsoft .+ Compiler Version (?<VERSION>\d{2}).+" ) -AND ( $Matches.VERSION -ge 19 )) {
   Write-Host "   INFO - `"cl.exe`" version", $Matches.VERSION, "or newer found, continue..."
 } ELSE {
   Write-Host "  ERROR - `"cl.exe`" version 19 or newer expected, but only version", $Matches.VERSION, "found"
@@ -34,11 +54,17 @@ IF ((( & cl /v 2>&1 | Select-String "^Microsoft .+ Compiler Version .+ for") -ma
   EXIT
 }
 
+IF ( -NOT ((Get-Command  "nmake.exe" -ErrorAction SilentlyContinue).Path) )  {
+  Write-Host "  ERROR - `"nmake.exe`" not found"
+  Write-Host "  ERROR - Make sure `"Microsoft Visual 2019`" or newer is installed and try again"
+  EXIT
+}
 
 # Let's use choco to make sure all prerequisites are installed
 # Check if choco is installed. If not, install it.
 Write-Host "   INFO - Checking all prerequisites (choco, git, perl5, WiX toolset, gpg) and installing them, if required"
 IF ( -NOT ((Get-Command "choco" -ErrorAction SilentlyContinue).Path) ) { iex (New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1') }
+
 # Now install all prerequisites to build NQP, Moar and finally Rakudo
 IF (  -NOT ((Get-Command  "git.exe" -ErrorAction SilentlyContinue).Path) ) { & choco install --yes --force --no-progress --limit-output --timeout 0 git }
 IF (  -NOT ((Get-Command  "curl.exe" -ErrorAction SilentlyContinue).Path) ) { & choco install --yes --force --no-progress --limit-output --timeout 0 curl }
@@ -69,21 +95,26 @@ Write-Host "   INFO - `"`$PrefixPath`" set to $PrefixPath"
 Write-Host "   INFO - Building NQP, Moar and Rakudo $RAKUDO_VER"
 # "Configure.pl" help -> https://github.com/rakudo/rakudo/blob/master/Configure.pl#L140-L210
 perl Configure.pl --backends=moar --gen-moar --gen-nqp --moar-option='--toolchain=msvc' --no-silent-build --relocatable --prefix=$PrefixPath --out=RAKUDO-${RAKUDO_VER}_build.log
+CheckLastExitCode
 
 # see https://docs.microsoft.com/en-us/cpp/build/reference/running-nmake
 ## /C => Suppresses default output, including nonfatal NMAKE errors or warnings, timestamps, and NMAKE copyright message. Suppresses warnings issued by /K
 nmake /C
+CheckLastExitCode
+
 # nmake /C test
 nmake /C install
-
+CheckLastExitCode
 
 # Download Zef and install
 Write-Host "   INFO - Cloning `"https://github.com/ugexe/zef.git`"..."
-& git.exe clone --quiet https://github.com/ugexe/zef.git
+& git.exe -c advice.detachedHead=false clone --quiet https://github.com/ugexe/zef.git
+CheckLastExitCode
+
 cd zef
 Write-Host "   INFO - Installing ZEF"
 & $PrefixPath\bin\raku.exe -I. bin\zef install . --install-to=$PrefixPath\share\perl6\site\ --error
-
+CheckLastExitCode
 
 # Add the required rakudo folders to PATH in order for some modules to test correctly (File::Which)
 Write-Host "   INFO - Changing the %PATH% variable"
@@ -93,6 +124,8 @@ $Env:Path += ";$PrefixPath\bin;$PrefixPath\share\perl6\site\bin"
 
 Write-Host "   INFO - ZEF: installing `"https://raw.githubusercontent.com/rakudo/star/master/etc/modules.txt`" modules into `"$PrefixPath\share\perl6\site\`""
 & curl.exe -s https://raw.githubusercontent.com/rakudo/star/master/etc/modules.txt --output rakudo-star-modules.txt
+CheckLastExitCode
+
 Select-String -Path rakudo-star-modules.txt -Pattern " http "," git " -SimpleMatch | ForEach-Object {
   $moduleName, $moduleUrl = ($_.Line -split '\s+')[0,2]
   $moduleName = $moduleName.replace("-","::")
