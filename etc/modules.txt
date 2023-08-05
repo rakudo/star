@@ -8,7 +8,7 @@ zef                       git   https://github.com/ugexe/zef.git                
 App::Zef-Deps             git   https://github.com/coke/raku-zef-deps.git                               0.9.7           
 
 # Documentation utilities
-File-Find                 git   https://github.com/tadzik/File-Find.git                                 0.1.2           
+File-Find                 git   https://github.com/raku-community-modules/File-Find.git                 0.1.2           
 
 # Logging
 Log                       git   https://git.tyil.nl/raku/log                                            v0.3.1          
