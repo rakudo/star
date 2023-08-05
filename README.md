@@ -17,10 +17,14 @@ which manages the Linux build, and the [chocolatey bases build script](https://g
 * BASH based tool, should work on any Linux OS (_and maybe also macOS_?)
 * More information can be found in the [related Wiki page](https://github.com/rakudo/star/wiki/01_Rakudo-Star---Linux-package) 
 
+The the `rstar` utility is written in `bash`, all additional features should be
+also based on `bash`. Using other utilities is accepted, but effort should be made to
+avoid introducing new utilities. Furthermore, all code should be linted against
+[`shellcheck`](https://www.shellcheck.net/) and not produce any warnings.
+
 ### build-with-choco.ps1 script
-* [Powershell script](https://github.com/rakudo/star/blob/master/tools/build/binary-release/Windows/build-with-choco.ps1)
-* chocolatey based, creates a Windows MSI package
-* *More information to come soon*
+* A [Powershell script](https://github.com/rakudo/star/blob/master/tools/build/binary-release/Windows/build-with-choco.ps1), which internally uses chocolatey to create a Windows MSI package
+* *More information to be added* in the [wiki](https://github.com/rakudo/star/wiki) 
 
 ### Community Modules
 
@@ -45,21 +49,26 @@ depending on the protocol.
   * If you're reporting a RSTAR bug, please include the full logs of `rstar` with
     `RSTAR_DEBUG=1`, and the output of `rstar sysinfo` in your message.
 
-### Code Contributions
+### Feedback
 
-* Please send your pull requests to the [RAKUDO Star](https://github.com/rakudo/star) repository!!
+#### Mail and IRC
+
+* If you have a question about Rakudo Star, you probably want to write to the “perl6-users@perl.org” mailing list or ask the [irc.libera.chat/#raku-star](https://web.libera.chat/#raku-star) IRC channel.
+
+#### Github Plattform
+
+* Knowledge and documentation related to Rakudo Star can be published in the related [wiki](https://github.com/rakudo/star/wiki).
+* There is also [Star discussions](https://github.com/rakudo/star/discussions) for any kind of ongoing discussions, alignements, FAQ's, ...
+  * Once things are discussed, agreed, finalized, they should be documented in the Wiki, see above!
+
+### Patches And Code Contributions
+
+* Please send your pull requests to the [RAKUDO Star](https://github.com/rakudo/star) repository!
 * Also, try to be generous with comments. Especially when introducing new utility
   functions, a little description of what it does and what problem it is intended
   to solve go a long way.
-  
-#### RSTAR utility
-The `rstar` utility is written in `bash`. All additional features should be
-based on this. Using other utilities is accepted, but effort should be made to
-avoid introducing new utilities. Furthermore, all code should be linted against
-[`shellcheck`](https://www.shellcheck.net/) and not produce any warnings.
 
-
-### Repositories
+### Various GIT Repositories
 
 The main git repository lives at [https://github.com/rakudo/star](https://github.com/rakudo/star). This should
 be used as the reference to clone from.
