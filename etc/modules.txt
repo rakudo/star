@@ -14,6 +14,7 @@ File-Find                 git   https://github.com/tadzik/File-Find.git         
 Log                       git   https://git.tyil.nl/raku/log                                            v0.3.1          
 Log-Colored               git   https://git.tyil.nl/raku/log-colored                                    v0.1.2          
 
+# terminal related modules
 Terminal-ANSIColor        git   https://github.com/tadzik/Terminal-ANSIColor.git                        0.9.1           
 Term-termios              git   https://github.com/krunen/term-termios                                  master          
 Terminal-ANSIParser       git   https://github.com/japhb/Terminal-ANSIParser.git                        0.0.3           
@@ -43,6 +44,14 @@ NativeHelpers-Blob        git   https://github.com/salortiz/NativeHelpers-Blob.g
 NativeLibs                git   https://github.com/salortiz/NativeLibs.git                              master          
 DBIish                    git   https://github.com/raku-community-modules/DBIish.git                    0.6.6           
 
+# serialization modules
+XML                       git   https://github.com/raku-community-modules/XML.git                       0.3.3           
+
+# templates
+Template6                 git   https://github.com/raku-community-modules/Template6                     0.11.5           
+Template-Mustache         git   https://github.com/softmoth/p6-Template-Mustache.git                    1.2.3           
+Template-Mojo             git   https://github.com/tadzik/Template-Mojo.git                             0.2.2           
+
 # Taken from the previous iteration of Rakudo Star
 URI                       git   https://github.com/raku-community-modules/uri.git                       v0.3.6          
 JSON-OptIn                git   https://github.com/jonathanstowe/JSON-OptIn.git                         v0.0.2          
@@ -67,10 +76,8 @@ IO-Socket-SSL             git   https://github.com/sergot/io-socket-ssl.git     
 LWP-Simple                git   https://github.com/raku-community-modules/raku-lwp-simple.git           0.109           
 Digest-MD5                git   https://github.com/cosimo/perl6-digest-md5.git                          0.05            
 HTTP-Status               git   https://github.com/supernovus/perl6-http-status.git                     0.0.4           
-Template-Mustache         git   https://github.com/softmoth/p6-Template-Mustache.git                    1.2.3           
 PSGI                      git   https://github.com/supernovus/perl6-psgi.git                            1.2.1           
 HTTP-Easy                 git   https://github.com/supernovus/perl6-http-easy.git                       1.2             
-Template-Mojo             git   https://github.com/tadzik/Template-Mojo.git                             0.2.2           
 Test-When                 git   https://github.com/raku-community-modules/perl6-Test-When.git           v1.001009       
 Digest                    git   https://github.com/grondilu/libdigest-perl6.git                         1.0.0           
 Testo                     git   https://github.com/raku-community-modules/perl6-Testo.git               1.002001        
