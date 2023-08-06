@@ -16,7 +16,7 @@ Log-Colored               git   https://git.tyil.nl/raku/log-colored            
 
 # terminal related modules
 Terminal-ANSIColor        git   https://github.com/tadzik/Terminal-ANSIColor.git                        0.9.1           
-Term-termios              git   https://github.com/krunen/term-termios                                  master          
+Term-termios              git   https://github.com/krunen/term-termios                                  0.2          
 Terminal-ANSIParser       git   https://github.com/japhb/Terminal-ANSIParser.git                        0.0.3           
 Terminal-LineEditor       git   https://github.com/japhb/Terminal-LineEditor.git                        0.0.15          
 
