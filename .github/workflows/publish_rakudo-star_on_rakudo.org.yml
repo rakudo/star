@@ -110,5 +110,9 @@ jobs:
           ls -laR ~/output/*
         fi
         
-        scp -vvvv ~/output/* rakudo.org:/home/rakudo.org/public_html/downloads/star
+        scp -vvvv -o StrictHostKeyChecking=no ~/output/* rakudo.org:/home/rakudo.org/public_html/downloads/star
+    
+    - name: Clean up SSH directory
+      if: steps.ssh_config.outputs.config
+      run: |
         \rm -r ~/.ssh/*
