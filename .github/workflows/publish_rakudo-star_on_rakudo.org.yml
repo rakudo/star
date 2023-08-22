@@ -63,11 +63,16 @@ jobs:
         
         echo ::set-output name=config::'true'
         
-    ### - name: List my SSH stuff
-    ###   if: steps.ssh_config.outputs.config
-    ###   run: |
-    ###     echo "PWD is: $(pwd)"
-    ###     ls -laR ~/.ssh/*
+    - name: List my SSH stuff
+      if: steps.ssh_config.outputs.config
+      run: |
+        echo "*** PWD is: $(pwd) ***"
+        ls -laR ~/.ssh/*
+        echo "*** show the ssh config file ***"
+        cat ~/.ssh/config
+        echo "*** show the ssh known_hosts file ***"
+        cat ~/.ssh/known_hosts
+        echo "*************************************"
         
     - name: Get the Rakudo Star files
       if: steps.ssh_config.outputs.config
@@ -105,5 +110,5 @@ jobs:
           ls -laR ~/output/*
         fi
         
-        scp ~/output/* rakudo.org:/home/rakudo.org/public_html/downloads/star
+        scp -vvvv ~/output/* rakudo.org:/home/rakudo.org/public_html/downloads/star
         \rm -r ~/.ssh/*
