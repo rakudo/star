@@ -8,7 +8,7 @@ on:
   
 env:
   RKD_REVISION: "01" # Default build revision if RKD_STR_GH below has only a VERSION and not a revision (say, something like 202203-01 is expected)
-  DEBUG: 0           # Set this to 1 for (future) more debut output
+  DEBUG: 0           # Set this to 1 or anythin other then 0 (ZERO) for more debut output
   
 jobs:
   upload_star_release:
@@ -80,11 +80,11 @@ jobs:
         mkdir ~/output && cd ~/output && pwd
         
         for FILE in `curl -s https://api.github.com/repos/rakudo/star/releases/tags/${{steps.rkd_v_check.outputs.RKD_STR_GH_VERSION}} | jq -r ".assets[] | .browser_download_url"`; do
-          if [[ $DEBUG ]]; then echo "running curl -sL $FILE" ; fi
+          if [[ $DEBUG -ne 0 ]]; then echo "running curl -sL $FILE" ; fi
           curl -sL $FILE -o $( basename $FILE )
         done
         
-        if [[ $DEBUG ]]; then
+        if [[ $DEBUG -ne 0 ]]; then
           echo "BEFORE renaming of the downloaded Rakudo Start releases"
           ls -laR
         fi
@@ -96,7 +96,7 @@ jobs:
           fi
         done
         
-        if [[ $DEBUG ]]; then
+        if [[ $DEBUG -ne 0 ]]; then
           echo "AFTER renaming of the downloaded Rakudo Start releases"
           pwd
           ls -laR
@@ -105,7 +105,7 @@ jobs:
     - name: SCP Rakudo Star files from GitHub to RAKUDO.ORG
       if: steps.ssh_config.outputs.config
       run: |
-        if [[ $DEBUG ]]; then
+        if [[ $DEBUG -ne 0 ]]; then
           echo "Show the Star files to copy over"
           ls -laR ~/output/*
         fi
