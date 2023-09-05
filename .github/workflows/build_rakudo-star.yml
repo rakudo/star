@@ -20,7 +20,7 @@ jobs:
     runs-on: windows-2019
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Setup VS Dev Environment
         uses: seanmiddleditch/gha-setup-vsdevenv@v4
       - name: Import gpg key
@@ -45,7 +45,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Prepare
         run: |
           sudo apt update
