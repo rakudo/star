@@ -39,7 +39,7 @@ Config-Parser-json        git   https://github.com/arjancwidlak/p6-Config-Parser
 
 # Database interaction
 File-Directory-Tree       git   https://github.com/labster/p6-file-directory-tree.git                   master          
-File-Temp                 git   https://github.com/rbt/raku-File-Temp.git                               master          
+File-Temp                 git   https://github.com/2colours/raku-File-Temp.git                          0.0.10          
 NativeHelpers-Blob        git   https://github.com/salortiz/NativeHelpers-Blob.git                      master          
 NativeLibs                git   https://github.com/salortiz/NativeLibs.git                              master          
 DBIish                    git   https://github.com/raku-community-modules/DBIish.git                    0.6.6           
