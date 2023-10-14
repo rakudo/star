@@ -1,0 +1,45 @@
+name: Verify And Update The Raku Star Modules
+
+on:
+
+  push:
+    paths:
+      - 'etc/modules.txt'
+      
+  workflow_dispatch:
+
+jobs:
+  verify_raku_modules:
+    runs-on: ubuntu-latest
+    
+    steps:          
+    - name: Check out code
+      uses: actions/checkout@v4
+      with:
+        path: 'star'
+        fetch-depth: 0
+        ref: ${{ github.head_ref }}
+    
+    - name: Check if self-triggering is needed
+      run: |
+        cd ./star
+        if git log -1 --pretty=format:%B | grep -qF "[skip workflow]"; then
+          echo "Workflow self-triggering skipped."
+          exit $LINENO
+        fi
+        cd ..
+
+    - name: Run script to verify and update links
+      run: |
+        sudo apt update && sudo apt upgrade && sudo apt install jq -y -qq
+        cd ./star
+        bash ./tools/pretty_print_modules.bash
+        cd ..
+        
+    - name: Commit and push changes
+      uses: EndBug/add-and-commit@v9
+      with:
+        cwd: './star'
+        message: "Auto-update /etc/modules.txt [skip workflow]"
+        tag: "mudules update on $(date +'%Y%m%d_%H%M%S')"
+        push: "true"
