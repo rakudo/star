@@ -41,5 +41,4 @@ jobs:
       with:
         cwd: './star'
         message: "Auto-update /etc/modules.txt [skip workflow]"
-        tag: "mudules update on $(date +'%Y%m%d_%H%M%S')"
         push: "true"
