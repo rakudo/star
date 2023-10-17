@@ -53,7 +53,7 @@ Template-Mustache        git  https://github.com/softmoth/p6-Template-Mustache.g
 Template-Mojo            git  https://github.com/tadzik/Template-Mojo.git                            0.2.2          
 
 # Taken from the previous iteration of Rakudo Star
-URI                      git  https://github.com/raku-community-modules/uri.git                      v0.3.6         
+URI                      git  https://github.com/raku-community-modules/uri.git                      0.3.7          
 JSON-OptIn               git  https://github.com/jonathanstowe/JSON-OptIn.git                        v0.0.2         
 JSON-Name                git  https://github.com/jonathanstowe/JSON-Name.git                         v0.0.7         
 JSON-Unmarshal           git  https://github.com/raku-community-modules/JSON-Unmarshal.git           0.15           
@@ -86,7 +86,7 @@ Temp-Path                git  https://github.com/ufobat/perl6-Temp-Path.git     
 
 Pod-Load                 git  https://github.com/JJ/p6-pod-load.git                                  v0.7.2         
 Test-Output              git  https://github.com/raku-community-modules/perl6-Test-Output.git        v1.001001      
-DateTime-Parse           git  https://github.com/sergot/datetime-parse.git                           master         
+DateTime-Parse           git  https://github.com/sergot/datetime-parse.git                           0.9.3          
 Encode                   git  https://github.com/sergot/perl6-encode.git                             master         
 HTTP-UserAgent           git  https://github.com/sergot/http-useragent.git                           v1.1.52        
 Pod-To-HTML              git  https://github.com/perl6/Pod-To-HTML.git                               v0.7.1         
