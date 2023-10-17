@@ -6,6 +6,9 @@ on:
     paths:
       - 'etc/modules.txt'
       
+  schedule:
+  - cron: '0 * * * *'
+  
   workflow_dispatch:
 
 jobs:
