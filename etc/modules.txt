@@ -71,8 +71,8 @@ Grammar-Profiler-Simple  git  https://github.com/raku-community-modules/Grammar-
 Grammar-Debugger         git  https://github.com/jnthn/grammar-debugger.git                          master         
 JSON-Tiny                git  https://github.com/moritz/json.git                                     v1.0           
 Perl6-PathTools          git  https://github.com/ugexe/Perl6-PathTools.git                           v0.2.0         
-OpenSSL                  git  https://github.com/sergot/openssl.git                                  main           
-IO-Socket-SSL            git  https://github.com/sergot/io-socket-ssl.git                            master         
+OpenSSL                  git  https://github.com/sergot/openssl.git                                  0.2.0          
+IO-Socket-SSL            git  https://github.com/sergot/io-socket-ssl.git                            0.0.3          
 LWP-Simple               git  https://github.com/raku-community-modules/raku-lwp-simple.git          0.109          
 Digest-MD5               git  https://github.com/cosimo/perl6-digest-md5.git                         0.05           
 HTTP-Status              git  https://github.com/supernovus/perl6-http-status.git                    0.0.4          
@@ -87,7 +87,7 @@ Temp-Path                git  https://github.com/ufobat/perl6-Temp-Path.git     
 Pod-Load                 git  https://github.com/JJ/p6-pod-load.git                                  v0.7.2         
 Test-Output              git  https://github.com/raku-community-modules/perl6-Test-Output.git        v1.001001      
 DateTime-Parse           git  https://github.com/sergot/datetime-parse.git                           0.9.3          
-Encode                   git  https://github.com/sergot/perl6-encode.git                             master         
+Encode                   git  https://github.com/sergot/perl6-encode.git                             0.0.4          
 HTTP-UserAgent           git  https://github.com/sergot/http-useragent.git                           v1.1.52        
 Pod-To-HTML              git  https://github.com/perl6/Pod-To-HTML.git                               v0.7.1         
 Pod-To-BigPage           git  https://github.com/perl6/perl6-pod-to-bigpage.git                      master         
