@@ -28,7 +28,7 @@ jobs:
         cd ./star
         if git log -1 --pretty=format:%B | grep -qF "[skip workflow]"; then
           echo "Workflow self-triggering skipped."
-          exit $LINENO
+          exit 0
         fi
         cd ..
 
