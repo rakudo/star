@@ -31,7 +31,7 @@ Config-TOML              git  https://github.com/atweiden/config-toml.git       
 Config-Parser-toml       git  https://github.com/scriptkitties/p6-Config-Parser-toml                 v1.0.3         
 
 MIME-Base64              git  https://github.com/raku-community-modules/MIME-Base64.git              1.2.3          
-YAMLish                  git  https://github.com/Leont/yamlish.git                                   v0.0.6         
+YAMLish                  git  https://github.com/Leont/yamlish.git                                   0.1.0          
 Config-Parser-yaml       git  https://github.com/scriptkitties/p6-Config-Parser-yaml                 v1.0.0         
 
 JSON-Fast                git  https://github.com/timo/json_fast.git                                  0.19           
