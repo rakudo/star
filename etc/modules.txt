@@ -4,7 +4,7 @@
 #   here __AND__ all of them do require a "git tag"!
 
 # Zef, the package manager
-zef                      git  https://github.com/ugexe/zef.git                                       v0.20.2        
+zef                      git  https://github.com/ugexe/zef.git                                       v0.21.0        
 App::Zef-Deps            git  https://github.com/coke/raku-zef-deps.git                              0.9.8          
 
 # Documentation utilities
