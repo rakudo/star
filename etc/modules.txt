@@ -93,7 +93,7 @@ Pod-To-HTML              git  https://github.com/perl6/Pod-To-HTML.git          
 Pod-To-BigPage           git  https://github.com/perl6/perl6-pod-to-bigpage.git                      master         
 File-Which               git  https://github.com/azawawi/perl6-file-which.git                        1.0.4          
 Shell-Command            git  https://github.com/tadzik/Shell-Command.git                            1.1            
-LibraryMake              git  https://github.com/retupmoca/P6-LibraryMake.git                        v1.0.3         
+LibraryMake              git  https://github.com/retupmoca/P6-LibraryMake.git                        v1.0.4         
 IO-String                git  https://github.com/hoelzro/p6-io-string.git                            master         
 DateTime-Format          git  https://github.com/supernovus/perl6-datetime-format.git                0.1.5          
 IO-Capture-Simple        git  https://github.com/JJ/raku-io-capture-simple.git                       v0.0.2         
