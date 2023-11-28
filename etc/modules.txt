@@ -1,6 +1,6 @@
 # These modules are installed from top to bottom.
 # Since commit '2fe3fcd' ZEF is used to install those modules and also their dependencies.
-# To ensure "reproducible builds" all modules and also all their dependencies need to be listet
+# To ensure ["reproducible builds"](https://reproducible-builds.org/), all modules and all their dependencies need to be listed
 #   here __AND__ all of them do require a "git tag"!
 
 # Zef, the package manager
