@@ -4,7 +4,7 @@
 #   here __AND__ all of them do require a "git tag"!
 
 # Zef, the package manager
-zef                      git  https://github.com/ugexe/zef.git                                       v0.21.1        
+zef                      git  https://github.com/ugexe/zef.git                                       v0.21.2        
 App::Zef-Deps            git  https://github.com/coke/raku-zef-deps.git                              0.9.8          
 
 # Documentation utilities
@@ -101,7 +101,7 @@ Test-Util-ServerPort     git  https://github.com/jonathanstowe/Test-Util-ServerP
 JSON-RPC                 git  https://github.com/bbkr/jsonrpc.git                                    1.0.6          
 Getopt-Long              git  https://github.com/Leont/getopt-long6.git                              0.4.2          
 TAP                      git  https://github.com/Raku/tap-harness6.git                               0.3.14         
-Path-Finder              git  https://github.com/Leont/path-finder.git                               0.4.6          
+Path-Finder              git  https://github.com/Leont/path-finder.git                               0.4.7          
 Pod-Usage                git  https://github.com/Leont/pod-usage.git                                 v0.0.1         
 sigpipe                  git  https://github.com/Leont/sigpipe.git                                   0.0.3          
 App-Prove6               git  https://github.com/Leont/app-prove6.git                                0.0.17         
