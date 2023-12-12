@@ -173,7 +173,7 @@ tmpdir() {
 
 	dir="$(mktemp -d)"
 
-	# Ensure the file was created succesfully
+	# Ensure the file was created successfully
 	if [[ ! -d "$dir" ]]
 	then
 		die "Failed to create a temporary directory at $dir"
@@ -192,7 +192,7 @@ tmpfile() {
 
 	file="$(mktemp)"
 
-	# Ensure the file was created succesfully
+	# Ensure the file was created successfully
 	if [[ ! -f "$file" ]]
 	then
 		die "Failed to create a temporary file at $file"

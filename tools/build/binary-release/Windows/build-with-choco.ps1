@@ -2,7 +2,7 @@ param ([string]$RAKUDO_VER, [switch]$sign, [switch]$keep)
 
 # inspired by https://github.com/hankache/rakudo-star-win/blob/master/build.ps1
 # expected $RAKUDO_VER is something like "2021.03"
-# if none is given, we will try to get the "latest" from gihub
+# if none is given, we will try to get the "latest" from GitHub
 
 # $ErrorActionPreference = "stop"
 

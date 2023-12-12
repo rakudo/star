@@ -83,7 +83,7 @@
 
 		<!--UI Reference-->
 		<UIRef Id="WixUI_Common" />
-		<!--Artisric License-->
+		<!--Artistic License-->
 		<WixVariable Id="WixUILicenseRtf" Value="License.rtf" />
 		
         <UI Id="WixUI_InstallDir">

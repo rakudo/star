@@ -4,7 +4,7 @@ A *user-friendly* distribution of the [Raku programming language](https://raku.o
 
 ## Docker Image
 
-* Please refer to [Rakodo-Star on Docker Hub](https://hub.docker.com/_/rakudo-star) for an image
+* Please refer to [Rakudo-Star on Docker Hub](https://hub.docker.com/_/rakudo-star) for an image
 * Find the related Docker files on the ["Raku Docker" GitHub repository](https://github.com/Raku/docker) 
 
 ## What's in this GIT repo
@@ -55,7 +55,7 @@ depending on the protocol.
 
 * If you have a question about Rakudo Star, you probably want to write to the “perl6-users@perl.org” mailing list or ask the [irc.libera.chat/#raku-star](https://web.libera.chat/#raku-star) IRC channel.
 
-#### Github Plattform
+#### GitHub Platform
 
 * Knowledge and documentation related to Rakudo Star can be published in the related [wiki](https://github.com/rakudo/star/wiki).
 * There is also [Star discussions](https://github.com/rakudo/star/discussions) for any kind of ongoing discussions, alignements, FAQ's, ...

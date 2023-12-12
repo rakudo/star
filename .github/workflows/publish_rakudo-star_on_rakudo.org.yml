@@ -2,13 +2,13 @@
 name: Upload Rakudo-Star to Rakudo.org
 
 on:
-  schedule: # Allways later then the publishing of the Rakudo-Star releases at GH, see https://github.com/rakudo/star/blob/1149d43fd272661a1dbbcb9328200df24d1c2e81/.github/workflows/sync_latest_rakudo_release.yml#L11
+  schedule: # Always later then the publishing of the Rakudo-Star releases at GH, see https://github.com/rakudo/star/blob/1149d43fd272661a1dbbcb9328200df24d1c2e81/.github/workflows/sync_latest_rakudo_release.yml#L11
     - cron:  '55 1 * * 1,4'
   workflow_dispatch:
   
 env:
   RKD_REVISION: "01" # Default build revision if RKD_STR_GH below has only a VERSION and not a revision (say, something like 202203-01 is expected)
-  DEBUG: 0           # Set this to 1 or anythin other then 0 (ZERO) for more debut output
+  DEBUG: 0           # Set this to 1 or anything other then 0 (ZERO) for more debut output
   
 jobs:
   upload_star_release:

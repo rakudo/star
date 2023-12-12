@@ -1,6 +1,6 @@
 # See https://stackoverflow.com/questions/58465057/trigger-a-github-action-when-another-repository-creates-a-new-release
 # 
-# This Action works only because of the avilable "build_rakudo-star.yml" Action.
+# This Action works only because of the available "build_rakudo-star.yml" Action.
 ## Actually this here triggers the other build Action by adding a new TAG (Rakudo releases are having TAGs)
 ## TODO: switch to env vars later
 
