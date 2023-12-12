@@ -25,7 +25,7 @@ function clean_modules_dir() {
     
 }
 
-# If module file names are given as parametrs, ensure the directories exist to store those files
+# If module file names are given as parameters, ensure the directories exist to store those files
 function mk_local_modules_dirs() {
     
     local LOCAL_MODULES_DIR

@@ -1,5 +1,5 @@
-# This workflow enforces always the "Rakodo latest" release as the basis for the to-build Star release
-# As we always work with TAGs, the two build tools could get the TAG as a parameter and then build this relaase instead of always building "Rakudo latest"
+# This workflow enforces always the "Rakudo latest" release as the basis for the to-build Star release
+# As we always work with TAGs, the two build tools could get the TAG as a parameter and then build this release instead of always building "Rakudo latest"
 #  Will enhance the workflow later to getr a TAG as an input
 
 name: Build Rakudo Star Releases (Windows MSI and Linux RSTAR source)
@@ -64,7 +64,7 @@ jobs:
           gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
           fingerprint: ${{ env.GPG_FINGERPRINT }}
-      - name: Create RSTAR Distrubution
+      - name: Create RSTAR Distribution
         run: ./bin/rstar dist
       - name: List my stuff
         run: ls -lAR -I ".git" -I "src"

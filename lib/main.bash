@@ -98,7 +98,7 @@ Actions:
 	              directory will also be removed.
 	dist          Create a distributable tarball of this repository. If no
 	              version identifier is specified, it will assume it should
-	              build ontop of the latest RAKUDO release and therefore
+	              build on top of the latest RAKUDO release and therefore
 	              check "https://github.com/rakudo/rakudo/releases/latest"
 	              for something like i.e. "2020.08" or "2020.08.1".
 	              If the "RAKUDO latest" doesn't match, it will use the
