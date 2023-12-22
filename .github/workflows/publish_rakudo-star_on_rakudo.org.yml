@@ -111,7 +111,7 @@ jobs:
         fi
         
         ### scp -vvv -o StrictHostKeyChecking=no ~/output/* rakudo.org:/home/rakudo.org/public_html/downloads/star
-        scp -o StrictHostKeyChecking=no ~/output/* rakudo.org:/home/rakudo.org/public_html/downloads/star
+        scp ~/output/* rakudo.org:/var/www/htdocs/rakudo.org/binaries/star
         
     - name: Clean up SSH directory
       if: steps.ssh_config.outputs.config
