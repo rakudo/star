@@ -8,7 +8,7 @@ zef                      git  https://github.com/ugexe/zef.git                  
 App::Zef-Deps            git  https://github.com/coke/raku-zef-deps.git                              0.9.8          
 
 # Internationalization
-L10N                     git  https://github.com/Raku/L10N                                           0.0.2
+L10N                     git  https://github.com/Raku/L10N                                           0.0.2          
 
 # Documentation utilities
 File-Find                git  https://github.com/raku-community-modules/File-Find.git                0.2.1          
