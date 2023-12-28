@@ -82,7 +82,7 @@ HTTP-Status              git  https://github.com/supernovus/perl6-http-status.gi
 PSGI                     git  https://github.com/supernovus/perl6-psgi.git                           1.2.1          
 HTTP-Easy                git  https://github.com/supernovus/perl6-http-easy.git                      1.2            
 Test-When                git  https://github.com/raku-community-modules/perl6-Test-When.git          v1.001009      
-Digest                   git  https://github.com/grondilu/libdigest-perl6.git                        1.0.1          
+Digest                   git  https://github.com/grondilu/libdigest-perl6.git                        1.1.0          
 Testo                    git  https://github.com/raku-community-modules/perl6-Testo.git              1.003007       
 
 Temp-Path                git  https://github.com/ufobat/perl6-Temp-Path.git                          1.001008       
