@@ -92,6 +92,10 @@ cd rakudo-$RAKUDO_VER
 
 $PrefixPath = $env:Temp + "\rakudo-star-$RAKUDO_VER"
 Write-Host "   INFO - `"`$PrefixPath`" set to $PrefixPath"
+
+Write-Host "   INFO - Setting `"Rakudo Star v$RAKUDO_VER`" in `".\src\Perl6\Compiler.nqp`""
+(Get-Content -Raw .\src\Perl6\Compiler.nqp) -creplace '\s+"Welcome to "\r?\n\s+ ~ \$rakudo\r?\n\s+ ~ " ', '$0Star ' | Set-Content .\src\Perl6\Compiler.nqp
+
 Write-Host "   INFO - Building NQP, Moar and Rakudo $RAKUDO_VER"
 # "Configure.pl" help -> https://github.com/rakudo/rakudo/blob/master/Configure.pl#L140-L210
 perl Configure.pl --backends=moar --gen-moar --gen-nqp --moar-option='--toolchain=msvc' --no-silent-build --relocatable --prefix=$PrefixPath --out=RAKUDO-${RAKUDO_VER}_build.log

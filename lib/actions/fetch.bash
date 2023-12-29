@@ -80,6 +80,7 @@ download_core() {
 
 	tarball="$(fetch_http "$source")" \
 		&& tar xzf "$tarball" -C "$destination" \
+        && ( if [[ "$1" =~ "rakudo" ]]; then sed '/"Welcome to "/,+2 { s/" v"/" Star v"/g; }' $destination/rakudo-$VERSION/src/Perl6/Compiler.nqp > ./Compiler.nqp && mv ./Compiler.nqp $destination/rakudo-$VERSION/src/Perl6/Compiler.nqp; fi ) \
 		&& return
 
 	crit "Failed to download $destination"
