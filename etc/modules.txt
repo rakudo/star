@@ -27,7 +27,7 @@ Terminal-LineEditor      git  https://github.com/japhb/Terminal-LineEditor.git  
 Hash-Merge               git  https://github.com/scriptkitties/p6-Hash-Merge.git                     v2.0.0         
 IO-Path-XDG              git  https://git.tyil.nl/raku/io-path-xdg                                   v0.2.0         
 Glob-IO                  git  https://github.com/zostay/raku-IO-Glob.git                             v0.9.0         
-Config                   git  https://github.com/scriptkitties/p6-Config                             v3.0.3         
+Config                   git  https://github.com/scriptkitties/p6-Config                             v3.0.4         
 
 Crane                    git  https://github.com/atweiden/crane.git                                  0.1.1          
 Config-TOML              git  https://github.com/atweiden/config-toml.git                            0.1.2          
@@ -74,7 +74,7 @@ Grammar-Profiler-Simple  git  https://github.com/raku-community-modules/Grammar-
 Grammar-Debugger         git  https://github.com/jnthn/grammar-debugger.git                          master         
 JSON-Tiny                git  https://github.com/moritz/json.git                                     v1.0           
 Perl6-PathTools          git  https://github.com/ugexe/Perl6-PathTools.git                           v0.2.0         
-OpenSSL                  git  https://github.com/sergot/openssl.git                                  0.2.0          
+OpenSSL                  git  https://github.com/sergot/openssl.git                                  0.2.1          
 IO-Socket-SSL            git  https://github.com/sergot/io-socket-ssl.git                            0.0.3          
 LWP-Simple               git  https://github.com/raku-community-modules/raku-lwp-simple.git          0.109          
 Digest-MD5               git  https://github.com/cosimo/perl6-digest-md5.git                         0.05           
