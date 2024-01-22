@@ -108,7 +108,7 @@ while IFS= read -r MODULES_FILE_LINE; do
         if [[ -f META6.json ]]; then
             # Parse META6.json for the "version" key
             VERSION=$(jq -r '.version' META6.json 2>/dev/null)
-            if [[ -n "$VERSION" && "$VERSION" != "${fields[3]}" && "v$VERSION" != "${fields[3]}" ]]; then
+            if [[ -n "$VERSION" && "$VERSION" != "${fields[3]}" && "v$VERSION" != "${fields[3]}" && "release-$VERSION" != "${fields[3]}" ]]; then
                 echo "WARNING: Version mismatch for ${fields[0]} (\"${fields[2]}\") found. META6.json has \"$VERSION\" but latest 'git tag' is \"${fields[3]}\"" >&2
                 ###### gh auth login
                 ###### gh auth status
