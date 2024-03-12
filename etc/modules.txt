@@ -92,7 +92,7 @@ Test-Output              git  https://github.com/raku-community-modules/perl6-Te
 DateTime-Parse           git  https://github.com/sergot/datetime-parse.git                           0.9.3          
 Encode                   git  https://github.com/sergot/perl6-encode.git                             0.0.4          
 HTTP-UserAgent           git  https://github.com/sergot/http-useragent.git                           v1.1.52        
-Pod-To-HTML              git  https://github.com/perl6/Pod-To-HTML.git                               v0.8.1         
+Pod-To-HTML              git  https://github.com/raku/Pod-To-HTML.git                                v0.8.1         
 Pod-To-BigPage           git  https://github.com/perl6/perl6-pod-to-bigpage.git                      0.5.2          
 File-Which               git  https://github.com/azawawi/perl6-file-which.git                        1.0.4          
 Shell-Command            git  https://github.com/tadzik/Shell-Command.git                            1.1            
