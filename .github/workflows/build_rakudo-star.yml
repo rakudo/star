@@ -18,11 +18,12 @@ jobs:
   build_Rakudo-Star_Windows_MSI_package:
     # Windows-latest doesn't work since it's 2022. We need to fall back to windows-2019
     runs-on: windows-2019
+    if: github.event.ref_type == 'tag'
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: Setup VS Dev Environment
-        uses: seanmiddleditch/gha-setup-vsdevenv@v4
+        uses: compnerd/gha-setup-vsdevenv@v6
       - name: Import gpg key
         id: import_gpg
         uses: crazy-max/ghaction-import-gpg@v6
@@ -43,6 +44,7 @@ jobs:
           
   build_Rakudo-Star_Linux_source:
     runs-on: ubuntu-latest
+    if: github.event.ref_type == 'tag'
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
