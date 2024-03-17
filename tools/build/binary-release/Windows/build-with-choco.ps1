@@ -102,6 +102,7 @@ CheckLastExitCode
 nmake /C
 CheckLastExitCode
 
+set CL=/MP
 # nmake /C test
 nmake /C install
 CheckLastExitCode
