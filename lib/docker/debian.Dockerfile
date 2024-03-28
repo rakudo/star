@@ -3,7 +3,7 @@ FROM debian:latest AS base
 COPY . /home/rstar
 
 RUN apt-get update
-RUN apt-get install -y git build-essential libreadline7
+RUN apt-get install -y git build-essential libreadline8
 RUN /home/rstar/bin/rstar install -p /home/raku
 RUN apt-get -y remove git build-essential
 RUN apt-get -y autoremove
