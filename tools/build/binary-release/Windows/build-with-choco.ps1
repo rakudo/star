@@ -28,9 +28,10 @@ IF ( $PSScriptRoot ) { $ScriptRoot = $PSScriptRoot} ELSE { $ScriptRoot = Get-Loc
 Write-Host "   INFO - `"`$ScriptRoot`" set to `"$ScriptRoot`""
 
 IF ( -NOT ((Get-Command "cl.exe" -ErrorAction SilentlyContinue).Path) ) {
-  Write-Host "WARNING - MSVC with `"cl.exe`", version 19 or newer, is a hard requirement to build NQP, Moar and Rakudo now, see"
+  Write-Host "WARNING - MSVC with `"cl.exe`", version 19 or newer, is a hard requirement to build NQP, Moar and Rakudo since December 2019, see"
   Write-Host "          https://github.com/rakudo/rakudo/commit/d01d4b26641bec2a62b43007b476f668982b9ab6#diff-a3c0a8904b9af2275c7ef3d4616ad9c3481898d3cc0e4698133948520b2df2ed"
   Write-Host "          https://github.com/Raku/nqp-configure/blob/e068508a94d643c1174bcd29e333dd659df502c5/lib/NQP/Config.pm#L252"
+  Write-Host "          https://github.com/Raku/nqp-configure/commit/1a9539a8f60343a231cccf8aeb7c9e3c48d2c2ee"
   
   IF ( -NOT ((Get-Command "Launch-VsDevShell.ps1" -ErrorAction SilentlyContinue).Path) ) {
     Write-Host "  ERROR - Couldn't neither find `"cl.exe`" nor `"Launch-VsDevShell.ps1`""
