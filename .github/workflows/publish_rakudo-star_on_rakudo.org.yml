@@ -26,7 +26,7 @@ jobs:
           RKD_STR_GH="$RKD_STR_GH-$RKD_REVISION"
         fi
         
-        RKD_STR_ORG_TMP=$(curl -s https://rakudo.org/dl/star/ | jq -r '.[] | select((.latest==1) and (.url|test("-win-x86_64-")) and (.url|test("checksum")|not)) | .url')
+        RKD_STR_ORG_TMP=$(curl -s https://rakudo.org/dl/star/ | jq -r '.[] | select((.latest==1) and (.url|test("-win-x86_64-")) and (.url|test("checksum|asc")|not)) | .url')
         
         if [[ "$RKD_STR_ORG_TMP" =~ rakudo-star-([0-9]+.[0-9]+.?[0-9]?)-([0-9]+)- ]]; then
           echo ::set-output name=RKD_STR_ORG_VERSION::${BASH_REMATCH[1]}
