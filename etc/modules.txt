@@ -14,7 +14,7 @@ L10N                     git  https://github.com/Raku/L10N                      
 File-Find                git  https://github.com/raku-community-modules/File-Find.git                0.2.1          
 
 # Logging
-Log                      git  https://git.tyil.nl/raku/log                                           2024.03        
+Log                      git  https://git.tyil.nl/raku/log                                           v0.3.1         
 Log-Colored              git  https://git.tyil.nl/raku/log-colored                                   v0.1.2         
 
 # terminal related modules
