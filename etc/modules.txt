@@ -15,7 +15,7 @@ File-Find                git  https://github.com/raku-community-modules/File-Fin
 
 # Logging
 Log                      git  https://git.tyil.nl/raku/log                                           2024.03        
-Log-Colored              git  https://git.tyil.nl/raku/log-colored                                   2024.03        
+Log-Colored              git  https://git.tyil.nl/raku/log-colored                                   v0.1.2         
 
 # terminal related modules
 Terminal-ANSIColor       git  https://github.com/tadzik/Terminal-ANSIColor.git                       0.9.1          
