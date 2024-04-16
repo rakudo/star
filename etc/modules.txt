@@ -15,7 +15,7 @@ File-Find                git  https://github.com/raku-community-modules/File-Fin
 
 # Logging
 Log                      git  https://git.tyil.nl/raku/log                                           2024.03        
-Log-Colored              git  https://git.tyil.nl/raku/log-colored                                   2024.03        
+Log-Colored              git  https://git.tyil.nl/raku/log-colored                                   v0.1.2         
 
 # terminal related modules
 Terminal-ANSIColor       git  https://github.com/tadzik/Terminal-ANSIColor.git                       0.9.1          
@@ -25,7 +25,7 @@ Terminal-LineEditor      git  https://github.com/japhb/Terminal-LineEditor.git  
 
 # Configuration management
 Hash-Merge               git  https://github.com/scriptkitties/p6-Hash-Merge.git                     v2.0.0         
-IO-Path-XDG              git  https://git.tyil.nl/raku/io-path-xdg                                   2024.03        
+IO-Path-XDG              git  https://git.tyil.nl/raku/io-path-xdg                                   v0.2.0         
 Glob-IO                  git  https://github.com/zostay/raku-IO-Glob.git                             v0.9.0         
 Config                   git  https://github.com/scriptkitties/p6-Config                             v3.0.4         
 
