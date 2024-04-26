@@ -26,7 +26,7 @@ jobs:
     - name: Check if self-triggering is needed
       run: |
         cd ./star
-        if git log -1 --pretty=format:%B | grep -qF "[skip workflow]"; then
+        if git log -1 --pretty=format:%B | grep -qF "[skip workflow] | Following the https://github.com/rakudo/rakudo/ release cycle"; then
           echo "Workflow self-triggering skipped."
           exit 0
         fi
