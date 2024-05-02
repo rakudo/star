@@ -8,29 +8,29 @@ zef                      git  https://github.com/ugexe/zef.git                  
 App::Zef-Deps            git  https://github.com/coke/raku-zef-deps.git                              0.9.8          
 
 # Internationalization
-L10N                     git  https://github.com/Raku/L10N                                           0.0.2          
+L10N                     git  https://github.com/Raku/L10N.git                                       0.0.2          
 
 # Documentation utilities
 File-Find                git  https://github.com/raku-community-modules/File-Find.git                0.2.1          
 
 # terminal related modules
 Terminal-ANSIColor       git  https://github.com/tadzik/Terminal-ANSIColor.git                       0.9.1          
-Term-termios             git  https://github.com/krunen/term-termios                                 0.2.7          
+Term-termios             git  https://github.com/krunen/term-termios.git                             0.2.7          
 Terminal-ANSIParser      git  https://github.com/japhb/Terminal-ANSIParser.git                       0.0.3          
 Terminal-LineEditor      git  https://github.com/japhb/Terminal-LineEditor.git                       0.0.16         
 
 # Configuration management
 Hash-Merge               git  https://github.com/scriptkitties/p6-Hash-Merge.git                     v2.0.0         
 Glob-IO                  git  https://github.com/zostay/raku-IO-Glob.git                             v0.9.0         
-Config                   git  https://github.com/scriptkitties/p6-Config                             v3.0.4         
+Config                   git  https://github.com/scriptkitties/p6-Config.git                         v3.0.4         
 
 Crane                    git  https://github.com/atweiden/crane.git                                  0.1.1          
 Config-TOML              git  https://github.com/atweiden/config-toml.git                            0.1.2          
-Config-Parser-toml       git  https://github.com/scriptkitties/p6-Config-Parser-toml                 v1.0.3         
+Config-Parser-toml       git  https://github.com/scriptkitties/p6-Config-Parser-toml.git             v1.0.3         
 
 MIME-Base64              git  https://github.com/raku-community-modules/MIME-Base64.git              1.2.3          
 YAMLish                  git  https://github.com/Leont/yamlish.git                                   0.1.0          
-Config-Parser-yaml       git  https://github.com/scriptkitties/p6-Config-Parser-yaml                 v1.0.0         
+Config-Parser-yaml       git  https://github.com/scriptkitties/p6-Config-Parser-yaml.git             v1.0.0         
 
 JSON-Fast                git  https://github.com/timo/json_fast.git                                  0.19           
 Config-Parser-json       git  https://github.com/arjancwidlak/p6-Config-Parser-json.git              master         
@@ -46,9 +46,9 @@ DBIish                   git  https://github.com/raku-community-modules/DBIish.g
 XML                      git  https://github.com/raku-community-modules/XML.git                      0.3.3          
 
 # templates
-Template6                git  https://github.com/raku-community-modules/Template6                    0.14.0         
-Template-Mustache        git  https://github.com/softmoth/raku-Template-Mustache                     1.2.3          
-Template-Mojo            git  https://github.com/raku-community-modules/Template-Mojo                0.2.2          
+Template6                git  https://github.com/raku-community-modules/Template6.git                0.14.0         
+Template-Mustache        git  https://github.com/softmoth/raku-Template-Mustache.git                 1.2.3          
+Template-Mojo            git  https://github.com/raku-community-modules/Template-Mojo.git            0.2.2          
 
 # Taken from the previous iteration of Rakudo Star
 URI                      git  https://github.com/raku-community-modules/uri.git                      0.3.7          
@@ -73,9 +73,9 @@ OpenSSL                  git  https://github.com/sergot/openssl.git             
 IO-Socket-SSL            git  https://github.com/sergot/io-socket-ssl.git                            0.0.3          
 LWP-Simple               git  https://github.com/raku-community-modules/raku-lwp-simple.git          0.109          
 Digest-MD5               git  https://github.com/cosimo/perl6-digest-md5.git                         0.05           
-HTTP-Status              git  hhttps://github.com/lizmat/HTTP-Status                                 2024.04        
-PSGI                     git  https://github.com/raku-community-modules/PSGI                         1.2.1          
-HTTP-Easy                git  https://github.com/raku-community-modules/HTTP-Easy                    1.2            
+HTTP-Status              git  https://github.com/lizmat/HTTP-Status.git                              0.0.4        
+PSGI                     git  https://github.com/raku-community-modules/PSGI.git                     1.2.1          
+HTTP-Easy                git  https://github.com/raku-community-modules/HTTP-Easy.git                1.2            
 Test-When                git  https://github.com/raku-community-modules/perl6-Test-When.git          v1.001009      
 Digest                   git  https://github.com/grondilu/libdigest-raku.git                         1.1.0          
 Testo                    git  https://github.com/raku-community-modules/Testo.git                    1.003009       
@@ -90,7 +90,7 @@ HTTP-UserAgent           git  https://github.com/sergot/http-useragent.git      
 Pod-To-HTML              git  https://github.com/raku/Pod-To-HTML.git                                v0.8.1         
 Pod-To-BigPage           git  https://github.com/perl6/perl6-pod-to-bigpage.git                      0.5.2          
 File-Which               git  https://github.com/azawawi/raku-file-which.git                         1.0.4          
-Shell-Command            git  https://github.com/raku-community-modules/Shell-Command                1.1            
+Shell-Command            git  https://github.com/raku-community-modules/Shell-Command.git            1.1            
 LibraryMake              git  https://github.com/retupmoca/P6-LibraryMake.git                        v1.0.5         
 IO-String                git  https://github.com/hoelzro/p6-io-string.git                            master         
 DateTime-Format          git  https://github.com/supernovus/perl6-datetime-format.git                0.1.5          
@@ -104,6 +104,6 @@ Pod-Usage                git  https://github.com/Leont/pod-usage.git            
 sigpipe                  git  https://github.com/Leont/sigpipe.git                                   0.0.3          
 App-Prove6               git  https://github.com/Leont/app-prove6.git                                0.0.17         
 LibraryCheck             git  https://github.com/jonathanstowe/LibraryCheck.git                      v0.0.12        
-Readline                 git  https://github.com/lathropd/perl6-readline                             0.1.6          
+Readline                 git  https://github.com/lathropd/perl6-readline.git                         0.1.6          
 
 # vim: textwidth=0
