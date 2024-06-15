@@ -44,6 +44,7 @@ DBIish                   git  https://github.com/raku-community-modules/DBIish.g
 
 # serialization modules
 XML                      git  https://github.com/raku-community-modules/XML.git                      0.3.3          
+LibXML                   git  https://github.com/libxml-raku/LibXML-raku                             0.10.9
 
 # templates
 Template6                git  https://github.com/raku-community-modules/Template6.git                0.14.0         
@@ -60,7 +61,6 @@ JSON-Class               git  https://github.com/jonathanstowe/JSON-Class.git   
 META6                    git  https://github.com/jonathanstowe/META6.git                             v0.0.30        
 License-SPDX             git  https://github.com/jonathanstowe/License-SPDX.git                      v3.24.0        
 Test-META                git  https://github.com/jonathanstowe/Test-META.git                         v0.0.20        
-XML-Writer               git  https://github.com/masak/xml-writer.git                                master         
 SVG                      git  https://github.com/moritz/svg.git                                      v1.0           
 SVG-Plot                 git  https://github.com/moritz/svg-plot.git                                 master         
 OO-Monitors              git  https://github.com/jnthn/oo-monitors.git                               release-1.1.1  
