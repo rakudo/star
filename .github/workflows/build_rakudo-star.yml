@@ -13,7 +13,7 @@ on:
 
 env:
   GPG_FINGERPRINT: 3E7E3C6EAF916676AC549285A2919382E961E2EE
-  RAKUDO_FLAVOR: Star
+  # RAKUDO_FLAVOR: Star
 
 jobs:
   build_Rakudo-Star_Windows_MSI_package:

@@ -11,6 +11,12 @@ param ([string]$RAKUDO_VER, [switch]$sign, [switch]$keep)
 # https://github.com/microsoft/azure-pipelines-tasks/issues/12799
 $ErrorView = 'NormalView'
 
+# Set the "RAKUDO_FLAVOR" environment variable to "Star", see
+#   https://github.com/rakudo/rakudo/commit/6e55b118edcbf60aa0aff875fbcdc21706a782a0
+#   https://github.com/rakudo/rakudo/commit/f253d68b8575229f728d4a1d4022291eb469fef9
+#   https://github.com/rakudo/rakudo/commit/69a335640ef2803c6f9aae0e65a22516a8ffd0cb
+$env:RAKUDO_FLAVOR="Star"
+
 function CheckLastExitCode {
   if ($LastExitCode -ne 0) {
     $msg = @"
@@ -133,7 +139,7 @@ Select-String -Path rakudo-star-modules.txt -Pattern " http "," git " -SimpleMat
   $moduleName = $moduleName.replace("-","::")
   Write-Host "   INFO - zef: installing $moduleName, $moduleUrl"
   IF ( $moduleName -ne "zef" ) {
-    IF ( [string]( & zef install $moduleName --install-to=$PrefixPath\share\perl6\site\ --error --force-test) -match 'No candidates found matching identity' ) { & zef install $moduleUrl --install-to=$PrefixPath\share\perl6\site\ --error --force-test}
+    IF ( [string]( & zef install $moduleName --debug --install-to=$PrefixPath\share\perl6\site\ --error --force-test) -match 'No candidates found matching identity' ) { & zef install $moduleUrl --debug --install-to=$PrefixPath\share\perl6\site\ --error --force-test}
   }
 }
 

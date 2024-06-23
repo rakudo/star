@@ -204,6 +204,12 @@ build_rakudo() {
 
 	build_prepare "$BASEDIR/src/rakudo-$VERSION/rakudo-$VERSION" || return
 
+	# Set the "RAKUDO_FLAVOR" environment variable to "Star", see
+	#   https://github.com/rakudo/rakudo/commit/6e55b118edcbf60aa0aff875fbcdc21706a782a0
+	#   https://github.com/rakudo/rakudo/commit/f253d68b8575229f728d4a1d4022291eb469fef9
+	#   https://github.com/rakudo/rakudo/commit/69a335640ef2803c6f9aae0e65a22516a8ffd0cb
+	export RAKUDO_FLAVOR="Star"
+
 	if [[ -z "$RSTAR_DEBUG" ]]
 	then
 		logfile="$(tmpfile)"
