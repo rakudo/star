@@ -82,7 +82,7 @@ jobs:
     needs: [build_Rakudo-Star_Windows_MSI_package, build_Rakudo-Star_Linux_source]
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/download-artifact@v3
+    - uses: actions/download-artifact@v4.1.7
       with:
         path: Rakudo-Star_artifacts
     - name: List my stuff
