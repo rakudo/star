@@ -250,7 +250,7 @@ install_raku_module() {
 	  "$RSTAR_PREFIX/bin/raku" -I. bin/zef install .
 	  popd > /dev/null
 	else
-	  "$RSTAR_PREFIX/bin/raku" "$RSTAR_PREFIX/share/perl6/site/bin/zef" install --force-test "$1"
+	  "$RSTAR_PREFIX/bin/raku" "$RSTAR_PREFIX/share/perl6/site/bin/zef" install --debug "$1"
 	fi
 
 	# "$RSTAR_PREFIX/bin/raku" "$BASEDIR/lib/install-module.raku" "$1"
