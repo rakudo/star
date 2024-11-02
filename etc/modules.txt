@@ -104,6 +104,6 @@ Pod-Usage                git  https://github.com/Leont/pod-usage.git            
 sigpipe                  git  https://github.com/Leont/sigpipe.git                                   0.0.3          
 App-Prove6               git  https://github.com/Leont/app-prove6.git                                0.0.17         
 LibraryCheck             git  https://github.com/jonathanstowe/LibraryCheck.git                      v0.0.12        
-Readline                 git  https://github.com/lathropd/perl6-readline.git                         0.1.6          
+Readline                 git  https://github.com/clarkema/raku-readline.git                          0.1.8          
 
 # vim: textwidth=0
