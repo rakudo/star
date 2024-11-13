@@ -24,8 +24,8 @@ Hash-Merge               git  https://github.com/scriptkitties/p6-Hash-Merge.git
 Glob-IO                  git  https://github.com/zostay/raku-IO-Glob.git                             v0.9.0     
 Config                   git  https://github.com/scriptkitties/p6-Config.git                         v3.0.4     
 
-Crane                    git  https://github.com/atweiden/crane.git                                  0.1.1      
-Config-TOML              git  https://github.com/atweiden/config-toml.git                            0.1.2      
+Crane                    git  https://github.com/atweiden/crane.git                                  0.1.2      
+Config-TOML              git  https://github.com/atweiden/config-toml.git                            0.1.3      
 Config-Parser-toml       git  https://github.com/scriptkitties/p6-Config-Parser-toml.git             v1.0.3     
 
 MIME-Base64              git  https://github.com/raku-community-modules/MIME-Base64.git              1.2.3      
