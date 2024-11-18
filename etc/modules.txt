@@ -52,7 +52,7 @@ Template-Mustache        git  https://github.com/softmoth/raku-Template-Mustache
 Template-Mojo            git  https://github.com/raku-community-modules/Template-Mojo.git            0.2.2      
 
 # Taken from the previous iteration of Rakudo Star
-URI                      git  https://github.com/raku-community-modules/uri.git                      0.3.7      
+URI                      git  https://github.com/raku-community-modules/uri.git                      0.3.8      
 JSON-OptIn               git  https://github.com/jonathanstowe/JSON-OptIn.git                        v0.0.2     
 JSON-Name                git  https://github.com/jonathanstowe/JSON-Name.git                         v0.0.7     
 JSON-Unmarshal           git  https://github.com/raku-community-modules/JSON-Unmarshal.git           0.15       
