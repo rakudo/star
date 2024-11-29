@@ -121,7 +121,7 @@ CheckLastExitCode
 
 cd zef
 Write-Host "   INFO - Installing ZEF"
-& $PrefixPath\bin\raku.exe -I. bin\zef install . --install-to=$PrefixPath\share\perl6\site\ --debug
+& $PrefixPath\bin\raku.exe -I. bin\zef install . --debug --force-test --install-to=$PrefixPath\share\perl6\site\
 CheckLastExitCode
 
 # Add the required rakudo folders to PATH in order for some modules to test correctly (File::Which)
@@ -134,12 +134,22 @@ Write-Host "   INFO - ZEF: installing `"https://raw.githubusercontent.com/rakudo
 & curl.exe -s https://raw.githubusercontent.com/rakudo/star/master/etc/modules.txt --output rakudo-star-modules.txt
 CheckLastExitCode
 
+[bool] $readLineDLL = $False
 Select-String -Path rakudo-star-modules.txt -Pattern " http "," git " -SimpleMatch | ForEach-Object {
   $moduleName, $moduleUrl = ($_.Line -split '\s+')[0,2]
   $moduleName = $moduleName.replace("-","::")
-  Write-Host "   INFO - zef: installing $moduleName, $moduleUrl"
+  Write-Host "   INFO - ZEF: installing $moduleName, $moduleUrl"
   IF ( $moduleName -ne "zef" ) {
-    IF ( [string]( & zef install $moduleName --debug --install-to=$PrefixPath\share\perl6\site\) -match 'No candidates found matching identity' ) { & zef install $moduleUrl --debug --install-to=$PrefixPath\share\perl6\site\}
+    
+    IF ( ("$moduleName" -match "^Terminal") -AND ( -NOT ($readLineDLL) ) ) {
+        Write-Host "   INFO - Copy required `"readline.dll`" from `"https://raw.githubusercontent.com/AntonOks/rakudo_star_module_libs/main/3rdparty/win32/readline/readline.dll`""
+        & curl.exe -s https://raw.githubusercontent.com/AntonOks/rakudo_star_module_libs/main/3rdparty/win32/readline/readline.dll --output $PrefixPath\bin\readline.dll
+        $readLineDLL = $True
+    }
+    
+    IF ( [string]( & zef install $moduleName --debug --force-test --install-to=$PrefixPath\share\perl6\site\) -match 'No candidates found matching identity' ) {
+        & zef install $moduleUrl --debug --force-test --install-to=$PrefixPath\share\perl6\site\
+    }
   }
 }
 
