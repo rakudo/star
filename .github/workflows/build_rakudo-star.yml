@@ -18,7 +18,8 @@ env:
 jobs:
   build_Rakudo-Star_Windows_MSI_package:
     # Windows-latest doesn't work since it's 2022. We need to fall back to windows-2019
-    runs-on: windows-2019
+    ## Seems like windows-2022 works since Rakudo 2024.12, so let's switch back to "latest"
+    runs-on: windows-latest
     if: github.event.ref_type == 'tag'
     steps:
       - name: Checkout repository
