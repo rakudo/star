@@ -76,7 +76,7 @@ Digest-MD5               git  https://github.com/cosimo/perl6-digest-md5.git    
 HTTP-Status              git  https://github.com/lizmat/HTTP-Status.git                              0.0.5     
 PSGI                     git  https://github.com/raku-community-modules/PSGI.git                     1.2.1     
 HTTP-Easy                git  https://github.com/raku-community-modules/HTTP-Easy.git                1.2       
-Test-When                git  https://github.com/raku-community-modules/perl6-Test-When.git          1.1       
+Test-When                git  https://github.com/raku-community-modules/perl6-Test-When.git          2.0       
 Digest                   git  https://github.com/grondilu/libdigest-raku.git                         1.1.0     
 Testo                    git  https://github.com/raku-community-modules/Testo.git                    1.003009  
 
