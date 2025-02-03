@@ -43,7 +43,7 @@ NativeLibs               git  https://github.com/salortiz/NativeLibs.git        
 DBIish                   git  https://github.com/raku-community-modules/DBIish.git                   0.6.6     
 
 # serialization modules
-XML                      git  https://github.com/raku-community-modules/XML.git                      0.3.3     
+XML                      git  https://github.com/raku-community-modules/XML.git                      0.3.4     
 LibXML                   git  https://github.com/libxml-raku/LibXML-raku                             0.10.13   
 
 # templates
