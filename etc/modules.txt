@@ -63,7 +63,7 @@ License-SPDX             git  https://github.com/jonathanstowe/License-SPDX.git 
 Test-META                git  https://github.com/jonathanstowe/Test-META.git                         v0.0.20   
 SVG                      git  https://github.com/moritz/svg.git                                      v1.0      
 SVG-Plot                 git  https://github.com/moritz/svg-plot.git                                 master    
-OO-Monitors              git  https://github.com/jnthn/oo-monitors.git                               1.1.3     
+OO-Monitors              git  https://github.com/jnthn/oo-monitors.git                               1.1.4     
 Test-Mock                git  https://github.com/jnthn/test-mock.git                                 1.7       
 Grammar-Profiler-Simple  git  https://github.com/raku-community-modules/Grammar-Profiler-Simple.git  0.05      
 Grammar-Debugger         git  https://github.com/jnthn/grammar-debugger.git                          1.0.2     
