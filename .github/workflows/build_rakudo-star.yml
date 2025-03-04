@@ -38,10 +38,10 @@ jobs:
       - name: List my stuff
         run: Get-ChildItem -Exclude ".git" -Recurse
       - name: Upload Rakudo-Star Windows artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: output
-          path: tools/build/binary-release/Windows/*
+          name: output-windows
+          path: tools/build/binary-release/Windows/Windows/*
           if-no-files-found: error
           
   build_Rakudo-Star_Linux_source:
@@ -71,11 +71,11 @@ jobs:
       - name: Create RSTAR Distribution
         run: ./bin/rstar dist
       - name: List my stuff
-        run: ls -lAR -I ".git" -I "src"
+        run: ls -lAR -I ".git" -I "src" dist/*
       - name: Upload Rakudo-Star Linux artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: output
+          name: output-linux
           path: dist/*
           if-no-files-found: error
       
@@ -83,9 +83,12 @@ jobs:
     needs: [build_Rakudo-Star_Windows_MSI_package, build_Rakudo-Star_Linux_source]
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/download-artifact@v3
+    - name: Download Rakudo Star artifacts
+      uses: actions/download-artifact@v4
       with:
         path: Rakudo-Star_artifacts
+        pattern: output-*
+        merge-multiple: true
     - name: List my stuff
       run: ls -lAR
     - name: Release Rakudo-Star Windows MSI and Linux RSTAR releases
@@ -96,7 +99,7 @@ jobs:
         draft: false
         allowUpdates: true
         artifactErrorsFailBuild: true
-        artifacts: "Rakudo-Star_artifacts/output/rakudo-star-*,Rakudo-Star_artifacts/output/Windows/rakudo-star-*"
+        artifacts: "Rakudo-Star_artifacts/rakudo-star-*"
         token: ${{ secrets.GITHUB_TOKEN }}
         
 
