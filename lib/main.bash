@@ -6,6 +6,11 @@ source "$(dirname "${BASH_SOURCE[0]}")/util.bash"
 # shellcheck source=lib/logging.bash
 source "$(dirname "${BASH_SOURCE[0]}")/logging.bash"
 
+
+RSTAR_DEPS_BIN+=(
+  git
+)
+
 main() {
 	[[ -z $1 ]] && usage && exit 2
 
@@ -296,5 +301,7 @@ discover_system_os() {
 		return
 	fi
 }
+
+depcheck_bin || exit 305 # check my own tool dependencies first
 
 main "$@"
