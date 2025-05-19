@@ -98,11 +98,11 @@ IO-Capture-Simple        git  https://github.com/JJ/raku-io-capture-simple.git  
 Test-Util-ServerPort     git  https://github.com/jonathanstowe/Test-Util-ServerPort.git              v0.0.5    
 JSON-RPC                 git  https://github.com/bbkr/jsonrpc.git                                    1.0.6     
 Getopt-Long              git  https://github.com/Leont/getopt-long6.git                              0.4.2     
-TAP                      git  https://github.com/Raku/tap-harness6.git                               0.3.14    
+TAP                      git  https://github.com/Raku/tap-harness6.git                               0.3.15    
 Path-Finder              git  https://github.com/Leont/path-finder.git                               0.4.7     
 Pod-Usage                git  https://github.com/Leont/pod-usage.git                                 v0.0.1    
 sigpipe                  git  https://github.com/Leont/sigpipe.git                                   0.0.3     
-App-Prove6               git  https://github.com/Leont/app-prove6.git                                0.0.17    
+App-Prove6               git  https://github.com/Leont/app-prove6.git                                0.0.18    
 LibraryCheck             git  https://github.com/jonathanstowe/LibraryCheck.git                      v0.0.12   
 Readline                 git  https://github.com/clarkema/raku-readline.git                          0.1.8     
 
