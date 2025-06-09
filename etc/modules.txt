@@ -44,7 +44,7 @@ DBIish                   git  https://github.com/raku-community-modules/DBIish.g
 
 # serialization modules
 XML                      git  https://github.com/raku-community-modules/XML.git                      0.3.6     
-LibXML                   git  https://github.com/libxml-raku/LibXML-raku                             0.10.13   
+LibXML                   git  https://github.com/libxml-raku/LibXML-raku                             0.10.14   
 
 # templates
 Template6                git  https://github.com/raku-community-modules/Template6.git                0.14.0    
