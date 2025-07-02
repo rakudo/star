@@ -40,7 +40,7 @@ File-Directory-Tree      git  https://github.com/labster/p6-file-directory-tree.
 File-Temp                git  https://github.com/2colours/raku-File-Temp.git                         0.0.11    
 NativeHelpers-Blob       git  https://github.com/salortiz/NativeHelpers-Blob.git                     v0.1.12   
 NativeLibs               git  https://github.com/salortiz/NativeLibs.git                             v0.0.9    
-DBIish                   git  https://github.com/raku-community-modules/DBIish.git                   0.6.6     
+DBIish                   git  https://github.com/raku-community-modules/DBIish.git                   0.6.7     
 
 # serialization modules
 XML                      git  https://github.com/raku-community-modules/XML.git                      0.3.6     
