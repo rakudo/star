@@ -69,7 +69,7 @@ Grammar-Profiler-Simple  git  https://github.com/raku-community-modules/Grammar-
 Grammar-Debugger         git  https://github.com/jnthn/grammar-debugger.git                          1.0.2     
 JSON-Tiny                git  https://github.com/moritz/json.git                                     v1.0      
 Perl6-PathTools          git  https://github.com/ugexe/Perl6-PathTools.git                           v0.2.0    
-OpenSSL                  git  https://github.com/sergot/openssl.git                                  0.2.4     
+OpenSSL                  git  https://github.com/sergot/openssl.git                                  0.2.5     
 IO-Socket-SSL            git  https://github.com/sergot/io-socket-ssl.git                            0.0.4     
 LWP-Simple               git  https://github.com/raku-community-modules/raku-lwp-simple.git          0.109     
 Digest-MD5               git  https://github.com/cosimo/perl6-digest-md5.git                         0.05      
