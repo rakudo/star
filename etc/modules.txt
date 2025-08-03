@@ -28,7 +28,7 @@ Crane                    git  https://github.com/atweiden/crane.git             
 Config-TOML              git  https://github.com/atweiden/config-toml.git                            0.1.3     
 Config-Parser-toml       git  https://github.com/scriptkitties/p6-Config-Parser-toml.git             v1.0.3    
 
-MIME-Base64              git  https://github.com/raku-community-modules/MIME-Base64.git              1.2.3     
+MIME-Base64              git  https://github.com/raku-community-modules/MIME-Base64.git              1.2.4     
 YAMLish                  git  https://github.com/Leont/yamlish.git                                   0.1.2     
 Config-Parser-yaml       git  https://github.com/scriptkitties/p6-Config-Parser-yaml.git             v1.0.0    
 
