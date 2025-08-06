@@ -11,7 +11,7 @@ App::Zef-Deps            git  https://github.com/coke/raku-zef-deps.git         
 L10N                     git  https://github.com/Raku/L10N.git                                       0.1.4     
 
 # Documentation utilities
-File-Find                git  https://github.com/raku-community-modules/File-Find.git                0.2.1     
+File-Find                git  https://github.com/raku-community-modules/File-Find.git                0.2.2     
 
 # terminal related modules
 Terminal-ANSIColor       git  https://github.com/tadzik/Terminal-ANSIColor.git                       0.13      
@@ -90,7 +90,7 @@ HTTP-UserAgent           git  https://github.com/sergot/http-useragent.git      
 Pod-To-HTML              git  https://github.com/raku/Pod-To-HTML.git                                v0.8.1    
 Pod-To-BigPage           git  https://github.com/perl6/perl6-pod-to-bigpage.git                      0.5.2     
 File-Which               git  https://github.com/azawawi/raku-file-which.git                         1.0.4     
-Shell-Command            git  https://github.com/raku-community-modules/Shell-Command.git            1.1       
+Shell-Command            git  https://github.com/raku-community-modules/Shell-Command.git            1.2       
 LibraryMake              git  https://github.com/retupmoca/P6-LibraryMake.git                        v1.0.5    
 IO-String                git  https://github.com/hoelzro/p6-io-string.git                            master    
 DateTime-Format          git  https://github.com/supernovus/perl6-datetime-format.git                0.1.5     
