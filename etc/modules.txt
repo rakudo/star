@@ -83,7 +83,7 @@ Testo                    git  https://github.com/raku-community-modules/Testo.gi
 Temp-Path                git  https://github.com/ufobat/perl6-Temp-Path.git                          1.001008  
 
 Pod-Load                 git  https://github.com/JJ/p6-pod-load.git                                  v0.7.2    
-Test-Output              git  https://github.com/raku-community-modules/perl6-Test-Output.git        1.001006  
+Test-Output              git  https://github.com/raku-community-modules/perl6-Test-Output.git        1.3       
 DateTime-Parse           git  https://github.com/sergot/datetime-parse.git                           0.9.3     
 Encode                   git  https://github.com/sergot/perl6-encode.git                             0.0.4     
 HTTP-UserAgent           git  https://github.com/sergot/http-useragent.git                           1.2.0     
