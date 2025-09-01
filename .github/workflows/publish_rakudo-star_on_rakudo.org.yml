@@ -8,7 +8,7 @@ on:
   
 env:
   RKD_REVISION: "01" # Default build revision if RKD_STR_GH below has only a VERSION and not a revision (say, something like 202203-01 is expected)
-  DEBUG: 0           # Set this to 1 or anything other then 0 (ZERO) for more debut output
+  DEBUG: 1           # Set this to 1 or anything other then 0 (ZERO) for more debut output
   
 jobs:
   upload_star_release:
@@ -117,3 +117,4 @@ jobs:
       if: steps.ssh_config.outputs.config
       run: |
         \rm -r ~/.ssh/*
+
