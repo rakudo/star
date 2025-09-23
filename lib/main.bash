@@ -94,33 +94,40 @@ Usage:
 rstar is the entry point for all utilities to deal with Rakudo Star.
 
 Actions:
-	build-docker  Build a Docker image for Rakudo Star. You can specify the
-	              tag of the resulting image using -T, which will cause -d,
-	              -t, and -l to be ignored. -n specifies the name of the
-	              image. If -l is passed, a "latest" tag will also be made.
+	build-docker  Build a Docker image for Rakudo Star.
+	              You can specify the tag of the resulting image using -T,
+	              which will cause -d, -t, and -l to be ignored.
+	              -n specifies the name of the image.
+	              If -l is passed, a "latest" tag will also be made.
 	              You can specify a specific backend with -b.
-	clean         Clean up the repository. If -s is given, the src
-	              directory will also be removed.
-	dist          Create a distributable tarball of this repository. If no
-	              version identifier is specified, it will assume it should
-	              build on top of the latest RAKUDO release and therefore
-	              check "https://github.com/rakudo/rakudo/releases/latest"
+	clean         Clean up the repository.
+	              If -s is given, the src directory will also be removed.
+	dist          Create a distributable tarball of this repository.
+	              If no version identifier is specified, it will assume
+	              it should build on top of the latest RAKUDO release
+	              and resolve "https://github.com/rakudo/rakudo/releases/latest"
 	              for something like i.e. "2020.08" or "2020.08.1".
-	              If the "RAKUDO latest" doesn't match, it will use the
-	              current year and month in "yyyy.mm" notation.
-	fetch         Fetch all required sources. If -l is given, the GitHub
-	              "latest" releases from all components will be fetched.
-	              If GitHub latest doesn't fit, fallback to "fetch_core.txt"
-	install       Install Raku on this system. By default, MoarVM will be
-	              used as the only backend, and the Rakudo Star directory
-	              will be used as prefix. If neither core nor modules are
-	              given as explicit targets, all targets will be installed.
-	sysinfo       Show information about your system. Useful for debugging.
-	test          Run tests on Raku and the bundled ecosystem modules. If
-	              neither spectest nor modules are given as explicit
+	              If the "RAKUDO latest" doesn't match, it will fallback
+	              to "rakudo_version" from "etc/fetch_core.txt".
+	fetch         Fetch all required sources.
+	              If -l is given, the GitHub "latest" releases from all core
+	              components (MoarVM, NQP, Rakudo) will be fetched.
+	              If "GitHub component latest" doesn't fit, fallback to
+	              components "version" and "url" from "etc/fetch_core.txt".
+	install       Install Raku on this system.
+	              By default, MoarVM will be used as the only backend, and
+	              the Rakudo Star directory will be used as prefix.
+	              If neither core nor modules are given as explicit targets,
+	              all targets will be installed.
+	sysinfo       Show information about your system.
+	              Useful for debugging.
+	test          Run tests on Raku and the bundled ecosystem modules.
+	              If neither spectest nor modules are given as explicit
 	              targets, all targets will be tested.
 
 Environment variables:
+   RSTAR_DEBUG
+                  Show more (debug) informations.
    GPG_FINGERPRINT
                   The fingerprint of the key to use for signing release files.
 

@@ -26,17 +26,14 @@ Config                   git  https://github.com/scriptkitties/p6-Config.git    
 
 Crane                    git  https://github.com/atweiden/crane.git                                  0.1.2     
 Config-TOML              git  https://github.com/atweiden/config-toml.git                            0.1.3     
-Config-Parser-toml       git  https://github.com/scriptkitties/p6-Config-Parser-toml.git             v1.0.3    
 
 MIME-Base64              git  https://github.com/raku-community-modules/MIME-Base64.git              1.2.5     
 YAMLish                  git  https://github.com/Leont/yamlish.git                                   0.1.2     
-Config-Parser-yaml       git  https://github.com/scriptkitties/p6-Config-Parser-yaml.git             v1.0.0    
 
 JSON-Fast                git  https://github.com/timo/json_fast.git                                  0.19      
-Config-Parser-json       git  https://github.com/arjancwidlak/p6-Config-Parser-json.git              master    
 
 # Database interaction
-File-Directory-Tree      git  https://github.com/labster/p6-file-directory-tree.git                  master    
+File-Directory-Tree      git  https://github.com/raku-community-modules/File-Directory-Tree          0.2       
 File-Temp                git  https://github.com/2colours/raku-File-Temp.git                         0.0.12    
 NativeHelpers-Blob       git  https://github.com/salortiz/NativeHelpers-Blob.git                     v0.1.12   
 NativeLibs               git  https://github.com/salortiz/NativeLibs.git                             v0.0.9    
@@ -62,7 +59,6 @@ META6                    git  https://github.com/jonathanstowe/META6.git        
 License-SPDX             git  https://github.com/jonathanstowe/License-SPDX.git                      v3.26.0   
 Test-META                git  https://github.com/jonathanstowe/Test-META.git                         v0.0.20   
 SVG                      git  https://github.com/moritz/svg.git                                      v1.0      
-SVG-Plot                 git  https://github.com/moritz/svg-plot.git                                 master    
 OO-Monitors              git  https://github.com/jnthn/oo-monitors.git                               1.1.5     
 Test-Mock                git  https://github.com/jnthn/test-mock.git                                 1.8       
 Grammar-Profiler-Simple  git  https://github.com/raku-community-modules/Grammar-Profiler-Simple.git  0.05      
@@ -72,7 +68,6 @@ Perl6-PathTools          git  https://github.com/ugexe/Perl6-PathTools.git      
 OpenSSL                  git  https://github.com/sergot/openssl.git                                  0.2.6     
 IO-Socket-SSL            git  https://github.com/sergot/io-socket-ssl.git                            0.0.4     
 LWP-Simple               git  https://github.com/raku-community-modules/raku-lwp-simple.git          0.109     
-Digest-MD5               git  https://github.com/cosimo/perl6-digest-md5.git                         0.05      
 HTTP-Status              git  https://github.com/lizmat/HTTP-Status.git                              0.0.5     
 PSGI                     git  https://github.com/raku-community-modules/PSGI.git                     1.2.1     
 HTTP-Easy                git  https://github.com/raku-community-modules/HTTP-Easy.git                1.2       
@@ -92,7 +87,7 @@ Pod-To-BigPage           git  https://github.com/perl6/perl6-pod-to-bigpage.git 
 File-Which               git  https://github.com/azawawi/raku-file-which.git                         1.0.4     
 Shell-Command            git  https://github.com/raku-community-modules/Shell-Command.git            1.2       
 LibraryMake              git  https://github.com/retupmoca/P6-LibraryMake.git                        v1.0.5    
-IO-String                git  https://github.com/hoelzro/p6-io-string.git                            master    
+IO-String                git  https://github.com/JJ/raku-io-string.git                               v0.2.0    
 DateTime-Format          git  https://github.com/supernovus/perl6-datetime-format.git                0.1.5     
 IO-Capture-Simple        git  https://github.com/JJ/raku-io-capture-simple.git                       v0.0.2    
 Test-Util-ServerPort     git  https://github.com/jonathanstowe/Test-Util-ServerPort.git              v0.0.5    

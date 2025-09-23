@@ -44,7 +44,7 @@ action() {
 
 	# Prepare environment for a reproducible install
 	case ${RSTAR_PLATFORM["key"]} in
-                darwin)           LC_ALL=en_US.UTF-8 ;;
+        darwin)           LC_ALL=en_US.UTF-8 ;;
 		dragonfly)        LC_ALL=C           ;;
 		*)                LC_ALL=C.UTF-8     ;;
 	esac
@@ -208,6 +208,7 @@ build_rakudo() {
 	#   https://github.com/rakudo/rakudo/commit/6e55b118edcbf60aa0aff875fbcdc21706a782a0
 	#   https://github.com/rakudo/rakudo/commit/f253d68b8575229f728d4a1d4022291eb469fef9
 	#   https://github.com/rakudo/rakudo/commit/69a335640ef2803c6f9aae0e65a22516a8ffd0cb
+	notice "Setting \"RAKUDO_FLAVOR\" to \"Star\""
 	export RAKUDO_FLAVOR="Star"
 
 	if [[ -z "$RSTAR_DEBUG" ]]
@@ -240,17 +241,22 @@ build_prepare() {
 install_raku_module() {
 	if [[ -f "$1/Build.pm6" ]]
 	then
-		"$RSTAR_PREFIX/bin/raku" "$RSTAR_PREFIX/share/perl6/site/bin/zef.raku" build "$1"
+		"$RSTAR_PREFIX/bin/raku" "$RSTAR_PREFIX/share/perl6/site/bin/zef.raku" build --debug "$1"
 	fi
 
 	if [[ "$1" =~ /zef ]]
 	then
 	  pushd "$1" > /dev/null
 	  PATH="$RSTAR_PREFIX/bin/:$PATH"
-	  "$RSTAR_PREFIX/bin/raku" -I. bin/zef.raku install .
+	  "$RSTAR_PREFIX/bin/raku" -I. bin/zef --debug install .
 	  popd > /dev/null
 	else
 	  "$RSTAR_PREFIX/bin/raku" "$RSTAR_PREFIX/share/perl6/site/bin/zef.raku" install --debug "$1"
+	  if [[ $? == 130 ]]
+	  then
+	    notice "zef: re-installing module \"S1\" with \"--force-test\" option"
+	    "$RSTAR_PREFIX/bin/raku" "$RSTAR_PREFIX/share/perl6/site/bin/zef.raku" install --debug "$1" --force-test
+	  fi
 	fi
 
 	# "$RSTAR_PREFIX/bin/raku" "$BASEDIR/lib/install-module.raku" "$1"
