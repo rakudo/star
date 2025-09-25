@@ -14,7 +14,7 @@ COPY --from=base /usr/lib64 /usr/lib64
 ENV PATH=/usr/local/share/perl6/site/bin:$PATH
 ENV PATH=/usr/local/share/perl6/vendor/bin:$PATH
 ENV PATH=/usr/local/share/perl6/core/bin:$PATH
-ENV PERL6LIB=/app/lib
+ENV RAKULIB=/app/lib
 
 WORKDIR /app
 
