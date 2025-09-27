@@ -11,7 +11,7 @@ App::Zef-Deps            git  https://github.com/coke/raku-zef-deps.git         
 L10N                     git  https://github.com/Raku/L10N.git                                       0.1.7     
 
 # Documentation utilities
-File-Find                git  https://github.com/raku-community-modules/File-Find.git                0.2.3     
+File-Find                git  https://github.com/raku-community-modules/File-Find.git                0.2.4     
 
 # terminal related modules
 Terminal-ANSIColor       git  https://github.com/tadzik/Terminal-ANSIColor.git                       0.13      
