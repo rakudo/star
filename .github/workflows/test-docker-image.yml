@@ -1,0 +1,61 @@
+name: Docker Image CI
+
+on:
+  push:
+    paths:
+      - 'lib/docker/**.Dockerfile'
+  pull_request:
+    paths:
+      - 'lib/docker/**.Dockerfile'
+  workflow_dispatch:
+
+jobs:
+  verify_changed_dockerfiles:
+    runs-on: ubuntu-latest
+    steps:
+      
+    - name: Update Tools And Software
+      run: sudo apt update && sudo apt upgrade && sudo apt install jq -y -qq
+
+    - name: Check out code
+      uses: actions/checkout@v4
+      with:
+        path: 'star'
+        fetch-depth: 2
+        ref: ${{ github.head_ref }}
+
+    - name: Get Changed Dockerfiles
+      id: changed-dockerfiles
+      uses: tj-actions/changed-files@v47
+      with:
+        path: 'star'
+        files: |
+          **.Dockerfile
+
+    - name: Download And Install Rakudo-Star
+      env:
+        RSTAR_DEBUG: 1
+      run: |
+        curl -LsS https://rakudo.org/latest/star/src -o rakudo-star.tar.gz
+        mkdir star_src && tar -xzf rakudo-star.tar.gz --directory star_src && rm -f rakudo-star.tar.gz
+        cd star_src && mv rakudo-star-*/* . && rm -fr rakudo-star-* && cd ..
+        ./star_src/bin/rstar install -p /tmp/rstar
+
+    - name: Build Docker Image(s)
+      env:
+        ALL_CHANGED_DOCKERFILES: ${{ steps.changed-dockerfiles.outputs.all_changed_files }}
+        RSTAR_DEBUG: 1
+      run: |
+        for FILE in ${ALL_CHANGED_DOCKERFILES}; do
+          echo "[INFO] Will copy changed Dockerfile \"$FILE\" now..."
+          if ! [[ "$FILE" =~ "Dockerfile" ]]; then echo "[WARN] Not a Dockerfile, skipping file \"$FILE\"..." && continue; fi       ### !!! should never happen !!!
+          cp -p star/$FILE star_src/$FILE
+          IMAGE=$(basename -s ".Dockerfile" $FILE)
+          echo "[INFO] Will build Dockerimage \"$IMAGE\" with Dockerfile \"$FILE\" now..."
+          ./star_src/bin/rstar build-docker $IMAGE
+        done
+
+    - name: List Docker Image(s)
+      run: |
+        echo "[INFO] Listig docker images..."
+        docker image ls
