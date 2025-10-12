@@ -24,7 +24,7 @@ action() {
 
 	# Prepare environment for a reproducible tarball
 	LC_ALL=C.UTF-8
-	SOURCE_DATE_EPOCH="$(git log -1 --pretty=format:%at)"
+	SOURCE_DATE_EPOCH="$(git log -1 --pretty=format:%at 2> /dev/null || date +%Y%m%d%H%M%S)"
 
 	# Set a VERSION if none was specified explicitly
 	## defaults to the latest GitHub RAKUDO release, as long as "latest" matches something like 2020.08 or 2020.08.1
@@ -49,7 +49,7 @@ action() {
 	chgdir "$BASEDIR"
 
 	# Include files from this project
-	for file in $(git ls-files)
+	for file in $(git ls-files 2> /dev/null || find . -type f -not -path "./.git/*" | sed "s|^./||")
 	do
 		dist_include "/$file"
 	done

@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 RSTAR_DEPS_BIN+=(
+	git
 	docker
 )
 
@@ -28,7 +29,7 @@ action() {
 
 	shift $(( OPTIND - 1 ))
 
-	SOURCE_DATE_EPOCH="$(git log -1 --pretty=format:%at)"
+	SOURCE_DATE_EPOCH="$(git log -1 --pretty=format:%at 2> /dev/null ||  date +%Y%m%d%H%M%S)"
 
 	if (( $# < 1 ))
 	then

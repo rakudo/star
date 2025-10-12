@@ -111,7 +111,7 @@ download_module_git() {
 	if ! git reset --quiet --hard "origin/$ref" > /dev/null 2>&1
 	then
 		# Or the commit hash
-		git reset --quiet --hard "$(git log -1 --format=format:"%H" "$ref")"
+		git reset --quiet --hard "$(git log -1 --format=format:"%H" "$ref")" > /dev/null 2>&1
 	fi
 
 	rm -fr -- .git
