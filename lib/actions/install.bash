@@ -99,6 +99,11 @@ action() {
 	info "  $prefix_absolute/share/perl6/site/bin"
 	info "  $prefix_absolute/share/perl6/vendor/bin"
 	info "  $prefix_absolute/share/perl6/core/bin"
+	info "You can do this in your actual and new shells by running the following command:"
+	info "  export PATH=\"$prefix_absolute/bin:$prefix_absolute/share/perl6/site/bin:$prefix_absolute/share/perl6/vendor/bin:$prefix_absolute/share/perl6/core/bin:\$PATH\""
+	info "You can permanently change your PATH for (1) your current user or (2) system wide by changing:"
+	info "  1. ~/.profile or ~/.bashrc"
+	info "  2. /etc/profile.d/"
 }
 
 action_install_core() {
