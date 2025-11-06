@@ -59,7 +59,7 @@ META6                    git  https://github.com/jonathanstowe/META6.git        
 License-SPDX             git  https://github.com/jonathanstowe/License-SPDX.git                      v3.26.0   
 Test-META                git  https://github.com/jonathanstowe/Test-META.git                         v0.0.20   
 SVG                      git  https://github.com/moritz/svg.git                                      v1.0      
-OO-Monitors              git  https://github.com/jnthn/oo-monitors.git                               1.1.6     
+OO-Monitors              git  https://github.com/jnthn/oo-monitors.git                               1.1.7     
 Test-Mock                git  https://github.com/jnthn/test-mock.git                                 1.8       
 Grammar-Profiler-Simple  git  https://github.com/raku-community-modules/Grammar-Profiler-Simple.git  0.05      
 Grammar-Debugger         git  https://github.com/jnthn/grammar-debugger.git                          1.0.2     
