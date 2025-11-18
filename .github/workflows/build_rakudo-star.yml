@@ -62,9 +62,9 @@ jobs:
       - name: Fetch RSTAR Components
         run: ./bin/rstar fetch -l
       - name: Install all RSTAR Components
-        run: ./bin/rstar install -p /tmp/rstar"$(date +%Y%m%d)"
+        run: ./bin/rstar install -p /tmp/rstar_blabla
       - name: Print RAKUDO Version Informations
-        run: /tmp/rstar"$(date +%Y%m%d)"/bin/rakudo -v
+        run: /tmp/rstar_blabla/bin/rakudo -v
       - name: Import gpg key
         id: import_gpg
         uses: crazy-max/ghaction-import-gpg@v6
