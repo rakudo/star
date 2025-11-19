@@ -3,10 +3,10 @@ name: Docker Image CI
 on:
   push:
     paths:
-      - 'lib/docker/**.Dockerfile'
+      - "**/*.Dockerfile"
   pull_request:
     paths:
-      - 'lib/docker/**.Dockerfile'
+      - "**/*.Dockerfile"
   workflow_dispatch:
 
 jobs:
