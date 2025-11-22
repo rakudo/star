@@ -14,7 +14,7 @@ L10N                     git  https://github.com/Raku/L10N.git                  
 File-Find                git  https://github.com/raku-community-modules/File-Find.git                0.2.4     
 
 # terminal related modules
-Terminal-ANSIColor       git  https://github.com/tadzik/Terminal-ANSIColor.git                       0.13      
+Terminal-ANSIColor       git  https://github.com/tadzik/Terminal-ANSIColor.git                       0.14      
 Term-termios             git  https://github.com/krunen/term-termios.git                             0.2.8     
 Terminal-ANSIParser      git  https://github.com/japhb/Terminal-ANSIParser.git                       0.0.4     
 Terminal-LineEditor      git  https://github.com/japhb/Terminal-LineEditor.git                       0.0.23    
