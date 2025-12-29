@@ -9,9 +9,9 @@ A *user-friendly* distribution of the [Raku programming language](https://raku.o
 
 ## What's in this GIT repo
 
-There are currently two different tools within this repo.
-  1. The so called [`RSTAR tool`](https://github.com/rakudo/star/blob/master/bin/rstar), which manages the **Linux build**.
-  2. The [chocolatey bases Powershell build script](https://github.com/rakudo/star/blob/master/tools/build/binary-release/Windows/build-with-choco.ps1), which manages the **Windows MSI** package build.
+There are currently two different tools within this repo:
+1. The so called [`RSTAR tool`](https://github.com/rakudo/star/blob/master/bin/rstar), which manages the **Linux build** and local installation.
+2. The [chocolatey based Powershell build script](https://github.com/rakudo/star/blob/master/tools/build/binary-release/Windows/build-with-choco.ps1), which creates a **Windows MSI** package.
 
 Both tools compile Rakudo and then add some selected modules!
 
