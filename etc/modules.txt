@@ -69,8 +69,8 @@ OpenSSL                  git  https://github.com/sergot/openssl.git             
 IO-Socket-SSL            git  https://github.com/sergot/io-socket-ssl.git                            0.0.4     
 LWP-Simple               git  https://github.com/raku-community-modules/raku-lwp-simple.git          0.109     
 HTTP-Status              git  https://github.com/lizmat/HTTP-Status.git                              0.0.5     
-PSGI                     git  https://github.com/raku-community-modules/PSGI.git                     1.2.2     
-HTTP-Easy                git  https://github.com/raku-community-modules/HTTP-Easy.git                1.2       
+PSGI                     git  https://github.com/raku-community-modules/PSGI.git                     1.2.3     
+HTTP-Easy                git  https://github.com/raku-community-modules/HTTP-Easy.git                1.3       
 Test-When                git  https://github.com/raku-community-modules/perl6-Test-When.git          2.0       
 Digest                   git  https://github.com/grondilu/libdigest-raku.git                         1.1.0     
 Testo                    git  https://github.com/raku-community-modules/Testo.git                    1.003009  
