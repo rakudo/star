@@ -101,6 +101,6 @@ App-Prove6               git  https://github.com/Leont/app-prove6.git           
 LibraryCheck             git  https://github.com/jonathanstowe/LibraryCheck.git                      v0.0.12   
 Readline                 git  https://github.com/clarkema/raku-readline.git                          0.1.8     
 
-Sparrow6                 git  https://github.com/melezhik/Sparrow6.git                               0.0.80    
+Sparrow6                 git  https://github.com/melezhik/Sparrow6.git                               0.0.81    
 
 # vim: textwidth=0
