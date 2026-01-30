@@ -46,6 +46,7 @@ IF ( -NOT ((Get-Command "cl.exe" -ErrorAction SilentlyContinue).Path) ) {
   } ELSE {
     Write-Host "   INFO - Executing `"Launch-VsDevShell.ps1`""
     & Launch-VsDevShell.ps1 2>&1 | Out-Null
+    CheckLastExitCode
   }
 }
 
@@ -144,6 +145,7 @@ Select-String -Path rakudo-star-modules.txt -Pattern " http "," git " -SimpleMat
     IF ( ("$moduleName" -match "^Terminal") -AND ( -NOT ($readLineDLL) ) ) {
         Write-Host "   INFO - Copy required `"readline.dll`" from `"https://raw.githubusercontent.com/AntonOks/rakudo_star_module_libs/main/3rdparty/win32/readline/readline.dll`""
         & curl.exe -s https://raw.githubusercontent.com/AntonOks/rakudo_star_module_libs/main/3rdparty/win32/readline/readline.dll --output $PrefixPath\bin\readline.dll
+        CheckLastExitCode
         $readLineDLL = $True
     }
     
@@ -168,12 +170,25 @@ IF ( !(Test-Path -Path Windows )) { New-Item -ItemType directory -Path Windows |
 $Wixtoolpath = [Environment]::GetEnvironmentVariable('WIX', 'Machine') + "bin"
 $msiBinFile = "Windows\rakudo-star-$RAKUDO_VER-win-x86_64-msvc.msi"
 $msiChecksumFile = "$msiBinFile" + ".checksums.txt"
+
 & $Wixtoolpath\heat.exe dir $PrefixPath\bin -dr DIR_BIN -cg FilesBin -gg -g1 -sfrag -srd -suid -ke -sw5150 -var "var.BinDir" -out files-bin.wxs
+CheckLastExitCode
+
 & $Wixtoolpath\heat.exe dir $PrefixPath\include -dr DIR_INCLUDE -cg FilesInclude -gg -g1 -sfrag -srd -ke -sw5150 -var "var.IncludeDir" -out files-include.wxs
+CheckLastExitCode
+
 & $Wixtoolpath\heat.exe dir $PrefixPath\share -dr DIR_SHARE -cg FilesShare -gg -g1 -sfrag -srd -ke -sw5150 -var "var.ShareDir" -out files-share.wxs
+CheckLastExitCode
+
 & $Wixtoolpath\candle.exe files-bin.wxs files-include.wxs files-share.wxs -dBinDir="$PrefixPath\bin" -dIncludeDir="$PrefixPath\include" -dShareDir="$PrefixPath\share"
+CheckLastExitCode
+
 & $Wixtoolpath\candle.exe star.wxs -dSTARVERSION="$RAKUDO_VER"
+CheckLastExitCode
+
 & $Wixtoolpath\light.exe -b $PrefixPath -ext WixUIExtension files-bin.wixobj files-include.wixobj files-share.wixobj star.wixobj -sw1076 -o $msiBinFile
+CheckLastExitCode
+
 Write-Host "   INFO - .msi Package `"$msiBinFile`" created"
 
 
