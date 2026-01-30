@@ -5,7 +5,7 @@
 			Manufacturer="The Raku Community"
 			Name="Rakudo Star $(var.STARVERSION)"
 			UpgradeCode="08B7EB05-7EAC-4B60-9F5B-AF6E367FE0FD"
-			Version="$(var.STARVERSION)">
+			Version="1.0.0">
         <Package Compressed="yes"
 				InstallerVersion="301"
 				Platform="x64"
