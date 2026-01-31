@@ -95,6 +95,7 @@ IF ( -NOT ($RAKUDO_VER) ) {
 
 Write-Host "   INFO - Cloning `"https://github.com/rakudo/rakudo.git`"..."
 & git.exe -c advice.detachedHead=false clone --quiet --single-branch -b $RAKUDO_VER "https://github.com/rakudo/rakudo.git" rakudo-$RAKUDO_VER | Out-Null
+CheckLastExitCode
 cd rakudo-$RAKUDO_VER
 
 
@@ -171,6 +172,19 @@ $Wixtoolpath = [Environment]::GetEnvironmentVariable('WIX', 'Machine') + "bin"
 $msiBinFile = "Windows\rakudo-star-$RAKUDO_VER-win-x86_64-msvc.msi"
 $msiChecksumFile = "$msiBinFile" + ".checksums.txt"
 
+# We cannot use $RAKUDO_VER as the "Product Version" in star.wxs otherwise we will get:
+### error CNDL0242 : Invalid product version '2026.01'. Product version must have a major version less than 256, a minor version less than 256, and a build version less than 65536.
+
+$PRODUCT_VERSION = ForEach ($comp in $($RAKUDO_VER.split("."))) {
+  IF ( [int]$comp -gt 255 ) {
+    $comp = $comp.substring(1)
+  }
+  $comp = $comp.trimstart("0")
+  echo $comp
+}
+$STAR_PRODUCT_VERSION = $PRODUCT_VERSION -join "."
+
+
 & $Wixtoolpath\heat.exe dir $PrefixPath\bin -dr DIR_BIN -cg FilesBin -gg -g1 -sfrag -srd -suid -ke -sw5150 -var "var.BinDir" -out files-bin.wxs
 CheckLastExitCode
 
@@ -183,7 +197,7 @@ CheckLastExitCode
 & $Wixtoolpath\candle.exe files-bin.wxs files-include.wxs files-share.wxs -dBinDir="$PrefixPath\bin" -dIncludeDir="$PrefixPath\include" -dShareDir="$PrefixPath\share"
 CheckLastExitCode
 
-& $Wixtoolpath\candle.exe star.wxs -dSTARVERSION="$RAKUDO_VER"
+& $Wixtoolpath\candle.exe star.wxs -dSTARVERSION="$RAKUDO_VER" -dWIX_STARVERSION="$STAR_PRODUCT_VERSION"
 CheckLastExitCode
 
 & $Wixtoolpath\light.exe -b $PrefixPath -ext WixUIExtension files-bin.wixobj files-include.wixobj files-share.wixobj star.wixobj -sw1076 -o $msiBinFile
