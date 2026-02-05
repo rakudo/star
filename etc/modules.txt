@@ -44,7 +44,7 @@ XML                      git  https://github.com/raku-community-modules/XML.git 
 LibXML                   git  https://github.com/libxml-raku/LibXML-raku                             0.11.0    
 
 # templates
-Template6                git  https://github.com/raku-community-modules/Template6.git                0.14.0    
+Template6                git  https://github.com/raku-community-modules/Template6.git                0.15.0    
 Template-Mustache        git  https://github.com/softmoth/raku-Template-Mustache.git                 1.2.3     
 Template-Mojo            git  https://github.com/raku-community-modules/Template-Mojo.git            0.2.2     
 
