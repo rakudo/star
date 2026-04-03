@@ -1,3 +1,7 @@
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/rakudo/star)
+
+----
+
 # Rakudo-Star
 
 A *user-friendly* distribution of the [Raku programming language](https://raku.org/).
@@ -95,7 +99,3 @@ Additionally, there are old mirrors of this repository at other places and from 
 
 The software in this repository is distributed under the terms of the Artistic
 License 2.0, unless specified otherwise.
-
-----
-
-@ More details and explanations about this Rakudo-Star repository, its tools, setup and much more can be found on its [DeepWiki site](https://deepwiki.com/rakudo/star/1-rakudo-star-overview)
