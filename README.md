@@ -6,6 +6,17 @@
 
 A *user-friendly* distribution of the [Raku programming language](https://raku.org/).
 
+## Pre-build binary Rakudo-Star packages
+
+* Please refer to [rakudo-star-pkg releases](https://github.com/AntonOks/rakudo-star-pkg/releases) for binary packages.
+
+**NOTE:** Please provide your feedback about those binary packages in the respective GitHub repo.
+  ```
+  - Mid-term this repo here will also release the binary packages.
+  - Even more, if desired by the users and community, the binary packages
+      could be also uploaded to 'https://www.rakudo.org/star'
+  ```
+
 ## Docker Image
 
 * Please refer to [Rakudo-Star on Docker Hub](https://hub.docker.com/_/rakudo-star) for an image.
