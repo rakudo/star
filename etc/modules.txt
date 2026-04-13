@@ -37,7 +37,7 @@ File-Directory-Tree      git  https://github.com/raku-community-modules/File-Dir
 File-Temp                git  https://github.com/2colours/raku-File-Temp.git                         0.0.12    
 NativeHelpers-Blob       git  https://github.com/salortiz/NativeHelpers-Blob.git                     v0.1.12   
 NativeLibs               git  https://github.com/salortiz/NativeLibs.git                             v0.0.9    
-DBIish                   git  https://github.com/raku-community-modules/DBIish.git                   0.6.7     
+DBIish                   git  https://github.com/raku-community-modules/DBIish.git                   0.6.8     
 
 # serialization modules
 XML                      git  https://github.com/raku-community-modules/XML.git                      0.3.6     
