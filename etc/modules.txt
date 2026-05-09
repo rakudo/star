@@ -62,7 +62,7 @@ SVG                      git  https://github.com/moritz/svg.git                 
 OO-Monitors              git  https://github.com/jnthn/oo-monitors.git                               1.1.7     
 Test-Mock                git  https://github.com/jnthn/test-mock.git                                 1.8       
 Grammar-Profiler-Simple  git  https://github.com/raku-community-modules/Grammar-Profiler-Simple.git  0.05      
-Grammar-Debugger         git  https://github.com/jnthn/grammar-debugger.git                          1.0.2     
+Grammar-Debugger         git  https://github.com/jnthn/grammar-debugger.git                          1.0.3     
 JSON-Tiny                git  https://github.com/moritz/json.git                                     v1.0      
 Perl6-PathTools          git  https://github.com/ugexe/Perl6-PathTools.git                           v0.2.0    
 OpenSSL                  git  https://github.com/sergot/openssl.git                                  0.2.7     
