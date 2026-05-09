@@ -20,7 +20,7 @@ A *user-friendly* distribution of the [Raku programming language](https://raku.o
 ## Docker Image
 
 * Please refer to [Rakudo-Star on Docker Hub](https://hub.docker.com/_/rakudo-star) for an image.
-* Find the related Docker files on the ["Raku Docker" GitHub repository](https://github.com/Raku/docker) 
+* Find the related Docker files on the ["Raku Docker" GitHub repository](https://github.com/Raku/docker)
 
 ## What's in this GIT repo
 
@@ -31,6 +31,41 @@ There are currently two different tools within this repo:
 Both tools compile Rakudo and then add some selected modules!
 
 ### 1. _RSTAR_ tool
+
+#### Usage
+
+```
+rstar install [options] [core] [modules]
+```
+
+**Options:**
+
+| Option | Description |
+|--------|-------------|
+| `-b <backend>` | Set the compiler backend (default: `moar`) |
+| `-p <prefix>` | Set the installation prefix |
+| `-T` | Skip module tests (`--/test`) during installation |
+
+**Skipping module tests:**
+
+By default, `zef` runs all tests when installing bundled modules. Pass `-T` to
+disable this, which can significantly speed up installation:
+
+```sh
+rstar install -T modules
+```
+
+You can also set the environment variable `RSTAR_NO_TEST` to any non-empty
+value to achieve the same effect without modifying the command:
+
+```sh
+RSTAR_NO_TEST=1 rstar install modules
+```
+
+> Note: When a module fails and is retried with `--force-test`, tests are
+> always run regardless of this option.
+
+---
 
 * `bash` based tool, should work on any **Linux OS** (_should also build Rakudo-Star on macOS_!?).
   - The `rstar` (bash) tool downloads all requirements, like MoarVM, NQP, Rakudo and some Rakudo modules.
@@ -47,7 +82,7 @@ Furthermore, all code should be linted against [`shellcheck`](https://www.shellc
 
 * A [Powershell script](https://github.com/rakudo/star/blob/master/tools/build/binary-release/Windows/build-with-choco.ps1), which internally uses `chocolatey` to create a **Windows MSI** package.
     - The created MSI package can be used to install Rakudo-Star (Rakudo with some additional modules) on any Windows device.
-* *More information to be added* in the [wiki](https://github.com/rakudo/star/wiki) 
+* *More information to be added* in the [wiki](https://github.com/rakudo/star/wiki)
 
 ### 3. Community Modules
 
@@ -65,7 +100,7 @@ the module, the second the protocol to use, with the third column being the
 URL to fetch it from. Columns following the third have different meaning
 depending on the protocol.
 
-*Currently all modules are expected to be available via `git` (GitHub) and having `git tags`, similar to the `version` given in the modules `META6.json`* 
+*Currently all modules are expected to be available via `git` (GitHub) and having `git tags`, similar to the `version` given in the modules `META6.json`*
 
 ## Bugs, Feedback and Patches
 
