@@ -19,11 +19,12 @@ action() {
 	local init
 	local prefix_absolute
 
-	while getopts ":b:p:" opt
+	while getopts ":b:p:T" opt
 	do
 		case "$opt" in
 			b) RSTAR_BACKEND=$OPTARG ;;
 			p) RSTAR_PREFIX=$OPTARG ;;
+			T) RSTAR_NO_TEST=1 ;;
 			*) emerg "Invalid option specified: $opt" ;;
 		esac
 	done
@@ -246,17 +247,17 @@ build_prepare() {
 install_raku_module() {
 	if [[ -f "$1/Build.pm6" ]]
 	then
-		"$RSTAR_PREFIX/bin/raku" "$RSTAR_PREFIX/share/perl6/site/bin/zef.raku" build --debug "$1"
+		"$RSTAR_PREFIX/bin/raku" "$RSTAR_PREFIX/share/perl6/site/bin/zef.raku" build --debug ${RSTAR_NO_TEST:+--/test} "$1"
 	fi
 
 	if [[ "$1" =~ /zef ]]
 	then
 	  pushd "$1" > /dev/null
 	  PATH="$RSTAR_PREFIX/bin/:$PATH"
-	  "$RSTAR_PREFIX/bin/raku" -I. bin/zef --debug install .
+	  "$RSTAR_PREFIX/bin/raku" -I. bin/zef --debug install . ${RSTAR_NO_TEST:+--/test}
 	  popd > /dev/null
 	else
-	  "$RSTAR_PREFIX/bin/raku" "$RSTAR_PREFIX/share/perl6/site/bin/zef.raku" install --debug "$1"
+	  "$RSTAR_PREFIX/bin/raku" "$RSTAR_PREFIX/share/perl6/site/bin/zef.raku" install --debug ${RSTAR_NO_TEST:+--/test} "$1"
 	  if [[ $? == 130 ]]
 	  then
 	    notice "zef: re-installing module \"$1\" with \"--force-test\" option"
