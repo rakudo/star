@@ -259,7 +259,7 @@ install_raku_module() {
 	  "$RSTAR_PREFIX/bin/raku" "$RSTAR_PREFIX/share/perl6/site/bin/zef.raku" install --debug "$1"
 	  if [[ $? == 130 ]]
 	  then
-	    notice "zef: re-installing module \"S1\" with \"--force-test\" option"
+	    notice "zef: re-installing module \"$1\" with \"--force-test\" option"
 	    "$RSTAR_PREFIX/bin/raku" "$RSTAR_PREFIX/share/perl6/site/bin/zef.raku" install --debug "$1" --force-test
 	  fi
 	fi
