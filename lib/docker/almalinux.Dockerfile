@@ -1,4 +1,4 @@
-FROM almalinux:latest AS base
+FROM almalinux:9.7-20260509 AS base
 
 
 RUN groupadd -r rstar && useradd -m -r -g rstar rstar
@@ -9,7 +9,7 @@ RUN yum -y install perl git gcc make
 RUN /home/rstar/bin/rstar install -p /home/rstar
 RUN yum -y remove perl git gcc make
 
-FROM almalinux:latest
+FROM almalinux:9.7-20260509
 
 COPY --from=base /home/rstar /usr/local
 COPY --from=base /usr/lib64 /usr/lib64
