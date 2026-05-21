@@ -1,4 +1,4 @@
-FROM debian:latest AS base
+FROM debian:13.5 AS base
 
 COPY . /home/rstar
 
@@ -8,7 +8,7 @@ RUN /home/rstar/bin/rstar install -p /home/raku
 RUN apt-get -y remove git build-essential
 RUN apt-get -y autoremove
 
-FROM debian:latest
+FROM debian:13.5
 
 COPY --from=base /home/raku /usr/local
 COPY --from=base /lib       /lib
