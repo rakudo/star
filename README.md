@@ -32,6 +32,17 @@ Both tools compile Rakudo and then add some selected modules!
 
 ### 1. _RSTAR_ tool
 
+* `bash` based tool, should work on any **Linux OS** (_should also build Rakudo-Star on macOS_!?).
+  - The `rstar` (bash) tool downloads all requirements, like MoarVM, NQP, Rakudo and some Rakudo modules.
+  - It then compiles everything into a local Rakudo installation and add's the modules via `zef`.
+* More information can be found in the [related Wiki page](https://github.com/rakudo/star/wiki/01_Rakudo-Star---Linux-package)
+
+As the `rstar` utility is written in `bash`, all additional features should also be
+based on `bash`. Using other utilities is accepted, but efforts should be made to
+avoid introducing new utilities.
+
+Furthermore, all code should be linted against [`shellcheck`](https://www.shellcheck.net/) and not produce any warnings.
+
 #### Usage
 
 ```
@@ -65,24 +76,45 @@ RSTAR_NO_TEST=1 rstar install modules
 > Note: When a module fails and is retried with `--force-test`, tests are
 > always run regardless of this option.
 
----
-
-* `bash` based tool, should work on any **Linux OS** (_should also build Rakudo-Star on macOS_!?).
-  - The `rstar` (bash) tool downloads all requirements, like MoarVM, NQP, Rakudo and some Rakudo modules.
-  - It then compiles everything into a local Rakudo installation and add's the modules via `zef`.
-* More information can be found in the [related Wiki page](https://github.com/rakudo/star/wiki/01_Rakudo-Star---Linux-package)
-
-As the `rstar` utility is written in `bash`, all additional features should also be
-based on `bash`. Using other utilities is accepted, but efforts should be made to
-avoid introducing new utilities.
-
-Furthermore, all code should be linted against [`shellcheck`](https://www.shellcheck.net/) and not produce any warnings.
-
 ### 2. _BUILD-WITH-CHOCO.PS1_ tool
 
 * A [Powershell script](https://github.com/rakudo/star/blob/master/tools/build/binary-release/Windows/build-with-choco.ps1), which internally uses `chocolatey` to create a **Windows MSI** package.
     - The created MSI package can be used to install Rakudo-Star (Rakudo with some additional modules) on any Windows device.
-* *More information to be added* in the [wiki](https://github.com/rakudo/star/wiki)
+* More information can be found in the [wiki](https://github.com/rakudo/star/wiki)
+
+#### Usage
+
+```powershell
+.\build-with-choco.ps1 [[-RAKUDO_VER] <version>] [-sign] [-keep] [-NoTest]
+```
+
+**Parameters:**
+
+| Parameter | Description |
+|-----------|-------------|
+| `-RAKUDO_VER <version>` | The Rakudo release to build, e.g. `2026.04`. If omitted, the latest release is fetched automatically from GitHub. |
+| `-sign` | Sign the resulting `.msi` and checksum file with GPG. |
+| `-keep` | Keep the intermediate build artefacts after a successful build. |
+| `-NoTest` / `-T` | Skip module tests during `zef` installs (`--/test`). |
+
+**Skipping module tests:**
+
+By default, `zef` runs all tests when installing bundled modules. Pass `-NoTest`
+(or its alias `-T`) to disable this, which can significantly speed up the build:
+
+```powershell
+.\build-with-choco.ps1 -NoTest
+```
+
+You can also set the environment variable `RSTAR_NO_TEST` to any non-empty
+value to achieve the same effect without modifying the command:
+
+```powershell
+$env:RSTAR_NO_TEST = 1
+.\build-with-choco.ps1
+```
+
+---
 
 ### 3. Community Modules
 
