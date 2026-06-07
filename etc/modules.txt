@@ -30,7 +30,7 @@ Config-TOML              git  https://github.com/atweiden/config-toml.git       
 MIME-Base64              git  https://github.com/raku-community-modules/MIME-Base64.git              1.2.5     
 YAMLish                  git  https://github.com/Leont/yamlish.git                                   0.1.2     
 
-JSON-Fast                git  https://github.com/timo/json_fast.git                                  0.19      
+JSON-Fast                git  https://github.com/timo/json_fast.git                                  0.20      
 
 # Database interaction
 File-Directory-Tree      git  https://github.com/raku-community-modules/File-Directory-Tree          0.2       
