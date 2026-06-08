@@ -1,4 +1,29 @@
-param ([string]$RAKUDO_VER, [switch]$sign, [switch]$keep)
+<#
+.SYNOPSIS
+    Build a Rakudo Star Windows installer
+
+.PARAMETER RAKUDO_VER
+    The Rakudo release to build, e.g. "2026.04".
+    If omitted, the latest release is fetched automatically from GitHub.
+
+.PARAMETER sign
+    Sign the resulting .msi and checksum file with GPG.
+
+.PARAMETER keep
+    Keep the intermediate build artefacts after a successful build.
+
+.PARAMETER NoTest
+    Skip module tests during zef installs (equivalent to setting the
+    RSTAR_NO_TEST environment variable).  Passes --/test instead of
+    --force-test to every "zef install" invocation.  Alias: -T
+#>
+param (
+    [string] $RAKUDO_VER,
+    [switch] $sign,
+    [switch] $keep,
+    [Alias("T")]
+    [switch] $NoTest
+)
 
 # inspired by https://github.com/hankache/rakudo-star-win/blob/master/build.ps1
 # expected $RAKUDO_VER is something like "2021.03"
@@ -10,6 +35,9 @@ param ([string]$RAKUDO_VER, [switch]$sign, [switch]$keep)
 # https://david.gardiner.net.au/2020/04/azure-pipelines-powershell-7-errors.html
 # https://github.com/microsoft/azure-pipelines-tasks/issues/12799
 $ErrorView = 'NormalView'
+
+# If RSTAR_NO_TEST is set or -T is passed, skip tests during zef installs
+IF ( ($env:RSTAR_NO_TEST) -OR ($NoTest) ) { $testFlag = "--/test" } ELSE { $testFlag = "--force-test" }
 
 # Set the "RAKUDO_FLAVOR" environment variable to "Star", see
 #   https://github.com/rakudo/rakudo/commit/6e55b118edcbf60aa0aff875fbcdc21706a782a0
@@ -38,7 +66,7 @@ IF ( -NOT ((Get-Command "cl.exe" -ErrorAction SilentlyContinue).Path) ) {
   Write-Host "          https://github.com/rakudo/rakudo/commit/d01d4b26641bec2a62b43007b476f668982b9ab6#diff-a3c0a8904b9af2275c7ef3d4616ad9c3481898d3cc0e4698133948520b2df2ed"
   Write-Host "          https://github.com/Raku/nqp-configure/blob/e068508a94d643c1174bcd29e333dd659df502c5/lib/NQP/Config.pm#L252"
   Write-Host "          https://github.com/Raku/nqp-configure/commit/1a9539a8f60343a231cccf8aeb7c9e3c48d2c2ee"
-  
+
   IF ( -NOT ((Get-Command "Launch-VsDevShell.ps1" -ErrorAction SilentlyContinue).Path) ) {
     Write-Host "  ERROR - Couldn't neither find `"cl.exe`" nor `"Launch-VsDevShell.ps1`""
     Write-Host "  ERROR - Make sure `"Microsoft Visual C++ 2019`" or newer is installed and try again"
@@ -123,7 +151,7 @@ CheckLastExitCode
 
 cd zef
 Write-Host "   INFO - Installing ZEF"
-& $PrefixPath\bin\raku.exe -I. bin\zef install . --debug --force-test --install-to=$PrefixPath\share\perl6\site\
+& $PrefixPath\bin\raku.exe -I. bin\zef install . --debug $testFlag --install-to=$PrefixPath\share\perl6\site\
 CheckLastExitCode
 
 # Add the required rakudo folders to PATH in order for some modules to test correctly (File::Which)
@@ -142,16 +170,16 @@ Select-String -Path rakudo-star-modules.txt -Pattern " http "," git " -SimpleMat
   $moduleName = $moduleName.replace("-","::")
   Write-Host "   INFO - ZEF: installing $moduleName, $moduleUrl"
   IF ( $moduleName -ne "zef" ) {
-    
+
     IF ( ("$moduleName" -match "^Terminal") -AND ( -NOT ($readLineDLL) ) ) {
         Write-Host "   INFO - Copy required `"readline.dll`" from `"https://raw.githubusercontent.com/AntonOks/rakudo_star_module_libs/main/3rdparty/win32/readline/readline.dll`""
         & curl.exe -s https://raw.githubusercontent.com/AntonOks/rakudo_star_module_libs/main/3rdparty/win32/readline/readline.dll --output $PrefixPath\bin\readline.dll
         CheckLastExitCode
         $readLineDLL = $True
     }
-    
-    IF ( [string]( & zef install $moduleName --debug --force-test --install-to=$PrefixPath\share\perl6\site\) -match 'No candidates found matching identity' ) {
-        & zef install $moduleUrl --debug --force-test --install-to=$PrefixPath\share\perl6\site\
+
+    IF ( [string]( & zef install $moduleName --debug $testFlag --install-to=$PrefixPath\share\perl6\site\) -match 'No candidates found matching identity' ) {
+        & zef install $moduleUrl --debug $testFlag --install-to=$PrefixPath\share\perl6\site\
     }
   }
 }
