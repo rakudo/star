@@ -1,4 +1,4 @@
-FROM alpine:latest AS base
+FROM alpine:3.24.1 AS base
 
 COPY . /home/rstar
 
@@ -6,7 +6,7 @@ RUN apk add --no-cache bash build-base git perl readline
 RUN /home/rstar/bin/rstar install -p /home/raku
 RUN apk del bash build-base git perl
 
-FROM alpine:latest
+FROM alpine:3.24.1
 
 COPY --from=base /home/raku /usr/local
 COPY --from=base /usr/lib   /usr/lib
