@@ -28,7 +28,7 @@ Crane                    git  https://github.com/atweiden/crane.git             
 Config-TOML              git  https://github.com/atweiden/config-toml.git                            0.1.3     
 
 MIME-Base64              git  https://github.com/raku-community-modules/MIME-Base64.git              1.2.5     
-YAMLish                  git  https://github.com/Leont/yamlish.git                                   0.1.2     
+YAMLish                  git  https://github.com/Leont/yamlish.git                                   0.1.3     
 
 JSON-Fast                git  https://github.com/timo/json_fast.git                                  0.20.1    
 
