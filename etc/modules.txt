@@ -48,6 +48,11 @@ Template6                git  https://github.com/raku-community-modules/Template
 Template-Mustache        git  https://github.com/softmoth/raku-Template-Mustache.git                 1.2.3     
 Template-Mojo            git  https://github.com/raku-community-modules/Template-Mojo.git            0.2.2     
 
+# Inline::*
+System-Query                       git  https://github.com/tony-o/p6-warthog.git                       master
+Distribution-Builder-MakeFromJSON  git https://github.com/niner/Distribution-Builder-MakeFromJSON.git  master
+Inline-Perl5                       git  https://github.com/niner/Inline-Perl5.git                      master
+
 # Taken from the previous iteration of Rakudo Star
 URI                      git  https://github.com/raku-community-modules/uri.git                      0.3.8     
 JSON-OptIn               git  https://github.com/jonathanstowe/JSON-OptIn.git                        v0.0.2    
