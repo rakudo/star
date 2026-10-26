@@ -3,10 +3,10 @@ name: Docker Image CI
 on:
   push:
     paths:
-      - "**/*.Dockerfile"
+      - 'lib/docker/**.Dockerfile'
   pull_request:
     paths:
-      - "**/*.Dockerfile"
+      - 'lib/docker/**.Dockerfile'
   workflow_dispatch:
 
 jobs:
@@ -14,8 +14,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       
-    - name: Update Tools And Software
-      run: sudo apt update && sudo apt upgrade && sudo apt install jq -y -qq
+    # - name: Update Tools And Software
+    #   run: sudo apt update && sudo apt upgrade && sudo apt install jq -y -qq
 
     - name: Check out code
       uses: actions/checkout@v4
@@ -29,8 +29,17 @@ jobs:
       uses: tj-actions/changed-files@v47
       with:
         path: 'star'
+        # output_dir: ''
         files: |
           **.Dockerfile
+
+    - name: List all changed files
+      env:
+        ALL_CHANGED_FILES: ${{ steps.changed-dockerfiles.outputs.all_changed_files }}
+      run: |
+        for FILE in ${ALL_CHANGED_FILES}; do
+          echo "[INFO] \"$FILE\" was changed"
+        done
 
     - name: Download And Install Rakudo-Star
       env:

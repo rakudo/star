@@ -34,7 +34,7 @@ jobs:
           passphrase: ${{ secrets.PASSPHRASE }}
           fingerprint: ${{ env.GPG_FINGERPRINT }}
       - name: Run the build-with-choco.ps1 script
-        run: pwsh -command ".\$GITHUB_WORKSPACE\tools\build\binary-release\Windows\build-with-choco.ps1" -sign
+        run: pwsh -command ".\$GITHUB_WORKSPACE\tools\build\binary-release\Windows\build-with-choco.ps1"
       - name: List my stuff
         run: Get-ChildItem -Exclude ".git" -Recurse
       - name: Upload Rakudo-Star Windows artifacts

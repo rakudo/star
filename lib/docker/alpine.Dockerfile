@@ -1,4 +1,4 @@
-FROM alpine:latest AS base
+FROM alpine:latest AS Abase
 
 COPY . /home/rstar
 
@@ -8,8 +8,8 @@ RUN apk del bash build-base git perl
 
 FROM alpine:latest
 
-COPY --from=base /home/raku /usr/local
-COPY --from=base /usr/lib   /usr/lib
+COPY --from=Abase /home/raku /usr/local
+COPY --from=Abase /usr/lib   /usr/lib
 
 ENV PATH=/usr/local/share/perl6/site/bin:$PATH
 ENV PATH=/usr/local/share/perl6/vendor/bin:$PATH
