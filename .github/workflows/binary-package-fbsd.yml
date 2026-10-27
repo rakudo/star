@@ -1,0 +1,20 @@
+name: Binary Packages
+
+on: push
+
+jobs:
+  amd64-freebsd:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Build
+        uses: vmactions/freebsd-vm@v0.1.0
+        with:
+          mem: 2048
+          usesh: true
+          prepare: pkg install -y bash gcc perl5 p5-App-cpanminus
+          run: |
+            RSTAR_DEBUG=1 ./bin/rstar fetch
+            RSTAR_DEBUG=1 ./bin/rstar install -p "/tmp/ci-$JOB_ID"
